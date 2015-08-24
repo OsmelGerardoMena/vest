@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Vest
+        psr4_prefix: Vest
+        src_path: app
