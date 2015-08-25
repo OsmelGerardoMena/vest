@@ -16,7 +16,7 @@ class CreateModulesTable extends Migration
             $table->increments('id');
             $table->string('description');
             $table->string('url')->default('#');
-            $table->integer('order');
+            $table->integer('order')->nullable();
             $table->string('icon');
         });
     }

@@ -54,7 +54,7 @@
                     </li>
                     <li class='has_sub'>
                         <a href='javascript:void(0);'>
-                            <i class='icon-feather'></i>
+                            <i class='icon-layers'></i>
                             <span>@lang('dashboard.sidebar.users')</span>
                             <span class="pull-right">
                                 <i class="fa fa-angle-down"></i>

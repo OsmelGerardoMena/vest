@@ -13,14 +13,14 @@ class UserTypesTableSeeder extends Seeder
     {
         \DB::table('user_types')->insert([
         	'name' => 'Admin',
-        	'modules' => '1',
+        	'modules' => '1,2,3,4,5,6',
         	'status_id' => '1',
         ]);
 
-        \DB::table('user_types')->insert([
+        /*\DB::table('user_types')->insert([
         	'name' => 'Vendedor',
         	'modules' => '1,2,4',
         	'status_id' => '1',
-        ]);
+        ]);*/
     }
 }
