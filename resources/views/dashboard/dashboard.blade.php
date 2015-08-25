@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-	@lang('auth.login_title')
+	@lang('dashboard.title')
 @stop
 
 @section('content')

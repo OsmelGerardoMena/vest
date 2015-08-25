@@ -14,4 +14,4 @@
 <script src="{{asset('assets/js/apps/calculator.js')}}"></script>
 <script src="{{asset('assets/js/apps/todo.js')}}"></script>
 <script src="{{asset('assets/js/apps/notes.js')}}"></script>
-<script src="{{asset('assets/js/pages/index.js')}}"></script>
+<!--<script src="{{asset('assets/js/pages/index.js')}}"></script>-->

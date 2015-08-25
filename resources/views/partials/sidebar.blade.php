@@ -2,24 +2,28 @@
     <div class="left side-menu">
         <div class="sidebar-inner slimscrollleft">
            <!-- Search form -->
-            <form role="search" class="navbar-form">
+            <!--<form role="search" class="navbar-form">
                 <div class="form-group">
                     <input type="text" placeholder="Search" class="form-control">
                     <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
                 </div>
-            </form>
+            </form>-->
             <div class="clearfix"></div>
             <!--- Profile -->
             <div class="profile-info">
                 <div class="col-xs-4">
-                  <a href="profile.html" class="rounded-image profile-image"><img src="images/users/user-100.jpg"></a>
+                  <a href="profile.html" class="rounded-image profile-image">
+                    <img src="{{asset('assets/images/users/user-100.jpg')}}">
+                </a>
                 </div>
                 <div class="col-xs-8">
-                    <div class="profile-text">Welcome <b>Jane</b></div>
+                    <div class="profile-text">@lang('dashboard.welcome') <b>Jane</b></div>
                     <div class="profile-buttons">
-                      <a href="javascript:;"><i class="fa fa-envelope-o pulse"></i></a>
-                      <a href="#connect" class="open-right"><i class="fa fa-comments"></i></a>
-                      <a href="javascript:;" title="Sign Out"><i class="fa fa-power-off text-red-1"></i></a>
+                      <!--<a href="javascript:;"><i class="fa fa-envelope-o pulse"></i></a>-->
+                      <!--<a href="#connect" class="open-right"><i class="fa fa-comments"></i></a>-->
+                        <a class="md-trigger" data-modal="logout-modal" title="Sign Out">
+                            <i class="fa fa-power-off text-red-1"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -35,7 +39,7 @@
                     <li class='has_sub'>
                         <a href='javascript:void(0);'>
                             <i class='icon-home-3'></i>
-                            <span>Dashboard</span> 
+                            <span>@lang('dashboard.sidebar.dash')</span> 
                             <span class="pull-right">
                                 <i class="fa fa-angle-down"></i>
                             </span>
@@ -43,7 +47,7 @@
                         <ul>
                             <li>
                                 <a href='#' class='active'>
-                                    <span>Inicio</span>
+                                    <span>@lang('dashboard.sidebar.start')</span>
                                 </a>
                             </li>
                         </ul>
@@ -51,7 +55,7 @@
                     <li class='has_sub'>
                         <a href='javascript:void(0);'>
                             <i class='icon-feather'></i>
-                            <span>Usuarios</span>
+                            <span>@lang('dashboard.sidebar.users')</span>
                             <span class="pull-right">
                                 <i class="fa fa-angle-down"></i>
                             </span>
@@ -59,7 +63,7 @@
                         <ul>
                             <li>
                                 <a href='#'>
-                                    <span>Listado</span>
+                                    <span>@lang('dashboard.sidebar.list')</span>
                                 </a>
                             </li>
                         </ul>
