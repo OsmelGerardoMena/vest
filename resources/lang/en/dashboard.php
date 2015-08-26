@@ -33,4 +33,12 @@ return [
 		'info' => 'Info',
 		'back' => 'Back',
 	],
+
+	'placeholder' => [
+
+	],
+
+	'labels' => [
+
+	],
 ];

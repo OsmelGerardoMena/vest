@@ -35,12 +35,17 @@
 					!!}
 				  		@include('dashboard.users.partials.fields')
 
-					  	 <div class="form-group">
+					  	<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<button type="submit" class="btn btn-success">
 									<i class="fa fa-plus-circle"></i>
 									@lang('dashboard.buttons.create')
 								</button>
+
+								<a href="{{route('dashboard.users.index')}}" class="btn btn-default">
+									<i class="icon-back"></i>
+									@lang('dashboard.buttons.back')
+								</a>
 							</div>
 						</div>
 					{!! Form::close() !!}
