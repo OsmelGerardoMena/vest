@@ -22,7 +22,7 @@
             			@lang('dashboard.title_users')
             		</h1>
             </div>
-	
+			@include('dashboard.users.partials.messages')
 			<div class="row">
 				<div class="col-md-12">
 					<div class="widget">
@@ -69,8 +69,19 @@
 											<td><span class="label label-success">{{ $user->status->type }}</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="Off" class="btn btn-default"><i class="fa fa-power-off"></i></a>
-													<a data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
+													<a data-toggle="tooltip" title="Off" class="btn btn-default">
+														<i class="fa fa-power-off"></i>
+													</a>
+													<a data-toggle="tooltip" title="Info" class="btn btn-info">
+														<i class="icon-info"></i>
+													</a>
+													<a data-toggle="tooltip" title="Edit" class="btn btn-warning" 
+														href="{{route('dashboard.users.edit', $user->id)}}">
+														<i class="fa fa-edit"></i>
+													</a>
+													<a data-toggle="tooltip" title="Delete" class="btn btn-danger">
+														<i class="fa fa-trash-o"></i>
+													</a>
 												</div>
 											</td>
 										</tr>

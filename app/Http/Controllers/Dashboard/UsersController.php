@@ -14,10 +14,26 @@ use Illuminate\Support\Facades\Request;
 
 //Request para validar
 use Vest\Http\Requests\CreateUserRequest;
-use Illuminate\Routing\Redirector;
+use Vest\Http\Requests\EditUserRequest;
+
+//para mensajes con sesiones
+use Illuminate\Support\Facades\Session;
+
+//para usar route como inyeccion de dependencia
+use Illuminate\Routing\Route;
 
 class UsersController extends Controller
 {
+    ///Para buscar el usuario y tenerlo en $this->user
+    public function __construct(){
+        $this->beforeFilter('@findUser', ['only' => ['show', 'edit', 'update', 'destroy']]);
+    }
+
+    public function findUser(Route $route){
+        $this->user = User::findOrFail($route->getParameter('users'));
+    }
+    ///Para buscar el usuario y tenerlo en $this->user
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +41,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::simplePaginate(3);
+        $users = User::simplePaginate(5);
         return view('dashboard.users.users', compact('users'));
     }
 
@@ -47,11 +63,10 @@ class UsersController extends Controller
      */
     public function store(CreateUserRequest $request)
     { 
-        $user = new User();
-        $user->type_id = $request->get('type');
-        $user->fill($request->all());
-        $user->save();
-
+        $user = User::create($request->all());
+      
+        Session::flash('new_user', trans('messages.new_user'));
+    
         return redirect()->route('dashboard.users.index');
     }
 
@@ -74,7 +89,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('dashboard.users.edit')->with('user', $this->user);
     }
 
     /**
@@ -84,9 +99,15 @@ class UsersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(EditUserRequest $request, $id)
     {
-        //
+        $this->user->fill($request->all());
+
+        $this->user->save();
+
+        Session::flash('edit_user', trans('messages.edit_user'));
+
+        return redirect()->back();
     }
 
     /**

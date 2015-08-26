@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_create')
+	@lang('dashboard.title_edit')
 @stop
 
 @section('content')
@@ -18,29 +18,37 @@
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-            		<h1><i class='icon-user-add'></i> 
-            			@lang('dashboard.title_create')
+            		<h1><i class='icon-edit'></i> 
+            			@lang('dashboard.title_edit')
             		</h1>
             </div>
 
+            @include('dashboard.users.partials.messages')
+			
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
-					{!! Form::open([
-							'route' => 'dashboard.users.store', 
-							'method' => 'POST', 
+
+					{!! Form::model($user, [
+							'route' => ['dashboard.users.update', $user->id],
 							'class' => 'form-horizontal',
-							'role' => 'form'
-						]) 
+							'role' => 'form',
+							'method' => 'PUT']) 
 					!!}
+
 				  		@include('dashboard.users.partials.fields')
 
-					  	 <div class="form-group">
+					  	<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<button type="submit" class="btn btn-success">
-									<i class="fa fa-plus-circle"></i>
-									@lang('dashboard.buttons.create')
+									<i class="icon-edit"></i>
+									@lang('dashboard.buttons.edit')
 								</button>
+
+								<a href="{{route('dashboard.users.index')}}" class="btn btn-default">
+									<i class="icon-back"></i>
+									@lang('dashboard.buttons.back')
+								</a>
 							</div>
 						</div>
 					{!! Form::close() !!}

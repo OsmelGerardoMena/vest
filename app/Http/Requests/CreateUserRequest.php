@@ -30,7 +30,7 @@ class CreateUserRequest extends Request
             'mobile' => 'required|max:20',
             'phone' => 'required|max:20',
             'address' => 'required|max:100',
-            'type' => 'required',
+            'type_id' => 'required',
             'password' => 'required|confirmed|min:6',
         ];
     }

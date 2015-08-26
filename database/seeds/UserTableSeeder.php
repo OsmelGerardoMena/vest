@@ -34,6 +34,6 @@ class UserTableSeeder extends Seeder
         ]);
 
     	//se crean 10 datos de prueba
-        //factory(Vest\User::class, 5)->create();
+        factory(Vest\User::class, 15)->create();
     }
 }

@@ -4,6 +4,8 @@ return [
 	'title_home' => 'Welcome to dashboard',
 	'title_users' => 'Users',
 	'title_create' => 'Create User',
+	'title_edit' => 'Edit User',
+	'title_info' => 'Info User',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'my_profile' => 'My Profile',
@@ -22,5 +24,13 @@ return [
 		'products' => 'Products',
 		'list' => 'List',
 		'add' => 'Create',
+	],
+
+	'buttons' => [
+		'create' => 'Create',
+		'edit' => 'Edit',
+		'delete' => 'Delete',
+		'info' => 'Info',
+		'back' => 'Back',
 	],
 ];
