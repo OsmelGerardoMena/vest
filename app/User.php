@@ -32,4 +32,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    // relacion de muchos a uno (relacion inversa) 
+    // (los usuarios tienen un unico tipo)
+    public function type()
+    {
+        //retorna un solo objeto type, ya que el usuario solo tiene un tipo
+        return $this->belongsTo('Vest\Tables\UserTypes');
+    }
 }

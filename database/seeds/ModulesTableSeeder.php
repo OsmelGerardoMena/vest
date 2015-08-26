@@ -20,7 +20,7 @@ class ModulesTableSeeder extends Seeder
         \DB::table('submodules')->insert([
         	'description' => 'list',
         	'url' => '/dashboard/users',
-        	'modules_id' => $id,
+        	'module_id' => $id,
         ]);
         /// Modulo y submodulos users
 
@@ -33,7 +33,7 @@ class ModulesTableSeeder extends Seeder
         \DB::table('submodules')->insert([
         	'description' => 'list',
         	'url' => '/dashboard/profiles',
-        	'modules_id' => $id,
+        	'module_id' => $id,
         ]);
         /// Modulo y submodulos roles
 
@@ -46,7 +46,7 @@ class ModulesTableSeeder extends Seeder
         \DB::table('submodules')->insert([
         	'description' => 'list',
         	'url' => '/dashboard/customers',
-        	'modules_id' => $id,
+        	'module_id' => $id,
         ]);
         /// Modulo y submodulos customers
 
@@ -59,7 +59,7 @@ class ModulesTableSeeder extends Seeder
         \DB::table('submodules')->insert([
         	'description' => 'list',
         	'url' => '/dashboard/sellers',
-        	'modules_id' => $id,
+        	'module_id' => $id,
         ]);
         /// Modulo y submodulos sellers
 
@@ -72,7 +72,7 @@ class ModulesTableSeeder extends Seeder
         \DB::table('submodules')->insert([
         	'description' => 'list',
         	'url' => '/dashboard/company',
-        	'modules_id' => $id,
+        	'module_id' => $id,
         ]);
         /// Modulo y submodulos company
 
@@ -85,7 +85,7 @@ class ModulesTableSeeder extends Seeder
         \DB::table('submodules')->insert([
         	'description' => 'list',
         	'url' => '/dashboard/products',
-        	'modules_id' => $id,
+        	'module_id' => $id,
         ]);
         /// Modulo y submodulos products
     }

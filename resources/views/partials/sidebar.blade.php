@@ -17,7 +17,10 @@
                 </a>
                 </div>
                 <div class="col-xs-8">
-                    <div class="profile-text">@lang('dashboard.welcome') <b>Jane</b></div>
+                    <div class="profile-text">
+                        @lang('dashboard.welcome') 
+                        <b>{{ Auth::user()-> name}}</b>
+                    </div>
                     <div class="profile-buttons">
                       <!--<a href="javascript:;"><i class="fa fa-envelope-o pulse"></i></a>-->
                       <!--<a href="#connect" class="open-right"><i class="fa fa-comments"></i></a>-->
@@ -37,7 +40,7 @@
             <div id="sidebar-menu">
                 <ul>
                     <li class='has_sub'>
-                        <a href='javascript:void(0);'>
+                        <a href=''>
                             <i class='icon-home-3'></i>
                             <span>@lang('dashboard.sidebar.dash')</span> 
                             <span class="pull-right">
@@ -52,22 +55,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class='has_sub'>
-                        <a href='javascript:void(0);'>
-                            <i class='icon-layers'></i>
-                            <span>@lang('dashboard.sidebar.users')</span>
-                            <span class="pull-right">
-                                <i class="fa fa-angle-down"></i>
-                            </span>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href='#'>
-                                    <span>@lang('dashboard.sidebar.list')</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @include('partials/modules')
                 </ul>
                 <div class="clearfix"></div>
             </div>

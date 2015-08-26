@@ -50,8 +50,10 @@
                         </div>
                     </li>-->
                     <li class="language_bar dropdown hidden-xs">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@lang('dashboard.spanish')
-                            <i class="fa fa-caret-down"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            @lang('dashboard.spanish')
+                            <i class="fa fa-caret-down"></i>
+                        </a>
                         <ul class="dropdown-menu pull-right">
                             <li><a href="#">@lang('dashboard.english')</a></li>
                         </ul>
@@ -150,7 +152,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="rounded-image topbar-profile-image">
                                 <img src="{{asset('assets/images/users/user-35.jpg')}}">
-                            </span> Jane <strong>Doe</strong> 
+                            </span><strong>{{Auth::user()->name}}</strong> 
                             <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu">

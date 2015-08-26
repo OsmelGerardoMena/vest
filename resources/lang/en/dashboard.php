@@ -13,6 +13,11 @@ return [
 		'dash' => 'Dashboard',
 		'start' => 'Start',
 		'users' => 'Users',
+		'roles' => 'Profiles',
+		'customers' => 'Customers',
+		'sellers' => 'Sellers',
+		'company' => 'Company',
+		'products' => 'Products',
 		'list' => 'List',
 	],
 ];

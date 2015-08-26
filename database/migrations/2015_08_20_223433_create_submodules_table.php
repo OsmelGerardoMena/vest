@@ -19,8 +19,8 @@ class CreateSubmodulesTable extends Migration
             $table->integer('order');
 
             //Relationships
-            $table->integer('modules_id')->unsigned();
-            $table->foreign('modules_id')->references('id')->on('modules')
+            $table->integer('module_id')->unsigned();
+            $table->foreign('module_id')->references('id')->on('modules')
             ->onDelete('cascade');
         });
     }
