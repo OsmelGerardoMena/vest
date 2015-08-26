@@ -1,12 +1,11 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title')
+	@lang('dashboard.title_home')
 @stop
 
 @section('content')
 
-<body class="fixed-left">
 @include('partials/modal')
 <!-- Begin page -->
 <div id="wrapper">
@@ -18,15 +17,12 @@
 
 		<!-- Start Content here -->
 		<div class="content">
-			
-			@include('content/home')
-
+			<h3>@lang('dashboard.title_home')</h3>
 		</div>
 		<!-- End content here -->
 	
 	</div>
 	<!-- End right content -->
-
 </div>
 <!-- End of page -->
 @endsection

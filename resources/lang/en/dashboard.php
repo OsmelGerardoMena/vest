@@ -1,7 +1,9 @@
 <?php
 
 return [
-	'title' => 'Welcome to dashboard - VEST',
+	'title_home' => 'Welcome to dashboard',
+	'title_users' => 'Users',
+	'title_create' => 'Create User',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'my_profile' => 'My Profile',
@@ -19,5 +21,6 @@ return [
 		'company' => 'Company',
 		'products' => 'Products',
 		'list' => 'List',
+		'add' => 'Create',
 	],
 ];

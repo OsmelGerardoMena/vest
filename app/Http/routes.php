@@ -27,20 +27,26 @@ Route::get('logout', [
 	'as'   => 'logout'
 ]);
 
-Route::group(['middleware' => 'auth'], function(){
-	Route::get('dashboard', function(){
-		return view('dashboard.dashboard');
-	});
-});
-
-
-/*Route::group(['middleware' => 'auth'], function(){
-	Route::resource('dashboard', 'AdminController', ['only' => ['index', 'create']]);
-});*/
-
 // Registration routes...
 /*Route::get('register', [
 	'uses' => 'Auth\AuthController@getRegister',
 	'as'   => 'register'
 ]);
 Route::post('auth/register', 'Auth\AuthController@postRegister');*/
+
+
+Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
+
+	Route::get('dashboard', function(){
+		return view('dashboard.home');
+	});
+
+	Route::resource('dashboard/users', 'UsersController');
+});
+
+
+
+
+/*Route::group(['middleware' => 'auth'], function(){
+	Route::resource('dashboard', 'AdminController', ['only' => ['index', 'create']]);
+});*/

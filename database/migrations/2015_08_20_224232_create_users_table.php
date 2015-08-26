@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->string('identifier');
+            $table->string('identifier')->unique();
             $table->string('mobile')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             
             //Relationships
             $table->integer('type_id')->unsigned();
-            $table->integer('status_id')->unsigned();
+            $table->integer('status_id')->unsigned()->default(1);
             $table->foreign('type_id')->references('id')->on('user_types');
             $table->foreign('status_id')->references('id')->on('status');
         });

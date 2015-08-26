@@ -49,7 +49,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a href='#' class='active'>
+                                <a href='{{asset('/dashboard')}}' class='active'>
                                     <span>@lang('dashboard.sidebar.start')</span>
                                 </a>
                             </li>

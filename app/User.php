@@ -24,7 +24,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = [
+            'name', 
+            'email',
+            'password',
+            'identifier',
+            'mobile',
+            'phone',
+            'address',
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -33,11 +41,23 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
-    // relacion de muchos a uno (relacion inversa) 
-    // (los usuarios tienen un unico tipo)
+   public function setPasswordAttribute($value){
+        //al crear nuevo usuario, se le palica un hash a la contraseña
+        if(!empty($value)){
+            $this->attributes['password'] = \Hash::make($value);
+        }
+    }
+
+    ///** relacion de muchos a uno (relacion inversa) **///
     public function type()
     {
         //retorna un solo objeto type, ya que el usuario solo tiene un tipo
         return $this->belongsTo('Vest\Tables\UserTypes');
+    }
+
+    public function status()
+    {
+        //retorna un solo objeto type, ya que el usuario solo tiene un status
+        return $this->belongsTo('Vest\Tables\Status');
     }
 }

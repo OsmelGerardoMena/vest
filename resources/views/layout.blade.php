@@ -58,6 +58,11 @@
     <!-- End Images -->
 
 </head>
+@if(Auth::guest())
+	<body class="fixed-left login-page">
+@else
+	<body class="fixed-left">
+@endif
 
 @yield('content')
 

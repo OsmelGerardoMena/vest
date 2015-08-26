@@ -109,6 +109,11 @@ return [
         'password' => 'Password',
         'password_confirmation' => 'Confirm your Password',
         'remember' => 'Remember me',
+        'identifier' => 'Identifier',
+        'mobile' => 'jajaja',
+        'phone' => 'Phone',
+        'address' => 'Address',
+        'type' => 'Profile',
     ],
 
 ];

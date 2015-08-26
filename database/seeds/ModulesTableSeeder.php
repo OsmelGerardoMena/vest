@@ -22,6 +22,11 @@ class ModulesTableSeeder extends Seeder
         	'url' => '/dashboard/users',
         	'module_id' => $id,
         ]);
+        \DB::table('submodules')->insert([
+            'description' => 'add',
+            'url' => '/dashboard/users/create',
+            'module_id' => $id,
+        ]);
         /// Modulo y submodulos users
 
         /// Modulo y submodulos roles
