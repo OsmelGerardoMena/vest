@@ -49,7 +49,8 @@
                     </a>
                     <ul>
                         <li>
-                            <a href='{{asset('/dashboard')}}' class='active'>
+                            <!-- dentro de la etiqueta a: class='active' -->
+                            <a href='{{asset('/dashboard')}}' class="active">
                                 <span>@lang('dashboard.sidebar.start')</span>
                             </a>
                         </li>

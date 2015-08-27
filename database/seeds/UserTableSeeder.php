@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
 
         \DB::table('users')->insert([
             'name' => 'Super Admin',
-            'email' => 'soysuper@gmail.com',
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('secret'),
             'identifier' => '11111111',
             'mobile' => '0500500',

@@ -74,7 +74,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function scopeNamemail($query, $namemail){
         if(trim($namemail) != "")
             $query->where("name", "LIKE", "%$namemail%")
-                    ->orWhere("email", "LIKE", "%$namemail%");
+                    ->orWhere("email", "LIKE", "%$namemail%")
+                    ->whereNotIn('id', [1]);
     }
 
     public function scopeType($query, $type){

@@ -28,7 +28,12 @@
 						<div class="widget-content">
 							<div class="data-table-toolbar">
 								<div class="row">
-									<div class="col-md-8">
+									<div class="col-md-12">
+										<a href="{{route('dashboard.users.index')}}" class="btn btn-primary">
+											<i class="icon-back"></i>
+											@lang('dashboard.buttons.back')
+										</a>
+										
 										<h3><strong>{{ $user->name }}</strong></h3>
 									</div>
 								</div>
