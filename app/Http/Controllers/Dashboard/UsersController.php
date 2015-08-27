@@ -41,7 +41,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::simplePaginate(5);
+        $users = User::filterUsers(Request::get('namemail'), Request::get('type'));
         return view('dashboard.users.users', compact('users'));
     }
 
@@ -78,7 +78,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('dashboard.users.show')->with('user', $this->user);
     }
 
     /**

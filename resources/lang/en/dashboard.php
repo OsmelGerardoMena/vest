@@ -36,6 +36,8 @@ return [
 		'back' => 'Back',
 		'off' => 'Off',
 		'info' => 'Info',
+		'seeall' => 'See All',
+		'search' => 'Search',
 	],
 
 	'ph' => [ //placeholder
@@ -53,6 +55,10 @@ return [
 	'table' => [
 		'name' => 'Name',
 		'email' => 'E-mail',
+		'identifier' => 'Identifier',
+		'address' => 'Address',
+		'mobile' => 'Mobile',
+		'phone' => 'Phone',
 		'profile' => 'Profile',
 		'status' => 'Status',
 		'actions' => 'Actions',

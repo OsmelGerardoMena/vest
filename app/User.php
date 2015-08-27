@@ -42,7 +42,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
-   public function setPasswordAttribute($value){
+    public function setPasswordAttribute($value){
         //al crear nuevo usuario, se le palica un hash a la contraseña
         if(!empty($value)){
             $this->attributes['password'] = \Hash::make($value);
@@ -61,4 +61,35 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         //retorna un solo objeto type, ya que el usuario solo tiene un status
         return $this->belongsTo('Vest\Tables\Status');
     }
+
+    ///** Filtro para usuarios y Scope **///
+    public static function filterUsers($namemail, $type)
+    {
+        return User::whereNotIn('id', [1])
+                ->namemail($namemail)
+                ->type($type)
+                ->simplepaginate(5);
+    }
+
+    public function scopeNamemail($query, $namemail){
+        if(trim($namemail) != "")
+            $query->where("name", "LIKE", "%$namemail%")
+                    ->orWhere("email", "LIKE", "%$namemail%");
+    }
+
+    public function scopeType($query, $type){
+
+        $types = Tables\UserTypes::select('id', 'name')->get();
+
+        //types es un array de objetos
+        foreach ($types as $value) {
+            $array[$value->id] = $value->name;
+        }
+
+        if($type != "" && isset($array[$type])){
+            
+            $query->where("type_id", $type);
+        }
+    }
+   
 }

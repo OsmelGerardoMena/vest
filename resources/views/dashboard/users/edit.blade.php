@@ -18,13 +18,13 @@
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-            		<h1><i class='icon-edit'></i> 
-            			@lang('dashboard.title_edit')
-            		</h1>
+        		<h1><i class='icon-edit'></i> 
+        			@lang('dashboard.title_edit')
+        		</h1>
             </div>
 
             @include('dashboard.users.partials.messages')
-			
+
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
@@ -49,14 +49,13 @@
 									<i class="icon-back"></i>
 									@lang('dashboard.buttons.back')
 								</a>
-
-								@include('dashboard.users.partials.delete')
 							</div>
 						</div>
 					{!! Form::close() !!}
+					@include('dashboard.users.partials.delete')
 				</div>
 			</div>
-
+			
 		</div>
 		<!-- End content here -->
 	

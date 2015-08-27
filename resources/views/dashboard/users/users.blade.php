@@ -18,9 +18,9 @@
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-            		<h1><i class='icon-users'></i> 
-            			@lang('dashboard.title_users')
-            		</h1>
+        		<h1><i class='icon-users'></i> 
+        			@lang('dashboard.title_users')
+        		</h1>
             </div>
 			@include('dashboard.users.partials.messages')
 			<div class="row">
@@ -29,12 +29,7 @@
 						<div class="widget-content">
 							<div class="data-table-toolbar">
 								<div class="row">
-									<div class="col-md-4">
-										<form role="form">
-										<input name="name" type="text" class="form-control" placeholder="{{trans('dashboard.ph.search')}}">
-										</form>
-									</div>
-									<div class="col-md-8">
+									<div class="col-md-12">
 										<div class="toolbar-btn-action">
 											<a class="btn btn-success" href="{{route('dashboard.users.create')}}">
 												<i class="fa fa-plus-circle"></i>
@@ -43,6 +38,7 @@
 											<!--<a class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</a>
 											<a class="btn btn-primary"><i class="fa fa-refresh"></i> Update</a>-->
 										</div>
+										@include('dashboard.users.partials.search')
 									</div>
 								</div>
 							</div>
@@ -72,7 +68,8 @@
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
 														<i class="fa fa-power-off"></i>
 													</a>
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info">
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
+														href="{{route('dashboard.users.show', $user->id)}}">
 														<i class="icon-info"></i>
 													</a>
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
@@ -90,12 +87,9 @@
 										</tr>
 										@endforeach
 									</tbody>
-								</table>
-								{!! $users->render() !!}
+								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
+								{!! $users->appends(Request::only(['namemail', 'type']))->render() !!}
 							</div>
-							<!--<div class="data-table-toolbar">
-								paginate
-							</div>-->
 						</div>
 					</div>
 				</div>
@@ -110,7 +104,7 @@
 </div>
 <!-- End of page -->
 
-{!! Form::open(['route' => ['dashboard.users.destroy', ':USER_ID'], 'method' => 'DELETE', 'id' => 'form-delete']) !!}
-{!! Form::close() !!}
+<!-- {!! Form::open(['route' => ['dashboard.users.destroy', ':USER_ID'], 'method' => 'DELETE', 'id' => 'form-delete']) !!}
+{!! Form::close() !!}-->
 
 @endsection

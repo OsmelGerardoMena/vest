@@ -23,28 +23,17 @@ class UserTableSeeder extends Seeder
         ]);*/
 
         \DB::table('users')->insert([
-            'name' => 'Ler Vivas',
-            'email' => 'ler@gmail.com',
+            'name' => 'Super Admin',
+            'email' => 'soysuper@gmail.com',
             'password' => bcrypt('secret'),
-            'identifier' => '19891194',
+            'identifier' => '11111111',
             'mobile' => '0500500',
-            'phone' => '0500500',
-            'address' => 'Ejido Calle 36',
-            'type_id' => 2,
-        ]);
-
-        \DB::table('users')->insert([
-            'name' => 'Gustavo Meza',
-            'email' => 'adolfz10@gmail.com',
-            'password' => bcrypt('secret'),
-            'identifier' => '18244429',
-            'mobile' => '0500500',
-            'phone' => '0416-470-36-02',
-            'address' => 'Ejido Calle 36',
+            'phone' => '08000800',
+            'address' => 'Jardin de Balamb',
             'type_id' => 1,
         ]);
 
     	//se crean 10 datos de prueba
-        factory(Vest\User::class, 15)->create();
+        factory(Vest\User::class, 10)->create();
     }
 }

@@ -11,7 +11,7 @@
 @endif
 
 @if(Session::has('delete_user'))
- 	<div class="alert alert-warning" role="alert">
+ 	<div class="alert alert-info" role="alert">
  		<strong>{{ Session::get('delete_user') }}</strong>
  	</div>
 @endif
