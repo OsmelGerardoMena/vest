@@ -9,7 +9,7 @@ use Vest\Http\Controllers\Controller;
 
 use Vest\User;
 
-//Resquest para recibir datos y usar Resquest::**
+//para recibir datos y usar Request::**
 use Illuminate\Support\Facades\Request;
 
 //Request para validar
@@ -118,6 +118,19 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->user->delete();
+
+        $message = $this->user->name.trans('messages.delete_user');
+
+        if(Request::ajax()){
+            return response()->json([
+                'id' => $this->user->id,
+                'message' => $message
+            ]);
+        }
+
+        Session::flash('delete_user', $message);
+
+        return redirect()->route('dashboard.users.index');
     }
 }

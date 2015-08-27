@@ -49,6 +49,8 @@
 									<i class="icon-back"></i>
 									@lang('dashboard.buttons.back')
 								</a>
+
+								@include('dashboard.users.partials.delete')
 							</div>
 						</div>
 					{!! Form::close() !!}

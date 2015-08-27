@@ -107,13 +107,13 @@ return [
         'name' => 'Name',
         'email' => 'E-mail',
         'password' => 'Password',
-        'password_confirmation' => 'Confirm your Password',
+        'password_confirmation' => 'Confirm Password',
         'remember' => 'Remember me',
         'identifier' => 'Identifier',
-        'mobile' => 'jajaja',
+        'mobile' => 'Mobile',
         'phone' => 'Phone',
         'address' => 'Address',
-        'type' => 'Profile',
+        'profile' => 'Profile',
     ],
 
 ];

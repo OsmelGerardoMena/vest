@@ -7,6 +7,7 @@
 @section('content')
 
 @include('partials/modal')
+
 <!-- Begin page -->
 <div id="wrapper">
 	@include('partials/topbar')

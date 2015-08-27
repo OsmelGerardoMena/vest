@@ -23,6 +23,17 @@ class UserTableSeeder extends Seeder
         ]);*/
 
         \DB::table('users')->insert([
+            'name' => 'Ler Vivas',
+            'email' => 'ler@gmail.com',
+            'password' => bcrypt('secret'),
+            'identifier' => '19891194',
+            'mobile' => '0500500',
+            'phone' => '0500500',
+            'address' => 'Ejido Calle 36',
+            'type_id' => 2,
+        ]);
+
+        \DB::table('users')->insert([
             'name' => 'Gustavo Meza',
             'email' => 'adolfz10@gmail.com',
             'password' => bcrypt('secret'),

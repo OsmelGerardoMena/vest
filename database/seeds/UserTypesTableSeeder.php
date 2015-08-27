@@ -18,7 +18,7 @@ class UserTypesTableSeeder extends Seeder
         ]);
 
         DB::table('user_types')->insert([
-        	'name' => 'Seller',
+        	'name' => 'Vendedor',
         	'activated_modules' => '2,3',
         	'status_id' => '1',
         ]);

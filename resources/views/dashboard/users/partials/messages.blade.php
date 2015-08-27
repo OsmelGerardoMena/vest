@@ -9,3 +9,9 @@
  		<strong>{{ Session::get('edit_user') }}</strong>
  	</div>
 @endif
+
+@if(Session::has('delete_user'))
+ 	<div class="alert alert-warning" role="alert">
+ 		<strong>{{ Session::get('delete_user') }}</strong>
+ 	</div>
+@endif
