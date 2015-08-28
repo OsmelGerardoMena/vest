@@ -114,6 +114,14 @@ return [
         'phone' => 'Phone',
         'address' => 'Address',
         'profile' => 'Profile',
+        'list_users' => 'List users',
+        'add_user' => 'Create user',
+        'list_profiles' => 'List profiles',
+        'add_profile' => 'Create profile',
+        'list_customers' => 'List customers',
+        'list_sellers' => 'List sellers',
+        'list_companies' => 'List companies',
+        'list_products' => 'List products',
     ],
 
 ];

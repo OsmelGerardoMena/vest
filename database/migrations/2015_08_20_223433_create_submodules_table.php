@@ -16,7 +16,6 @@ class CreateSubmodulesTable extends Migration
             $table->increments('id');
             $table->string('description');
             $table->string('url')->default('#');
-            $table->integer('order');
 
             //Relationships
             $table->integer('module_id')->unsigned();

@@ -1,12 +1,13 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_edit')
+	@lang('dashboard.title_create_profile')
 @stop
 
 @section('content')
 
 @include('partials/modal')
+
 <!-- Begin page -->
 <div id="wrapper">
 	@include('partials/topbar')
@@ -18,44 +19,41 @@
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-        		<h1><i class='icon-edit'></i> 
-        			@lang('dashboard.title_edit')
-        		</h1>
+            		<h1>
+            			<i class=' icon-plus-3'></i>
+            			<i class='fa fa-group'></i> 
+            			@lang('dashboard.title_create_profile')
+            		</h1>
             </div>
-
-            @include('dashboard.users.partials.messages')
 
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
-
-					{!! Form::model($user, [
-							'route' => ['dashboard.users.update', $user->id],
+					{!! Form::open([
+							'route' => 'dashboard.profiles.store', 
+							'method' => 'POST', 
 							'class' => 'form-horizontal',
-							'role' => 'form',
-							'method' => 'PUT']) 
+							'role' => 'form'
+						]) 
 					!!}
-
-				  		@include('dashboard.users.partials.fields')
-
+						@include('dashboard.profiles.partials.fields')
 					  	<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<button type="submit" class="btn btn-success">
-									<i class="icon-edit"></i>
-									@lang('dashboard.buttons.edit')
+									<i class="fa fa-plus-circle"></i>
+									@lang('dashboard.buttons.create')
 								</button>
 
-								<a href="{{route('dashboard.users.index')}}" class="btn btn-primary">
+								<a href="{{route('dashboard.profiles.index')}}" class="btn btn-primary">
 									<i class="icon-back"></i>
 									@lang('dashboard.buttons.back')
 								</a>
 							</div>
 						</div>
 					{!! Form::close() !!}
-					@include('dashboard.users.partials.delete')
 				</div>
 			</div>
-			
+
 		</div>
 		<!-- End content here -->
 	

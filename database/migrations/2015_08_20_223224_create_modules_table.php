@@ -15,8 +15,6 @@ class CreateModulesTable extends Migration
         Schema::create('modules', function(Blueprint $table){
             $table->increments('id');
             $table->string('description');
-            $table->string('url')->default('#');
-            $table->integer('order')->nullable();
             $table->string('icon');
         });
     }

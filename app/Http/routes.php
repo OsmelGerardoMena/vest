@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
 	});
 
 	Route::resource('dashboard/users', 'UsersController');
+	Route::resource('dashboard/profiles', 'ProfilesController');
 });
 
 

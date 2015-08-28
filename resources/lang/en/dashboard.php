@@ -6,6 +6,8 @@ return [
 	'title_create' => 'Create User',
 	'title_edit' => 'Edit User',
 	'title_info' => 'Info User',
+	'title_profiles' => 'Profiles',
+	'title_create_profile' => 'Create Profile',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'my_profile' => 'My Profile',
@@ -23,8 +25,14 @@ return [
 		'sellers' => 'Sellers',
 		'company' => 'Company',
 		'products' => 'Products',
-		'list' => 'List',
-		'add' => 'Create',
+		'list_users' => 'List users',
+		'add_user' => 'Create user',
+		'list_profiles' => 'List profiles',
+		'add_profile' => 'Create profile',
+		'list_customers' => 'List customers',
+		'list_sellers' => 'List sellers',
+		'list_companies' => 'List companies',
+		'list_products' => 'List products',
 	],
 
 	'buttons' => [
@@ -50,6 +58,7 @@ return [
 		'pass_here' => 'Password here , min 6 characters',
 		'repeatpass_here' => 'Repeat password here',
 		'search' => 'Search... name or email',
+		'search_type' => 'Search... type',
 	],
 
 	'table' => [
@@ -60,6 +69,12 @@ return [
 		'mobile' => 'Mobile',
 		'phone' => 'Phone',
 		'profile' => 'Profile',
+		'status' => 'Status',
+		'actions' => 'Actions',
+	],
+
+	'tableProfile' => [
+		'type' => 'Type',
 		'status' => 'Status',
 		'actions' => 'Actions',
 	],

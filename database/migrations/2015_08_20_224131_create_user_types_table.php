@@ -16,9 +16,10 @@ class CreateUserTypesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('activated_modules');
+            $table->string('activated_submodules');
             
             //Relationships
-            $table->integer('status_id')->unsigned();
+            $table->integer('status_id')->unsigned()->default(1);
             $table->foreign('status_id')->references('id')->on('status');
         });
     }

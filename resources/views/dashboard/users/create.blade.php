@@ -43,7 +43,7 @@
 									@lang('dashboard.buttons.create')
 								</button>
 
-								<a href="{{route('dashboard.users.index')}}" class="btn btn-default">
+								<a href="{{route('dashboard.users.index')}}" class="btn btn-primary">
 									<i class="icon-back"></i>
 									@lang('dashboard.buttons.back')
 								</a>
