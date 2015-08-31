@@ -24,7 +24,7 @@ class CreateProfileRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:60',
+            'name' => 'required|max:60|unique:user_types,name',
         ];
     }
 }

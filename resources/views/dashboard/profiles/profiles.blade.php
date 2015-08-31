@@ -7,6 +7,7 @@
 @section('content')
 
 @include('partials/modal')
+
 <!-- Begin page -->
 <div id="wrapper">
 	@include('partials/topbar')
@@ -55,7 +56,7 @@
 									</thead>
 									<tbody>
 										@foreach($profiles as $profile)
-										<tr data-id="{{ $profile->id }}">
+										<tr>
 											<td>{{ $profile->id }}</td>
 											<td>{{ $profile->name }}</td>
 											<td><span class="label label-success">{{ $profile->status->type }}</span></td>
@@ -70,9 +71,11 @@
 														<i class="fa fa-edit"></i>
 													</a>
 
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.delete')" class="btn btn-danger">
+													@include('dashboard.profiles.partials.modal_delete', [$profile->id])
+													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal{{$profile->id}}" class="btn btn-danger md-trigger ">
 														<i class="fa fa-trash-o"></i>
 													</a>
+
 												</div>
 											</td>
 										</tr>

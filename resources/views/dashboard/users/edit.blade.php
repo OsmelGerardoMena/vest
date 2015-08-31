@@ -7,6 +7,8 @@
 @section('content')
 
 @include('partials/modal')
+@include('dashboard.users.partials.modal')
+
 <!-- Begin page -->
 <div id="wrapper">
 	@include('partials/topbar')
@@ -33,7 +35,8 @@
 							'route' => ['dashboard.users.update', $user->id],
 							'class' => 'form-horizontal',
 							'role' => 'form',
-							'method' => 'PUT']) 
+							'method' => 'PUT'
+						]) 
 					!!}
 
 				  		@include('dashboard.users.partials.fields')
@@ -52,7 +55,10 @@
 							</div>
 						</div>
 					{!! Form::close() !!}
-					@include('dashboard.users.partials.delete')
+					<button data-modal="delete-modal" class="btn btn-danger btn-sm md-trigger">
+						<i class="fa fa-trash-o"></i>
+					  	@lang('dashboard.buttons.delete')
+					</button>
 				</div>
 			</div>
 			

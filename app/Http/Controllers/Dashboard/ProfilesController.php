@@ -7,14 +7,16 @@ namespace Vest\Http\Controllers\Dashboard;
 use Vest\Http\Requests;
 use Vest\Http\Controllers\Controller;
 
+//tablas a usar
 use Vest\Tables\UserTypes;
+use Vest\Tables\Submodule;
 
 //para recibir datos y usar Request::**
 use Illuminate\Support\Facades\Request;
 
 //Request para validar
 use Vest\Http\Requests\CreateProfileRequest;
-use Vest\Http\Requests\EditUserRequest;
+use Vest\Http\Requests\EditProfileRequest;
 
 //para mensajes con sesiones
 use Illuminate\Support\Facades\Session;
@@ -24,6 +26,17 @@ use Illuminate\Routing\Route;
 
 class ProfilesController extends Controller
 {
+    //se usan al crear un nuevo profile
+    private $modules = '', $submodules = '';
+
+    ///Para buscar el perfil y tenerlo en $this->profile
+    public function __construct(){
+        $this->beforeFilter('@findProfile', ['only' => ['edit', 'update', 'destroy']]);
+    }
+
+    public function findProfile(Route $route){
+        $this->profile = UserTypes::findOrFail($route->getParameter('profiles'));
+    }
 
     /**
      * Display a listing of the resource.
@@ -51,46 +64,51 @@ class ProfilesController extends Controller
      *
      * @param  Request  $request
      * @return Response
-     */
+     */ 
     public function store(CreateProfileRequest $request)
     {
-        return 'En construccion';
-        $profile = new UserTypes();
+        $this->addModulesSubmodules($request);
 
-        $profile->name = $request->name;
+        if(!empty($this->submodules)){
+            $profile = new UserTypes();
 
-        //si existe list_users
+            $profile->name = $request->name;
 
-            //entonces busco el modulo al que pertenece
+            $profile->activated_modules = $this->modules;
 
-            //ingreso el modulo al string modules
+            $profile->activated_submodules = $this->submodules;
 
-            //ingreso el submodulo al string submodules
+            $profile->save();
 
-        //se hace lo mismo con cada opcion
-
-        //se guarda los valores en activated_modules y en activated_submodules
-
-        //se hace ->save() y listo
-
-        foreach ($variable as $key => $value) {
-            # code...
+            Session::flash('new_profile', trans('messages.new_profile'));
+            return redirect()->route('dashboard.profiles.index');
         }
-        /*
-          $table->increments('id');
-            $table->string('name');
-            $table->string('activated_modules');
-            $table->string('activated_submodules');
-            
-            //Relationships
-            $table->integer('status_id')->unsigned()->default(1);
-            $table->foreign('status_id')->references('id')->on('status');
+        
+        Session::flash('no_submodule', trans('messages.submodule_not_slected'));
+        return redirect()->back();
+    }
 
-        $profile = UserTypes::create($request->all());
-      
-        Session::flash('new_profile', trans('messages.new_profile'));
-    
-        return redirect()->route('dashboard.profiles.index');*/
+    //para agregar los modulos y submodulos al crear o editar
+    private function addModulesSubmodules($request){
+        $centinel = ['1' => 0, '2'=> 0, '3' => 0, '4' => 0, '5' => 0, '6' => 0];
+        
+        $allsub = Submodule::get();
+
+        foreach ($allsub as $submod) {
+            if($request->has($submod->description)){
+
+                if($centinel[$submod->module_id] == 0){
+
+                    $this->modules .= (empty($this->modules)) 
+                            ? $submod->module_id : ','.$submod->module_id;
+
+                    $centinel[$submod->module_id] = 1;
+                }
+
+                $this->submodules .= (empty($this->submodules)) ? $submod->id 
+                                    : ','.$submod->id;
+            }
+        }
     }
 
     /**
@@ -112,7 +130,7 @@ class ProfilesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('dashboard.profiles.edit')->with('profile', $this->profile);
     }
 
     /**
@@ -122,9 +140,25 @@ class ProfilesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(EditProfileRequest $request, $id)
     {
-        //
+        $this->addModulesSubmodules($request);
+        
+        if(!empty($this->submodules)){
+            $this->profile->name = $request->name;
+
+            $this->profile->activated_modules = $this->modules;
+
+            $this->profile->activated_submodules = $this->submodules;
+
+            $this->profile->save();
+
+            Session::flash('edit_profile', trans('messages.edit_profile'));
+            return redirect()->back();
+        }
+
+        Session::flash('no_submodule', trans('messages.submodule_not_slected'));
+        return redirect()->back();
     }
 
     /**
@@ -135,6 +169,12 @@ class ProfilesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->profile->delete();
+
+        $message = $this->profile->name.trans('messages.delete_profile');
+
+        Session::flash('delete_profile', $message);
+        
+        return redirect()->route('dashboard.profiles.index');
     }
 }

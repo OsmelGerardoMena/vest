@@ -32,7 +32,6 @@ class UsersController extends Controller
     public function findUser(Route $route){
         $this->user = User::findOrFail($route->getParameter('users'));
     }
-    ///Para buscar el usuario y tenerlo en $this->user
 
     /**
      * Display a listing of the resource.

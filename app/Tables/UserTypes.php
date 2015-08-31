@@ -28,4 +28,12 @@ class UserTypes extends Model
         }  
     }
 
+    //devuleve true si encuentra el id en activated_submodules
+    public function submoduleExists($id){
+
+        $submodules = explode(',', $this->activated_submodules);
+
+        return in_array($id, $submodules);
+    }
+
 }

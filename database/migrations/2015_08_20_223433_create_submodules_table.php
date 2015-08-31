@@ -14,7 +14,7 @@ class CreateSubmodulesTable extends Migration
     {
         Schema::create('submodules', function(Blueprint $table){
             $table->increments('id');
-            $table->string('description');
+            $table->string('description')->unique();
             $table->string('url')->default('#');
 
             //Relationships

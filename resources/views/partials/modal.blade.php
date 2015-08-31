@@ -1,6 +1,6 @@
 <!-- Modal Start -->
 	<!-- Modal Task Progress -->	
-	<div class="md-modal md-3d-flip-vertical" id="task-progress">
+	<!-- <div class="md-modal md-3d-flip-vertical" id="task-progress">
 		<div class="md-content">
 			<h3><strong>Task Progress</strong> Information</h3>
 			<div>
@@ -33,17 +33,19 @@
 				</p>
 			</div>
 		</div>
-	</div>
+	</div>-->	
 		
 	<!-- Modal Logout -->
 	<div class="md-modal md-just-me" id="logout-modal">
 		<div class="md-content">
-			<h3><strong>Logout</strong> Confirmation</h3>
+			<h3><strong>@lang('dashboard.logout_confirmation')</strong></h3>
 			<div>
-				<p class="text-center">Are you sure want to logout from this awesome system?</p>
+				<p class="text-center">@lang('dashboard.sure_logout')</p>
 				<p class="text-center">
-				<button class="btn btn-danger md-close">Nope!</button>
-				<a href="{{asset('/logout')}}" class="btn btn-success md-close">Yeah, I'm sure</a>
+				<button class="btn btn-danger md-close">@lang('dashboard.no_logout')</button>
+				<a href="{{asset('/logout')}}" class="btn btn-success md-close">
+					@lang('dashboard.yes_logout')
+				</a>
 				</p>
 			</div>
 		</div>

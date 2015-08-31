@@ -1,12 +1,13 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_create_profile')
+	@lang('dashboard.title_edit_profile')
 @stop
 
 @section('content')
 
 @include('partials/modal')
+@include('dashboard.profiles.partials.modal')
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -20,28 +21,27 @@
 		<div class="content">
 			<div class="page-heading">
         		<h1>
-        			<i class='icon-plus-3'></i>
-        			<i class='fa fa-group'></i> 
-        			@lang('dashboard.title_create_profile')
+        			<i class='icon-edit'></i>
+        			@lang('dashboard.title_edit_profile')
         		</h1>
         	</div>
         	@include('dashboard.profiles.partials.messages')
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
-					{!! Form::open([
-							'route' => 'dashboard.profiles.store', 
-							'method' => 'POST', 
+					{!! Form::model($profile, [
+							'route' => ['dashboard.profiles.update', $profile->id], 
 							'class' => 'form-horizontal',
-							'role' => 'form'
+							'role' => 'form',
+							'method' => 'PUT'
 						]) 
 					!!}
-						@include('dashboard.profiles.partials.fields')
+						@include('dashboard.profiles.partials.fields_edit')
 					  	<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<button type="submit" class="btn btn-success">
 									<i class="fa fa-plus-circle"></i>
-									@lang('dashboard.buttons.create')
+									@lang('dashboard.buttons.edit')
 								</button>
 
 								<a href="{{route('dashboard.profiles.index')}}" class="btn btn-primary">
@@ -51,6 +51,10 @@
 							</div>
 						</div>
 					{!! Form::close() !!}
+					<button data-modal="delete-modal" class="btn btn-danger btn-sm md-trigger">
+						<i class="fa fa-trash-o"></i>
+					  	@lang('dashboard.buttons.delete')
+					</button>
 				</div>
 			</div>
 
