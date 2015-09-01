@@ -35,6 +35,13 @@ class Product extends Model
         return $this->belongsTo('Vest\Tables\Status');
     }
 
+     ///** relacion de muchos a muchos **///
+    public function users()
+    {
+        //retorna un array de objetos, el producto puede tener varios usuarios
+        return $this->belongsToMany('Vest\User')
+    }
+
     ///** Filtro para productos y Scope **///
     public static function filterProducts($name, $company)
     {

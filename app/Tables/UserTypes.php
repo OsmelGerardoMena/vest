@@ -18,6 +18,7 @@ class UserTypes extends Model
     ///** Filtro para perfiles y Scope **///
     public static function filterProfiles($name)
     {
+        //id: 1, 2, 3 son de admin, seller y company no deben ser borrados
     	return UserTypes::whereNotIn('id', [1])
                     ->name($name)
                     ->simplepaginate(5);

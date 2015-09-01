@@ -62,6 +62,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsTo('Vest\Tables\Status');
     }
 
+    ///** relacion de muchos a muchos **///
+    public function products()
+    {
+        //retorna un array de objetos, el usuario puede tener varios productos
+        return $this->belongsToMany('Vest\Tables\Product');
+    }
+
     ///** Filtro para usuarios y Scope **///
     public static function filterUsers($namemail, $type)
     {
