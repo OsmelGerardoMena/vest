@@ -9,6 +9,9 @@ return [
 	'title_profiles' => 'Profiles',
 	'title_create_profile' => 'Create Profile',
 	'title_edit_profile' => 'Edit Profile',
+	'title_products' => 'Products and Services',
+	'title_create_product' => 'Create product or service',
+	'title_edit_product' => 'Edit product or service',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'my_profile' => 'My Profile',
@@ -21,6 +24,7 @@ return [
 	'no_logout' => 'No, I want to stay',
 	'sure_delete_user' => 'Sure you want to delete this user?',
 	'sure_delete_profile' => 'Sure you want to delete this profile?',
+	'sure_delete_product' => 'Sure you want to delete this product?',
 	'no_delete' => 'No!',
 	'yes_delete' => "Yeah, I'm sure",
 
@@ -41,6 +45,7 @@ return [
 		'list_sellers' => 'List sellers',
 		'list_companies' => 'List companies',
 		'list_products' => 'List products',
+		'add_product' => 'Create product',
 	],
 
 	'buttons' => [
@@ -67,6 +72,7 @@ return [
 		'repeatpass_here' => 'Repeat password here',
 		'search' => 'Search... name or email',
 		'search_type' => 'Search... type',
+		'search_product' => 'Search... product name',
 	],
 
 	'table' => [
@@ -81,8 +87,16 @@ return [
 		'actions' => 'Actions',
 	],
 
-	'tableProfile' => [
+	'table_profile' => [
 		'type' => 'Type',
+		'status' => 'Status',
+		'actions' => 'Actions',
+	],
+
+	'table_products' => [
+		'name' => 'Name',
+		'creator' => 'Creator',
+		'company' => 'Company',
 		'status' => 'Status',
 		'actions' => 'Actions',
 	],

@@ -1,13 +1,13 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_edit')
+	@lang('dashboard.title_edit_product')
 @stop
 
 @section('content')
 
 @include('partials/modal')
-@include('dashboard.users.partials.modal')
+@include('dashboard.products.partials.modal')
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -21,7 +21,7 @@
 		<div class="content">
 			<div class="page-heading">
         		<h1><i class='icon-edit'></i> 
-        			@lang('dashboard.title_edit')
+        			@lang('dashboard.title_edit_product')
         		</h1>
             </div>
 
@@ -31,15 +31,15 @@
 				<div class="widget-content padding">
 					@include('partials.errors')
 
-					{!! Form::model($user, [
-							'route' => ['dashboard.users.update', $user->id],
+					{!! Form::model($product, [
+							'route' => ['dashboard.products.update', $product->id],
 							'class' => 'form-horizontal',
 							'role' => 'form',
 							'method' => 'PUT'
 						]) 
 					!!}
 
-				  		@include('dashboard.users.partials.fields')
+				  		@include('dashboard.products.partials.fields')
 
 					  	<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
@@ -48,14 +48,14 @@
 									@lang('dashboard.buttons.edit')
 								</button>
 
-								<a href="{{route('dashboard.users.index')}}" class="btn btn-primary">
+								<a href="{{route('dashboard.products.index')}}" class="btn btn-primary">
 									<i class="icon-back"></i>
 									@lang('dashboard.buttons.back')
 								</a>
 							</div>
 						</div>
 					{!! Form::close() !!}
-					<button data-modal="delete-modal-{{$user->id}}" class="btn btn-danger btn-sm md-trigger">
+					<button data-modal="delete-modal-{{$product->id}}" class="btn btn-danger btn-sm md-trigger">
 						<i class="fa fa-trash-o"></i>
 					  	@lang('dashboard.buttons.delete')
 					</button>

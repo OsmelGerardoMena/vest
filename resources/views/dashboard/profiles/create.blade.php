@@ -25,7 +25,7 @@
         			@lang('dashboard.title_create_profile')
         		</h1>
         	</div>
-        	@include('dashboard.profiles.partials.messages')
+        	@include('dashboard.partials.messages')
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')

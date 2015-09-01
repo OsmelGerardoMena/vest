@@ -18,7 +18,9 @@ class UserTypes extends Model
     ///** Filtro para perfiles y Scope **///
     public static function filterProfiles($name)
     {
-    	return UserTypes::name($name)->simplepaginate(5);
+    	return UserTypes::whereNotIn('id', [1])
+                    ->name($name)
+                    ->simplepaginate(5);
     }
 
     public function scopeName($query, $name)
@@ -29,11 +31,10 @@ class UserTypes extends Model
     }
 
     //devuleve true si encuentra el id en activated_submodules
-    public function submoduleExists($id){
-
+    public function submoduleExists($id)
+    {
         $submodules = explode(',', $this->activated_submodules);
 
         return in_array($id, $submodules);
     }
-
 }

@@ -8,6 +8,10 @@
 
 @include('partials/modal')
 
+@foreach($profiles as $profile)
+	@include('dashboard.profiles.partials.modal')
+@endforeach
+
 <!-- Begin page -->
 <div id="wrapper">
 	@include('partials/topbar')
@@ -23,7 +27,7 @@
         			@lang('dashboard.title_profiles')
         		</h1>
             </div>
-			@include('dashboard.profiles.partials.messages')
+			@include('dashboard.partials.messages')
 			<div class="row">
 				<div class="col-md-12">
 					<div class="widget">
@@ -49,9 +53,9 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>@lang('dashboard.tableProfile.type')</th>
-											<th>@lang('dashboard.tableProfile.status')</th>
-											<th>@lang('dashboard.tableProfile.actions')</th>
+											<th>@lang('dashboard.table_profile.type')</th>
+											<th>@lang('dashboard.table_profile.status')</th>
+											<th>@lang('dashboard.table_profile.actions')</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -71,8 +75,7 @@
 														<i class="fa fa-edit"></i>
 													</a>
 
-													@include('dashboard.profiles.partials.modal_delete', [$profile->id])
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal{{$profile->id}}" class="btn btn-danger md-trigger ">
+													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$profile->id}}" class="btn btn-danger md-trigger ">
 														<i class="fa fa-trash-o"></i>
 													</a>
 

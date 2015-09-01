@@ -58,7 +58,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function status()
     {
-        //retorna un solo objeto type, ya que el usuario solo tiene un status
+        //retorna un solo objeto status, ya que el usuario solo tiene un status
         return $this->belongsTo('Vest\Tables\Status');
     }
 
@@ -71,7 +71,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 ->simplepaginate(5);
     }
 
-    public function scopeNamemail($query, $namemail){
+    public function scopeNamemail($query, $namemail)
+    {
         if(trim($namemail) != ""){
             $query->where("name", "LIKE", "%$namemail%")
                     ->orWhere("email", "LIKE", "%$namemail%")
@@ -79,7 +80,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         }    
     }
 
-    public function scopeType($query, $type){
+    public function scopeType($query, $type)
+    {
 
         $types = Tables\UserTypes::select('id', 'name')->get();
 

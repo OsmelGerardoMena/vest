@@ -92,5 +92,11 @@ class ModulesTableSeeder extends Seeder
         	'url' => '/dashboard/products',
         	'module_id' => $id,
         ]);
+
+        \DB::table('submodules')->insert([
+            'description' => 'add_product',
+            'url' => '/dashboard/products/create',
+            'module_id' => $id,
+        ]);
     }
 }

@@ -80,7 +80,10 @@ class ProfilesController extends Controller
 
             $profile->save();
 
-            Session::flash('new_profile', trans('messages.new_profile'));
+            $message = $profile->name.trans('messages.new');
+
+            Session::flash('new', $message);
+
             return redirect()->route('dashboard.profiles.index');
         }
         
@@ -153,7 +156,10 @@ class ProfilesController extends Controller
 
             $this->profile->save();
 
-            Session::flash('edit_profile', trans('messages.edit_profile'));
+            $message = $this->profile->name.trans('messages.edit');
+
+            Session::flash('edit', $message);
+
             return redirect()->back();
         }
 
@@ -171,9 +177,9 @@ class ProfilesController extends Controller
     {
         $this->profile->delete();
 
-        $message = $this->profile->name.trans('messages.delete_profile');
+        $message = $this->profile->name.trans('messages.delete');
 
-        Session::flash('delete_profile', $message);
+        Session::flash('delete', $message);
         
         return redirect()->route('dashboard.profiles.index');
     }

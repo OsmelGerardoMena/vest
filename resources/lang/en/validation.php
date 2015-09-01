@@ -122,6 +122,7 @@ return [
         'list_sellers' => 'List sellers',
         'list_companies' => 'List companies',
         'list_products' => 'List products',
+        'company' => 'Company',
     ],
 
 ];

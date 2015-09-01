@@ -1,14 +1,14 @@
-<!-- Modal Delete user-->
-<div class="md-modal md-slide-stick-top" id="delete-modal-{{$user->id}}">
+<!-- Modal Delete product -->
+<div class="md-modal md-slide-stick-top" id="delete-modal-{{$product->id}}">
 	<div class="md-content">
-		<h3><strong>@lang('dashboard.sure_delete_user')</strong></h3>
+		<h3><strong>@lang('dashboard.sure_delete_product')</strong></h3>
 		<div>
 			<center>
 				<p><button class="btn btn-primary md-close">
 					@lang('dashboard.no_delete')
 				</button></p>
 				{!! Form::open(
-						['route' => ['dashboard.users.destroy', $user], 
+						['route' => ['dashboard.products.destroy', $product], 
 						'method' => 'DELETE'
 					]) 
 				!!}

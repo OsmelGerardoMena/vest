@@ -63,8 +63,10 @@ class UsersController extends Controller
     public function store(CreateUserRequest $request)
     { 
         $user = User::create($request->all());
+
+        $message = $user->name.trans('messages.new');
       
-        Session::flash('new_user', trans('messages.new_user'));
+        Session::flash('new', $message);
     
         return redirect()->route('dashboard.users.index');
     }
@@ -104,7 +106,9 @@ class UsersController extends Controller
 
         $this->user->save();
 
-        Session::flash('edit_user', trans('messages.edit_user'));
+        $message = $this->user->name.trans('messages.edit');
+
+        Session::flash('edit', $message);
 
         return redirect()->back();
     }
@@ -119,7 +123,7 @@ class UsersController extends Controller
     {
         $this->user->delete();
 
-        $message = $this->user->name.trans('messages.delete_user');
+        $message = $this->user->name.trans('messages.delete');
 
         if(Request::ajax()){
             return response()->json([
@@ -128,7 +132,7 @@ class UsersController extends Controller
             ]);
         }
 
-        Session::flash('delete_user', $message);
+        Session::flash('delete', $message);
 
         return redirect()->route('dashboard.users.index');
     }
