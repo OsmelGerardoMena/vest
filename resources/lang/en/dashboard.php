@@ -12,6 +12,9 @@ return [
 	'title_products' => 'Products and Services',
 	'title_create_product' => 'Create product or service',
 	'title_edit_product' => 'Edit product or service',
+	'title_sellers' => 'Sellers',
+	'title_add_product' => 'Add products',
+	'title_select_product' => 'Select products or services',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'my_profile' => 'My Profile',
@@ -59,6 +62,9 @@ return [
 		'info' => 'Info',
 		'seeall' => 'See All',
 		'search' => 'Search',
+		'save' => 'Save',
+		'see_product' => 'See products',
+		'add_product' => 'Add or Edit products',
 	],
 
 	'ph' => [ //placeholder

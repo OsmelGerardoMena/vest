@@ -48,7 +48,7 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                    </li>-->
+                    </li>
                     <li class="language_bar dropdown hidden-xs">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             @lang('dashboard.spanish')
@@ -57,7 +57,7 @@
                         <ul class="dropdown-menu pull-right">
                             <li><a href="#">@lang('dashboard.english')</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
                 <ul class="nav navbar-nav navbar-right top-navbar">
                     <!--<li class="dropdown iconify hide-phone">

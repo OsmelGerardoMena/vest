@@ -25,7 +25,8 @@ class Product extends Model
 
      public function company()
     {
-        //retorna un solo objeto company, ya que el producto solo pertenece a una empresa
+        //retorna un solo objeto company, ya que el producto solo 
+        //pertenece a una empresa
         return $this->belongsTo('Vest\User');
     }
 
@@ -35,11 +36,12 @@ class Product extends Model
         return $this->belongsTo('Vest\Tables\Status');
     }
 
-     ///** relacion de muchos a muchos **///
-    public function users()
+    ///** relacion de muchos a muchos **///
+    public function sellers()
     {
-        //retorna un array de objetos, el producto puede tener varios usuarios
-        return $this->belongsToMany('Vest\User')
+        //retorna un array de objetos, el producto puede tener varios vendedores
+        return $this->belongsToMany('Vest\User');
+        //busca en la tabla pivote el campo product_id
     }
 
     ///** Filtro para productos y Scope **///

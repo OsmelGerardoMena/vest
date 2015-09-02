@@ -99,7 +99,6 @@
 	<!-- Demo Specific JS Libraries -->
 	<script src="{{asset('assets/libs/prettify/prettify.js')}}"></script>
 	<script src="{{asset('assets/js/init.js')}}"></script>
-	<script src="{{asset('assets/js/deleteregister.js')}}"></script>
 	<script src="{{asset('assets/js/reloadsearch.js')}}"></script>
 	<!-- <script src="{{asset('assets/js/activemenu.js')}}"></script>-->
 	@if(!Auth::guest())

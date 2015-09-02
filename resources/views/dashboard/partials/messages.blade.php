@@ -21,3 +21,15 @@
  		<strong>{{ Session::get('no_submodule') }}</strong>
  	</div>
 @endif
+
+@if(Session::has('add_products'))
+ 	<div class="alert alert-info" role="alert">
+ 		<strong>{{ Session::get('add_products') }}</strong>
+ 	</div>
+@endif
+
+@if(Session::has('remove_products'))
+ 	<div class="alert alert-info" role="alert">
+ 		<strong>{{ Session::get('remove_products') }}</strong>
+ 	</div>
+@endif

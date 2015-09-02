@@ -87,7 +87,7 @@ class ProfilesController extends Controller
             return redirect()->route('dashboard.profiles.index');
         }
         
-        Session::flash('no_submodule', trans('messages.submodule_not_slected'));
+        Session::flash('no_submodule', trans('messages.submodule_not_selected'));
         return redirect()->back();
     }
 
@@ -133,7 +133,8 @@ class ProfilesController extends Controller
      */
     public function edit($id)
     {
-        return view('dashboard.profiles.edit')->with('profile', $this->profile);
+        return view('dashboard.profiles.edit')
+                ->with('profile', $this->profile);
     }
 
     /**
@@ -163,7 +164,7 @@ class ProfilesController extends Controller
             return redirect()->back();
         }
 
-        Session::flash('no_submodule', trans('messages.submodule_not_slected'));
+        Session::flash('no_submodule', trans('messages.submodule_not_selected'));
         return redirect()->back();
     }
 

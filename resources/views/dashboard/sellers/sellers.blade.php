@@ -1,16 +1,12 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_users')
+	@lang('dashboard.title_sellers')
 @stop
 
 @section('content')
 
 @include('partials/modal')
-
-@foreach($users as $user)
-	@include('dashboard.users.partials.modal')
-@endforeach
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -23,8 +19,8 @@
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-        		<h1><i class='icon-users'></i> 
-        			@lang('dashboard.title_users')
+        		<h1><i class='icon-suitcase'></i> 
+        			@lang('dashboard.title_sellers')
         		</h1>
             </div>
 			@include('dashboard.partials.messages')
@@ -35,15 +31,7 @@
 							<div class="data-table-toolbar">
 								<div class="row">
 									<div class="col-md-12">
-										<div class="toolbar-btn-action">
-											<a class="btn btn-success" href="{{route('dashboard.users.create')}}">
-												<i class="fa fa-plus-circle"></i>
-												@lang('dashboard.buttons.new')
-											</a>
-											<!--<a class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</a>
-											<a class="btn btn-primary"><i class="fa fa-refresh"></i> Update</a>-->
-										</div>
-										@include('dashboard.users.partials.search')
+										@include('dashboard.sellers.partials.search')
 									</div>
 								</div>
 							</div>
@@ -61,29 +49,25 @@
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($users as $user)
+										@foreach($sellers as $seller)
 										<tr>
-											<td>{{ $user->id }}</td>
-											<td>{{ $user->name }}</td>
-											<td>{{ $user->email }}</td>
-											<td>{{ $user->type->name }}</td>
-											<td><span class="label label-success">{{ $user->status->type }}</span></td>
+											<td>{{ $seller->id }}</td>
+											<td>{{ $seller->name }}</td>
+											<td>{{ $seller->email }}</td>
+											<td>{{ $seller->type->name }}</td>
+											<td><span class="label label-success">{{ $seller->status->type }}</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
 														<i class="fa fa-power-off"></i>
 													</a>
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
-														href="{{route('dashboard.users.show', $user->id)}}">
-														<i class="fa fa-info-circle"></i>
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.see_product')" class="btn btn-info" 
+														href="{{route('dashboard.sellers.show', $seller->id)}}">
+														<i class="fa fa-eye"></i>
 													</a>
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
-														href="{{route('dashboard.users.edit', $user->id)}}">
-														<i class="fa fa-edit"></i>
-													</a>
-
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$user->id}}" class="btn btn-danger md-trigger ">
-														<i class="fa fa-trash-o"></i>
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.add_product')" class="btn btn-success" 
+														href="{{route('dashboard.sellers.edit', $seller->id)}}">
+														<i class="fa fa-plus"></i>
 													</a>
 												</div>
 											</td>
@@ -91,7 +75,7 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $users->appends(Request::only(['namemail', 'type']))->render() !!}
+								{!! $sellers->appends(Request::only('namemail'))->render() !!}
 							</div>
 						</div>
 					</div>
