@@ -13,7 +13,7 @@
 	</div>
 
 	<div class="form-group">
-		{!! Form::text('namemail', null, ['class' => 'form-control', 'id' => 'my-text', 'placeholder' => trans('dashboard.ph.search')]) !!}
+		{!! Form::text('namemail', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.search')]) !!}
 	</div>
 
 	<button type="submit" class="btn btn-info"> 

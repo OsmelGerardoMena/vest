@@ -139,5 +139,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return (!empty($array)) ? in_array($id, $array): false;
         //si $array esta vacio se retorna un false
     }
+
+
+    ///** Filtro para productos del vendedor y scope **///
+    public static function filterSellerProducts($id, $nameproduct)
+    {
+        $seller = User::findOrFail($id);
+        //se busca el usuario con findOrFail para poder llamar a ->addedproducts()
+        //ya que no es un metodo estatico y no se puede usar ::addedproducts()
+
+        return $seller->addedproducts()
+                    ->name($nameproduct)
+                    ->simplepaginate(5);
+    }
+    public function scopeName($query, $nameproduct)
+    {
+        if(trim($name) != ""){
+            $query->where("name", "LIKE", "%$nameproduct%");
+        }    
+    }
    
 }

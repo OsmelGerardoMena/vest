@@ -28,6 +28,7 @@ return [
 	'sure_delete_user' => 'Sure you want to delete this user?',
 	'sure_delete_profile' => 'Sure you want to delete this profile?',
 	'sure_delete_product' => 'Sure you want to delete this product?',
+	'sure_delete_seller_product' => 'Sure you want to delete the product to the seller',
 	'no_delete' => 'No!',
 	'yes_delete' => "Yeah, I'm sure",
 

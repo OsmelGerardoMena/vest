@@ -20,7 +20,8 @@ class ProductsUsersController extends Controller
 {
     ///Para buscar el vendedor y tenerlo en $this->seller
     public function __construct(){
-        $this->beforeFilter('@findSeller', ['only' => ['show', 'edit', 'update']]);
+        $this->beforeFilter('@findSeller', 
+            ['only' => ['show', 'edit', 'update', 'destroy']]);
     }
 
     public function findSeller(Route $route){
@@ -47,7 +48,7 @@ class ProductsUsersController extends Controller
      */
     public function create()
     {
-        return 'hola';
+        //
     }
 
     /**
@@ -67,9 +68,15 @@ class ProductsUsersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        //el metodo se usa para mostrar y filtrar los productos del vendedor
+
+        //get('nameproduct') contiene el nombre del producto a filtrar
+        $sellerProducts = User::filterSellerProducts($id, $request->get('nameproduct'));
+        
+        return view('dashboard.sellers.seller_products', compact('sellerProducts'))
+                ->with('seller', $this->seller);
     }
 
     /**
@@ -118,8 +125,29 @@ class ProductsUsersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    //Elimina un producto de un vendedor en especifico
+    public function destroy(Request $request, $id)
     {
-        //
+        //metodo para eliminar un producto de un vendedor especifico
+        //recibe un campo oculto get('product_id')
+        //y el id del vendedor
+    
+        //almaceno el id de producto a eliminar
+        $productId = $request->get('product_id');
+
+        //busco el producto para mostrar su nombre en mensaje
+        $product =  $this->seller->addedproducts()
+                    ->where('product_id', $productId)
+                    ->first();
+
+        //se elimina el producto al vendedor especifico
+        $this->seller->addedproducts()->detach($productId);
+
+        $message = $product->name.trans('messages.delete_product_seller');
+
+        Session::flash('delete', $message);
+
+        return redirect()->route('dashboard.sellers.show', $this->seller->id);
+        //route('dashboard.sellers.show', $seller->id)
     }
 }

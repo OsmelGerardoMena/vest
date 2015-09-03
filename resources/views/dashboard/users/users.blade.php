@@ -40,8 +40,6 @@
 												<i class="fa fa-plus-circle"></i>
 												@lang('dashboard.buttons.new')
 											</a>
-											<!--<a class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</a>
-											<a class="btn btn-primary"><i class="fa fa-refresh"></i> Update</a>-->
 										</div>
 										@include('dashboard.users.partials.search')
 									</div>

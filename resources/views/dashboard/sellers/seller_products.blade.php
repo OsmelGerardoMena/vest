@@ -1,12 +1,16 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_sellers')
+	{{$seller->name}} @lang('dashboard.title_products')
 @stop
 
 @section('content')
 
 @include('partials/modal')
+
+@foreach($sellerProducts as $product)
+	@include('dashboard.sellers.partials.modal')
+@endforeach
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -19,8 +23,8 @@
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-        		<h1><i class='icon-suitcase'></i> 
-        			@lang('dashboard.title_sellers')
+        		<h1><i class='icon-layers'></i> 
+        			{{$seller->name}} @lang('dashboard.title_products')
         		</h1>
             </div>
 			@include('dashboard.partials.messages')
@@ -31,7 +35,13 @@
 							<div class="data-table-toolbar">
 								<div class="row">
 									<div class="col-md-12">
-										@include('dashboard.sellers.partials.search_seller')
+										<div class="toolbar-btn-action">
+											<a href="{{route('dashboard.sellers.index')}}" class="btn btn-primary">
+												<i class="icon-back"></i>
+												@lang('dashboard.buttons.back')
+											</a>
+										</div>
+										@include('dashboard.sellers.partials.search_seller_product')
 									</div>
 								</div>
 							</div>
@@ -41,33 +51,27 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>@lang('dashboard.table.name')</th>
-											<th>@lang('dashboard.table.email')</th>
-											<th>@lang('dashboard.table.profile')</th>
-											<th>@lang('dashboard.table.status')</th>
-											<th>@lang('dashboard.table.actions')</th>
+											<th>@lang('dashboard.table_products.name')</th>
+											<th>@lang('dashboard.table_products.company')</th>
+											<th>@lang('dashboard.table_products.status')</th>
+											<th>@lang('dashboard.table_products.actions')</th>
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($sellers as $seller)
+										@foreach($sellerProducts as $product)
 										<tr>
-											<td>{{ $seller->id }}</td>
-											<td>{{ $seller->name }}</td>
-											<td>{{ $seller->email }}</td>
-											<td>{{ $seller->type->name }}</td>
-											<td><span class="label label-success">{{ $seller->status->type }}</span></td>
+											<td>{{ $product->id }}</td>
+											<td>{{ $product->name }}</td>
+											<td>{{ $product->company->name }}</td>
+											<td><span class="label label-success">{{ $product->status->type }}</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
 														<i class="fa fa-power-off"></i>
 													</a>
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.see_product')" class="btn btn-info" 
-														href="{{route('dashboard.sellers.show', $seller->id)}}">
-														<i class="fa fa-eye"></i>
-													</a>
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.add_product')" class="btn btn-success" 
-														href="{{route('dashboard.sellers.edit', $seller->id)}}">
-														<i class="fa fa-plus"></i>
+									
+													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
+														<i class="fa fa-trash-o"></i>
 													</a>
 												</div>
 											</td>
@@ -75,13 +79,12 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $sellers->appends(Request::only('namemail'))->render() !!}
+								{!! $sellerProducts->appends(Request::only('name_product'))->render() !!}
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 
 		</div>
 		<!-- End content here -->
