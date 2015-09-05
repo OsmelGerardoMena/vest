@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductUserTable extends Migration
+class CreateBenefitProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class CreateProductUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_user', function(Blueprint $table){
+        Schema::create('benefit_product', function(Blueprint $table){
             $table->increments('id');
-            $table->boolean('status')->default(true);
+            $table->string('value');
             
             //Relationships
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')
+            $table->integer('benefit_id')->unsigned();
+            $table->foreign('benefit_id')->references('id')->on('benefits')
                     ->onDelete('cascade');
                     
             $table->integer('product_id')->unsigned();
@@ -36,6 +36,6 @@ class CreateProductUserTable extends Migration
      */
     public function down()
     {
-        Schema::drop('product_user');
+        Schema::drop('benefit_product');
     }
 }

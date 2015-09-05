@@ -22,7 +22,7 @@
 					{!! Form::checkbox($submodule['description'], $submodule['id']) !!}
 				@endif
 				
-				@lang('dashboard.sidebar.'.$submodule['description'])
+				@lang('dashboard.sidebar.'.$submodule['description'])<br>
 			@endforeach
 		</div>
 	</div>

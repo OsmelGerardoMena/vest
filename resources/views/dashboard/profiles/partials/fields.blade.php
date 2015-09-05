@@ -17,7 +17,7 @@
 		<div class="col-sm-10">
 			@foreach($module['submodule'] as $submodule)
 				{!! Form::checkbox($submodule['description'], $submodule['id']) !!}
-				@lang('dashboard.sidebar.'.$submodule['description'])
+				@lang('dashboard.sidebar.'.$submodule['description'])<br>
 			@endforeach
 		</div>
 	</div>

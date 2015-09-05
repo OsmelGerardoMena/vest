@@ -14,7 +14,7 @@ class UserTypesTableSeeder extends Seeder
         \DB::table('user_types')->insert([
         	'name' => 'Admin',
         	'activated_modules' => '1,2,3,4,5,6',
-            'activated_submodules' => '1,2,3,4,5,6,7,8,9',
+            'activated_submodules' => '1,2,3,4,5,6,7,8,9,10,11,12,13',
         	'status_id' => '1',
         ]);
 

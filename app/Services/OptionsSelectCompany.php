@@ -2,18 +2,24 @@
 
 namespace Vest\Services;
 
+use Vest\User;
+
 class OptionsSelectCompany
 {
 	public function get()
 	{
-		$companies = \DB::table('users')->where('type_id', '=', 3)->get();
+		$companies = User::where('type_id', 3)->get();
 
-		$array[""] = "";
-		
+		$array[''] = '';
+
 		foreach ($companies as $company) {
-			$array[$company->id] = $company->name;
-		}
 
+			if($company->status->type == 'active'){
+
+				$array[$company->id] = $company->name;
+			}
+		}
+		
 		return $array;
 	}
 }	

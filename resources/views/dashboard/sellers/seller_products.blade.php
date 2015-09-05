@@ -51,10 +51,10 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>@lang('dashboard.table_products.name')</th>
-											<th>@lang('dashboard.table_products.company')</th>
-											<th>@lang('dashboard.table_products.status')</th>
-											<th>@lang('dashboard.table_products.actions')</th>
+											<th>@lang('dashboard.table.name')</th>
+											<th>@lang('dashboard.table.company')</th>
+											<th>@lang('dashboard.table.status')</th>
+											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -63,7 +63,11 @@
 											<td>{{ $product->id }}</td>
 											<td>{{ $product->name }}</td>
 											<td>{{ $product->company->name }}</td>
-											<td><span class="label label-success">{{ $product->status->type }}</span></td>
+											<td>
+												<span class="{{ ($product->pivot->status) ? 'label label-success' : 'label label-danger'}}">
+													{{ trans('dashboard.status.'.$product->pivot->status) }}
+												</span>
+											</td>
 											<td>
 												<div class="btn-group btn-group-xs">
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">

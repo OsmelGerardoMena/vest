@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTypesTable extends Migration
+class CreateContractsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,15 @@ class CreateUserTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_types', function(Blueprint $table){
+        Schema::create('contracts', function(Blueprint $table){
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('activated_modules');
-            $table->string('activated_submodules');
+            $table->string('name');
+            $table->string('url');
             
             //Relationships
-            $table->integer('status_id')->unsigned()->default(1);
-            $table->foreign('status_id')->references('id')->on('status');
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')
+                    ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ class CreateUserTypesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_types');
+        Schema::drop('contracts');
     }
 }

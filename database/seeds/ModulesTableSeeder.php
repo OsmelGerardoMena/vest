@@ -98,5 +98,29 @@ class ModulesTableSeeder extends Seeder
             'url' => '/dashboard/products/create',
             'module_id' => $id,
         ]);
+
+        \DB::table('submodules')->insert([
+            'description' => 'contracts',
+            'url' => '/dashboard/contracts',
+            'module_id' => $id,
+        ]);
+
+        \DB::table('submodules')->insert([
+            'description' => 'incentives',
+            'url' => '/dashboard/incentives',
+            'module_id' => $id,
+        ]);
+
+        \DB::table('submodules')->insert([
+            'description' => 'benefits',
+            'url' => '/dashboard/benefits',
+            'module_id' => $id,
+        ]);
+
+        \DB::table('submodules')->insert([
+            'description' => 'trainings',
+            'url' => '/dashboard/trainings',
+            'module_id' => $id,
+        ]);
     }
 }

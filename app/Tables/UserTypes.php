@@ -21,7 +21,7 @@ class UserTypes extends Model
         //id: 1, 2, 3 son de admin, seller y company no deben ser borrados
     	return UserTypes::whereNotIn('id', [1])
                     ->name($name)
-                    ->simplepaginate(5);
+                    ->simplePaginate(5);
     }
 
     public function scopeName($query, $name)
@@ -31,7 +31,7 @@ class UserTypes extends Model
         }  
     }
 
-    //devuleve true si encuentra el id en activated_submodules
+    //devuelve true si encuentra el id en activated_submodules
     public function submoduleExists($id)
     {
         $submodules = explode(',', $this->activated_submodules);

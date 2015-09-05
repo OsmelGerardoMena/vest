@@ -59,10 +59,10 @@ class Product extends Model
 
     public function scopeCompany($query, $company_id)
     {
-    	$users = User::select('id', 'name')->get();
+    	$users = User::select('id')->get();
 
 		foreach ($users as $value) {
-			$array[$value->id] = $value->name; 
+			$array[$value->id] = $value->id; 
 		}
 
         if($company_id != "" && isset($array[$company_id])){

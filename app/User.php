@@ -68,7 +68,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         //retorna un array de objetos, el usuario (empresa) 
         //puede tener varios productos
         return $this->hasMany('Vest\Tables\Product', 'company_id');
-        //busca en products el campo company_id (llave foranea en Product)
+        //busca en product el campo company_id (llave foranea en Product)
     }
 
     ///** relacion de muchos a muchos **///
@@ -76,7 +76,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         //retorna un array de objetos, el usuario (vendedor)
         //puede tener varios productos añadidos
-        return $this->belongsToMany('Vest\Tables\Product');
+        return $this->belongsToMany('Vest\Tables\Product')
+                    ->withPivot('status');
         //busca en la tabla pivote el campo user_id
     }
 
@@ -100,12 +101,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function scopeType($query, $type)
     {
-
-        $types = Tables\UserTypes::select('id', 'name')->get();
+        $types = Tables\UserTypes::select('id')->get();
+        
+        $array = [];
 
         //types es un array de objetos
-        foreach ($types as $value) {
-            $array[$value->id] = $value->name;
+        foreach ($types as $value){
+            $array[$value->id] = $value->id;
         }
 
         if($type != "" && isset($array[$type])){
@@ -120,7 +122,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         //el id #2 de user_types es el perfil vendedor
         return User::where('type_id', 2)
                     ->namemail($namemail)
-                    ->simplepaginate(5);
+                    ->simplePaginate(5);
     }
 
     //devuleve true si encuentra el id

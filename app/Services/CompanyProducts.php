@@ -26,6 +26,7 @@ class CompanyProducts
 				}
 
 				$all[] = [
+					'id' => $company->id,
 					'name' => $company->name,
 					'products' => $array,
 				];

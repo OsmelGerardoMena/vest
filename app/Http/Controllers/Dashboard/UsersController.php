@@ -125,13 +125,6 @@ class UsersController extends Controller
 
         $message = $this->user->name.trans('messages.delete');
 
-        if(Request::ajax()){
-            return response()->json([
-                'id' => $this->user->id,
-                'message' => $message
-            ]);
-        }
-
         Session::flash('delete', $message);
 
         return redirect()->route('dashboard.users.index');

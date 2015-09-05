@@ -53,9 +53,9 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>@lang('dashboard.table_profile.type')</th>
-											<th>@lang('dashboard.table_profile.status')</th>
-											<th>@lang('dashboard.table_profile.actions')</th>
+											<th>@lang('dashboard.table.type')</th>
+											<th>@lang('dashboard.table.status')</th>
+											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
 									<tbody>

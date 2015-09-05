@@ -12,11 +12,11 @@ class StatusTableSeeder extends Seeder
     public function run()
     {
         \DB::table('status')->insert([
-        	'type' => 'Active',
+        	'type' => 'active',
         ]);
 
         \DB::table('status')->insert([
-        	'type' => 'Inactive',
+        	'type' => 'inactive',
         ]);
     }
 }

@@ -1,15 +1,15 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_users')
+	@lang('dashboard.title_contracts')
 @stop
 
 @section('content')
 
 @include('partials/modal')
 
-@foreach($users as $user)
-	@include('dashboard.users.partials.modal')
+@foreach($contracts as $contract)
+	@include('dashboard.contracts.partials.modal')
 @endforeach
 
 <!-- Begin page -->
@@ -23,8 +23,8 @@
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-        		<h1><i class='icon-users'></i> 
-        			@lang('dashboard.title_users')
+        		<h1><i class='icon-docs'></i> 
+        			@lang('dashboard.title_contracts')
         		</h1>
             </div>
 			@include('dashboard.partials.messages')
@@ -36,12 +36,12 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="toolbar-btn-action">
-											<a class="btn btn-success" href="{{route('dashboard.users.create')}}">
+											<a class="btn btn-success" href="{{route('dashboard.contracts.create')}}">
 												<i class="fa fa-plus-circle"></i>
 												@lang('dashboard.buttons.new')
 											</a>
 										</div>
-										@include('dashboard.users.partials.search')
+										@include('dashboard.contracts.partials.search')
 									</div>
 								</div>
 							</div>
@@ -52,35 +52,28 @@
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
-											<th>@lang('dashboard.table.email')</th>
-											<th>@lang('dashboard.table.profile')</th>
-											<th>@lang('dashboard.table.status')</th>
+											<th>@lang('dashboard.table.url')</th>
+											<th>@lang('dashboard.table.product')</th>
+											<th>@lang('dashboard.table.company')</th>
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($users as $user)
+										@foreach($contracts as $contract)
 										<tr>
-											<td>{{ $user->id }}</td>
-											<td>{{ $user->name }}</td>
-											<td>{{ $user->email }}</td>
-											<td>{{ $user->type->name }}</td>
-											<td><span class="label label-success">{{ $user->status->type }}</span></td>
+											<td>{{ $contract->id }}</td>
+											<td>{{ $contract->name }}</td>
+											<td>{{ $contract->url }}</td>
+											<td>{{ $contract->product->name }}</td>
+											<td>{{ $contract->product->company->name }}</td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
-														<i class="fa fa-power-off"></i>
-													</a>
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
-														href="{{route('dashboard.users.show', $user->id)}}">
-														<i class="fa fa-info-circle"></i>
-													</a>
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
-														href="{{route('dashboard.users.edit', $user->id)}}">
+														href="{{route('dashboard.contracts.edit', $contract->id)}}">
 														<i class="fa fa-edit"></i>
 													</a>
 
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$user->id}}" class="btn btn-danger md-trigger ">
+													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$contract->id}}" class="btn btn-danger md-trigger ">
 														<i class="fa fa-trash-o"></i>
 													</a>
 												</div>
@@ -89,7 +82,7 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $users->appends(Request::only(['namemail', 'type']))->render() !!}
+								{!! $contracts->appends(Request::only(['name', 'product']))->render() !!}
 							</div>
 						</div>
 					</div>

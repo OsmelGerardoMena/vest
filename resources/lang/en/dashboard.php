@@ -14,7 +14,13 @@ return [
 	'title_edit_product' => 'Edit product or service',
 	'title_sellers' => 'Sellers',
 	'title_add_product' => 'Add products',
-	'title_select_product' => 'Select products or services',
+	'title_select_product' => 'Select products or services of the following companies',
+	'title_contracts' => 'Contracts',
+	'title_create_contract' => 'Create contract',
+	'title_edit_contract' => 'Edit contract',
+	'title_incentives' => 'Incentives',
+	'title_create_incentive' => 'Create incentive',
+	'title_edit_incentive' => 'Edit incentive',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'my_profile' => 'My Profile',
@@ -29,6 +35,8 @@ return [
 	'sure_delete_profile' => 'Sure you want to delete this profile?',
 	'sure_delete_product' => 'Sure you want to delete this product?',
 	'sure_delete_seller_product' => 'Sure you want to delete the product to the seller',
+	'sure_delete_contract' => 'Sure you want to delete this contract?',
+	'sure_delete_incentive' => 'Sure you want to delete this incentive?',
 	'no_delete' => 'No!',
 	'yes_delete' => "Yeah, I'm sure",
 
@@ -50,6 +58,10 @@ return [
 		'list_companies' => 'List companies',
 		'list_products' => 'List products',
 		'add_product' => 'Create product',
+		'contracts' => 'Contracts',
+		'incentives' => 'Incentives',
+		'benefits' => 'Benefits',
+		'trainings' => 'Trainings',
 	],
 
 	'buttons' => [
@@ -79,7 +91,11 @@ return [
 		'repeatpass_here' => 'Repeat password here',
 		'search' => 'Search... name or email',
 		'search_type' => 'Search... type',
+		'search_name' => 'Search... name',
 		'search_product' => 'Search... product name',
+		'search_contract' => 'Search... contract name',
+		'search_incentive' => 'Search... incentive name',
+		'url_here' => 'Url here',
 	],
 
 	'table' => [
@@ -92,20 +108,19 @@ return [
 		'profile' => 'Profile',
 		'status' => 'Status',
 		'actions' => 'Actions',
-	],
-
-	'table_profile' => [
 		'type' => 'Type',
-		'status' => 'Status',
-		'actions' => 'Actions',
-	],
-
-	'table_products' => [
-		'name' => 'Name',
 		'creator' => 'Creator',
 		'company' => 'Company',
-		'status' => 'Status',
-		'actions' => 'Actions',
+		'url' => 'URL',
+		'product' => 'Product',
+		'goal' => 'Goal',
+		'award' => 'Award',
+		'date' => 'Date',
+	],
+
+	'status' => [
+		'0' => 'Inactive',
+		'1' => 'Active',
 	],
 
 ];

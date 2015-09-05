@@ -51,11 +51,11 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>@lang('dashboard.table_products.name')</th>
-											<th>@lang('dashboard.table_products.company')</th>
-											<th>@lang('dashboard.table_products.creator')</th>
-											<th>@lang('dashboard.table_products.status')</th>
-											<th>@lang('dashboard.table_products.actions')</th>
+											<th>@lang('dashboard.table.name')</th>
+											<th>@lang('dashboard.table.company')</th>
+											<th>@lang('dashboard.table.creator')</th>
+											<th>@lang('dashboard.table.status')</th>
+											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
 									<tbody>

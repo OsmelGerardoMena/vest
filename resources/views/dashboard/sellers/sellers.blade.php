@@ -43,7 +43,6 @@
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
 											<th>@lang('dashboard.table.email')</th>
-											<th>@lang('dashboard.table.profile')</th>
 											<th>@lang('dashboard.table.status')</th>
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
@@ -54,7 +53,6 @@
 											<td>{{ $seller->id }}</td>
 											<td>{{ $seller->name }}</td>
 											<td>{{ $seller->email }}</td>
-											<td>{{ $seller->type->name }}</td>
 											<td><span class="label label-success">{{ $seller->status->type }}</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">

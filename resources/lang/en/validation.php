@@ -123,6 +123,8 @@ return [
         'list_companies' => 'List companies',
         'list_products' => 'List products',
         'company' => 'Company',
+        'url' => 'URL',
+        'product' => 'Product/service',
     ],
 
 ];
