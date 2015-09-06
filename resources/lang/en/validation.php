@@ -124,7 +124,11 @@ return [
         'list_products' => 'List products',
         'company' => 'Company',
         'url' => 'URL',
-        'product' => 'Product/service',
+        'product' => 'Product/Service',
+        'product_id' => 'Product/Service',
+        'goal' => 'Goal',
+        'award' => 'Award',
+        'date' => 'Date',
     ],
 
 ];

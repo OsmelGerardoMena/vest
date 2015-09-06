@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_create_incentive')
+	@lang('dashboard.title_create_training')
 @stop
 
 @section('content')
@@ -19,9 +19,8 @@
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-            		<h1>
-            			<i class='icon-star-half_empty'></i>
-            			@lang('dashboard.title_create_incentive')
+            		<h1><i class='icon-book-open'></i> 
+            			@lang('dashboard.title_create_training')
             		</h1>
             </div>
 
@@ -29,13 +28,13 @@
 				<div class="widget-content padding">
 					@include('partials.errors')
 					{!! Form::open([
-							'route' => 'dashboard.incentives.store', 
+							'route' => 'dashboard.trainings.store', 
 							'method' => 'POST', 
 							'class' => 'form-horizontal',
 							'role' => 'form'
 						]) 
 					!!}
-				  		@include('dashboard.incentives.partials.fields')
+				  		@include('dashboard.trainings.partials.fields')
 
 					  	<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
@@ -44,7 +43,7 @@
 									@lang('dashboard.buttons.create')
 								</button>
 
-								<a href="{{route('dashboard.incentives.index')}}" class="btn btn-primary">
+								<a href="{{route('dashboard.trainings.index')}}" class="btn btn-primary">
 									<i class="icon-back"></i>
 									@lang('dashboard.buttons.back')
 								</a>

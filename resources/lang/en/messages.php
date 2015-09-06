@@ -8,4 +8,10 @@ return [
 	'add_products' => 'Added products successfully',
 	'remove_products' => 'Removed products successfully',
 	'delete_product_seller' => ', was eliminated from the seller',
+	'new_incentive' => 'Incentive was created successfully',
+	'edit_incentive' => 'Incentive was edited successfully',
+	'delete_incentive' => 'Incentive was eliminated',
+	'new_training' => 'Training was created successfully',
+	'edit_training' => 'Training was edited successfully',
+	'delete_training' => 'Training was eliminated',
 ];

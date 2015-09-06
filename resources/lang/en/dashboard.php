@@ -21,6 +21,9 @@ return [
 	'title_incentives' => 'Incentives',
 	'title_create_incentive' => 'Create incentive',
 	'title_edit_incentive' => 'Edit incentive',
+	'title_trainings' => 'Trainings',
+	'title_create_training' => 'Create training',
+	'title_edit_training' => 'Edit training',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'my_profile' => 'My Profile',
@@ -37,6 +40,7 @@ return [
 	'sure_delete_seller_product' => 'Sure you want to delete the product to the seller',
 	'sure_delete_contract' => 'Sure you want to delete this contract?',
 	'sure_delete_incentive' => 'Sure you want to delete this incentive?',
+	'sure_delete_training' => 'Sure you want to delete this training?',
 	'no_delete' => 'No!',
 	'yes_delete' => "Yeah, I'm sure",
 
@@ -94,8 +98,10 @@ return [
 		'search_name' => 'Search... name',
 		'search_product' => 'Search... product name',
 		'search_contract' => 'Search... contract name',
-		'search_incentive' => 'Search... incentive name',
+		'search_incentive' => 'Search... incentive award',
 		'url_here' => 'Url here',
+		'goal_here' => 'Goal here, example: 7000.77',
+		'award_here' => 'Award here',
 	],
 
 	'table' => [

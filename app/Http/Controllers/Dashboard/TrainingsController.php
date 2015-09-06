@@ -7,16 +7,35 @@ use Illuminate\Http\Request;
 use Vest\Http\Requests;
 use Vest\Http\Controllers\Controller;
 
+use Vest\Tables\Training;
+
+use Illuminate\Routing\Route;
+
+use Vest\Http\Requests\CreateTrainingRequest;
+use Vest\Http\Requests\EditTrainingRequest;
+
+use Illuminate\Support\Facades\Session;
+
 class TrainingsController extends Controller
 {
+    public function __construct(){
+        $this->beforeFilter('@findTraining', ['only' => ['edit', 'update', 'destroy']]);
+    }
+
+    public function findTraining(Route $route){
+        $this->training = Training::findOrFail($route->getParameter('trainings'));
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $trainings = Training::filterTrainings($request->get('product'));
+
+        return view('dashboard.trainings.trainings', compact('trainings'));
     }
 
     /**
@@ -26,7 +45,7 @@ class TrainingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.trainings.create');
     }
 
     /**
@@ -35,9 +54,13 @@ class TrainingsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateTrainingRequest $request)
     {
-        //
+        $training = Training::create($request->all());
+      
+        Session::flash('new', trans('messages.new_training'));
+    
+        return redirect()->route('dashboard.trainings.index');
     }
 
     /**
@@ -59,7 +82,8 @@ class TrainingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('dashboard.trainings.edit')
+                ->with('training', $this->training);
     }
 
     /**
@@ -69,9 +93,15 @@ class TrainingsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(EditTrainingRequest $request, $id)
     {
-        //
+        $this->training->fill($request->all());
+
+        $this->training->save();
+
+        Session::flash('edit', trans('messages.edit_training'));
+
+        return redirect()->back();
     }
 
     /**
@@ -82,6 +112,10 @@ class TrainingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->training->delete();
+
+        Session::flash('delete', trans('messages.delete_training'));
+
+        return redirect()->route('dashboard.trainings.index');
     }
 }

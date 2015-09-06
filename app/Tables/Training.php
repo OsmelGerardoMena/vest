@@ -4,38 +4,27 @@ namespace Vest\Tables;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Incentive extends Model
+class Training extends Model
 {
-    protected $table = 'incentives';
+	protected $table = 'trainings';
 
-    protected $fillable = [
-            'goal', 
-            'award',
+	protected $fillable = [
             'url',
             'date',
-            'product_id',
+            'product_id'
     ];
 
     ///** relacion de muchos a uno (relacion inversa) **///
     public function product()
     {
-        //retorna un solo objeto product, el incentivo solo tiene un producto
+        //retorna un solo objeto product, la capacitacion solo tiene un producto
         return $this->belongsTo('Vest\Tables\Product');
     }
 
-     ///** Filtro para incentivos y Scope **///
-    public static function filterIncentives($award, $product_id)
+     ///** Filtro para capacitaciones y Scope **///
+    public static function filterTrainings($product_id)
     {
-    	return Incentive::name($award)
-                ->productid($product_id)
-                ->simplePaginate(5);
-    }
-
-    public function scopeName($query, $award)
-    {
-        if(trim($award) != ""){
-            $query->where("award", "LIKE", "%$award%");
-        }    
+    	return Training::productid($product_id)->simplePaginate(5);
     }
 
     public function scopeProductid($query, $product_id)

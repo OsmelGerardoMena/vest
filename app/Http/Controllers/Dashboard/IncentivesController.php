@@ -11,6 +11,11 @@ use Vest\Tables\Incentive;
 
 use Illuminate\Routing\Route;
 
+use Vest\Http\Requests\CreateIncentiveRequest;
+use Vest\Http\Requests\EditIncentiveRequest;
+
+use Illuminate\Support\Facades\Session;
+
 class IncentivesController extends Controller
 {
     public function __construct(){
@@ -29,7 +34,7 @@ class IncentivesController extends Controller
     public function index(Request $request)
     {
         $incentives = Incentive::filterIncentives(
-            $request->get('name'), 
+            $request->get('award'), 
             $request->get('product')
         );
         return view('dashboard.incentives.incentives', compact('incentives'));
@@ -51,9 +56,13 @@ class IncentivesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateIncentiveRequest $request)
     {
-        return "yeah! incentive";
+        $incentive = Incentive::create($request->all());
+      
+        Session::flash('new', trans('messages.new_incentive'));
+    
+        return redirect()->route('dashboard.incentives.index');
     }
 
     /**
@@ -75,7 +84,8 @@ class IncentivesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('dashboard.incentives.edit')
+                ->with('incentive', $this->incentive);
     }
 
     /**
@@ -85,9 +95,15 @@ class IncentivesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(EditIncentiveRequest $request, $id)
     {
-        //
+        $this->incentive->fill($request->all());
+
+        $this->incentive->save();
+
+        Session::flash('edit', trans('messages.edit_incentive'));
+
+        return redirect()->back();
     }
 
     /**
@@ -98,6 +114,10 @@ class IncentivesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->incentive->delete();
+
+        Session::flash('delete', trans('messages.delete_incentive'));
+
+        return redirect()->route('dashboard.incentives.index');
     }
 }

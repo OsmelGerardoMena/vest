@@ -14,7 +14,7 @@ class CreateIncentivesTable extends Migration
     {
         Schema::create('incentives', function(Blueprint $table){
             $table->increments('id');
-            $table->string('goal');
+            $table->double('goal', 10, 2);
             $table->string('award');
             $table->string('url');
             $table->date('date')->nullable();
