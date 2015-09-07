@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
 	Route::resource('dashboard/contracts', 'ContractsController');
 	Route::resource('dashboard/incentives', 'IncentivesController');
 	Route::resource('dashboard/trainings', 'TrainingsController');
+	Route::resource('dashboard/benefits', 'BenefitsController');
 });
 
 

@@ -7,16 +7,41 @@ use Illuminate\Http\Request;
 use Vest\Http\Requests;
 use Vest\Http\Controllers\Controller;
 
+use Vest\Tables\Benefit;
+use Vest\Tables\Product;
+
+use Illuminate\Routing\Route;
+
+use Vest\Http\Requests\CreateBenefitRequest;
+use Vest\Http\Requests\EditBenefitRequest;
+
+use Illuminate\Support\Facades\Session;
+
 class BenefitsController extends Controller
 {
+    public function __construct()
+    {
+        $this->beforeFilter('@findBenefit', 
+            ['only' => ['edit', 'update', 'destroy']]);
+    }
+
+    public function findBenefit(Route $route)
+    {
+        $this->benefit = Benefit::findOrFail($route->getParameter('benefits'));
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $benefits = Benefit::filterBenefits(
+            $request->get('name'), 
+            $request->get('product')
+        );
+        return view('dashboard.benefits.benefits', compact('benefits'));
     }
 
     /**
@@ -26,7 +51,7 @@ class BenefitsController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.benefits.create');
     }
 
     /**
@@ -35,9 +60,15 @@ class BenefitsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateBenefitRequest $request)
     {
-        //
+        $benefit = Benefit::create($request->all());
+
+        $message = $benefit->name.trans('messages.new');
+      
+        Session::flash('new', $message);
+    
+        return redirect()->route('dashboard.benefits.index');
     }
 
     /**
@@ -59,7 +90,8 @@ class BenefitsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('dashboard.benefits.edit')
+                ->with('benefit', $this->benefit);
     }
 
     /**
@@ -69,9 +101,17 @@ class BenefitsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(EditBenefitRequest $request, $id)
     {
-        //
+        $this->benefit->fill($request->all());
+
+        $this->benefit->save();
+
+        $message = $this->benefit->name.trans('messages.edit');
+
+        Session::flash('edit', $message);
+
+        return redirect()->back();
     }
 
     /**
@@ -82,6 +122,12 @@ class BenefitsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->benefit->delete();
+
+        $message = $this->benefit->name.trans('messages.delete');
+
+        Session::flash('delete', $message);
+
+        return redirect()->route('dashboard.benefits.index');
     }
 }
