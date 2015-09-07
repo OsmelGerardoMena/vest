@@ -24,7 +24,7 @@
 		<div class="content">
 			<div class="page-heading">
         		<h1><i class='icon-layers'></i> 
-        			{{$seller->name}} @lang('dashboard.title_products')
+        			{{$seller->name}}: @lang('dashboard.title_products')
         		</h1>
             </div>
 			@include('dashboard.partials.messages')
@@ -83,7 +83,7 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $sellerProducts->appends(Request::only('name_product'))->render() !!}
+								{!! $sellerProducts->appends(Request::only('nameproduct'))->render() !!}
 							</div>
 						</div>
 					</div>

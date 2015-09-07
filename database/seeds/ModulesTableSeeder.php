@@ -45,52 +45,28 @@ class ModulesTableSeeder extends Seeder
             'module_id' => $id,
         ]);
 
-        /// Modulo y submodulos customers
-        $id = \DB::table('modules')->insertGetId([
-        	'description' => 'customers',
-        	'icon' => 'fa fa-smile-o',
-        ]);
-
-        \DB::table('submodules')->insert([
-        	'description' => 'list_customers',
-        	'url' => '/dashboard/customers',
-        	'module_id' => $id,
-        ]);
-
-        /// Modulo y submodulos sellers
-        $id = \DB::table('modules')->insertGetId([
-        	'description' => 'sellers',
-        	'icon' => 'icon-suitcase',
-        ]);
-
-        \DB::table('submodules')->insert([
-        	'description' => 'list_sellers',
-        	'url' => '/dashboard/sellers',
-        	'module_id' => $id,
-        ]);
-
         /// Modulo y submodulos company
         $id = \DB::table('modules')->insertGetId([
-        	'description' => 'company',
-        	'icon' => 'icon-flag-circled',
+            'description' => 'company',
+            'icon' => 'icon-flag-circled',
         ]);
 
         \DB::table('submodules')->insert([
-        	'description' => 'list_companies',
-        	'url' => '/dashboard/company',
-        	'module_id' => $id,
+            'description' => 'list_companies',
+            'url' => '/dashboard/company',
+            'module_id' => $id,
         ]);
 
         /// Modulo y submodulos products
         $id = \DB::table('modules')->insertGetId([
-        	'description' => 'products',
-        	'icon' => 'icon-layers',
+            'description' => 'products',
+            'icon' => 'icon-layers',
         ]);
 
         \DB::table('submodules')->insert([
-        	'description' => 'list_products',
-        	'url' => '/dashboard/products',
-        	'module_id' => $id,
+            'description' => 'list_products',
+            'url' => '/dashboard/products',
+            'module_id' => $id,
         ]);
 
         \DB::table('submodules')->insert([
@@ -120,6 +96,30 @@ class ModulesTableSeeder extends Seeder
         \DB::table('submodules')->insert([
             'description' => 'trainings',
             'url' => '/dashboard/trainings',
+            'module_id' => $id,
+        ]);
+
+        /// Modulo y submodulos sellers
+        $id = \DB::table('modules')->insertGetId([
+        	'description' => 'sellers',
+        	'icon' => 'icon-suitcase',
+        ]);
+
+        \DB::table('submodules')->insert([
+        	'description' => 'list_sellers',
+        	'url' => '/dashboard/sellers',
+        	'module_id' => $id,
+        ]);
+
+        /// Modulo y submodulos customers
+        $id = \DB::table('modules')->insertGetId([
+            'description' => 'customers',
+            'icon' => 'fa fa-smile-o',
+        ]);
+
+        \DB::table('submodules')->insert([
+            'description' => 'list_customers',
+            'url' => '/dashboard/customers',
             'module_id' => $id,
         ]);
     }

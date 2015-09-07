@@ -79,11 +79,8 @@
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 		<!-- End content here -->
-	
 	</div>
 	<!-- End right content -->
 </div>

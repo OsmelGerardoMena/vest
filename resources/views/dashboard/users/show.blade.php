@@ -73,7 +73,7 @@
 							<div class="data-table-toolbar">
 								<div class="row">
 									<div class="col-md-8">
-										<h3><strong>Other data</strong></h3>
+										<h3><strong>@lang('dashboard.other_data')</strong></h3>
 									</div>
 								</div>
 							</div>

@@ -9,6 +9,7 @@ use Vest\Http\Controllers\Controller;
 
 //tablas a usar
 use Vest\Tables\Product;
+use Vest\Tables\User;
 
 //Request para validar
 use Vest\Http\Requests\CreateProductRequest;
@@ -23,11 +24,15 @@ use Illuminate\Routing\Route;
 class ProductsController extends Controller
 {
     ///Para buscar el producto y tenerlo en $this->product
-    public function __construct(){
-        $this->beforeFilter('@findProduct', ['only' => ['edit', 'update', 'destroy']]);
+    public function __construct()
+    {
+        $this->beforeFilter('@findProduct', [
+            'only' => ['show', 'edit', 'update', 'destroy']
+        ]);
     }
 
-    public function findProduct(Route $route){
+    public function findProduct(Route $route)
+    {
         $this->product = Product::findOrFail($route->getParameter('products'));
     }
 
@@ -80,7 +85,11 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        //el metodo mustra informacion del producto y de los vendedores del mismo
+
+        //$sellerProducts = User::filterSellerProducts($id, $request->get('nameproduct'));
+        return view('dashboard.products.show')
+                ->with('product', $this->product);
     }
 
     /**

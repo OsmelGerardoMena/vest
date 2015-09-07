@@ -10,21 +10,21 @@ use Vest\Http\Controllers\Controller;
 use Vest\User;
 use Vest\Tables\Product;
 
-//para usar route como inyeccion de dependencia
 use Illuminate\Routing\Route;
 
-//para mensajes con sesiones
 use Illuminate\Support\Facades\Session;
 
-class ProductsUsersController extends Controller
+class ProductsSellersController extends Controller
 {
     ///Para buscar el vendedor y tenerlo en $this->seller
-    public function __construct(){
+    public function __construct()
+    {
         $this->beforeFilter('@findSeller', 
             ['only' => ['show', 'edit', 'update', 'destroy']]);
     }
 
-    public function findSeller(Route $route){
+    public function findSeller(Route $route)
+    {
         //el id #2 de user_types es el perfil vendedor
         $this->seller = User::where('type_id', 2)
                 ->findOrFail($route->getParameter('sellers'));
@@ -71,7 +71,7 @@ class ProductsUsersController extends Controller
     public function show(Request $request, $id)
     {
         //el metodo se usa para mostrar y filtrar los productos del vendedor
-
+        //$id contiene el id del vendedor
         //get('nameproduct') contiene el nombre del producto a filtrar
         $sellerProducts = User::filterSellerProducts($id, $request->get('nameproduct'));
         

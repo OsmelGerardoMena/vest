@@ -15,6 +15,7 @@ return [
 	'title_sellers' => 'Sellers',
 	'title_add_product' => 'Add products',
 	'title_select_product' => 'Select products or services of the following companies',
+	'title_info_product' => 'Info product',
 	'title_contracts' => 'Contracts',
 	'title_create_contract' => 'Create contract',
 	'title_edit_contract' => 'Edit contract',
@@ -45,6 +46,7 @@ return [
 	'sure_delete_incentive' => 'Sure you want to delete this incentive?',
 	'sure_delete_training' => 'Sure you want to delete this training?',
 	'sure_delete_benefit' => 'Sure you want to delete this benefit?',
+	'other_data' => 'Other Data',
 	'no_delete' => 'No!',
 	'yes_delete' => "Yeah, I'm sure",
 

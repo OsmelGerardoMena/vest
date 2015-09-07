@@ -44,6 +44,17 @@ class Product extends Model
         //busca en la tabla pivote el campo product_id
     }
 
+    ///** relacion de uno a muchos **///
+    public function contracts()
+    {
+        return $this->hasMany('Vest\Tables\Contract');
+    }
+
+    public function benefits()
+    {
+        return $this->hasMany('Vest\Tables\Benefit');
+    }
+
     ///** Filtro para productos y Scope **///
     public static function filterProducts($name, $company)
     {
@@ -59,7 +70,8 @@ class Product extends Model
 
     public function scopeCompany($query, $company_id)
     {
-    	$users = User::select('id')->get();
+        // type_id = 3 es el id para las empresas 
+    	$users = User::select('id')->where('type_id', 3)->get();
 
 		foreach ($users as $value) {
 			$array[$value->id] = $value->id; 

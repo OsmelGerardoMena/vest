@@ -71,6 +71,11 @@
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
 														<i class="fa fa-power-off"></i>
 													</a>
+
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
+														href="{{route('dashboard.products.show', $product->id)}}">
+														<i class="fa fa-info-circle"></i>
+													</a>
 													
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
 														href="{{route('dashboard.products.edit', $product->id)}}">
