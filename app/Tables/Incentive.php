@@ -23,7 +23,7 @@ class Incentive extends Model
         return $this->belongsTo('Vest\Tables\Product');
     }
 
-     ///** Filtro para incentivos y Scope **///
+    ///** Filtro para incentivos y Scope **///
     public static function filterIncentives($award, $product_id)
     {
     	return Incentive::name($award)
@@ -31,6 +31,7 @@ class Incentive extends Model
                 ->simplePaginate(5);
     }
 
+    ///** Scope **///
     public function scopeName($query, $award)
     {
         if(trim($award) != ""){

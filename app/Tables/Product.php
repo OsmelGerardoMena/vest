@@ -95,13 +95,13 @@ class Product extends Model
     }
 
     ///** Filtro para vendedores del producto **///
-    public static function filterProductSellers($id, $namemail)
+    public static function filterProductSellers($id, $nameseller)
     {
         //se busca el producto con findOrFail para poder llamar a ->sellers()
         $product = Product::findOrFail($id);
         //ya que no es un metodo estatico y no se puede usar ::sellers()
         return $product->sellers()
-                    ->namemailFilter($namemail)
+                    ->nameSeller($nameseller)
                     ->simplePaginate(5);
     }
 }

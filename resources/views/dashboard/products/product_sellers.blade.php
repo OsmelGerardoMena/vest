@@ -83,7 +83,7 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $productSellers->appends(Request::only('namemail'))->render() !!}
+								{!! $productSellers->appends(Request::only('nameseller'))->render() !!}
 							</div>
 						</div>
 					</div>

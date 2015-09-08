@@ -21,12 +21,13 @@ class Training extends Model
         return $this->belongsTo('Vest\Tables\Product');
     }
 
-     ///** Filtro para capacitaciones y Scope **///
+    ///** Filtro para capacitaciones y Scope **///
     public static function filterTrainings($product_id)
     {
     	return Training::productid($product_id)->simplePaginate(5);
     }
 
+    ///** Scope **///
     public function scopeProductid($query, $product_id)
     {
         $products = Product::select('id')->where('status_id', 1)->get();

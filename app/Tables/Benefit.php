@@ -25,6 +25,7 @@ class Benefit extends Model
                 ->simplePaginate(5);
     }
 
+    ///** Scope **///
     public function scopeName($query, $name)
     {
         if(trim($name) != ""){

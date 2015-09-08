@@ -15,7 +15,7 @@ class UserTypes extends Model
         return $this->belongsTo('Vest\Tables\Status');
     }
 
-    ///** Filtro para perfiles y Scope **///
+    ///** Filtro para perfiles **///
     public static function filterProfiles($name)
     {
         //id: 1, 2, 3 son de admin, seller y company no deben ser borrados
@@ -24,6 +24,7 @@ class UserTypes extends Model
                     ->simplePaginate(5);
     }
 
+    ///** Scope **///
     public function scopeName($query, $name)
     {
     	 if(trim($name) != ""){

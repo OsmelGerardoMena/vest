@@ -117,11 +117,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         }
     }
 
-    public function scopeNamemailFilter($query, $namemail)
+    public function scopeNameSeller($query, $nameseller)
     {   // se usa para filtrar vendedores de un producto
-        if(trim($namemail) != ""){
-            $query->where("name", "LIKE", "%$namemail%")
-                    ->orWhere("email", "LIKE", "%$namemail%");
+        if(trim($nameseller) != ""){
+            $query->where("name", "LIKE", "%$nameseller%");
         }    
     }
 

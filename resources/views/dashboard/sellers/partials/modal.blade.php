@@ -2,7 +2,7 @@
 <div class="md-modal md-slide-stick-top" id="delete-modal-{{$product->id}}">
 	<div class="md-content">
 		<h3>
-			<strong>@lang('dashboard.sure_delete_product')<br>
+			<strong>@lang('dashboard.sure_unlink_product')<br>
 			{{$product->name}}</strong>
 		</h3>
 		<div>

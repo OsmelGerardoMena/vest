@@ -73,7 +73,7 @@ class ProductSellersController extends Controller
         //get('namemail') contiene el nombre o email del vendedor a filtrar
         $productSellers = Product::filterProductSellers(
                     $id,
-                    $request->get('namemail')
+                    $request->get('nameseller')
         );
 
         return view('dashboard.products.product_sellers', compact('productSellers'))
