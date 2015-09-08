@@ -109,8 +109,24 @@ class ProductSellersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        //metodo para eliminar un producto de un vendedor especifico
+        //recibe un campo oculto get('seller_id')
+        //y el id del producto
+
+        //busco el vendedor para mostrar su nombre en mensaje
+        $seller =  $this->product->sellers()
+                    ->where('user_id', $request->get('seller_id'))
+                    ->first();
+
+        //se elimina el vendedor al producto especifico
+        $this->product->sellers()->detach($request->get('seller_id'));
+
+        $message = $seller->name.trans('messages.delete_product_seller');
+
+        Session::flash('delete', $message);
+
+        return redirect()->route('dashboard.product-sellers.show', $this->product->id);
     }
 }

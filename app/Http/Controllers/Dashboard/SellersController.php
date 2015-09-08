@@ -143,11 +143,10 @@ class SellersController extends Controller
         //se elimina el producto al vendedor especifico
         $this->seller->addedproducts()->detach($productId);
 
-        $message = $product->name.trans('messages.delete_product_seller');
+        $message = $product->name.trans('messages.delete_seller_product');
 
         Session::flash('delete', $message);
 
         return redirect()->route('dashboard.sellers.show', $this->seller->id);
-        //route('dashboard.sellers.show', $seller->id)
     }
 }

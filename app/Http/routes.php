@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
 	Route::resource('dashboard/incentives', 'IncentivesController');
 	Route::resource('dashboard/trainings', 'TrainingsController');
 	Route::resource('dashboard/benefits', 'BenefitsController');
-	Route::resource('dashboard/product_sellers', 'ProductSellersController');
+	Route::resource('dashboard/product-sellers', 'ProductSellersController');
 });
 
 

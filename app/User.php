@@ -81,15 +81,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         //busca en la tabla pivote el campo user_id
     }
 
-    ///** Filtro para usuarios y Scope **///
+    ///** Filtro para usuarios **///
     public static function filterUsers($namemail, $type)
     {
         return User::whereNotIn('id', [1])
                 ->namemail($namemail)
                 ->type($type)
-                ->simplepaginate(5);
+                ->simplePaginate(5);
     }
 
+    ///** Scope **///
     public function scopeNamemail($query, $namemail)
     {
         if(trim($namemail) != ""){
@@ -116,6 +117,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         }
     }
 
+    public function scopeNamemailFilter($query, $namemail)
+    {   // se usa para filtrar vendedores de un producto
+        if(trim($namemail) != ""){
+            $query->where("name", "LIKE", "%$namemail%")
+                    ->orWhere("email", "LIKE", "%$namemail%");
+        }    
+    }
+
     ///** Filtro para sellers **///
     public static function filterSellers($namemail)
     {
@@ -125,7 +134,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                     ->simplePaginate(5);
     }
 
-    //devuleve true si encuentra el id
+    ///** Devuelve true si encuentra el id **///
     public function productExists($id)
     {
         //productos del vendedor actual (usuario)
@@ -142,23 +151,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         //si $array esta vacio se retorna un false
     }
 
-
-    ///** Filtro para productos del vendedor y scope **///
+    ///** Filtro para productos del vendedor **///
     public static function filterSellerProducts($id, $nameproduct)
     {
-        $seller = User::findOrFail($id);
         //se busca el usuario con findOrFail para poder llamar a ->addedproducts()
+        $seller = User::findOrFail($id);
         //ya que no es un metodo estatico y no se puede usar ::addedproducts()
 
         return $seller->addedproducts()
                     ->name($nameproduct)
-                    ->simplepaginate(5);
-    }
-    public function scopeName($query, $nameproduct)
-    {
-        if(trim($name) != ""){
-            $query->where("name", "LIKE", "%$nameproduct%");
-        }    
-    }
-   
+                    ->simplePaginate(5);
+        //se usa el scopeName que esta dentro de Product ya que se
+        //estan llamando a los productos del vendedor con ->addedproducts()
+    } 
 }

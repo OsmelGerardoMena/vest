@@ -36,14 +36,6 @@ class Product extends Model
         return $this->belongsTo('Vest\Tables\Status');
     }
 
-    ///** relacion de muchos a muchos **///
-    public function sellers()
-    {
-        //retorna un array de objetos, el producto puede tener varios vendedores
-        return $this->belongsToMany('Vest\User')->withPivot('status');
-        //busca en la tabla pivote el campo product_id
-    }
-
     ///** relacion de uno a muchos **///
     public function contracts()
     {
@@ -64,13 +56,22 @@ class Product extends Model
     {
         return $this->hasMany('Vest\Tables\Training');
     }
+    ///** relacion de muchos a muchos **///
+    public function sellers()
+    {
+        //retorna un array de objetos, el producto puede tener varios vendedores
+        return $this->belongsToMany('Vest\User')
+                    ->withPivot('status');
+        //busca en la tabla pivote el campo product_id
+    }
 
-    ///** Filtro para productos y Scope **///
+    ///** Filtro para productos **///
     public static function filterProducts($name, $company)
     {
     	return Product::name($name)->company($company)->simplePaginate(5);
     }
 
+    ///** Scope **///
     public function scopeName($query, $name)
     {
 		if(trim($name) != ""){
@@ -93,21 +94,14 @@ class Product extends Model
         }
     }
 
-    ///** Filtro para vendedores del producto y scope **///
+    ///** Filtro para vendedores del producto **///
     public static function filterProductSellers($id, $namemail)
     {
-        //se busca el usuario con findOrFail para poder llamar a ->sellers()
+        //se busca el producto con findOrFail para poder llamar a ->sellers()
         $product = Product::findOrFail($id);
         //ya que no es un metodo estatico y no se puede usar ::sellers()
         return $product->sellers()
-                    ->namemail($namemail)
-                    ->simplepaginate(5);
-    }
-    public function scopeNamemail($query, $namemail)
-    {
-        if(trim($namemail) != ""){
-            $query->where("name", "LIKE", "%$namemail%")
-                    ->orWhere("email", "LIKE", "%$namemail%");
-        }    
+                    ->namemailFilter($namemail)
+                    ->simplePaginate(5);
     }
 }

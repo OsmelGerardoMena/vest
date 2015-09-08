@@ -1,7 +1,10 @@
 <!-- Modal Delete product -->
 <div class="md-modal md-slide-stick-top" id="delete-modal-{{$product->id}}">
 	<div class="md-content">
-		<h3><strong>@lang('dashboard.sure_delete_seller_product') {{$seller->name}}?</strong></h3>
+		<h3>
+			<strong>@lang('dashboard.sure_delete_product')<br>
+			{{$product->name}}</strong>
+		</h3>
 		<div>
 			<center>
 				<p><button class="btn btn-primary md-close">
