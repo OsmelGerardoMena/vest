@@ -14,7 +14,7 @@ use Illuminate\Routing\Route;
 
 use Illuminate\Support\Facades\Session;
 
-class ProductsSellersController extends Controller
+class SellersController extends Controller
 {
     ///Para buscar el vendedor y tenerlo en $this->seller
     public function __construct()

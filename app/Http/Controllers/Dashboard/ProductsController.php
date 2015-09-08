@@ -85,9 +85,6 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //el metodo mustra informacion del producto y de los vendedores del mismo
-
-        //$sellerProducts = User::filterSellerProducts($id, $request->get('nameproduct'));
         return view('dashboard.products.show')
                 ->with('product', $this->product);
     }

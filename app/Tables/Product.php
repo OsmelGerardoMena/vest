@@ -40,7 +40,7 @@ class Product extends Model
     public function sellers()
     {
         //retorna un array de objetos, el producto puede tener varios vendedores
-        return $this->belongsToMany('Vest\User');
+        return $this->belongsToMany('Vest\User')->withPivot('status');
         //busca en la tabla pivote el campo product_id
     }
 
@@ -53,6 +53,16 @@ class Product extends Model
     public function benefits()
     {
         return $this->hasMany('Vest\Tables\Benefit');
+    }
+
+    public function incentives()
+    {
+        return $this->hasMany('Vest\Tables\Incentive');
+    }
+
+    public function trainings()
+    {
+        return $this->hasMany('Vest\Tables\Training');
     }
 
     ///** Filtro para productos y Scope **///
@@ -83,4 +93,21 @@ class Product extends Model
         }
     }
 
+    ///** Filtro para vendedores del producto y scope **///
+    public static function filterProductSellers($id, $namemail)
+    {
+        //se busca el usuario con findOrFail para poder llamar a ->sellers()
+        $product = Product::findOrFail($id);
+        //ya que no es un metodo estatico y no se puede usar ::sellers()
+        return $product->sellers()
+                    ->namemail($namemail)
+                    ->simplepaginate(5);
+    }
+    public function scopeNamemail($query, $namemail)
+    {
+        if(trim($namemail) != ""){
+            $query->where("name", "LIKE", "%$namemail%")
+                    ->orWhere("email", "LIKE", "%$namemail%");
+        }    
+    }
 }

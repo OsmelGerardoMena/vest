@@ -46,6 +46,7 @@ return [
 	'sure_delete_incentive' => 'Sure you want to delete this incentive?',
 	'sure_delete_training' => 'Sure you want to delete this training?',
 	'sure_delete_benefit' => 'Sure you want to delete this benefit?',
+	'sure_delete_product_seller' => 'Sure you want to delete the seller to the product',
 	'other_data' => 'Other Data',
 	'no_delete' => 'No!',
 	'yes_delete' => "Yeah, I'm sure",
@@ -88,6 +89,8 @@ return [
 		'save' => 'Save',
 		'see_product' => 'See products',
 		'add_product' => 'Add or Edit products',
+		'go' => 'Edit or Delete',
+		'sellers' => 'Sellers',
 	],
 
 	'ph' => [ //placeholder
@@ -129,6 +132,7 @@ return [
 		'goal' => 'Goal',
 		'award' => 'Award',
 		'date' => 'Date',
+		'go' => 'Go',
 	],
 
 	'status' => [

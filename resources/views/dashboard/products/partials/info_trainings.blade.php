@@ -6,9 +6,9 @@
 					<div class="row">
 						<div class="col-md-8">
 							<h3>
-								<i class='fa fa-thumbs-o-up'></i>
+								<i class='icon-star-empty'></i>
 								<strong>
-									@lang('dashboard.title_benefits')
+									@lang('dashboard.title_trainings')
 								</strong>
 							</h3>
 						</div>
@@ -18,18 +18,20 @@
 					<table data-sortable class="table table-hover table-striped">
 						<thead>
 							<tr>
-								<th>@lang('dashboard.table.name')</th>
+								<th>@lang('dashboard.table.url')</th>
+								<th>@lang('dashboard.table.date')</th>
 								<th>@lang('dashboard.table.go')</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($product->benefits as $benefit)
+							@foreach($product->trainings as $training)
 							<tr>
-								<td>{{$benefit->name}}</td>
+								<td>{{$training->url}}</td>
+								<td>{{$training->date}}</td>
 								<td>
 									<div class="btn-group btn-group-xs">
 										<a data-toggle="tooltip" title="@lang('dashboard.buttons.go')" class="btn btn-info" 
-											href="{{route('dashboard.benefits.edit', $benefit->id)}}">
+											href="{{route('dashboard.trainings.edit', $training->id)}}">
 											<i class="glyphicon glyphicon-arrow-left"></i>
 										</a>
 									</div>

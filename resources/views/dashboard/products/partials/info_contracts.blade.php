@@ -20,7 +20,7 @@
 							<tr>
 								<th>@lang('dashboard.table.name')</th>
 								<th>@lang('dashboard.table.url')</th>
-								<th>@lang('dashboard.table.actions')</th>
+								<th>@lang('dashboard.table.go')</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -30,12 +30,9 @@
 								<td>{{$contract->url}}</td>
 								<td>
 									<div class="btn-group btn-group-xs">
-										<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
-											<i class="fa fa-power-off"></i>
-										</a>
-
-										<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$contract->id}}" class="btn btn-danger md-trigger ">
-											<i class="fa fa-trash-o"></i>
+										<a data-toggle="tooltip" title="@lang('dashboard.buttons.go')" class="btn btn-info" 
+											href="{{route('dashboard.contracts.edit', $contract->id)}}">
+											<i class="glyphicon glyphicon-arrow-left"></i>
 										</a>
 									</div>
 								</td>

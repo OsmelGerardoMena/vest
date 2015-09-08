@@ -33,8 +33,15 @@
 											<i class="icon-back"></i>
 											@lang('dashboard.buttons.back')
 										</a>
-										
-										<h3><strong>{{ $product->name }}</strong></h3>
+										<a href="{{route('dashboard.product_sellers.show', $product->id)}}" class="btn btn-success">
+											<i class="icon-suitcase"></i>
+											@lang('dashboard.buttons.sellers')
+										</a>
+										<h3>
+											<strong>
+												{{ $product->name }}
+											</strong>
+										</h3>
 									</div>
 								</div>
 							</div>
@@ -66,7 +73,9 @@
 				</div>
 			</div>
 			@include('dashboard.products.partials.info_contracts')
+			@include('dashboard.products.partials.info_incentives')
 			@include('dashboard.products.partials.info_benefits')
+			@include('dashboard.products.partials.info_trainings')
 		</div>
 		<!-- End content here -->
 	</div>

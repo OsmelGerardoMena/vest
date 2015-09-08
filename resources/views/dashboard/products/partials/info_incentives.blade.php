@@ -6,9 +6,9 @@
 					<div class="row">
 						<div class="col-md-8">
 							<h3>
-								<i class='fa fa-thumbs-o-up'></i>
+								<i class='icon-star-empty'></i>
 								<strong>
-									@lang('dashboard.title_benefits')
+									@lang('dashboard.title_incentives')
 								</strong>
 							</h3>
 						</div>
@@ -18,18 +18,24 @@
 					<table data-sortable class="table table-hover table-striped">
 						<thead>
 							<tr>
-								<th>@lang('dashboard.table.name')</th>
+								<th>@lang('dashboard.table.goal')</th>
+								<th>@lang('dashboard.table.award')</th>
+								<th>@lang('dashboard.table.url')</th>
+								<th>@lang('dashboard.table.date')</th>
 								<th>@lang('dashboard.table.go')</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($product->benefits as $benefit)
+							@foreach($product->incentives as $incentive)
 							<tr>
-								<td>{{$benefit->name}}</td>
+								<td>{{$incentive->goal}}</td>
+								<td>{{$incentive->award}}</td>
+								<td>{{$incentive->url}}</td>
+								<td>{{$incentive->date}}</td>
 								<td>
 									<div class="btn-group btn-group-xs">
 										<a data-toggle="tooltip" title="@lang('dashboard.buttons.go')" class="btn btn-info" 
-											href="{{route('dashboard.benefits.edit', $benefit->id)}}">
+											href="{{route('dashboard.incentives.edit', $incentive->id)}}">
 											<i class="glyphicon glyphicon-arrow-left"></i>
 										</a>
 									</div>

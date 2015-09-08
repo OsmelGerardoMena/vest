@@ -43,12 +43,13 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
 
 	Route::resource('dashboard/users', 'UsersController');
 	Route::resource('dashboard/profiles', 'ProfilesController');
-	Route::resource('dashboard/sellers', 'ProductsSellersController');
+	Route::resource('dashboard/sellers', 'SellersController');
 	Route::resource('dashboard/products', 'ProductsController');
 	Route::resource('dashboard/contracts', 'ContractsController');
 	Route::resource('dashboard/incentives', 'IncentivesController');
 	Route::resource('dashboard/trainings', 'TrainingsController');
 	Route::resource('dashboard/benefits', 'BenefitsController');
+	Route::resource('dashboard/product_sellers', 'ProductSellersController');
 });
 
 
