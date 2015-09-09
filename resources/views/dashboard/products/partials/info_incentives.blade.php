@@ -1,20 +1,16 @@
-<div class="row">
-	<div class="col-md-12">
-		<div class="widget">
-			<div class="widget-content">
-				<div class="data-table-toolbar">
-					<div class="row">
-						<div class="col-md-8">
-							<h3>
-								<i class='icon-star-empty'></i>
-								<strong>
-									@lang('dashboard.title_incentives')
-								</strong>
-							</h3>
-						</div>
-					</div>
-				</div>
-				<div class="table-responsive">
+<div class="panel-group accordion-toggle" id="accordiondemo">
+	<div class="panel panel-darkblue-2">
+		<div class="panel-heading">
+	  		<h4 class="panel-title">
+	  			<a data-toggle="collapse" data-parent="#accordiondemo" href="#accordion-incentives">
+	      			<i class='icon-star-empty'></i>
+	      			@lang('dashboard.title_incentives')
+	    		</a>
+	  		</h4>
+		</div>
+    	<div id="accordion-incentives" class="panel-collapse collapse">
+      		<div class="panel-body">
+	      		<div class="table-responsive">
 					<table data-sortable class="table table-hover table-striped">
 						<thead>
 							<tr>
@@ -45,7 +41,7 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
-		</div>
+      		</div>
+    	</div>
 	</div>
 </div>
