@@ -28,7 +28,10 @@
 						<div class="widget-content">
 							<div class="data-table-toolbar">
 								<div class="row">
-									<div class="col-md-12">
+									<!--<div class="col-md-4">
+										<img src="{{asset('assets/images/users/user-100.jpg')}}" class="img-circle profile-image">
+									</div>-->
+									<div class="col-md-8">
 										<a href="{{route('dashboard.users.index')}}" class="btn btn-primary">
 											<i class="icon-back"></i>
 											@lang('dashboard.buttons.back')

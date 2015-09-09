@@ -23,7 +23,16 @@ class AccountsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('dashboard.account.account', compact('user'));
+        $products = [];
+
+        if(Auth::user()->type_id == 2){ //vendedor
+            $products = $user->addedproducts;
+        }
+        else if(Auth::user()->type_id == 3){ //empresa
+            $products = $user->products;
+        }
+
+        return view('dashboard.account.account', compact('user', 'products'));
     }
 
     /**

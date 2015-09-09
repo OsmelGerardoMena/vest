@@ -52,7 +52,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     ///** relacion de muchos a uno (relacion inversa) **///
     public function type()
     {
-        //retorna un solo objeto type, ya que el usuario solo tiene un tipo
+        //retorna un solo objeto type, ya que el usuario solo es de un tipo
         return $this->belongsTo('Vest\Tables\UserTypes');
     }
 

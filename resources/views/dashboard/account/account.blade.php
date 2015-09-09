@@ -27,10 +27,6 @@
 						<div class="widget-content">
 							<div class="data-table-toolbar">
 								<div class="row">
-								<!--<div class="col-sm-3 avatar-container">
-									<img src="{{asset('assets/images/users/user-256.jpg')}}" class="img-circle profile-avatar" alt="User avatar">
-								</div>-->
-
 									<div class="col-md-12">
 										<h3><strong>{{ $user->name }}</strong></h3>
 										<div class="toolbar-btn-action">
@@ -105,6 +101,9 @@
 					</div>
 				</div>
 			</div>
+			@if(!empty($products))
+				@include('dashboard.account.partials.info_products')
+			@endif
 		</div>
 		<!-- End content here -->
 	</div>

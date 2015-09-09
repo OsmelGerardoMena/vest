@@ -12,9 +12,9 @@
         <!--- Profile -->
         <div class="profile-info">
             <div class="col-xs-4">
-              <a href="{{route('dashboard.account.index')}}" class="rounded-image profile-image">
-                <img src="{{asset('assets/images/users/user-100.jpg')}}">
-            </a>
+                <a href="{{route('dashboard.account.index')}}" class="rounded-image profile-image">
+                    <img src="{{asset('assets/images/users/user-100.jpg')}}">
+                </a>
             </div>
             <div class="col-xs-8">
                 <div class="profile-text">
