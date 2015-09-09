@@ -12,14 +12,14 @@
         <!--- Profile -->
         <div class="profile-info">
             <div class="col-xs-4">
-              <a href="profile.html" class="rounded-image profile-image">
+              <a href="{{route('dashboard.account.index')}}" class="rounded-image profile-image">
                 <img src="{{asset('assets/images/users/user-100.jpg')}}">
             </a>
             </div>
             <div class="col-xs-8">
                 <div class="profile-text">
                     @lang('dashboard.welcome') 
-                    <b>{{ Auth::user()-> name}}</b>
+                    <b>{{ Auth::user()->name }}</b>
                 </div>
                 <div class="profile-buttons">
                   <!--<a href="javascript:;"><i class="fa fa-envelope-o pulse"></i></a>-->

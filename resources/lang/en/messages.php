@@ -15,4 +15,6 @@ return [
 	'new_training' => 'Training was created successfully',
 	'edit_training' => 'Training was edited successfully',
 	'delete_training' => 'Training was eliminated',
+	'edit_account' => 'Data was updated successfully',
+
 ];

@@ -156,8 +156,8 @@
                             <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">@lang('dashboard.my_profile')</a></li>
-                            <li><a href="#">@lang('dashboard.change_password')</a></li>
+                            <li><a href="{{route('dashboard.account.index')}}">@lang('dashboard.title_account')</a></li>
+                            <li><a href="{{route('dashboard.account.edit', Auth::user()->id)}}">@lang('dashboard.change_password')</a></li>
                             <li class="divider"></li>
                             <!--<li><a href="#"><i class="icon-help-2"></i> Help</a></li>-->
                             <!--<li><a href="lockscreen.html"><i class="icon-lock-1"></i> Lock me</a></li>-->

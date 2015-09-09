@@ -28,9 +28,10 @@ return [
 	'title_benefits' => 'Benefits',
 	'title_create_benefit' => 'Create benefit',
 	'title_edit_benefit' => 'Edit benefit',
+	'title_account' => 'My account',
+	'title_edit_account' => 'Edit account',
 	'english' => 'English',
 	'spanish' => 'Spanish',
-	'my_profile' => 'My Profile',
 	'change_password' => 'Change Password',
 	'logout' => 'Logout',
 	'welcome' => 'Welcome',
@@ -50,6 +51,7 @@ return [
 	'other_data' => 'Other Data',
 	'no_delete' => 'No!',
 	'yes_delete' => "Yeah, I'm sure",
+	'change_password' => 'Change Password',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',
@@ -91,6 +93,7 @@ return [
 		'add_product' => 'Add or Edit products',
 		'go' => 'Edit or Delete',
 		'sellers' => 'Sellers',
+		'edit_data' => 'Edit data',
 	],
 
 	'ph' => [ //placeholder
