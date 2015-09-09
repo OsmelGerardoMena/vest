@@ -46,9 +46,8 @@ class ContractsController extends Controller
      *
      * @return Response
      */
-    public function create($id)
+    public function create()
     {
-        return dd($id);
         return view('dashboard.contracts.create');
     }
 
