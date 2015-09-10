@@ -108,8 +108,25 @@ class CompaniesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        //metodo para eliminar un producto de una empresa especifica
+        //recibe un campo oculto get('product_id')
+        //y el id de la empresa
+
+        //busco el producto a eliminar
+        $product =  $this->company->products()
+                    ->where('id', $request->get('product_id'))
+                    ->first();
+
+        //se coloca el nombre del producto en el mensaje antes de eliminar
+        $message = $product->name.trans('messages.delete_company_product');
+        
+        //se elimina el producto
+        $product->delete();
+        
+        Session::flash('delete', $message);
+
+        return redirect()->route('dashboard.companies.show', $this->company->id);
     }
 }

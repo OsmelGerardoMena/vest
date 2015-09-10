@@ -128,7 +128,7 @@ class SellersController extends Controller
     //Elimina un producto de un vendedor en especifico
     public function destroy(Request $request, $id)
     {
-        //metodo para eliminar un producto de un vendedor especifico
+        //metodo para desvincular un producto de un vendedor especifico
         //recibe un campo oculto get('product_id')
         //y el id del vendedor
     
