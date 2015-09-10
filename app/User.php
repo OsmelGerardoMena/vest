@@ -90,6 +90,66 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 ->simplePaginate(5);
     }
 
+    ///** Filtro para sellers **///
+    public static function filterSellers($namemail)
+    {
+        //el id #2 de user_types es el perfil vendedor
+        return User::where('type_id', 2)
+                    ->seller($namemail)
+                    ->simplePaginate(5);
+    }
+
+    ///** Filtro para companies **///
+    public static function filterCompanies($namemail)
+    {
+        //el id #3 de user_types es el perfil empresa
+        return User::where('type_id', 3)
+                    ->company($namemail)
+                    ->simplePaginate(5);
+    }
+
+    ///** Filtro para productos del vendedor **///
+    public static function filterSellerProducts($id, $nameproduct)
+    {
+        //se busca el usuario con findOrFail para poder llamar a ->addedproducts()
+        $seller = User::findOrFail($id);
+        //ya que no es un metodo estatico y no se puede usar ::addedproducts()
+
+        return $seller->addedproducts()
+                    ->name($nameproduct)
+                    ->simplePaginate(5);
+        //se usa el scopeName que esta dentro de Product ya que se
+        //estan llamando a los productos del vendedor con ->addedproducts()
+    }
+
+    ///** Filtro para productos de la empresa **///
+    public static function filterCompanyProducts($id, $nameproduct)
+    {
+        $company = User::findOrFail($id);
+
+        return $company->products()
+                    ->name($nameproduct)
+                    ->simplePaginate(5);
+        //se usa el scopeName que esta dentro del modelo Product
+    }
+
+    ///** Verifica si el producto está asignado al vendedor **///
+    public function productExists($id)
+    {
+        //productos del vendedor actual (usuario)
+        $products = $this->addedproducts;
+
+        $array = [];
+        //se colocan solo los id de los productos dentro de un array
+        foreach ($products as $product) {
+            $array [] = $product->id;
+        }
+
+        //si $array no esta vacio se retorna lo que devuelva in_array()
+        return (!empty($array)) ? in_array($id, $array): false;
+        //si $array esta vacio se retorna un false
+    }
+
     ///** Scope **///
     public function scopeNamemail($query, $namemail)
     {
@@ -117,50 +177,28 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         }
     }
 
+    public function scopeSeller($query, $namemail)
+    {
+        if(trim($namemail) != ""){
+            $query->where("name", "LIKE", "%$namemail%")
+                    ->orWhere("email", "LIKE", "%$namemail%")
+                    ->where('type_id', 2);
+        }    
+    }
+
+    public function scopeCompany($query, $namemail)
+    {
+        if(trim($namemail) != ""){
+            $query->where("name", "LIKE", "%$namemail%")
+                    ->orWhere("email", "LIKE", "%$namemail%")
+                    ->where('type_id', 3);
+        }    
+    }
+
     public function scopeNameSeller($query, $nameseller)
     {   // se usa para filtrar vendedores de un producto
         if(trim($nameseller) != ""){
             $query->where("name", "LIKE", "%$nameseller%");
         }    
-    }
-
-    ///** Filtro para sellers **///
-    public static function filterSellers($namemail)
-    {
-        //el id #2 de user_types es el perfil vendedor
-        return User::where('type_id', 2)
-                    ->namemail($namemail)
-                    ->simplePaginate(5);
-    }
-
-    ///** Devuelve true si encuentra el id **///
-    public function productExists($id)
-    {
-        //productos del vendedor actual (usuario)
-        $products = $this->addedproducts;
-
-        $array = [];
-        //se colocan solo los id de los productos dentro de un array
-        foreach ($products as $product) {
-            $array [] = $product->id;
-        }
-
-        //si $array no esta vacio se retorna lo que devuelva in_array()
-        return (!empty($array)) ? in_array($id, $array): false;
-        //si $array esta vacio se retorna un false
-    }
-
-    ///** Filtro para productos del vendedor **///
-    public static function filterSellerProducts($id, $nameproduct)
-    {
-        //se busca el usuario con findOrFail para poder llamar a ->addedproducts()
-        $seller = User::findOrFail($id);
-        //ya que no es un metodo estatico y no se puede usar ::addedproducts()
-
-        return $seller->addedproducts()
-                    ->name($nameproduct)
-                    ->simplePaginate(5);
-        //se usa el scopeName que esta dentro de Product ya que se
-        //estan llamando a los productos del vendedor con ->addedproducts()
-    } 
+    }//este scope se usa en el modelo Product
 }

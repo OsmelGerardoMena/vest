@@ -23,24 +23,32 @@
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-        		<h1><i class='icon-layers'></i> 
-        			{{$seller->name}}: @lang('dashboard.title_products')
+        		<h1><i class='icon-suitcase'></i> 
+        			{{$seller->name}}
         		</h1>
             </div>
+
+            @include('dashboard.sellers.partials.seller_info')
+
 			@include('dashboard.partials.messages')
 			<div class="row">
 				<div class="col-md-12">
 					<div class="widget">
+						<div class="widget-header transparent">
+							<h2>
+								<i class='icon-layers'></i>
+								<strong>@lang('dashboard.title_products')</strong>
+							</h2>
+							<div class="additional-btn">
+								<a href="#" class="widget-toggle">
+									<i class="icon-down-open-2"></i>
+								</a>
+							</div>
+						</div>
 						<div class="widget-content">
 							<div class="data-table-toolbar">
 								<div class="row">
 									<div class="col-md-12">
-										<div class="toolbar-btn-action">
-											<a href="{{route('dashboard.sellers.index')}}" class="btn btn-primary">
-												<i class="icon-back"></i>
-												@lang('dashboard.buttons.back')
-											</a>
-										</div>
 										@include('dashboard.sellers.partials.search_seller_product')
 									</div>
 								</div>
@@ -53,7 +61,7 @@
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
 											<th>@lang('dashboard.table.company')</th>
-											<th>@lang('dashboard.table.status')</th>
+											<th>@lang('dashboard.table.link_status')</th>
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
@@ -65,7 +73,7 @@
 											<td>{{ $product->company->name }}</td>
 											<td>
 												<span class="{{ ($product->pivot->status) ? 'label label-success' : 'label label-danger'}}">
-													{{ trans('dashboard.status.'.$product->pivot->status) }}
+													{{ trans('dashboard.link_status.'.$product->pivot->status) }}
 												</span>
 											</td>
 											<td>
@@ -87,6 +95,10 @@
 							</div>
 						</div>
 					</div>
+					<a href="{{route('dashboard.sellers.index')}}" class="btn btn-primary">
+						<i class="icon-back"></i>
+						@lang('dashboard.buttons.back')
+					</a>
 				</div>
 			</div>
 

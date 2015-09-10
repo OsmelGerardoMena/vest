@@ -1,15 +1,15 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_products')
+	{{$company->name}} @lang('dashboard.title_products')
 @stop
 
 @section('content')
 
 @include('partials/modal')
 
-@foreach($products as $product)
-	@include('dashboard.products.partials.modal')
+@foreach($companyProducts as $product)
+	@include('dashboard.companies.partials.modal')
 @endforeach
 
 <!-- Begin page -->
@@ -23,25 +23,33 @@
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-        		<h1><i class='icon-layers'></i>
-        			@lang('dashboard.title_products')
+        		<h1><i class='icon-flag-circled'></i> 
+        			{{$company->name}}
         		</h1>
-            </div>
+			</div>
+
+            @include('dashboard.companies.partials.company_info')
+
 			@include('dashboard.partials.messages')
 			<div class="row">
 				<div class="col-md-12">
 					<div class="widget">
+						<div class="widget-header transparent">
+							<h2>
+								<i class='icon-layers'></i>
+								<strong>@lang('dashboard.title_products')</strong>
+							</h2>
+							<div class="additional-btn">
+								<a href="#" class="widget-toggle">
+									<i class="icon-down-open-2"></i>
+								</a>
+							</div>
+						</div>
 						<div class="widget-content">
 							<div class="data-table-toolbar">
 								<div class="row">
 									<div class="col-md-12">
-										<div class="toolbar-btn-action">
-											<a class="btn btn-success" href="{{route('dashboard.products.create')}}">
-												<i class="fa fa-plus-circle"></i>
-												@lang('dashboard.buttons.new')
-											</a>
-										</div>
-										@include('dashboard.products.partials.search')
+										@include('dashboard.companies.partials.search_company_product')
 									</div>
 								</div>
 							</div>
@@ -52,36 +60,26 @@
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
-											<th>@lang('dashboard.table.company')</th>
-											<th>@lang('dashboard.table.creator')</th>
 											<th>@lang('dashboard.table.status')</th>
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($products as $product)
+										@foreach($companyProducts as $product)
 										<tr>
 											<td>{{ $product->id }}</td>
 											<td>{{ $product->name }}</td>
-											<td>{{ $product->company->name }}</td>
-											<td>{{ $product->creator->name }}</td>
-											<td><span class="label label-success">{{ $product->status->type }}</span></td>
+											<td>
+												<span class="{{ ($product->status->id == 1) ? 'label label-success' : 'label label-danger'}}">
+													{{ trans('dashboard.status.'.$product->status->id) }}
+												</span>
+											</td>
 											<td>
 												<div class="btn-group btn-group-xs">
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
 														<i class="fa fa-power-off"></i>
 													</a>
-
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
-														href="{{route('dashboard.products.show', $product->id)}}">
-														<i class="fa fa-info-circle"></i>
-													</a>
-													
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
-														href="{{route('dashboard.products.edit', $product->id)}}">
-														<i class="fa fa-edit"></i>
-													</a>
-
+									
 													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
 														<i class="fa fa-trash-o"></i>
 													</a>
@@ -91,16 +89,18 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $products->appends(Request::only(['name', 'company']))->render() !!}
+								{!! $companyProducts->appends(Request::only('nameproduct'))->render() !!}
 							</div>
 						</div>
 					</div>
+					<a href="{{route('dashboard.companies.index')}}" class="btn btn-primary">
+						<i class="icon-back"></i>
+						@lang('dashboard.buttons.back')
+					</a>
 				</div>
 			</div>
-
 		</div>
 		<!-- End content here -->
-	
 	</div>
 	<!-- End right content -->
 </div>

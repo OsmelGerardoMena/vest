@@ -53,7 +53,7 @@ class ModulesTableSeeder extends Seeder
 
         \DB::table('submodules')->insert([
             'description' => 'list_companies',
-            'url' => '/dashboard/company',
+            'url' => '/dashboard/companies',
             'module_id' => $id,
         ]);
 

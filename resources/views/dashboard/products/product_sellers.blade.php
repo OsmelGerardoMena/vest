@@ -53,7 +53,7 @@
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
 											<th>@lang('dashboard.table.email')</th>
-											<th>@lang('dashboard.table.status')</th>
+											<th>@lang('dashboard.table.link_status')</th>
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
@@ -65,7 +65,7 @@
 											<td>{{ $seller->email }}</td>
 											<td>
 												<span class="{{ ($seller->pivot->status) ? 'label label-success' : 'label label-danger'}}">
-													{{ trans('dashboard.status.'.$seller->pivot->status) }}
+													{{ trans('dashboard.link_status.'.$seller->pivot->status) }}
 												</span>
 											</td>
 											<td>

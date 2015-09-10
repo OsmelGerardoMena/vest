@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_sellers')
+	@lang('dashboard.title_companies')
 @stop
 
 @section('content')
@@ -12,14 +12,13 @@
 <div id="wrapper">
 	@include('partials/topbar')
 	@include('partials/sidebar')
-
 	<!-- Start right content -->
 	<div class="content-page">
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-        		<h1><i class='icon-suitcase'></i> 
-        			@lang('dashboard.title_sellers')
+        		<h1><i class='icon-flag-circled'></i> 
+        			@lang('dashboard.title_companies')
         		</h1>
             </div>
 			
@@ -30,7 +29,7 @@
 							<div class="data-table-toolbar">
 								<div class="row">
 									<div class="col-md-12">
-										@include('dashboard.sellers.partials.search_seller')
+										@include('dashboard.companies.partials.search_company')
 									</div>
 								</div>
 							</div>
@@ -42,29 +41,27 @@
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
 											<th>@lang('dashboard.table.email')</th>
+											<th>@lang('dashboard.table.phone')</th>
 											<th>@lang('dashboard.table.status')</th>
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($sellers as $seller)
+										@foreach($companies as $company)
 										<tr>
-											<td>{{ $seller->id }}</td>
-											<td>{{ $seller->name }}</td>
-											<td>{{ $seller->email }}</td>
-											<td><span class="label label-success">{{ $seller->status->type }}</span></td>
+											<td>{{ $company->id }}</td>
+											<td>{{ $company->name }}</td>
+											<td>{{ $company->email }}</td>
+											<td>{{ $company->phone }}</td>
+											<td><span class="label label-success">{{ $company->status->type }}</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
 														<i class="fa fa-power-off"></i>
 													</a>
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info_and_product')" class="btn btn-info" 
-														href="{{route('dashboard.sellers.show', $seller->id)}}">
+														href="{{route('dashboard.companies.show', $company->id)}}">
 														<i class="fa fa-eye"></i>
-													</a>
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.add_product')" class="btn btn-success" 
-														href="{{route('dashboard.sellers.edit', $seller->id)}}">
-														<i class="fa fa-plus"></i>
 													</a>
 												</div>
 											</td>
@@ -72,7 +69,7 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $sellers->appends(Request::only('seller'))->render() !!}
+								{!! $companies->appends(Request::only('company'))->render() !!}
 							</div>
 						</div>
 					</div>

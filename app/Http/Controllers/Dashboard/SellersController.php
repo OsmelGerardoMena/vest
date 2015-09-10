@@ -37,7 +37,7 @@ class SellersController extends Controller
      */
     public function index(Request $request)
     {
-        $sellers = User::filterSellers($request->get('namemail'));
+        $sellers = User::filterSellers($request->get('seller'));
         return view('dashboard.sellers.sellers', compact('sellers'));
     }
 
