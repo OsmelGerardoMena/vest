@@ -63,7 +63,7 @@ return [
 		'roles' => 'Profiles',
 		'customers' => 'Customers',
 		'sellers' => 'Sellers',
-		'company' => 'Company',
+		'companies' => 'Companies',
 		'products' => 'Products',
 		'list_users' => 'List users',
 		'add_user' => 'Create user',

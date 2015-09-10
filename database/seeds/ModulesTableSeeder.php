@@ -47,7 +47,7 @@ class ModulesTableSeeder extends Seeder
 
         /// Modulo y submodulos company
         $id = \DB::table('modules')->insertGetId([
-            'description' => 'company',
+            'description' => 'companies',
             'icon' => 'icon-flag-circled',
         ]);
 
