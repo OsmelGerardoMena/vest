@@ -54,3 +54,4 @@
 		{!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.repeatpass_here')]) !!}
 	</div>
 </div>
+<hr>

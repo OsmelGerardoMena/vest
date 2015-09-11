@@ -11,7 +11,6 @@
 <div id="wrapper">
 	@include('partials/topbar')
 	@include('partials/sidebar')
-
 	<!-- Start right content -->
 	<div class="content-page">
 		<!-- Start Content here -->
@@ -21,89 +20,154 @@
         			@lang('dashboard.title_account')
         		</h1>
             </div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="widget">
-						<div class="widget-content">
-							<div class="data-table-toolbar">
-								<div class="row">
-									<div class="col-md-12">
-										<h3><strong>{{ $user->name }}</strong></h3>
-										<div class="toolbar-btn-action">
-											<a href="{{route('dashboard.account.edit', $user->id)}}" 
-														class="btn btn-primary">
-												<i class="icon-edit"></i>
-												@lang('dashboard.buttons.edit_data')
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="table-responsive">
-								<table data-sortable class="table table-hover table-striped">
-									<thead>
-										<tr>
-											<th>@lang('dashboard.table.email')</th>
-											<th>@lang('dashboard.table.profile')</th>
-											<th>@lang('dashboard.table.status')</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>{{ $user->email }}</td>
-											<td>{{ $user->type->name }}</td>
-											<td><span class="label label-success">
-												{{ $user->status->type }}
-												</span>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
+            <div class="row">
+				<div class="col-sm-3">
+					<!-- Begin user profile -->
+					<div class="text-center user-profile-2">
+						<h4>
+							@lang('dashboard.hello'), <strong>{{ $user->name }}</strong>
+						</h4>
+						<h5>{{$user->type->name}}</h5>
 
-			<div class="row">
-				<div class="col-md-12">
-					<div class="widget">
-						<div class="widget-content">
-							<div class="data-table-toolbar">
-								<div class="row">
-									<div class="col-md-8">
-										<h3><strong>@lang('dashboard.other_data')</strong></h3>
-									</div>
+						<!-- User button -->
+						<div class="user-button">
+							<div class="row">
+								<div class="col-lg-6">
+									<a href="{{route('dashboard.account.edit', $user->id)}}" 
+											class="btn btn-primary btn-sm btn-block">
+										<i class="icon-edit"></i>
+										@lang('dashboard.buttons.edit_data')
+									</a>
 								</div>
 							</div>
-							<div class="table-responsive">
-								<table data-sortable class="table table-hover table-striped">
-									<thead>
-										<tr>
-											<th>@lang('dashboard.table.identifier')</th>
-											<th>@lang('dashboard.table.mobile')</th>
-											<th>@lang('dashboard.table.phone')</th>
-											<th>@lang('dashboard.table.address')</th>
-											
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>{{ $user->identifier }}</td>
-											<td>{{ $user->mobile }}</td>
-											<td>{{ $user->phone }}</td>
-											<td>{{ $user->address }}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			@if(!empty($products))
-				@include('dashboard.account.partials.info_products')
-			@endif
+						</div><!-- End div .user-button -->
+					</div><!-- End div .text-center user-profile-2 -->
+					<!-- End user profile -->
+				</div><!-- End div .col-sm-3 -->
+					
+				<div class="col-sm-9">
+					<div class="widget widget-tabbed">
+						<!-- Nav tab -->
+						<ul class="nav nav-tabs nav-justified">
+							<li class="active">
+								<a href="#about" data-toggle="tab" aria-expanded="true">
+									<i class="icon-info-circled"></i>
+									@lang('dashboard.buttons.info')
+								</a>
+							</li>
+							<li class="">
+								<a href="#products" data-toggle="tab" aria-expanded="false">
+									<i class="icon-layers"></i>
+									@lang('dashboard.buttons.products')
+								</a>
+							</li>
+						</ul><!-- End nav tab -->
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<!-- Tab about -->
+							<div class="tab-pane animated fadeInRight active" id="about">
+								<div class="user-profile-content">
+									<div class="row">
+										<div class="col-sm-6">
+											<h5>
+												<strong>
+													{{strtoupper(trans('dashboard.my'))}}
+												</strong>
+												{{strtoupper(trans('dashboard.table.status'))}}:
+											</h5>
+											<span class="label label-success">
+												@lang('dashboard.status.'.$user->status->id)
+											</span>
+
+											<h5>
+												<strong>
+													{{strtoupper(trans('dashboard.my'))}}
+												</strong>
+												{{strtoupper(trans('dashboard.table.email'))}}:
+											</h5>
+											<p>
+												<i class="icon-mail-1"></i>
+												{{ $user->email }}
+											</p>
+
+											<h5>
+												<strong>
+													{{strtoupper(trans('dashboard.my'))}}
+												</strong>
+												{{strtoupper(trans('dashboard.table.identifier'))}}:
+											</h5>
+											<p>
+												<i class="icon-barcode"></i>
+												{{ $user->identifier }}
+											</p>
+										</div>
+
+										<div class="col-sm-6">
+											<h5>
+												<strong>
+													{{strtoupper(trans('dashboard.my'))}}
+												</strong>
+												{{strtoupper(trans('dashboard.table.mobile'))}}:
+											</h5>
+											<p>
+												<i class="glyphicon glyphicon-phone"></i>
+												{{ $user->mobile }}
+											</p>
+
+											<h5>
+												<strong>
+													{{strtoupper(trans('dashboard.my'))}}
+												</strong>
+												{{strtoupper(trans('dashboard.table.phone'))}}:
+											</h5>
+											<p>
+												<i class="icon-phone"></i>
+												{{ $user->phone }}
+											</p>
+
+											<h5>
+												<strong>
+													{{strtoupper(trans('dashboard.my'))}}
+												</strong>
+												{{strtoupper(trans('dashboard.table.address'))}}:
+											</h5>
+											<p>
+												<i class="icon-address"></i>
+												{{ $user->address }}
+											</p>
+										</div>
+									</div><!-- End div .row -->
+								</div><!-- End div .user-profile-content -->
+							</div><!-- End div .tab-pane -->
+							<!-- End Tab about -->
+
+							<!-- Tab timeline -->
+							<div class="tab-pane animated fadeInRight" id="products">
+								<div class="user-profile-content">
+									@if(!empty($products))
+										<h5>
+											<strong>
+												{{strtoupper(trans('dashboard.my'))}}
+											</strong>
+											{{strtoupper(trans('dashboard.title_products'))}}:
+										</h5>
+										@include('dashboard.account.partials.info_products')
+									@else
+										<center>
+											<h5><strong>
+												@lang('messages.no_products')
+											</strong></h5>
+	 									</center>
+									@endif
+								</div><!-- End div .user-profile-content -->
+							</div><!-- End div .tab-pane -->
+							<!-- End Tab timeline -->
+						</div><!-- End div .tab-content -->
+					</div><!-- End div .widget widget-tabbed -->
+				</div><!-- End div .col-sm-9 -->
+			</div><!-- End div .row -->
 		</div>
 		<!-- End content here -->
 	</div>

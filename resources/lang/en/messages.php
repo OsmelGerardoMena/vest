@@ -17,5 +17,6 @@ return [
 	'edit_training' => 'Training was edited successfully',
 	'delete_training' => 'Training was eliminated',
 	'edit_account' => 'Data was updated successfully',
+	'no_products' => 'You do not have products!',
 
 ];
