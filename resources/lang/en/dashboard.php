@@ -121,6 +121,7 @@ return [
 		'url_here' => 'Url here',
 		'goal_here' => 'Goal here, example: 7000.77',
 		'award_here' => 'Award here',
+		'presentation_link' => 'Presentation link',
 	],
 
 	'table' => [

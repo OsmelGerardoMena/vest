@@ -60,6 +60,7 @@
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
+											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
 											<th>@lang('dashboard.table.link_status')</th>
 											<th>@lang('dashboard.table.actions')</th>
@@ -70,6 +71,7 @@
 										<tr>
 											<td>{{ $product->id }}</td>
 											<td>{{ $product->name }}</td>
+											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
 											<td>
 												<span class="{{ ($product->pivot->status) ? 'label label-success' : 'label label-danger'}}">

@@ -8,6 +8,13 @@
 </div>
 
 <div class="form-group">
+	{!! Form::label('url', trans('validation.attributes.url'), ['class' => 'col-sm-2 control-label']) !!}
+	<div class="col-sm-10">
+		{!! Form::text('url', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.presentation_link')]) !!}
+	</div>
+</div>
+
+<div class="form-group">
 	{!! Form::label('company_id', trans('validation.attributes.company'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
 		{!! Form::select('company_id', $options->get(), old('company_id'), ['class' => 'form-control']) !!}

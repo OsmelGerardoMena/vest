@@ -25,6 +25,7 @@ class CreateProductRequest extends Request
     {
         return [
             'name' => 'required|max:100|unique:products,name',
+            'url' => 'required',
             'company_id' => 'required',
         ];
     }

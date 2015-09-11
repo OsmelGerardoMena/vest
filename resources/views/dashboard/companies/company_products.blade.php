@@ -60,6 +60,7 @@
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
+											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.status')</th>
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
@@ -69,6 +70,7 @@
 										<tr>
 											<td>{{ $product->id }}</td>
 											<td>{{ $product->name }}</td>
+											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>
 												<span class="{{ ($product->status->id == 1) ? 'label label-success' : 'label label-danger'}}">
 													{{ trans('dashboard.status.'.$product->status->id) }}

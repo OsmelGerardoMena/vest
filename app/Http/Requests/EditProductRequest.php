@@ -37,6 +37,8 @@ class EditProductRequest extends Request
         return [
             'name' => 'required|max:100|unique:products,name,'
                     .$this->route->getParameter('products'),
+            'url' => 'required',
+            'company_id' => 'required',
         ];
     }
 }

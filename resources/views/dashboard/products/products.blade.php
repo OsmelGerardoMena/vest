@@ -52,8 +52,8 @@
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
+											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
-											<th>@lang('dashboard.table.creator')</th>
 											<th>@lang('dashboard.table.status')</th>
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
@@ -63,8 +63,8 @@
 										<tr>
 											<td>{{ $product->id }}</td>
 											<td>{{ $product->name }}</td>
+											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
-											<td>{{ $product->creator->name }}</td>
 											<td><span class="label label-success">{{ $product->status->type }}</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">

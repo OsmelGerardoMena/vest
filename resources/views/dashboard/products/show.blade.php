@@ -49,17 +49,19 @@
 								<table data-sortable class="table table-hover table-striped">
 									<thead>
 										<tr>
-											<th>Id</th>
-											<th>@lang('dashboard.table.creator')</th>
+											<th>#</th>
+											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
+											<th>@lang('dashboard.table.creator')</th>
 											<th>@lang('dashboard.table.status')</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<td>{{ $product->id }}</td>
-											<td>{{ $product->creator->name }}</td>
+											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
+											<td>{{ $product->creator->name }}</td>
 											<td><span class="label label-success">
 												{{ $product->status->type }}
 												</span>
