@@ -20,13 +20,13 @@
         			@lang('dashboard.title_account')
         		</h1>
             </div>
-			
+
             <div class="row">
 				<div class="col-sm-3">
 					<!-- Begin user profile -->
 					<div class="text-center user-profile-2">
 						<h4>
-							@lang('dashboard.hello'), <strong>{{ $user->name }}</strong>
+							<strong>{{ $user->name }}</strong>
 						</h4>
 						<h5>{{$user->type->name}}</h5>
 
@@ -45,7 +45,6 @@
 					</div><!-- End div .text-center user-profile-2 -->
 					<!-- End user profile -->
 				</div><!-- End div .col-sm-3 -->
-					
 				<div class="col-sm-9">
 					<div class="widget widget-tabbed">
 						<!-- Nav tab -->
@@ -69,6 +68,9 @@
 							<!-- Tab about -->
 							<div class="tab-pane animated fadeInRight active" id="about">
 								<div class="user-profile-content">
+									<center>
+										<img src="{{asset('assets/images/users/user-256.jpg')}}" class="img-circle profile-image">
+									</center><hr>
 									<div class="row">
 										<div class="col-sm-6">
 											<h5>

@@ -79,7 +79,15 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return view('dashboard.users.show')->with('user', $this->user);
+        $products = [];
+        if($this->user->type_id == 2){ //vendedor
+            $products = $this->user->addedproducts;
+        }
+        else if($this->user->type_id == 3){ //empresa
+            $products = $this->user->products;
+        }
+        return view('dashboard.users.show')->with('user', $this->user)
+                    ->with('products', $products);
     }
 
     /**
