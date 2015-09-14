@@ -111,15 +111,26 @@ class ModulesTableSeeder extends Seeder
         	'module_id' => $id,
         ]);
 
-        /// Modulo y submodulos customers
+        /////////////////// Para vendedores
         $id = \DB::table('modules')->insertGetId([
-            'description' => 'customers',
-            'icon' => 'fa fa-smile-o',
+            'description' => 'my_products',
+            'icon' => 'glyphicon glyphicon-th-list',
         ]);
 
         \DB::table('submodules')->insert([
-            'description' => 'list_customers',
-            'url' => '/dashboard/customers',
+            'description' => 'my_products_list',
+            'url' => '/dashboard/my-products',
+            'module_id' => $id,
+        ]);
+
+        $id = \DB::table('modules')->insertGetId([
+            'description' => 'sales',
+            'icon' => 'fa fa-money',
+        ]);
+
+        \DB::table('submodules')->insert([
+            'description' => 'my_sales',
+            'url' => '/dashboard/sales',
             'module_id' => $id,
         ]);
     }

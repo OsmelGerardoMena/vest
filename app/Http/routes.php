@@ -52,7 +52,21 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
 	Route::resource('dashboard/product-sellers', 'ProductSellersController');
 	Route::resource('dashboard/account', 'AccountsController');
 	Route::resource('dashboard/companies', 'CompaniesController');
+
+
 });
+
+Route::controller('dashboard/my-products', 'Dashboard\Seller\MyProductsController');
+
+/*Route::get('dashboard/my-products', [
+	'uses' => 'Dashboard\Seller\MyProductsController@getIndex',
+	'as'   => 'dashboard/my-products'
+]);
+
+Route::get('dashboard/my-products/{id}', [
+	'uses' => 'Dashboard\Seller\MyProductsController@getShowProduct',
+	'as'   => 'dashboard/my-products/{id}'
+]);*/
 
 
 

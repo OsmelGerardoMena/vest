@@ -41,6 +41,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::filterUsers(Request::get('namemail'), Request::get('type'));
+        $users->setPath('users');
         return view('dashboard.users.users', compact('users'));
     }
 

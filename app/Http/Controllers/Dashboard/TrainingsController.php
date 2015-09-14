@@ -34,7 +34,7 @@ class TrainingsController extends Controller
     public function index(Request $request)
     {
         $trainings = Training::filterTrainings($request->get('product'));
-
+        $trainings->setPath('trainings');
         return view('dashboard.trainings.trainings', compact('trainings'));
     }
 

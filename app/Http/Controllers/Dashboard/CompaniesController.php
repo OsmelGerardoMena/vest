@@ -38,6 +38,7 @@ class CompaniesController extends Controller
     public function index(Request $request)
     {
         $companies = User::filterCompanies($request->get('company'));
+        $companies->setPath('companies');
         return view('dashboard.companies.companies', compact('companies'));
     }
 

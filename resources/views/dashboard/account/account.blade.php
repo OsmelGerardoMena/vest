@@ -33,7 +33,7 @@
 						<!-- User button -->
 						<div class="user-button">
 							<div class="row">
-								<div class="col-lg-6">
+								<div class="col-lg-12">
 									<a href="{{route('dashboard.account.edit', $user->id)}}" 
 											class="btn btn-primary btn-sm btn-block">
 										<i class="icon-edit"></i>

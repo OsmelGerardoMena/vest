@@ -47,6 +47,8 @@ class ProductsController extends Controller
             $request->get('name'), 
             $request->get('company')
         );
+
+        $products->setPath('products');
         return view('dashboard.products.products', compact('products'));
     }
 

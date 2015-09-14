@@ -76,6 +76,8 @@ class ProductSellersController extends Controller
                     $request->get('nameseller')
         );
 
+        $productSellers->setPath($this->product->id);
+
         return view('dashboard.products.product_sellers', compact('productSellers'))
                 ->with('product', $this->product);
     }

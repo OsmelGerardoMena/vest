@@ -41,6 +41,8 @@ class BenefitsController extends Controller
             $request->get('name'), 
             $request->get('product')
         );
+
+        $benefits->setPath('benefits');
         return view('dashboard.benefits.benefits', compact('benefits'));
     }
 

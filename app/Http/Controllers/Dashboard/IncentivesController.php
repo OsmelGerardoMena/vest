@@ -37,6 +37,8 @@ class IncentivesController extends Controller
             $request->get('award'), 
             $request->get('product')
         );
+
+        $incentives->setPath('incentives');
         return view('dashboard.incentives.incentives', compact('incentives'));
     }
 

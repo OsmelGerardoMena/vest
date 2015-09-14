@@ -38,6 +38,8 @@ class ContractsController extends Controller
             $request->get('name'), 
             $request->get('product')
         );
+
+        $contracts->setPath('contracts');
         return view('dashboard.contracts.contracts', compact('contracts'));
     }
 

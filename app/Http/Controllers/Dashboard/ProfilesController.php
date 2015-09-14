@@ -46,6 +46,7 @@ class ProfilesController extends Controller
     public function index()
     {
         $profiles = UserTypes::filterProfiles(Request::get('name'));
+        $profiles->setPath('profiles');
         return view('dashboard.profiles.profiles', compact('profiles'));
     }
 

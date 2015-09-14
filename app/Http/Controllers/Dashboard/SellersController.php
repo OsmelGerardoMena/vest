@@ -38,6 +38,7 @@ class SellersController extends Controller
     public function index(Request $request)
     {
         $sellers = User::filterSellers($request->get('seller'));
+        $sellers->setPath('sellers');
         return view('dashboard.sellers.sellers', compact('sellers'));
     }
 
@@ -74,7 +75,7 @@ class SellersController extends Controller
         //$id contiene el id del vendedor
         //get('nameproduct') contiene el nombre del producto a filtrar
         $sellerProducts = User::filterSellerProducts($id, $request->get('nameproduct'));
-        
+        $sellerProducts->setPath($this->seller->id);
         return view('dashboard.sellers.seller_products', compact('sellerProducts'))
                 ->with('seller', $this->seller);
     }

@@ -15,7 +15,7 @@
         <ul>
             @foreach($module['submodule'] as $submodule)
                 <li>
-                    <a href="{{ $submodule['url'] }}">
+                    <a href="{{ asset($submodule['url']) }}">
                         <span>
                             @lang('dashboard.sidebar.'.
                                     $submodule['description'])
