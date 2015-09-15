@@ -105,6 +105,7 @@ return [
 		'go' => 'Edit or Delete',
 		'sellers' => 'Sellers',
 		'edit_data' => 'Edit data',
+		'go_my_products' => 'Go to my products',
 		'unallocated' => 'Products unallocated',
 	],
 

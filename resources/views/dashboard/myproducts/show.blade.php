@@ -31,7 +31,7 @@
 									<div class="col-md-12">
 										<a href="{{route('dashboard.myproducts.index')}}" class="btn btn-primary">
 											<i class="icon-back"></i>
-											@lang('dashboard.buttons.back')
+											@lang('dashboard.buttons.go_my_products')
 										</a>
 										<h3>
 											<strong>

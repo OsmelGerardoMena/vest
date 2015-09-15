@@ -32,7 +32,7 @@
                                         <div class="toolbar-btn-action">
                                             <a class="btn btn-primary" href="{{route('dashboard.myproducts.index')}}">
                                                 <i class="icon-back"></i>
-                                                @lang('dashboard.buttons.unallocated')
+                                                @lang('dashboard.buttons.back')
                                             </a>
                                         </div>
                                         @include('dashboard.myproducts.partials.search_unallocated')
