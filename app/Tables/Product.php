@@ -84,7 +84,7 @@ class Product extends Model
                     ->simplePaginate(5);
     }
 
-    ///** Filtro para productos no asignados **///
+    ///** Filtro para productos no asignados a un vendedor **///
     public static function filterProductsUnallocated($seller_id, $name, $company)
     {
         //busco el vendedor
@@ -93,13 +93,13 @@ class Product extends Model
         //se buscan lso productos del vendedor, almacenando solo los id
         $sellerProducts = $seller->addedproducts()->lists('product_id');
 
-        //consulto todos los productos excepto los del vendedor anterior
+        //devuelvo todos los productos excepto los del vendedor anterior
         return Product::name($name)
                     ->company($company)
                     ->whereNotIn('id', $sellerProducts)
                     ->simplePaginate(5);
     }
-    
+ 
     ///** Scope **///
     public function scopeName($query, $name)
     {

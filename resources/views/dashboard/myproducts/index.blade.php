@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-@lang('dashboard.title_my_products')
+    @lang('dashboard.title_my_products')
 @stop
 
 @section('content')
@@ -29,13 +29,15 @@
                             <div class="data-table-toolbar">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="toolbar-btn-action">
-                                            <a class="btn btn-primary" href="{{route('dashboard.myproducts.unallocated')}}">
-                                                <i class="fa fa-unlink"></i>
-                                                @lang('dashboard.buttons.unallocated')
-                                            </a>
-                                        </div>
-                                         @include('dashboard.myproducts.partials.search')
+                                        @if(Auth::user()->type_id == 2)
+                                            <div class="toolbar-btn-action">
+                                                <a class="btn btn-primary" href="{{route('dashboard.myproducts.unallocated')}}">
+                                                    <i class="fa fa-unlink"></i>
+                                                    @lang('dashboard.buttons.unallocated')
+                                                </a>
+                                            </div>
+                                        @endif
+                                        @include('dashboard.myproducts.partials.search')
                                     </div>
                                 </div>
                             </div>

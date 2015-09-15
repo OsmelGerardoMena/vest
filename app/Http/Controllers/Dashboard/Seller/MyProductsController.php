@@ -14,12 +14,17 @@ use Vest\Tables\Product;
 
 class MyProductsController extends Controller
 {
-    //metodo que devuelve los productos del vendedor
+    //metodo que devuelve los productos del vendedor o empresa
     public function getIndex(Request $request)
     {
         $me = Auth::user();
 
-        $products = User::filterSellerProducts($me->id, $request->get('nameproduct'));
+        if($me->type_id == 2){ //si id es 2 es un vendedor
+            $products = User::filterSellerProducts($me->id, $request->get('nameproduct'));
+        }
+        else if($me->type_id == 3){ //si id es 3 es una empresa
+            $products = User::filterCompanyProducts($me->id, $request->get('nameproduct'));
+        }
 
         $products->setPath('my-products');
 
@@ -33,6 +38,7 @@ class MyProductsController extends Controller
         return view('dashboard.myproducts.show')->with('product', $product);
     }
 
+    //los productos no asignados solo para los vendedores
     public function getUnallocated(Request $request)
     {
         $me = Auth::user();

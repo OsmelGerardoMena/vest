@@ -27,6 +27,8 @@ class UserTypesTableSeeder extends Seeder
 
         DB::table('user_types')->insert([
             'name' => 'Empresa',
+            'activated_modules' => '6',
+            'activated_submodules' => '13',
             'status_id' => '1',
         ]);
     }
