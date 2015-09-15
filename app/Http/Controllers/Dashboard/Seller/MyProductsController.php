@@ -10,6 +10,7 @@ use Vest\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use Vest\User;
+use Vest\Tables\Product;
 
 class MyProductsController extends Controller
 {
@@ -26,8 +27,23 @@ class MyProductsController extends Controller
             ->with('seller', $me);
     }
 
-    public function getShowProduct($id)
+    public function getShow($id)
     {
-        return "hola";
+        $product = Product::findOrFail($id);
+        return view('dashboard.myproducts.show')->with('product', $product);
+    }
+
+    public function getUnallocated(Request $request)
+    {
+        $me = Auth::user();
+
+        $products = Product::filterProductsUnallocated($me->id,
+                    $request->get('nameproduct'), 
+                    $request->get('company')
+        );
+
+        $products->setPath('my-products/unallocated');
+
+        return view('dashboard.myproducts.unallocated')->with('products', $products);
     }
 }

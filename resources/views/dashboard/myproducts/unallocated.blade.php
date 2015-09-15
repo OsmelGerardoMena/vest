@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-@lang('dashboard.title_my_products')
+@lang('dashboard.title_products_unallocated')
 @stop
 
 @section('content')
@@ -18,7 +18,7 @@
         <div class="content">
             <div class="page-heading">
                 <h1><i class='glyphicon glyphicon-th-list'></i>
-                    @lang('dashboard.title_my_products')
+                    @lang('dashboard.title_products_unallocated')
                 </h1>
             </div>
             @include('dashboard.partials.messages')
@@ -30,12 +30,12 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="toolbar-btn-action">
-                                            <a class="btn btn-primary" href="{{route('dashboard.myproducts.unallocated')}}">
-                                                <i class="fa fa-unlink"></i>
+                                            <a class="btn btn-primary" href="{{route('dashboard.myproducts.index')}}">
+                                                <i class="icon-back"></i>
                                                 @lang('dashboard.buttons.unallocated')
                                             </a>
                                         </div>
-                                         @include('dashboard.myproducts.partials.search')
+                                        @include('dashboard.myproducts.partials.search_unallocated')
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                     @endforeach
                                     </tbody>
                                 </table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-                                {!! $products->appends(Request::only(['nameproduct']))->render() !!}
+                                {!! $products->appends(Request::only(['nameproduct', 'company']))->render() !!}
                             </div>
                         </div>
                     </div>

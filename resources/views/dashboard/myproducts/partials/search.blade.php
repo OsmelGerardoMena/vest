@@ -1,13 +1,12 @@
-@inject('options', 'Vest\Services\OptionsSelectCompany')
 {!! Form::model(Request::all(),
-		[	'url' => ['dashboard/my-products'],
+		[	'route' => ['dashboard.myproducts.index'],
 			'method' => 'GET',
 			'class' => 'form-inline',
 			'rol' => 'search'
 		])
 !!}
 <div class="form-group">
-    <a class="btn btn-info" href="#">
+    <a class="btn btn-info" href="{{route('dashboard.myproducts.index')}}">
         <i class="icon-eye-1"></i>
         @lang('dashboard.buttons.seeall')
     </a>

@@ -56,19 +56,11 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
 
 });
 
-Route::controller('dashboard/my-products', 'Dashboard\Seller\MyProductsController');
-
-/*Route::get('dashboard/my-products', [
-	'uses' => 'Dashboard\Seller\MyProductsController@getIndex',
-	'as'   => 'dashboard/my-products'
+Route::controller('dashboard/my-products', 'Dashboard\Seller\MyProductsController', [
+	'getIndex' => 'dashboard.myproducts.index',
+	'getShow' => 'dashboard.myproducts.show',
+	'getUnallocated' => 'dashboard.myproducts.unallocated',
 ]);
-
-Route::get('dashboard/my-products/{id}', [
-	'uses' => 'Dashboard\Seller\MyProductsController@getShowProduct',
-	'as'   => 'dashboard/my-products/{id}'
-]);*/
-
-
 
 
 /*Route::group(['middleware' => 'auth'], function(){

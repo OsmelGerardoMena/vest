@@ -34,6 +34,7 @@ return [
 	'title_companies' => 'Companies',
 	'title_company_info' => 'Company info',
 	'title_my_products' => 'My products and services',
+	'title_products_unallocated' => 'Products and services unallocated',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'change_password' => 'Change password',
@@ -104,6 +105,7 @@ return [
 		'go' => 'Edit or Delete',
 		'sellers' => 'Sellers',
 		'edit_data' => 'Edit data',
+		'unallocated' => 'Products unallocated',
 	],
 
 	'ph' => [ //placeholder

@@ -57,6 +57,7 @@ class Product extends Model
     {
         return $this->hasMany('Vest\Tables\Training');
     }
+    
     ///** relacion de muchos a muchos **///
     public function sellers()
     {
@@ -72,6 +73,33 @@ class Product extends Model
     	return Product::name($name)->company($company)->simplePaginate(5);
     }
 
+    ///** Filtro para vendedores del producto **///
+    public static function filterProductSellers($id, $nameseller)
+    {
+        //se busca el producto con findOrFail para poder llamar a ->sellers()
+        $product = Product::findOrFail($id);
+        //ya que no es un metodo estatico y no se puede usar ::sellers()
+        return $product->sellers()
+                    ->nameSeller($nameseller)
+                    ->simplePaginate(5);
+    }
+
+    ///** Filtro para productos no asignados **///
+    public static function filterProductsUnallocated($seller_id, $name, $company)
+    {
+        //busco el vendedor
+        $seller = User::findOrFail($seller_id);
+
+        //se buscan lso productos del vendedor, almacenando solo los id
+        $sellerProducts = $seller->addedproducts()->lists('product_id');
+
+        //consulto todos los productos excepto los del vendedor anterior
+        return Product::name($name)
+                    ->company($company)
+                    ->whereNotIn('id', $sellerProducts)
+                    ->simplePaginate(5);
+    }
+    
     ///** Scope **///
     public function scopeName($query, $name)
     {
@@ -93,16 +121,5 @@ class Product extends Model
             
             $query->where("company_id", $company_id);
         }
-    }
-
-    ///** Filtro para vendedores del producto **///
-    public static function filterProductSellers($id, $nameseller)
-    {
-        //se busca el producto con findOrFail para poder llamar a ->sellers()
-        $product = Product::findOrFail($id);
-        //ya que no es un metodo estatico y no se puede usar ::sellers()
-        return $product->sellers()
-                    ->nameSeller($nameseller)
-                    ->simplePaginate(5);
     }
 }
