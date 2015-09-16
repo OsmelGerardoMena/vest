@@ -3,23 +3,15 @@
 namespace Vest\Http\Middleware;
 
 use Closure;
+
 use Illuminate\Contracts\Auth\Guard;
 
-class RedirectIfAuthenticated
+use Illuminate\Support\Facades\Session;
+
+class IsCompany
 {
-    /**
-     * The Guard implementation.
-     *
-     * @var Guard
-     */
     protected $auth;
 
-    /**
-     * Create a new filter instance.
-     *
-     * @param  Guard  $auth
-     * @return void
-     */
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
@@ -34,9 +26,12 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        // para verificar cuando uno esta logueado y quiere acceder 
-        // al login o alguna ruta que no necesita autenticación
-        if ($this->auth->check()) {
+        // si no es una empresa
+        if ($this->auth->user()->type_id != 3) {
+            
+            Session::flash('restricted_access', 
+                        trans('messages.restricted_access'));
+            
             return redirect()->route('dashboard');
         }
 

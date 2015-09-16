@@ -119,7 +119,7 @@ trait AuthenticatesUsers
         Auth::logout();
 
         return redirect(property_exists($this, 'redirectAfterLogout') ? 
-            $this->redirectAfterLogout : '/login');
+            $this->redirectAfterLogout : route('login'));
     }
 
     /**
@@ -129,7 +129,8 @@ trait AuthenticatesUsers
      */
     public function loginPath()
     {
-        return property_exists($this, 'loginPath') ? $this->loginPath : '/login';
+        return property_exists($this, 'loginPath') 
+                    ? $this->loginPath : route('login');
     }
 
     /**

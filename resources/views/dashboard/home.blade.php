@@ -14,9 +14,9 @@
 
 	<!-- Start right content -->
 	<div class="content-page">
-
 		<!-- Start Content here -->
 		<div class="content">
+			<p>@include('dashboard.partials.messages')</p>
 			<h3>@lang('dashboard.title_home')</h3>
 		</div>
 		<!-- End content here -->

@@ -33,3 +33,9 @@
  		<strong>{{ Session::get('remove_products') }}</strong>
  	</div>
 @endif
+
+@if(Session::has('restricted_access'))
+ 	<div class="alert alert-danger" role="alert">
+ 		<strong>{{ Session::get('restricted_access') }}</strong>
+ 	</div>
+@endif

@@ -11,12 +11,12 @@ trait RedirectsUsers
      */
     public function redirectPath()
     {
-        // si estoy usando la propiedad redirectPath
         if (property_exists($this, 'redirectPath')) {
             return $this->redirectPath;
         }
 
+        //redireccion despues de loguearse
         return property_exists($this, 'redirectTo') ? 
-            $this->redirectTo : '/home';
+            $this->redirectTo : route('dashboard');
     }
 }

@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Ruta para la raiz
+Route::get('/', [
+	'middleware' => 'guest', 
+	function () { return view('auth.login'); }
+]);
 
 // Authentication routes...
 Route::get('login',[
@@ -34,12 +36,16 @@ Route::get('logout', [
 ]);
 Route::post('auth/register', 'Auth\AuthController@postRegister');*/
 
+// Ruta para el dashboard
+Route::get('dashboard', [
+		'middleware' => 'auth',
+		'uses' => function(){ return view('dashboard.home'); },
+		'as' => 'dashboard'
+]);
 
-Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
-
-	Route::get('dashboard', function(){
-		return view('dashboard.home');
-	});
+// Rutas para el admin
+Route::group(['middleware' => ['auth', 'is_admin'], 
+				'namespace' => 'Dashboard'], function(){
 
 	Route::resource('dashboard/users', 'UsersController');
 	Route::resource('dashboard/profiles', 'ProfilesController');
@@ -56,11 +62,17 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
 
 });
 
-Route::controller('dashboard/my-products', 'Dashboard\Seller\MyProductsController', [
-	'getIndex' => 'dashboard.myproducts.index',
-	'getShow' => 'dashboard.myproducts.show',
-	'getUnallocated' => 'dashboard.myproducts.unallocated',
-]);
+// Rutas para el vendedor y la empresa
+Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
+
+	Route::resource('dashboard/account', 'AccountsController');
+
+	Route::controller('dashboard/my-products', 'MyProductsController', [
+		'getIndex' => 'dashboard.myproducts.index',
+		'getShow' => 'dashboard.myproducts.show',
+		'getUnallocated' => 'dashboard.myproducts.unallocated',
+	]);
+});
 
 
 /*Route::group(['middleware' => 'auth'], function(){

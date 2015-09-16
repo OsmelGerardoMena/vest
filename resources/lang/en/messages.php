@@ -18,5 +18,6 @@ return [
 	'delete_training' => 'Training was eliminated',
 	'edit_account' => 'Data was updated successfully',
 	'no_products' => 'You do not have products!',
+	'restricted_access' => 'Warning: You tried to access a restricted area without permission',
 
 ];

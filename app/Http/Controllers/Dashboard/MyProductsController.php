@@ -1,6 +1,6 @@
 <?php
 
-namespace Vest\Http\Controllers\Dashboard\Seller;
+namespace Vest\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 
@@ -14,6 +14,19 @@ use Vest\Tables\Product;
 
 class MyProductsController extends Controller
 {
+    public function __construct()
+    {
+        // middleware para este controlador
+        if(Auth::user()->type_id == 3){
+            //si es empresa restringe solo getUnallocated
+            $this->middleware('is_seller', ['only' => ['getUnallocated'] ]);
+        }
+        else{
+            // el vendedor tiene acceso a todo, el admin a nada
+            $this->middleware('is_seller'); 
+        }
+    }
+
     //metodo que devuelve los productos del vendedor o empresa
     public function getIndex(Request $request)
     {
@@ -32,13 +45,14 @@ class MyProductsController extends Controller
             ->with('seller', $me);
     }
 
+    // ver algun producto de un vendedor o empresa
     public function getShow($id)
     {
         $product = Product::findOrFail($id);
         return view('dashboard.myproducts.show')->with('product', $product);
     }
 
-    //los productos no asignados solo para los vendedores
+    // los productos no asignados solo para los vendedores
     public function getUnallocated(Request $request)
     {
         $me = Auth::user();
