@@ -4,7 +4,7 @@ namespace Vest\Services;
 
 use Vest\Tables\Product;
 
-class OptionsSelectProduct
+class OptionsSearchSelectProduct
 {
 	public function get()
 	{
@@ -14,9 +14,7 @@ class OptionsSelectProduct
 		$array[''] = '';
 
 		foreach($products as $product){
-			if($product->isActive()){ //solo los activos
-				$array [$product->id] = $product->name;
-			}
+			$array [$product->id] = $product->name;
 		}
 
 		return $array;

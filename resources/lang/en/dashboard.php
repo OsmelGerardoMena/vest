@@ -160,7 +160,7 @@ return [
 		'2' => 'Inactive',
 	],
 
-	'link_status' => [ //true o false para la tabla pivote product-user
+	'link_status' => [//true o false para status de la tabla pivote product-user
 		'0' => 'Inactive',
 		'1' => 'Active',
 	],

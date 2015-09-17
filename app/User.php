@@ -220,12 +220,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->type_id == 3;
     }
 
-    ///** Verifica si el status del usuario **///
+    ///** Verifica el status del usuario **///
     public function isActive()
     {
-        if($this->status->id == 1)
+        if($this->getStatusId() == 1)
             return true;
-        else if($this->status->id == 2)
+        else if($this->getStatusId() == 2)
             return false;
     }
 
@@ -233,5 +233,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function getStatusId()
     {
         return $this->status->id;
+    }
+
+    ///** Devuelve el valor del status asignado al vinculo**///
+    public function getLinkStatus()
+    {   // true o false
+        return $this->pivot->status;
     }
 }

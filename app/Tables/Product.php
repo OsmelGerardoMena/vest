@@ -123,12 +123,12 @@ class Product extends Model
         }
     }
 
-    ///** Verifica si el status del producto **///
+    ///** Verifica el status del producto **///
     public function isActive()
     {
-        if($this->status->id == 1)
+        if($this->getStatusId() == 1)
             return true;
-        else if($this->status->id == 2)
+        else if($this->getStatusId() == 2)
             return false;
     }
 

@@ -1,4 +1,4 @@
-@inject('products', 'Vest\Services\OptionsSelectProduct')
+@inject('products', 'Vest\Services\OptionsSearchSelectProduct')
 
 {!! Form::model(Request::all(), 
 		[	'route' => 'dashboard.benefits.index', 

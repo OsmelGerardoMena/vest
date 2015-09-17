@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth', 'is_admin'],
 				'namespace' => 'Dashboard'], function(){
 
 	Route::get('dashboard/users/status/{id}', [
-			'uses' => 'UsersController@statusUser',
+			'uses' => 'UsersController@userStatus',
 			'as' => 'dashboard.users.status'
 	]);
 	Route::resource('dashboard/users', 'UsersController');
@@ -57,6 +57,10 @@ Route::group(['middleware' => ['auth', 'is_admin'],
 
 	Route::resource('dashboard/sellers', 'SellersController');
 
+	Route::get('dashboard/products/status/{id}', [
+			'uses' => 'ProductsController@productStatus',
+			'as' => 'dashboard.products.status'
+	]);
 	Route::resource('dashboard/products', 'ProductsController');
 
 	Route::resource('dashboard/contracts', 'ContractsController');
@@ -67,6 +71,10 @@ Route::group(['middleware' => ['auth', 'is_admin'],
 
 	Route::resource('dashboard/benefits', 'BenefitsController');
 
+	Route::get('dashboard/product-sellers/link/{product_id}', [
+			'uses' => 'ProductSellersController@sellerLink',
+			'as' => 'dashboard.product-sellers.link'
+	]);
 	Route::resource('dashboard/product-sellers', 'ProductSellersController');
 
 	Route::resource('dashboard/account', 'AccountsController');

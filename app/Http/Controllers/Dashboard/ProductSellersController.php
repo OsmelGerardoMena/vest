@@ -113,7 +113,7 @@ class ProductSellersController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        //metodo para eliminar un producto de un vendedor especifico
+        //metodo para eliminar un vendedor de un producto especifico
         //recibe un campo oculto get('seller_id')
         //y el id del producto
 
@@ -130,5 +130,28 @@ class ProductSellersController extends Controller
         Session::flash('delete', $message);
 
         return redirect()->route('dashboard.product-sellers.show', $this->product->id);
+    }
+
+    /*** Metodo Extra para activar/desactivar vinculo producto-vendedor ***/
+    public function sellerLink(Request $request, $id)
+    {   
+        // se busca el producto
+        $product = Product::findOrFail($id);
+
+        // busco el vendedor vinculado con el producto anterior
+        $seller = $product->sellers()
+                    ->where('user_id', $request->get('seller_id'))
+                    ->first();
+        // se verifica el estatus del vinculo
+        if($seller->getLinkStatus())
+            $seller->pivot->status = false;
+        else
+            $seller->pivot->status = true;
+        
+        $seller->pivot->save();
+        
+        $message = $seller->name.trans('messages.link_status');
+        Session::flash('status', $message);
+        return redirect()->back();
     }
 }

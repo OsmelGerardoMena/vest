@@ -5,6 +5,7 @@ return [
 	'edit' => ', was edited successfully',
 	'delete' => ', was eliminated',
 	'status' => ': status was changed',
+	'link_status' => ': link status was changed',
 	'submodule_not_selected' => 'You must select a submodule',
 	'add_products' => 'Added products successfully',
 	'remove_products' => 'Removed products successfully',

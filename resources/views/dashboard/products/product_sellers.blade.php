@@ -64,16 +64,23 @@
 											<td>{{ $seller->name }}</td>
 											<td>{{ $seller->email }}</td>
 											<td>
-												<span class="{{ ($seller->pivot->status) ? 'label label-success' : 'label label-danger'}}">
-													{{ trans('dashboard.link_status.'.$seller->pivot->status) }}
+												<span class="{{ ($seller->getLinkStatus()) ? 'label label-success' : 'label label-danger'}}">
+													@lang('dashboard.link_status.'.$seller->getLinkStatus())
 												</span>
 											</td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
-														<i class="fa fa-power-off"></i>
-													</a>
-									
+													{!! Form::open([
+														'route' => ['dashboard.product-sellers.link', $product->id], 
+														'method' => 'GET',
+														'class' => 'btn-group btn-group-xs'
+													])!!}
+														<button type="submit" title="@lang('dashboard.buttons.change_status')" class="btn btn-default">
+															<i class="fa fa-power-off"></i>
+														</button>
+														{!! Form::hidden('seller_id', $seller->id) !!}
+													{!!Form::close()!!}
+
 													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$seller->id}}" class="btn btn-danger md-trigger ">
 														<i class="fa fa-trash-o"></i>
 													</a>

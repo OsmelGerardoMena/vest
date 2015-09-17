@@ -70,7 +70,7 @@
 											</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default" 
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.change_status')" class="btn btn-default" 
 														href="{{route('dashboard.users.status', $user->id)}}">
 														<i class="fa fa-power-off"></i>
 													</a>

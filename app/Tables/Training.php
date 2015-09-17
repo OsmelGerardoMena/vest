@@ -30,7 +30,7 @@ class Training extends Model
     ///** Scope **///
     public function scopeProductid($query, $product_id)
     {
-        $products = Product::select('id')->where('status_id', 1)->get();
+        $products = Product::select('id')->get();
 
         $array = [];
         

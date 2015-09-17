@@ -65,10 +65,13 @@
 											<td>{{ $product->name }}</td>
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
-											<td><span class="label label-success">{{ $product->status->type }}</span></td>
+											<td><span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">
+												{{ trans('dashboard.status.'.$product->getStatusId()) }}
+											</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.change_status')" class="btn btn-default" 
+														href="{{route('dashboard.products.status', $product->id)}}">
 														<i class="fa fa-power-off"></i>
 													</a>
 

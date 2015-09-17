@@ -140,17 +140,16 @@ class UsersController extends Controller
         return redirect()->route('dashboard.users.index');
     }
 
-    /*** Metodo Extra ***/
-    public function statusUser($id)
+    /*** Metodo Extra  para activar/desactivar status del usuario ***/
+    public function userStatus($id)
     {
         $user = User::findOrFail($id);
 
-        if($user->status->id == 1){
+        if($user->getStatusId() == 1)
             $user->status_id = 2;
-        }
-        else if($user->status->id == 2){
+        else if($user->getStatusId() == 2)
             $user->status_id = 1;
-        }
+        
         $user->save();
         
         $message = $user->name.trans('messages.status');
