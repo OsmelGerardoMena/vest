@@ -12,19 +12,24 @@ use Illuminate\Support\Facades\Auth;
 use Vest\User;
 use Vest\Tables\Product;
 
+use Illuminate\Support\Facades\Session;
+
 class MyProductsController extends Controller
 {
     public function __construct()
     {
         // middleware para este controlador
         if(Auth::user()->type_id == 3){
-            //si es empresa restringe solo getUnallocated
+            // si es empresa restringe solo getUnallocated
             $this->middleware('is_seller', ['only' => ['getUnallocated'] ]);
         }
         else{
             // el vendedor tiene acceso a todo, el admin a nada
             $this->middleware('is_seller'); 
         }
+
+        // si el usuario se encuentra desactivado no podra ver su información
+        $this->middleware('is_active'); 
     }
 
     //metodo que devuelve los productos del vendedor o empresa

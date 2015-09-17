@@ -39,3 +39,15 @@
  		<strong>{{ Session::get('restricted_access') }}</strong>
  	</div>
 @endif
+
+@if(Session::has('status'))
+ 	<div class="alert alert-info" role="alert">
+ 		<strong>{{ Session::get('status') }}</strong>
+ 	</div>
+@endif
+
+@if(Session::has('disabled'))
+ 	<div class="alert alert-danger" role="alert">
+ 		<strong>{{ Session::get('disabled') }}</strong>
+ 	</div>
+@endif

@@ -201,4 +201,37 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             $query->where("name", "LIKE", "%$nameseller%");
         }    
     }//este scope se usa en el modelo Product
+
+    ///** Verifica si el usuario es admin **///
+    public function isAdmin()
+    {
+        return $this->type_id == 1;
+    }
+
+    ///** Verifica si el usuario es vendedor **///
+    public function isSeller()
+    {
+        return $this->type_id == 2;
+    }
+
+    ///** Verifica si el usuario es empresa **///
+    public function isCompany()
+    {
+        return $this->type_id == 3;
+    }
+
+    ///** Verifica si el status del usuario **///
+    public function isActive()
+    {
+        if($this->status->id == 1)
+            return true;
+        else if($this->status->id == 2)
+            return false;
+    }
+
+    ///** Devuelve el id del status asignado **///
+    public function getStatusId()
+    {
+        return $this->status->id;
+    }
 }

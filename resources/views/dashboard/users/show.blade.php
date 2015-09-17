@@ -83,8 +83,8 @@
 											<h5><strong>
 												{{strtoupper(trans('dashboard.table.status'))}}:
 											</strong></h5>
-											<span class="label label-success">
-												@lang('dashboard.status.'.$user->status->id)
+											<span class="{{ ($user->isActive()) ? 'label label-success' : 'label label-danger'}}">
+												@lang('dashboard.status.'.$user->getStatusId())
 											</span>
 
 											<h5><strong>

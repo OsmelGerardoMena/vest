@@ -122,4 +122,19 @@ class Product extends Model
             $query->where("company_id", $company_id);
         }
     }
+
+    ///** Verifica si el status del producto **///
+    public function isActive()
+    {
+        if($this->status->id == 1)
+            return true;
+        else if($this->status->id == 2)
+            return false;
+    }
+
+    ///** Devuelve el id del status asignado al producto**///
+    public function getStatusId()
+    {
+        return $this->status->id;
+    }
 }

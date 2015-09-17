@@ -15,8 +15,8 @@
 				<td>{{ $product->company->name }}</td>
 				<td>{{ $product->creator->name }}</td>
 				<td>
-					<span class="label label-success">
-						{{ $product->status->type }}
+					<span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">
+						@lang('dashboard.status.'.$product->getStatusId())
 					</span>
 				</td>
 			</tr>

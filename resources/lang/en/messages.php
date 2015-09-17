@@ -4,6 +4,7 @@ return [
 	'new' => ', was created successfully',
 	'edit' => ', was edited successfully',
 	'delete' => ', was eliminated',
+	'status' => ': status was changed',
 	'submodule_not_selected' => 'You must select a submodule',
 	'add_products' => 'Added products successfully',
 	'remove_products' => 'Removed products successfully',
@@ -19,5 +20,6 @@ return [
 	'edit_account' => 'Data was updated successfully',
 	'no_products' => 'You do not have products!',
 	'restricted_access' => 'Warning: You tried to access a restricted area without permission',
+	'disabled' => 'Your account is deactivated! You can not see your information.',
 
 ];

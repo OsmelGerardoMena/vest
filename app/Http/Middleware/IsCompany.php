@@ -27,7 +27,7 @@ class IsCompany
     public function handle($request, Closure $next)
     {
         // si no es una empresa
-        if ($this->auth->user()->type_id != 3) {
+        if (!$this->auth->user()->isCompany()) {
             
             Session::flash('restricted_access', 
                         trans('messages.restricted_access'));

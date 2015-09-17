@@ -95,6 +95,7 @@ return [
 		'info' => 'Info',
 		'back' => 'Back',
 		'off' => 'Off',
+		'change_status' => 'Change status',
 		'seeall' => 'See All',
 		'search' => 'Search',
 		'save' => 'Save',

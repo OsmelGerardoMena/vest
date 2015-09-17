@@ -27,7 +27,7 @@ class IsSeller
     public function handle($request, Closure $next)
     {
         // si no es vendedor
-        if ($request->user()->type_id != 2) {
+        if (!$this->auth->user()->isSeller()) {
             
             Session::flash('restricted_access', 
                         trans('messages.restricted_access'));

@@ -32,5 +32,6 @@ class Kernel extends HttpKernel
         'is_admin' => \Vest\Http\Middleware\IsAdmin::class,
         'is_seller' => \Vest\Http\Middleware\IsSeller::class,
         //'is_company' => \Vest\Http\Middleware\IsCompany::class,
+        'is_active' => \Vest\Http\Middleware\IsActive::class,
     ];
 }

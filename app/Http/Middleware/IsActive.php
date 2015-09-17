@@ -8,7 +8,7 @@ use Illuminate\Contracts\Auth\Guard;
 
 use Illuminate\Support\Facades\Session;
 
-class IsAdmin
+class IsActive
 {
     protected $auth;
 
@@ -26,13 +26,11 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        //si no es admin
-        if (!$this->auth->user()->isAdmin()) {
-            
-            Session::flash('restricted_access', trans('messages.restricted_access'));
+        // si el usuario se encuentra desactivado no podra ver su información
+        if(!$this->auth->user()->isActive()){
+            Session::flash('disabled', trans('messages.disabled'));
             return redirect()->route('dashboard');
         }
-
         return $next($request);
     }
 }

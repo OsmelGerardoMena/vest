@@ -65,10 +65,13 @@
 											<td>{{ $user->name }}</td>
 											<td>{{ $user->email }}</td>
 											<td>{{ $user->type->name }}</td>
-											<td><span class="label label-success">{{ $user->status->type }}</span></td>
+											<td><span class="{{ ($user->isActive()) ? 'label label-success' : 'label label-danger'}}">
+												{{ trans('dashboard.status.'.$user->getStatusId()) }}
+											</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default" 
+														href="{{route('dashboard.users.status', $user->id)}}">
 														<i class="fa fa-power-off"></i>
 													</a>
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
