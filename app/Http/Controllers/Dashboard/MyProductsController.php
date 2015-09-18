@@ -64,7 +64,7 @@ class MyProductsController extends Controller
         // de la url anterior (desde donde se viene -> URL::previous())
         // strpos Devuelve la posición donde el string existe, 
         // si no devuelve false
-        $position = strpos(URL::previous(), 'unallocated');
+        $position = strpos(URL::previous(), trans('dashboard.unallocated'));
 
         if($user->isCompany() || $position !== false){
             // si es una empresa la que está consultando algunos de sus 
