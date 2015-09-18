@@ -137,4 +137,10 @@ class Product extends Model
     {
         return $this->status->id;
     }
+
+    ///** Devuelve el valor del status asignado al vinculo **///
+    public function getLinkStatus()
+    {   // true o false
+        return $this->pivot->status;
+    }
 }

@@ -150,4 +150,28 @@ class SellersController extends Controller
 
         return redirect()->route('dashboard.sellers.show', $this->seller->id);
     }
+
+    /*** Metodo Extra para activar/desactivar vinculo vendedor-producto ***/
+    public function productLink(Request $request, $id)
+    {   
+        // se busca el vendedor
+        $seller = User::where('type_id', 2)->findOrFail($id);
+
+        // busco el producto vinculado con el vendedor anterior
+        $product = $seller->addedproducts()
+                    ->where('product_id', $request->get('product_id'))
+                    ->first();
+        
+        // se verifica el estatus del vinculo
+        if($product->getLinkStatus())
+            $product->pivot->status = false;
+        else
+            $product->pivot->status = true;
+        
+        $product->pivot->save();
+        
+        $message = $product->name.trans('messages.link_status');
+        Session::flash('status', $message);
+        return redirect()->back();
+    }
 }

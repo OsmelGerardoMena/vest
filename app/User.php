@@ -235,7 +235,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->status->id;
     }
 
-    ///** Devuelve el valor del status asignado al vinculo**///
+    ///** Devuelve el valor del status asignado al vinculo **///
     public function getLinkStatus()
     {   // true o false
         return $this->pivot->status;

@@ -58,6 +58,7 @@ return [
 	'no_delete' => 'No!',
 	'yes_delete' => "Yeah, I'm sure",
 	'my' => 'My',
+	'unallocated' => 'unallocated',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',
@@ -142,6 +143,7 @@ return [
 		'phone' => 'Phone',
 		'profile' => 'Profile',
 		'status' => 'Status',
+		'product_status' => 'Product status',
 		'link_status' => 'Link status',
 		'actions' => 'Actions',
 		'type' => 'Type',

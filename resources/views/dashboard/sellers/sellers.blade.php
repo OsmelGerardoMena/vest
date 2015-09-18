@@ -52,10 +52,13 @@
 											<td>{{ $seller->id }}</td>
 											<td>{{ $seller->name }}</td>
 											<td>{{ $seller->email }}</td>
-											<td><span class="label label-success">{{ $seller->status->type }}</span></td>
+											<td><span class="{{ ($seller->isActive()) ? 'label label-success' : 'label label-danger'}}">
+												{{ trans('dashboard.status.'.$seller->getStatusId()) }}
+											</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.change_status')" class="btn btn-default" 
+														href="{{route('dashboard.users.status', $seller->id)}}">
 														<i class="fa fa-power-off"></i>
 													</a>
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info_and_product')" class="btn btn-info" 

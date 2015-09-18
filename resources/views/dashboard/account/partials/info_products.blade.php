@@ -5,7 +5,11 @@
 				<th>@lang('dashboard.table.name')</th>
 				<th>@lang('dashboard.table.company')</th>
 				<th>@lang('dashboard.table.creator')</th>
-				<th>@lang('dashboard.table.status')</th>
+				@if($user->isSeller())
+	                <th>@lang('dashboard.table.link_status')</th>
+	            @elseif($user->isCompany())
+	                <th>@lang('dashboard.table.status')</th>
+	            @endif
 			</tr>
 		</thead>
 		<tbody>
@@ -14,11 +18,19 @@
 				<td>{{ $product->name }}</td>
 				<td>{{ $product->company->name }}</td>
 				<td>{{ $product->creator->name }}</td>
-				<td>
-					<span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">
-						@lang('dashboard.status.'.$product->getStatusId())
-					</span>
-				</td>
+				@if($user->isSeller())
+					<td>
+						<span class="{{ ($product->getLinkStatus()) ? 'label label-success' : 'label label-danger'}}">
+							{{ trans('dashboard.link_status.'.$product->getLinkStatus()) }}
+						</span>
+					</td>
+				@elseif($user->isCompany())
+					<td>
+						<span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">
+                    		@lang('dashboard.status.'.$product->getStatusId())
+                    	</span>
+                    </td>
+				@endif
 			</tr>
 			@endforeach
 		</tbody>

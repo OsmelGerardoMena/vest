@@ -29,7 +29,7 @@
                             <div class="data-table-toolbar">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        @if(Auth::user()->type_id == 2)
+                                        @if(Auth::user()->isSeller())
                                             <div class="toolbar-btn-action">
                                                 <a class="btn btn-primary" href="{{route('dashboard.myproducts.unallocated')}}">
                                                     <i class="fa fa-unlink"></i>
@@ -50,7 +50,11 @@
                                         <th>@lang('dashboard.table.name')</th>
                                         <th>@lang('dashboard.table.url')</th>
                                         <th>@lang('dashboard.table.company')</th>
-                                        <th>@lang('dashboard.table.status')</th>
+                                        @if(Auth::user()->isSeller())
+                                            <th>@lang('dashboard.table.link_status')</th>
+                                        @elseif(Auth::user()->isCompany())
+                                            <th>@lang('dashboard.table.status')</th>
+                                        @endif
                                         <th>@lang('dashboard.table.actions')</th>
                                     </tr>
                                     </thead>
@@ -61,7 +65,15 @@
                                             <td>{{ $product->name }}</td>
                                             <td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
                                             <td>{{ $product->company->name }}</td>
-                                            <td><span class="label label-success">{{ $product->status->type }}</span></td>
+                                            @if(Auth::user()->isSeller())
+                                                <td><span class="{{ ($product->getLinkStatus()) ? 'label label-success' : 'label label-danger'}}">
+                                                @lang('dashboard.link_status.'.$product->getLinkStatus())
+                                                </span></td>
+                                            @elseif(Auth::user()->isCompany())
+                                                <td><span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">
+                                                @lang('dashboard.status.'.$product->getStatusId())
+                                                </span></td>
+                                            @endif
                                             <td>
                                                 <div class="btn-group btn-group-xs">
                                                     <a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info"

@@ -74,15 +74,22 @@
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
 											<td>
-												<span class="{{ ($product->pivot->status) ? 'label label-success' : 'label label-danger'}}">
-													{{ trans('dashboard.link_status.'.$product->pivot->status) }}
+												<span class="{{ ($product->getLinkStatus()) ? 'label label-success' : 'label label-danger'}}">
+													{{ trans('dashboard.link_status.'.$product->getLinkStatus()) }}
 												</span>
 											</td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
-														<i class="fa fa-power-off"></i>
-													</a>
+													{!! Form::open([
+														'route' => ['dashboard.sellers.link', $seller->id], 
+														'method' => 'GET',
+														'class' => 'btn-group btn-group-xs'
+													])!!}
+														<button type="submit" title="@lang('dashboard.buttons.change_status')" class="btn btn-default">
+															<i class="fa fa-power-off"></i>
+														</button>
+														{!! Form::hidden('product_id', $product->id) !!}
+													{!!Form::close()!!}
 									
 													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
 														<i class="fa fa-trash-o"></i>

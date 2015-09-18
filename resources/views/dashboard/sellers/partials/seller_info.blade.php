@@ -29,8 +29,8 @@
 								<td>{{ $seller->mobile }}</td>
 								<td>{{ $seller->phone }}</td>
 								<td>{{ $seller->address }}</td>
-								<td><span class="{{ ($seller->status->id == 1) ? 'label label-success' : 'label label-danger'}}">
-									{{ trans('dashboard.status.'.$seller->status->id) }}
+								<td><span class="{{ ($seller->isActive()) ? 'label label-success' : 'label label-danger'}}">
+									{{ trans('dashboard.status.'.$seller->getStatusId()) }}
 									</span>
 								</td>
 							</tr>

@@ -19,10 +19,12 @@ class CompanyProducts
 
 			if(count($products) != 0){
 				foreach ($products as $product) {
-					$array [] = [
+					if($product->isActive()){
+						$array [] = [
 						'id' => $product->id,
 						'name' => $product->name,
 						];
+					}
 				}
 
 				$all[] = [

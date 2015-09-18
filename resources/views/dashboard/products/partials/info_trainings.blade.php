@@ -16,7 +16,9 @@
 							<tr>
 								<th>@lang('dashboard.table.url')</th>
 								<th>@lang('dashboard.table.date')</th>
-								<th>@lang('dashboard.table.go')</th>
+								@if(Auth::user()->isAdmin())
+									<th>@lang('dashboard.table.go')</th>
+								@endif
 							</tr>
 						</thead>
 						<tbody>
@@ -24,14 +26,16 @@
 							<tr>
 								<td>{{$training->url}}</td>
 								<td>{{$training->date}}</td>
-								<td>
-									<div class="btn-group btn-group-xs">
-										<a data-toggle="tooltip" title="@lang('dashboard.buttons.go')" class="btn btn-info" 
-											href="{{route('dashboard.trainings.edit', $training->id)}}">
-											<i class="glyphicon glyphicon-arrow-left"></i>
-										</a>
-									</div>
-								</td>
+								@if(Auth::user()->isAdmin())
+									<td>
+										<div class="btn-group btn-group-xs">
+											<a data-toggle="tooltip" title="@lang('dashboard.buttons.go')" class="btn btn-info" 
+												href="{{route('dashboard.trainings.edit', $training->id)}}">
+												<i class="glyphicon glyphicon-arrow-left"></i>
+											</a>
+										</div>
+									</td>
+								@endif
 							</tr>
 							@endforeach
 						</tbody>

@@ -49,7 +49,11 @@
 											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
 											<th>@lang('dashboard.table.creator')</th>
-											<th>@lang('dashboard.table.status')</th>
+											@if(Auth::user()->isCompany() || $position !== false)
+                                            	<th>@lang('dashboard.table.status')</th>
+                                        	@elseif(Auth::user()->isSeller())
+                                        		<th>@lang('dashboard.table.link_status')</th>
+                                        	@endif
 										</tr>
 									</thead>
 									<tbody>
@@ -58,10 +62,15 @@
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
 											<td>{{ $product->creator->name }}</td>
-											<td><span class="label label-success">
-												{{ $product->status->type }}
-												</span>
-											</td>
+											@if(Auth::user()->isCompany() || $position !== false)
+												<td><span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">
+                                                	@lang('dashboard.status.'.$product->getStatusId())
+                                                </span></td>
+											@elseif(Auth::user()->isSeller())
+	                                    		<td><span class="{{ ($product->getLinkStatus()) ? 'label label-success' : 'label label-danger'}}">
+	                                        		@lang('dashboard.link_status.'.$product->getLinkStatus())
+	                                        	</span></td>
+                                            @endif
 										</tr>
 									</tbody>
 								</table>
