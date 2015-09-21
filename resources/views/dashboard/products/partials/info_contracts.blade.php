@@ -25,7 +25,7 @@
 							@foreach($product->contracts as $contract)
 							<tr>
 								<td>{{$contract->name}}</td>
-								<td>{{$contract->url}}</td>
+								<td><a href="{{ $contract->url }}" target="_blank">{{ $contract->url }}</a></td>
 								@if(Auth::user()->isAdmin())
 									<td>
 										<div class="btn-group btn-group-xs">

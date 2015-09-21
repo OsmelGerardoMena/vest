@@ -24,7 +24,7 @@ class EditTrainingRequest extends Request
     public function rules()
     {
         return [
-            'url' => 'required|max:100',
+            'url' => 'required|url',
             'date' => 'required|date',
             'product_id' => 'required',
         ];

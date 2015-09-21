@@ -128,10 +128,11 @@ return [
 		'search_incentive' => 'Search... incentive award',
 		'search_benefit' => 'Search... benefit name',
 		'search_seller_name' => 'Search... seller name',
-		'url_here' => 'Url here',
+		'url_here' => 'Url here, example: http://web.com',
 		'goal_here' => 'Goal here, example: 7000.77',
 		'award_here' => 'Award here',
-		'presentation_link' => 'Presentation link',
+		'presentation_link' => 'Presentation link, example: http://web.com',
+		'price_here' => 'Price here, example: 75.99',
 	],
 
 	'table' => [
@@ -155,6 +156,7 @@ return [
 		'award' => 'Award',
 		'date' => 'Date',
 		'go' => 'Go',
+		'price' => 'Price',
 	],
 
 	'status' => [

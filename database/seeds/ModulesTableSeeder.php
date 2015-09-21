@@ -11,6 +11,23 @@ class ModulesTableSeeder extends Seeder
      */
     public function run()
     {
+        /// Modulo y submodulos roles (perfiles)
+        $id = \DB::table('modules')->insertGetId([
+            'description' => 'roles',
+            'icon' => 'icon-address-book',
+        ]);
+
+        \DB::table('submodules')->insert([
+            'description' => 'list_profiles',
+            'url' => '/dashboard/profiles',
+            'module_id' => $id,
+        ]);
+        \DB::table('submodules')->insert([
+            'description' => 'add_profile',
+            'url' => '/dashboard/profiles/create',
+            'module_id' => $id,
+        ]);
+        
     	/// Modulo y submodulos users
         $id = \DB::table('modules')->insertGetId([
         	'description' => 'users',
@@ -25,23 +42,6 @@ class ModulesTableSeeder extends Seeder
         \DB::table('submodules')->insert([
             'description' => 'add_user',
             'url' => '/dashboard/users/create',
-            'module_id' => $id,
-        ]);
-
-        /// Modulo y submodulos roles (perfiles)
-        $id = \DB::table('modules')->insertGetId([
-        	'description' => 'roles',
-        	'icon' => 'icon-address-book',
-        ]);
-
-        \DB::table('submodules')->insert([
-        	'description' => 'list_profiles',
-        	'url' => '/dashboard/profiles',
-        	'module_id' => $id,
-        ]);
-        \DB::table('submodules')->insert([
-            'description' => 'add_profile',
-            'url' => '/dashboard/profiles/create',
             'module_id' => $id,
         ]);
 

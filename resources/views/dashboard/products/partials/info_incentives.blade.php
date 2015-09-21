@@ -28,7 +28,7 @@
 							<tr>
 								<td>{{$incentive->goal}}</td>
 								<td>{{$incentive->award}}</td>
-								<td>{{$incentive->url}}</td>
+								<td><a href="{{ $incentive->url }}" target="_blank">{{ $incentive->url }}</a></td>
 								<td>{{$incentive->date}}</td>
 								@if(Auth::user()->isAdmin())
 									<td>

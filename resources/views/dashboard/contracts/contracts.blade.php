@@ -63,7 +63,7 @@
 										<tr>
 											<td>{{ $contract->id }}</td>
 											<td>{{ $contract->name }}</td>
-											<td>{{ $contract->url }}</td>
+											<td><a href="{{ $contract->url }}" target="_blank">{{ $contract->url }}</a></td>
 											<td>{{ $contract->product->name }}</td>
 											<td>{{ $contract->product->company->name }}</td>
 											<td>

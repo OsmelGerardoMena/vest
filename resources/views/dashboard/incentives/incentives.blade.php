@@ -66,7 +66,7 @@
 											<td>{{ $incentive->id }}</td>
 											<td>{{ $incentive->goal }}</td>
 											<td>{{ $incentive->award }}</td>
-											<td>{{ $incentive->url }}</td>
+											<td><a href="{{ $incentive->url }}" target="_blank">{{ $incentive->url }}</a></td>
 											<td>{{ $incentive->date }}</td>
 											<td>{{ $incentive->product->name }}</td>
 											<td>{{ $incentive->product->company->name }}</td>

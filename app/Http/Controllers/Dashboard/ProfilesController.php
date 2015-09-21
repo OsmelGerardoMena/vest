@@ -94,7 +94,8 @@ class ProfilesController extends Controller
 
     //para agregar los modulos y submodulos al crear o editar
     private function addModulesSubmodules($request){
-        $centinel = ['1' => 0, '2'=> 0, '3' => 0, '4' => 0, '5' => 0, '6' => 0];
+        $centinel = ['1' => 0, 
+            '2'=> 0, '3' => 0, '4' => 0, '5' => 0, '6' => 0, '7' => 0];
         
         $allsub = Submodule::get();
 

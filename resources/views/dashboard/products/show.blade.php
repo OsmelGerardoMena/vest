@@ -49,7 +49,7 @@
 								<table data-sortable class="table table-hover table-striped">
 									<thead>
 										<tr>
-											<th>#</th>
+											<th>@lang('dashboard.table.price')</th>
 											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
 											<th>@lang('dashboard.table.creator')</th>
@@ -58,7 +58,7 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td>{{ $product->id }}</td>
+											<td>{{ $product->price }}</td>
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
 											<td>{{ $product->creator->name }}</td>

@@ -26,7 +26,7 @@ class EditIncentiveRequest extends Request
         return [
             'goal' => 'required|numeric',
             'award' => 'required',
-            'url' => 'required|max:100',
+            'url' => 'required|url',
             'date' => 'required|date',
             'product_id' => 'required',
         ];

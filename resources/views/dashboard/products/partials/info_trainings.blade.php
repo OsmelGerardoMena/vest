@@ -24,7 +24,7 @@
 						<tbody>
 							@foreach($product->trainings as $training)
 							<tr>
-								<td>{{$training->url}}</td>
+								<td><a href="{{ $training->url }}" target="_blank">{{ $training->url }}</a></td>
 								<td>{{$training->date}}</td>
 								@if(Auth::user()->isAdmin())
 									<td>
