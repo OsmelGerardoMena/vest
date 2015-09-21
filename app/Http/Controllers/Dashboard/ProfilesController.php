@@ -185,4 +185,17 @@ class ProfilesController extends Controller
         
         return redirect()->route('dashboard.profiles.index');
     }
+
+    public function profileStatus($id)
+    {
+        $profile = UserTypes::findOrFail($id);
+
+        $profile->status_id = ($profile->isActive()) ? 2 : 1;
+
+        $profile->save();
+
+        $message = $profile->name.trans('messages.status');
+        Session::flash('status', $message);
+        return redirect()->back();
+    }
 }

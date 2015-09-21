@@ -21,7 +21,7 @@
         			@lang('dashboard.title_companies')
         		</h1>
             </div>
-			
+			@include('dashboard.partials.messages')
 			<div class="row">
 				<div class="col-md-12">
 					<div class="widget">
@@ -53,10 +53,13 @@
 											<td>{{ $company->name }}</td>
 											<td>{{ $company->email }}</td>
 											<td>{{ $company->phone }}</td>
-											<td><span class="label label-success">{{ $company->status->type }}</span></td>
+											<td><span class="{{ ($company->isActive()) ? 'label label-success' : 'label label-danger'}}">
+												{{ trans('dashboard.status.'.$company->getStatusId()) }}
+											</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.change_status')" class="btn btn-default" 
+														href="{{route('dashboard.users.status', $company->id)}}">
 														<i class="fa fa-power-off"></i>
 													</a>
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info_and_product')" class="btn btn-info" 

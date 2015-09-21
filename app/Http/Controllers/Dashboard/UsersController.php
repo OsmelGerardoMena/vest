@@ -145,10 +145,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
 
-        if($user->getStatusId() == 1)
-            $user->status_id = 2;
-        else if($user->getStatusId() == 2)
-            $user->status_id = 1;
+        $user->status_id = ($user->isActive()) ? 2 : 1;
         
         $user->save();
         

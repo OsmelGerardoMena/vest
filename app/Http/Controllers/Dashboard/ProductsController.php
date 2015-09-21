@@ -139,16 +139,13 @@ class ProductsController extends Controller
         return redirect()->route('dashboard.products.index');
     }
 
-    /*** Metodo Extra  para activar/desactivar status del usuario ***/
+    /*** Metodo Extra  para activar/desactivar status del producto ***/
     public function productStatus($id)
     {
         $product = Product::findOrFail($id);
 
-        if($product->getStatusId() == 1)
-            $product->status_id = 2;
-        else if($product->getStatusId() == 2)
-            $product->status_id = 1;
-        
+        $product->status_id = ($product->isActive()) ? 2 : 1;
+
         $product->save();
         
         $message = $product->name.trans('messages.status');

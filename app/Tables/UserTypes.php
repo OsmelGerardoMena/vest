@@ -39,4 +39,19 @@ class UserTypes extends Model
 
         return in_array($id, $submodules);
     }
+
+    ///** Devuelve el id del status asignado **///
+    public function getStatusId()
+    {
+        return $this->status->id;
+    }
+
+    ///** Verifica el status del perfil **///
+    public function isActive()
+    {
+        if($this->getStatusId() == 1)
+            return true;
+        else if($this->getStatusId() == 2)
+            return false;
+    }
 }

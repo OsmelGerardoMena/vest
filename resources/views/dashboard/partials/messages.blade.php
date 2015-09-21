@@ -41,7 +41,7 @@
 @endif
 
 @if(Session::has('status'))
- 	<div class="alert alert-info" role="alert">
+ 	<div class="alert alert-warning" role="alert">
  		<strong>{{ Session::get('status') }}</strong>
  	</div>
 @endif

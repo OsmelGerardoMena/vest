@@ -40,8 +40,6 @@
 												<i class="fa fa-plus-circle"></i>
 												@lang('dashboard.buttons.new')
 											</a>
-											<!--<a class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</a>
-											<a class="btn btn-primary"><i class="fa fa-refresh"></i> Update</a>-->
 										</div>
 										@include('dashboard.profiles.partials.search')
 									</div>
@@ -63,10 +61,13 @@
 										<tr>
 											<td>{{ $profile->id }}</td>
 											<td>{{ $profile->name }}</td>
-											<td><span class="label label-success">{{ $profile->status->type }}</span></td>
+											<td><span class="{{ ($profile->isActive()) ? 'label label-success' : 'label label-danger'}}">
+												{{ trans('dashboard.status.'.$profile->getStatusId()) }}
+											</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.off')" class="btn btn-default">
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.change_status')" class="btn btn-default" 
+														href="{{route('dashboard.profiles.status', $profile->id)}}">
 														<i class="fa fa-power-off"></i>
 													</a>
 													

@@ -12,7 +12,6 @@ class OptionsSelect
 		foreach ($types as $value) {
 			$array[$value->id] = $value->name;
 		}
-
 		return $array;
 	}
 }	

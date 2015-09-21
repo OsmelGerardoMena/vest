@@ -53,6 +53,10 @@ Route::group(['middleware' => ['auth', 'is_admin'],
 	]);
 	Route::resource('dashboard/users', 'UsersController');
 
+	Route::get('dashboard/profiles/status/{id}', [
+			'uses' => 'ProfilesController@profileStatus',
+			'as' => 'dashboard.profiles.status'
+	]);
 	Route::resource('dashboard/profiles', 'ProfilesController');
 
 	Route::get('dashboard/sellers/link/{seller_id}', [
