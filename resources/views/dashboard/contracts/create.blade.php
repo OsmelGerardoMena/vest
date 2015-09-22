@@ -31,7 +31,8 @@
 							'route' => 'dashboard.contracts.store', 
 							'method' => 'POST', 
 							'class' => 'form-horizontal',
-							'role' => 'form'
+							'role' => 'form',
+							'files' => 'true'
 						]) 
 					!!}
 				  		@include('dashboard.contracts.partials.fields')

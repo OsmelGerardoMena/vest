@@ -42,6 +42,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
+    ///** Mutators **///
     public function setPasswordAttribute($value){
         //al crear nuevo usuario, se le palica un hash a la contraseña
         if(!empty($value)){

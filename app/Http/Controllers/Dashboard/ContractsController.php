@@ -61,6 +61,7 @@ class ContractsController extends Controller
      */
     public function store(CreateContractRequest $request)
     {
+        return dd($request->file('file'));
         $contract = Contract::create($request->all());
 
         $message = $contract->name.trans('messages.new');

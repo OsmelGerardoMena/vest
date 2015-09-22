@@ -4,16 +4,30 @@ namespace Vest\Tables;
 
 use Illuminate\Database\Eloquent\Model;
 
+use  Carbon\Carbon;
+
 class Contract extends Model
 {
     protected $table = 'contracts';
 
     protected $fillable = [
-            'name', 
+            'name',
+            'file',
             'url',
             'product_id'
     ];
 
+    ///** Mutators **///
+    public function setFileAttribute($file)
+    {
+        $this->attributes['file'] = uniqid('', true).$file->getClientOriginalName();
+
+        $name = uniqid('', true).$file->getClientOriginalName();
+
+        ///\File::get($file);
+
+        \Storage::disk('local')->put('contracts/'.$name, file_get_contents($file));
+    }
     ///** relacion de muchos a uno (relacion inversa) **///
     public function product()
     {

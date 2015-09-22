@@ -132,6 +132,7 @@ return [
         'date' => 'Date',
         'price' => 'Price',
         'type_id' => 'Benefit Type',
+        'contract_file' => 'Contract file',
     ],
 
 ];
