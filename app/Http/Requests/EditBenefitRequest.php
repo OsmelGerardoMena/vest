@@ -36,6 +36,7 @@ class EditBenefitRequest extends Request
         return [
             'name' => 'required|max:60|unique:benefits,name,'
                         .$this->route->getParameter('benefits'),
+            'type_id' => 'required',
             'product_id' => 'required',
         ];
     }

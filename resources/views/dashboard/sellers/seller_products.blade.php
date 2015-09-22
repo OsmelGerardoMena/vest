@@ -60,6 +60,7 @@
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
+											<th>@lang('dashboard.table.price')</th>
 											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
 											<th>@lang('dashboard.table.link_status')</th>
@@ -71,6 +72,7 @@
 										<tr>
 											<td>{{ $product->id }}</td>
 											<td>{{ $product->name }}</td>
+											<td>{{ $product->price }}</td>
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
 											<td>

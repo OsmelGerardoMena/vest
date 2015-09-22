@@ -131,6 +131,7 @@ return [
         'award' => 'Award',
         'date' => 'Date',
         'price' => 'Price',
+        'type_id' => 'Benefit Type',
     ],
 
 ];

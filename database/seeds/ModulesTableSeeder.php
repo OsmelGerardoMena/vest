@@ -84,14 +84,14 @@ class ModulesTableSeeder extends Seeder
         ]);
 
         \DB::table('submodules')->insert([ //10
-            'description' => 'incentives',
-            'url' => '/dashboard/incentives',
+            'description' => 'benefits',
+            'url' => '/dashboard/benefits',
             'module_id' => $id,
         ]);
 
         \DB::table('submodules')->insert([ //11
-            'description' => 'benefits',
-            'url' => '/dashboard/benefits',
+            'description' => 'incentives',
+            'url' => '/dashboard/incentives',
             'module_id' => $id,
         ]);
 

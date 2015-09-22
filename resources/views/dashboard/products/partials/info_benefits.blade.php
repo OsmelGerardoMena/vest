@@ -15,6 +15,7 @@
 						<thead>
 							<tr>
 								<th>@lang('dashboard.table.name')</th>
+								<th>@lang('dashboard.table.benefit_type')</th>
 								@if(Auth::user()->isAdmin())
 									<th>@lang('dashboard.table.go')</th>
 								@endif
@@ -24,6 +25,7 @@
 							@foreach($product->benefits as $benefit)
 							<tr>
 								<td>{{$benefit->name}}</td>
+								<td>{{$benefit->type->name}}</td>
 								@if(Auth::user()->isAdmin())
 									<td>
 										<div class="btn-group btn-group-xs">

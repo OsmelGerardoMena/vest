@@ -62,12 +62,14 @@
 									@lang('dashboard.buttons.info')
 								</a>
 							</li>
-							<li class="">
-								<a href="#products" data-toggle="tab" aria-expanded="false">
-									<i class="icon-layers"></i>
-									@lang('dashboard.buttons.products')
-								</a>
-							</li>
+							@if(!$user->isAdmin())
+								<li class="">
+									<a href="#products" data-toggle="tab" aria-expanded="false">
+										<i class="icon-layers"></i>
+										@lang('dashboard.buttons.products')
+									</a>
+								</li>
+							@endif
 						</ul><!-- End nav tab -->
 
 						<!-- Tab panes -->
@@ -133,25 +135,26 @@
 								</div><!-- End div .user-profile-content -->
 							</div><!-- End div .tab-pane -->
 							<!-- End Tab about -->
-
-							<!-- Tab timeline -->
-							<div class="tab-pane animated fadeInRight" id="products">
-								<div class="user-profile-content">
-									@if(!empty($products))
-										<h5><strong>
-											{{strtoupper(trans('dashboard.title_products'))}}:
-										</strong></h5>
-										@include('dashboard.account.partials.info_products')
-									@else
-										<center>
+							@if(!$user->isAdmin())
+								<!-- Tab timeline -->
+								<div class="tab-pane animated fadeInRight" id="products">
+									<div class="user-profile-content">
+										@if(!empty($products))
 											<h5><strong>
-												@lang('messages.no_products')
+												{{strtoupper(trans('dashboard.title_products'))}}:
 											</strong></h5>
-	 									</center>
-									@endif
-								</div><!-- End div .user-profile-content -->
-							</div><!-- End div .tab-pane -->
-							<!-- End Tab timeline -->
+											@include('dashboard.account.partials.info_products')
+										@else
+											<center>
+												<h5><strong>
+													@lang('messages.no_products')
+												</strong></h5>
+		 									</center>
+										@endif
+									</div><!-- End div .user-profile-content -->
+								</div><!-- End div .tab-pane -->
+								<!-- End Tab timeline -->
+							@endif
 						</div><!-- End div .tab-content -->
 					</div><!-- End div .widget widget-tabbed -->
 				</div><!-- End div .col-sm-9 -->

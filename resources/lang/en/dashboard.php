@@ -157,6 +157,7 @@ return [
 		'date' => 'Date',
 		'go' => 'Go',
 		'price' => 'Price',
+		'benefit_type' => 'Benefit Type',
 	],
 
 	'status' => [

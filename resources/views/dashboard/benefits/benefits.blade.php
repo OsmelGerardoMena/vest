@@ -52,6 +52,7 @@
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
+											<th>@lang('dashboard.table.benefit_type')</th>
 											<th>@lang('dashboard.table.product')</th>
 											<th>@lang('dashboard.table.company')</th>
 											<th>@lang('dashboard.table.actions')</th>
@@ -62,6 +63,7 @@
 										<tr>
 											<td>{{ $benefit->id }}</td>
 											<td>{{ $benefit->name }}</td>
+											<td>{{ $benefit->type->name}}</td>
 											<td>{{ $benefit->product->name }}</td>
 											<td>{{ $benefit->product->company->name }}</td>
 											<td>

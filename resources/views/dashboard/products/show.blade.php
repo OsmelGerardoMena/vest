@@ -74,8 +74,8 @@
 				</div>
 			</div>
 			@include('dashboard.products.partials.info_contracts')
-			@include('dashboard.products.partials.info_incentives')
 			@include('dashboard.products.partials.info_benefits')
+			@include('dashboard.products.partials.info_incentives')
 			@include('dashboard.products.partials.info_trainings')
 		</div>
 		<!-- End content here -->

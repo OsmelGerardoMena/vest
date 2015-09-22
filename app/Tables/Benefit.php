@@ -8,13 +8,20 @@ class Benefit extends Model
 {
     protected $table = 'benefits';
 
-    protected $fillable = [ 'name', 'product_id'];
+    protected $fillable = [ 'name', 'type_id', 'product_id'];
 
     ///** relacion de muchos a uno (relacion inversa) **///
     public function product()
     {
-        //retorna un solo objeto product, el contrato solo tiene un producto
+        //retorna un solo objeto product, el beneficio solo tiene un producto
         return $this->belongsTo('Vest\Tables\Product');
+    }
+
+    ///** relacion de muchos a uno (relacion inversa) **///
+    public function type()
+    {
+        //retorna un solo objeto type, el beneficio solo tiene un tipo
+        return $this->belongsTo('Vest\Tables\benefitTypes');
     }
 
     ///** Filtro para usuarios y Scope **///

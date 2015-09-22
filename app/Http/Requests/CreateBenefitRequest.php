@@ -25,6 +25,7 @@ class CreateBenefitRequest extends Request
     {
         return [
             'name' => 'required|max:60|unique:benefits,name',
+            'type_id' => 'required',
             'product_id' => 'required',
         ];
     }

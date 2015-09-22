@@ -17,6 +17,9 @@ class CreateBenefitsTable extends Migration
             $table->string('name');
             
             //Relationships
+            $table->integer('type_id')->unsigned();
+            $table->foreign('type_id')->references('id')->on('benefit_types');
+            
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')
                     ->onDelete('cascade');

@@ -3,6 +3,7 @@
 		<thead>
 			<tr>
 				<th>@lang('dashboard.table.name')</th>
+				<th>@lang('dashboard.table.price')</th>
 				<th>@lang('dashboard.table.company')</th>
 				<th>@lang('dashboard.table.creator')</th>
 				@if($user->isSeller())
@@ -16,6 +17,7 @@
 			@foreach($products as $product)
 			<tr>
 				<td>{{ $product->name }}</td>
+				<td>{{ $product->price }}</td>
 				<td>{{ $product->company->name }}</td>
 				<td>{{ $product->creator->name }}</td>
 				@if($user->isSeller())
