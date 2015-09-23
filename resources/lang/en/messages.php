@@ -22,5 +22,8 @@ return [
 	'no_products' => 'You do not have products!',
 	'restricted_access' => 'Warning: You tried to access a restricted area without permission',
 	'disabled' => 'Your account is deactivated! You can not see your information.',
-
+	'required_file' => 'You have not selected any file. The contract file is required.',
+	'file_error' => 'File error: corrupted file or exceeds the allowed size (Max 5Mb).',
+	'pdf_extension' => 'Incorrect extension, the file must be pdf.',
+	'uploading_error' => 'Error uploading file.',
 ];

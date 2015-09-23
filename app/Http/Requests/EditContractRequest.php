@@ -35,7 +35,6 @@ class EditContractRequest extends Request
     {
         return [
             'name' => 'required|max:60|unique:contracts,name,'.$this->route->getParameter('contracts'),
-            'url' => 'required|url',
             'product_id' => 'required',
         ];
     }

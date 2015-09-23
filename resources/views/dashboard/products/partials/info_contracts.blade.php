@@ -15,7 +15,7 @@
 						<thead>
 							<tr>
 								<th>@lang('dashboard.table.name')</th>
-								<th>@lang('dashboard.table.url')</th>
+								<th>@lang('dashboard.table.file')</th>
 								@if(Auth::user()->isAdmin())
 									<th>@lang('dashboard.table.go')</th>
 								@endif
@@ -25,7 +25,13 @@
 							@foreach($product->contracts as $contract)
 							<tr>
 								<td>{{$contract->name}}</td>
-								<td><a href="{{ $contract->url }}" target="_blank">{{ $contract->url }}</a></td>
+								@if(Storage::disk('local_pdf')->exists($contract->contract_file))
+									<td><a href="{{ asset('files/contracts') }}/{{ $contract->contract_file }}" target="_blank">
+										@lang('dashboard.download_contract')
+									</a></td>
+								@else
+									<td>@lang('dashboard.not_found')</td>
+								@endif
 								@if(Auth::user()->isAdmin())
 									<td>
 										<div class="btn-group btn-group-xs">

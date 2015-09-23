@@ -35,7 +35,8 @@
 							'route' => ['dashboard.contracts.update', $contract->id],
 							'class' => 'form-horizontal',
 							'role' => 'form',
-							'method' => 'PUT'
+							'method' => 'PUT',
+							'files' => 'true'
 						]) 
 					!!}
 

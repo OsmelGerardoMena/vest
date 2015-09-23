@@ -51,3 +51,9 @@
  		<strong>{{ Session::get('disabled') }}</strong>
  	</div>
 @endif
+
+@if(Session::has('file_error'))
+ 	<div class="alert alert-danger" role="alert">
+ 		<strong>{{ Session::get('file_error') }}</strong>
+ 	</div>
+@endif

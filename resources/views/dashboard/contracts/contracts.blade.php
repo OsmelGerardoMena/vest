@@ -45,14 +45,13 @@
 									</div>
 								</div>
 							</div>
-									
 							<div class="table-responsive">
 								<table data-sortable class="table table-hover table-striped">
 									<thead>
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
-											<th>@lang('dashboard.table.url')</th>
+											<th>@lang('dashboard.table.file')</th>
 											<th>@lang('dashboard.table.product')</th>
 											<th>@lang('dashboard.table.company')</th>
 											<th>@lang('dashboard.table.actions')</th>
@@ -63,7 +62,13 @@
 										<tr>
 											<td>{{ $contract->id }}</td>
 											<td>{{ $contract->name }}</td>
-											<td><a href="{{ $contract->url }}" target="_blank">{{ $contract->url }}</a></td>
+											@if(Storage::disk('local_pdf')->exists($contract->contract_file))
+												<td><a href="{{ asset('files/contracts') }}/{{ $contract->contract_file }}" target="_blank">
+													@lang('dashboard.download_contract')
+												</a></td>
+											@else
+												<td>@lang('dashboard.not_found')</td>
+											@endif
 											<td>{{ $contract->product->name }}</td>
 											<td>{{ $contract->product->company->name }}</td>
 											<td>

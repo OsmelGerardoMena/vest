@@ -12,22 +12,10 @@ class Contract extends Model
 
     protected $fillable = [
             'name',
-            'file',
-            'url',
+            'contract_file',
             'product_id'
     ];
-
-    ///** Mutators **///
-    public function setFileAttribute($file)
-    {
-        $this->attributes['file'] = uniqid('', true).$file->getClientOriginalName();
-
-        $name = uniqid('', true).$file->getClientOriginalName();
-
-        ///\File::get($file);
-
-        \Storage::disk('local')->put('contracts/'.$name, file_get_contents($file));
-    }
+   
     ///** relacion de muchos a uno (relacion inversa) **///
     public function product()
     {

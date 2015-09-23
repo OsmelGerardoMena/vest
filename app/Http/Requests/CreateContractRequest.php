@@ -25,7 +25,6 @@ class CreateContractRequest extends Request
     {
         return [
             'name' => 'required|max:60|unique:contracts,name',
-            'url' => 'required|url',
             'product_id' => 'required',
         ];
     }

@@ -15,8 +15,7 @@ class CreateContractsTable extends Migration
         Schema::create('contracts', function(Blueprint $table){
             $table->increments('id');
             $table->string('name');
-            $table->string('file');
-            $table->string('url');
+            $table->string('contract_file');
             
             //Relationships
             $table->integer('product_id')->unsigned();

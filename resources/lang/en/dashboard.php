@@ -59,6 +59,8 @@ return [
 	'yes_delete' => "Yeah, I'm sure",
 	'my' => 'My',
 	'unallocated' => 'unallocated',
+	'download_contract' => 'Download contract',
+	'not_found' => 'File not Found',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',
@@ -158,6 +160,7 @@ return [
 		'go' => 'Go',
 		'price' => 'Price',
 		'benefit_type' => 'Benefit Type',
+		'file' => 'File',
 	],
 
 	'status' => [
