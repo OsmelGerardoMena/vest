@@ -57,3 +57,9 @@
  		<strong>{{ Session::get('file_error') }}</strong>
  	</div>
 @endif
+
+@if(Session::has('error'))
+ 	<div class="alert alert-danger" role="alert">
+ 		<strong>{{ Session::get('error') }}</strong>
+ 	</div>
+@endif

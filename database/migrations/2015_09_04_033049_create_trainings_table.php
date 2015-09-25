@@ -14,8 +14,8 @@ class CreateTrainingsTable extends Migration
     {
         Schema::create('trainings', function(Blueprint $table){
             $table->increments('id');
-            $table->string('url');
             $table->date('date')->nullable();
+            $table->text('content');
             
             //Relationships
             $table->integer('product_id')->unsigned();

@@ -26,4 +26,5 @@ return [
 	'file_error' => 'File error: corrupted file or exceeds the allowed size (Max 5Mb).',
 	'pdf_extension' => 'Incorrect extension, the file must be pdf.',
 	'uploading_error' => 'Error uploading file.',
+	'content_required' => 'You have not entered any content. The content is required.',
 ];

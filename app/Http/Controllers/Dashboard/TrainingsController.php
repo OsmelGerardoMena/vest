@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Session;
 class TrainingsController extends Controller
 {
     public function __construct(){
-        $this->beforeFilter('@findTraining', ['only' => ['edit', 'update', 'destroy']]);
+        $this->beforeFilter('@findTraining', ['only' => ['show','edit', 'update', 'destroy']]);
     }
 
     public function findTraining(Route $route){
@@ -56,6 +56,14 @@ class TrainingsController extends Controller
      */
     public function store(CreateTrainingRequest $request)
     {
+        //return dd($request->get('content'));
+        // se verifica si el campo content esta vacio
+        // por defecto en el html tiene el string de abajo
+        if(trim($request->get('content')) === "<p><br></p>"){
+            Session::flash('error', trans('messages.content_required'));
+            return redirect()->back()->withInput($request->all());
+        }
+
         $training = Training::create($request->all());
       
         Session::flash('new', trans('messages.new_training'));
@@ -71,7 +79,8 @@ class TrainingsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('dashboard.trainings.show')
+                ->with('training', $this->training);
     }
 
     /**
@@ -95,6 +104,11 @@ class TrainingsController extends Controller
      */
     public function update(EditTrainingRequest $request, $id)
     {
+        if(trim($request->get('content')) === "<p><br></p>"){
+            Session::flash('error', trans('messages.content_required'));
+            return redirect()->back()->withInput($request->all());
+        }
+
         $this->training->fill($request->all());
 
         $this->training->save();

@@ -23,10 +23,11 @@
             			@lang('dashboard.title_create_contract')
             		</h1>
             </div>
-            @include('dashboard.partials.messages')
+            
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
+					@include('dashboard.partials.messages')
 					{!! Form::open([
 							'route' => 'dashboard.contracts.store', 
 							'method' => 'POST', 

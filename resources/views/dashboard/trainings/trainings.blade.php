@@ -51,7 +51,6 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.date')</th>
 											<th>@lang('dashboard.table.product')</th>
 											<th>@lang('dashboard.table.company')</th>
@@ -62,7 +61,6 @@
 										@foreach($trainings as $training)
 										<tr>
 											<td>{{ $training->id }}</td>
-											<td><a href="{{ $training->url }}" target="_blank">{{ $training->url }}</a></td>
 											<td>{{ $training->date }}</td>
 											<td>{{ $training->product->name }}</td>
 											<td>{{ $training->product->company->name }}</td>
@@ -71,6 +69,11 @@
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
 														href="{{route('dashboard.trainings.edit', $training->id)}}">
 														<i class="fa fa-edit"></i>
+													</a>
+
+													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
+														href="{{route('dashboard.trainings.show', $training->id)}}">
+														<i class="fa fa-info-circle"></i>
 													</a>
 
 													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$training->id}}" class="btn btn-danger md-trigger ">

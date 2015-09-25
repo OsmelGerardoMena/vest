@@ -9,11 +9,17 @@ class Training extends Model
 	protected $table = 'trainings';
 
 	protected $fillable = [
-            'url',
             'date',
-            'product_id'
+            'product_id',
+            'content'
     ];
 
+    ///** Mutators **///
+    public function setContentAttribute($value)
+    {
+        $this->attributes['content'] = htmlentities(trim($value));
+    }
+    
     ///** relacion de muchos a uno (relacion inversa) **///
     public function product()
     {

@@ -27,6 +27,7 @@
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
+					@include('dashboard.partials.messages')
 					{!! Form::open([
 							'route' => 'dashboard.trainings.store', 
 							'method' => 'POST', 
@@ -48,7 +49,7 @@
 									@lang('dashboard.buttons.back')
 								</a>
 							</div>
-						</div>
+						</div><br><br>
 					{!! Form::close() !!}
 				</div>
 			</div>

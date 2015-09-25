@@ -14,7 +14,6 @@
 					<table data-sortable class="table table-hover table-striped">
 						<thead>
 							<tr>
-								<th>@lang('dashboard.table.url')</th>
 								<th>@lang('dashboard.table.date')</th>
 								@if(Auth::user()->isAdmin())
 									<th>@lang('dashboard.table.go')</th>
@@ -24,7 +23,6 @@
 						<tbody>
 							@foreach($product->trainings as $training)
 							<tr>
-								<td><a href="{{ $training->url }}" target="_blank">{{ $training->url }}</a></td>
 								<td>{{$training->date}}</td>
 								@if(Auth::user()->isAdmin())
 									<td>

@@ -30,10 +30,12 @@
     <link href="{{asset('assets/libs/jquery-jvectormap/css/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/libs/jquery-clock/clock.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/libs/bootstrap-calendar/css/bic_calendar.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/libs/sortable/sortable-theme-bootstrap.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/libs/jquery-weather/simpleweather.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/libs/bootstrap-xeditable/css/bootstrap-editable.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
+    <!-- para estilos de textarea en el apartado de crear capacitaciones -->
+    <link href="{{asset('assets/libs/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/libs/summernote/summernote.css')}}" rel="stylesheet" type="text/css">
     <!-- Extra CSS Libraries End -->
     
     <link href="{{asset('assets/css/style-responsive.css')}}" rel="stylesheet" />
@@ -99,10 +101,13 @@
 	<!-- Demo Specific JS Libraries -->
 	<script src="{{asset('assets/libs/prettify/prettify.js')}}"></script>
 	<script src="{{asset('assets/js/init.js')}}"></script>
-	<script src="{{asset('assets/js/reloadsearch.js')}}"></script>
-	<!-- <script src="{{asset('assets/js/activemenu.js')}}"></script>-->
+	
 	@if(!Auth::guest())
 		@include('partials/jslibraries')
 	@endif
+
+	<!-- Scripts adicionales -->
+	<script src="{{asset('assets/js/reloadsearch.js')}}"></script>
+	<!-- <script src="{{asset('assets/js/activemenu.js')}}"></script>-->
 </body>
 </html>

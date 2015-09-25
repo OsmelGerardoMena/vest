@@ -61,6 +61,7 @@ return [
 	'unallocated' => 'unallocated',
 	'download_contract' => 'Download contract',
 	'not_found' => 'File not Found',
+	'content' => 'Content',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',

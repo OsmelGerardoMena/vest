@@ -24,12 +24,10 @@
         			@lang('dashboard.title_edit_training')
         		</h1>
             </div>
-
-            @include('dashboard.partials.messages')
-
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
+					@include('dashboard.partials.messages')
 
 					{!! Form::model($training, [
 							'route' => ['dashboard.trainings.update', $training->id],

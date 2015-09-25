@@ -24,9 +24,9 @@ class CreateTrainingRequest extends Request
     public function rules()
     {
         return [
-            'url' => 'required|url',
             'date' => 'required|date',
             'product_id' => 'required',
+            'content' => 'required',
         ];
     }
 }
