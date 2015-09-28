@@ -14,4 +14,9 @@
 	</div>
 </div>
 
-@include('dashboard.trainings.partials.textarea')
+<div class="form-group">
+	<label class="col-sm-2 control-label">@lang('dashboard.content')</label>
+	<div class="col-sm-10">
+		<textarea class="summernote" name="content">@if(old('content')){{ old('content') }}@elseif(isset($training)){{ html_entity_decode($training->content) }}@else<p><br></p>@endif</textarea>
+	</div>
+</div>

@@ -89,13 +89,16 @@ Route::group(['middleware' => ['auth', 'is_admin'],
 
 	Route::resource('dashboard/companies', 'CompaniesController');
 
+	Route::resource('dashboard/sales', 'SalesController');
+
 
 });
 
 // Rutas para el vendedor y la empresa
 Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
 
-	Route::resource('dashboard/account', 'AccountsController');
+	Route::resource('dashboard/account', 'AccountsController', 
+			['only' => ['index', 'edit', 'update'] ]);
 
 	Route::controller('dashboard/my-products', 'MyProductsController', [
 		'getIndex' => 'dashboard.myproducts.index',
@@ -103,10 +106,5 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
 		'getUnallocated' => 'dashboard.myproducts.unallocated',
 	]);
 
-	Route::resource('dashboard/trainings', 'TrainingsController');
+	Route::resource('dashboard/trainings', 'TrainingsController', ['only' => 'show']);
 });
-
-
-/*Route::group(['middleware' => 'auth'], function(){
-	Route::resource('dashboard', 'AdminController', ['only' => ['index', 'create']]);
-});*/
