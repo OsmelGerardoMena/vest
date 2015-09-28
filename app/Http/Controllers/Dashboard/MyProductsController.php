@@ -26,7 +26,7 @@ class MyProductsController extends Controller
         }
         else{
             // el vendedor tiene acceso a todo este apartado, el admin no
-            $this->middleware('is_seller'); 
+            $this->middleware('is_seller');
         }
 
         // si el usuario se encuentra desactivado no podra ver su información

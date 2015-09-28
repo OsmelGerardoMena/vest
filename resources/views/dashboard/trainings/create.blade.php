@@ -49,7 +49,7 @@
 									@lang('dashboard.buttons.back')
 								</a>
 							</div>
-						</div><br><br>
+						</div>
 					{!! Form::close() !!}
 				</div>
 			</div>

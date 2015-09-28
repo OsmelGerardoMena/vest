@@ -15,25 +15,27 @@
 						<thead>
 							<tr>
 								<th>@lang('dashboard.table.date')</th>
-								@if(Auth::user()->isAdmin())
-									<th>@lang('dashboard.table.go')</th>
-								@endif
+								<th>@lang('dashboard.table.actions')</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($product->trainings as $training)
 							<tr>
 								<td>{{$training->date}}</td>
-								@if(Auth::user()->isAdmin())
-									<td>
-										<div class="btn-group btn-group-xs">
-											<a data-toggle="tooltip" title="@lang('dashboard.buttons.go')" class="btn btn-info" 
+								<td>
+									<div class="btn-group btn-group-xs">
+										@if(Auth::user()->isAdmin())
+											<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit_delete')" class="btn btn-warning" 
 												href="{{route('dashboard.trainings.edit', $training->id)}}">
-												<i class="glyphicon glyphicon-arrow-left"></i>
+												<i class="fa fa-edit"></i>
 											</a>
-										</div>
-									</td>
-								@endif
+										@endif
+										<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
+											href="{{route('dashboard.trainings.show', $training->id)}}">
+											<i class="fa fa-info-circle"></i>
+										</a>
+									</div>
+								</td>
 							</tr>
 							@endforeach
 						</tbody>

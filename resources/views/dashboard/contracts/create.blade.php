@@ -12,10 +12,8 @@
 <div id="wrapper">
 	@include('partials/topbar')
 	@include('partials/sidebar')
-
 	<!-- Start right content -->
 	<div class="content-page">
-
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
@@ -23,7 +21,6 @@
             			@lang('dashboard.title_create_contract')
             		</h1>
             </div>
-            
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')

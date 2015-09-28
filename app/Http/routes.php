@@ -102,6 +102,8 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard'], function(){
 		'getShow' => 'dashboard.myproducts.show',
 		'getUnallocated' => 'dashboard.myproducts.unallocated',
 	]);
+
+	Route::resource('dashboard/trainings', 'TrainingsController');
 });
 
 

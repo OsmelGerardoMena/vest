@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_home')
+	@lang('dashboard.title_training_info') | {{$training->product->name}}
 @stop
 
 @section('content')
@@ -16,7 +16,28 @@
 	<div class="content-page">
 		<!-- Start Content here -->
 		<div class="content">
-			{!! html_entity_decode($training->content) !!}
+			<div class="page-heading">
+	    		<h1><i class='fa fa-book'></i> 
+	    			@lang('dashboard.title_training_info') - {{$training->product->name}}
+	    		</h1>
+            </div>
+            <div class="widget">
+				<div class="widget-content padding">
+					@if(Auth::user()->isAdmin())
+						<a href="{{route('dashboard.trainings.index')}}" class="btn btn-primary">
+							<i class="icon-back"></i>
+							@lang('dashboard.buttons.back')
+						</a>
+					@else
+						<a href="{{route('dashboard.myproducts.show', $training->product->id)}}" class="btn btn-primary">
+							<i class="icon-back"></i>
+							@lang('dashboard.buttons.back')
+						</a>
+					@endif
+					<br><br>
+					{!! html_entity_decode($training->content) !!}
+				</div>
+			</div>
 		</div>
 		<!-- End content here -->
 	</div>

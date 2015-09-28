@@ -16,10 +16,19 @@ use Vest\Http\Requests\EditTrainingRequest;
 
 use Illuminate\Support\Facades\Session;
 
+use Illuminate\Support\Facades\Auth;
+
 class TrainingsController extends Controller
 {
     public function __construct(){
         $this->beforeFilter('@findTraining', ['only' => ['show','edit', 'update', 'destroy']]);
+
+        // Opcion especial de Middleware para poder mostrar la info
+        // del training a los vendedores y empresas
+        if(Auth::user()->isCompany() || Auth::user()->isSeller()){
+            // se restringe todos los metodo excepto show
+            $this->middleware('is_admin', ['except' => ['show'] ]);
+        }
     }
 
     public function findTraining(Route $route){
