@@ -121,7 +121,7 @@ class ModulesTableSeeder extends Seeder
 
         \DB::table('submodules')->insert([ //14
             'description' => 'list_sales',
-            'url' => '/dashboard/allsales',
+            'url' => '/dashboard/sales',
             'module_id' => $id,
         ]);
 
@@ -147,7 +147,7 @@ class ModulesTableSeeder extends Seeder
 
         \DB::table('submodules')->insert([ //16
             'description' => 'my_sales',
-            'url' => '/dashboard/sales',
+            'url' => '/dashboard/algo',
             'module_id' => $id,
         ]);
     }
