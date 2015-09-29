@@ -36,6 +36,10 @@ return [
 	'title_my_products' => 'My products and services',
 	'title_products_unallocated' => 'Products and services unallocated',
 	'title_training_info' => 'Training Info',
+	'title_customers' => 'Customers',
+	'title_create_customer' => 'Create customer',
+	'title_edit_customer' => 'Edit customer',
+	'title_info_customer' => 'Customer info',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'change_password' => 'Change password',
@@ -55,6 +59,8 @@ return [
 	'sure_delete_training' => 'Sure you want to delete this training?',
 	'sure_delete_benefit' => 'Sure you want to delete this benefit?',
 	'sure_unlink_seller' => 'Sure you want to unlink this seller?',
+	'sure_delete_customer' => 'Sure you want to delete this customer?',
+	'delete_sales' => 'Eliminating all sales related with this customer',
 	'other_data' => 'Other Data',
 	'no_delete' => 'No!',
 	'yes_delete' => "Yeah, I'm sure",
@@ -87,9 +93,11 @@ return [
 		'trainings' => 'Trainings',
 		'my_products' => 'My products',
 		'my_products_list' => 'Products list',
-		'sales' => 'Sales',
 		'my_sales' => 'My sales',
-
+		'customers' => 'Customers',
+		'sales' => 'Sales',
+		'list_customers' => 'Customers list',
+		'list_sales' => 'Sales list',
 	],
 
 	'buttons' => [
@@ -113,6 +121,7 @@ return [
 		'edit_data' => 'Edit data',
 		'go_my_products' => 'Go to my products',
 		'unallocated' => 'Products unallocated',
+		'related_sales' => 'Related sales',
 	],
 
 	'ph' => [ //placeholder
@@ -137,6 +146,9 @@ return [
 		'award_here' => 'Award here',
 		'presentation_link' => 'Presentation link, example: http://web.com',
 		'price_here' => 'Price here, example: 75.99',
+		'city_here' => 'City here',
+		'state_here' => 'State here',
+		'tradename_here' => 'Trade name here',
 	],
 
 	'table' => [
@@ -162,6 +174,8 @@ return [
 		'price' => 'Price',
 		'benefit_type' => 'Benefit Type',
 		'file' => 'File',
+		'city' => 'City',
+		'state' => 'State',
 	],
 
 	'status' => [
@@ -169,7 +183,7 @@ return [
 		'2' => 'Inactive',
 	],
 
-	'link_status' => [//true o false para status de la tabla pivote product-user
+	'link_status' => [// cuando se usa solo true o false para status
 		'0' => 'Inactive',
 		'1' => 'Active',
 	],

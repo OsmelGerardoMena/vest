@@ -1,40 +1,36 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_create')
+	@lang('dashboard.title_create_customer')
 @stop
 
 @section('content')
 
 @include('partials/modal')
-
 <!-- Begin page -->
 <div id="wrapper">
 	@include('partials/topbar')
 	@include('partials/sidebar')
-
 	<!-- Start right content -->
 	<div class="content-page">
-
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-            		<h1><i class='icon-user-add'></i> 
-            			@lang('dashboard.title_create')
+            		<h1><i class='icon-smiley-circled'></i> 
+            			@lang('dashboard.title_create_customer')
             		</h1>
             </div>
-
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
 					{!! Form::open([
-							'route' => 'dashboard.users.store', 
+							'route' => 'dashboard.customers.store', 
 							'method' => 'POST', 
 							'class' => 'form-horizontal',
 							'role' => 'form'
 						]) 
 					!!}
-				  		@include('dashboard.users.partials.fields')
+				  		@include('dashboard.customers.partials.fields')
 
 					  	<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
@@ -43,7 +39,7 @@
 									@lang('dashboard.buttons.create')
 								</button>
 
-								<a href="{{route('dashboard.users.index')}}" class="btn btn-primary">
+								<a href="{{route('dashboard.customers.index')}}" class="btn btn-primary">
 									<i class="icon-back"></i>
 									@lang('dashboard.buttons.back')
 								</a>

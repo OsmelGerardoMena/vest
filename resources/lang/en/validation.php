@@ -133,6 +133,8 @@ return [
         'price' => 'Price',
         'type_id' => 'Benefit Type',
         'contract_file' => 'Contract file',
+        'city' => 'City',
+        'state' => 'State',
     ],
 
 ];

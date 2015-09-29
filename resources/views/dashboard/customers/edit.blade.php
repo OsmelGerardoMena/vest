@@ -1,55 +1,61 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_create')
+	@lang('dashboard.title_edit_customer')
 @stop
 
 @section('content')
 
 @include('partials/modal')
+@include('dashboard.customers.partials.modal')
 
 <!-- Begin page -->
 <div id="wrapper">
 	@include('partials/topbar')
 	@include('partials/sidebar')
-
 	<!-- Start right content -->
 	<div class="content-page">
-
 		<!-- Start Content here -->
 		<div class="content">
 			<div class="page-heading">
-            		<h1><i class='icon-user-add'></i> 
-            			@lang('dashboard.title_create')
-            		</h1>
+        		<h1><i class='icon-edit'></i> 
+        			@lang('dashboard.title_edit_customer')
+        		</h1>
             </div>
 
+            @include('dashboard.partials.messages')
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
-					{!! Form::open([
-							'route' => 'dashboard.users.store', 
-							'method' => 'POST', 
+
+					{!! Form::model($customer, [
+							'route' => ['dashboard.customers.update', $customer->id],
 							'class' => 'form-horizontal',
-							'role' => 'form'
+							'role' => 'form',
+							'method' => 'PUT'
 						]) 
 					!!}
-				  		@include('dashboard.users.partials.fields')
+
+				  		@include('dashboard.customers.partials.fields')
 
 					  	<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<button type="submit" class="btn btn-success">
-									<i class="fa fa-plus-circle"></i>
-									@lang('dashboard.buttons.create')
+									<i class="icon-edit"></i>
+									@lang('dashboard.buttons.edit')
 								</button>
 
-								<a href="{{route('dashboard.users.index')}}" class="btn btn-primary">
+								<a href="{{route('dashboard.customers.index')}}" class="btn btn-primary">
 									<i class="icon-back"></i>
 									@lang('dashboard.buttons.back')
 								</a>
 							</div>
 						</div>
 					{!! Form::close() !!}
+					<button data-modal="delete-modal-{{$customer->id}}" class="btn btn-danger btn-sm md-trigger">
+						<i class="fa fa-trash-o"></i>
+					  	@lang('dashboard.buttons.delete')
+					</button>
 				</div>
 			</div>
 		</div>

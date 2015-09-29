@@ -89,6 +89,12 @@ Route::group(['middleware' => ['auth', 'is_admin'],
 
 	Route::resource('dashboard/companies', 'CompaniesController');
 
+	Route::get('dashboard/customers/status/{id}', [
+			'uses' => 'CustomersController@customerStatus',
+			'as' => 'dashboard.customers.status'
+	]);
+	Route::resource('dashboard/customers', 'CustomersController');
+
 	Route::resource('dashboard/sales', 'SalesController');
 
 

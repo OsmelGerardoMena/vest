@@ -101,27 +101,51 @@ class ModulesTableSeeder extends Seeder
             'module_id' => $id,
         ]);
 
+        /// Modulo y submodulos clientes id-4
+        $id = \DB::table('modules')->insertGetId([
+            'description' => 'customers',
+            'icon' => 'icon-smiley-circled',
+        ]);
+
+        \DB::table('submodules')->insert([ //13
+            'description' => 'list_customers',
+            'url' => '/dashboard/customers',
+            'module_id' => $id,
+        ]);
+
+        /// Modulo y submodulos ventas id-5
+        $id = \DB::table('modules')->insertGetId([
+            'description' => 'sales',
+            'icon' => 'glyphicon glyphicon-stats',
+        ]);
+
+        \DB::table('submodules')->insert([ //14
+            'description' => 'list_sales',
+            'url' => '/dashboard/allsales',
+            'module_id' => $id,
+        ]);
+
         /////////////////// Para vendedores y empresas
         
-        /// Modulo y submodulos products id-4
+        /// Modulo y submodulos products id-6
         $id = \DB::table('modules')->insertGetId([
             'description' => 'my_products',
             'icon' => 'glyphicon glyphicon-th-list',
         ]);
 
-        \DB::table('submodules')->insert([ //13
+        \DB::table('submodules')->insert([ //15
             'description' => 'my_products_list',
             'url' => '/dashboard/my-products',
             'module_id' => $id,
         ]);
 
-        /// Modulo y submodulos products id-5
+        /// Modulo y submodulos products id-7
         $id = \DB::table('modules')->insertGetId([
-            'description' => 'sales',
+            'description' => 'my_sales',
             'icon' => 'fa fa-money',
         ]);
 
-        \DB::table('submodules')->insert([ //14
+        \DB::table('submodules')->insert([ //16
             'description' => 'my_sales',
             'url' => '/dashboard/sales',
             'module_id' => $id,
