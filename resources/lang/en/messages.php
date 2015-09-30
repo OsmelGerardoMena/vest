@@ -27,4 +27,6 @@ return [
 	'pdf_extension' => 'Incorrect extension, the file must be pdf.',
 	'uploading_error' => 'Error uploading file.',
 	'content_required' => 'You have not entered any content. The content is required.',
+	'new_sale' => 'Sale was created successfully',
+	'not_unique' => 'All data is repeated. The sale must be different!',
 ];

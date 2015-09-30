@@ -14,7 +14,7 @@ class OptionsSelectCompany
 
 		foreach ($companies as $company) {
 
-			if($company->status->id == 1){ // si esta activo, se agrega
+			if($company->isActive()){ // si esta activo, se agrega
 
 				$array[$company->id] = $company->name;
 			}

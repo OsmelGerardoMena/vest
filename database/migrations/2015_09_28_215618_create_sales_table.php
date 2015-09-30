@@ -14,8 +14,7 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('amount', 10, 2);
-
+            
             //Relationships
             $table->integer('seller_id')->unsigned();
             $table->integer('product_id')->unsigned();

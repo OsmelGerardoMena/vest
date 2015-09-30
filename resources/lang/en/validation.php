@@ -135,6 +135,8 @@ return [
         'contract_file' => 'Contract file',
         'city' => 'City',
         'state' => 'State',
+        'seller_id' => 'Seller',
+        'customer_id' => 'Customer',
     ],
 
 ];
