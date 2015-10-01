@@ -17,7 +17,7 @@
 								<th>@lang('dashboard.table.name')</th>
 								<th>@lang('dashboard.table.benefit_type')</th>
 								@if(Auth::user()->isAdmin())
-									<th>@lang('dashboard.table.go')</th>
+									<th>@lang('dashboard.table.actions')</th>
 								@endif
 							</tr>
 						</thead>
@@ -29,7 +29,7 @@
 								@if(Auth::user()->isAdmin())
 									<td>
 										<div class="btn-group btn-group-xs">
-											<a data-toggle="tooltip" title="@lang('dashboard.buttons.go')" class="btn btn-info" 
+											<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit_delete')" class="btn btn-info" 
 												href="{{route('dashboard.benefits.edit', $benefit->id)}}">
 												<i class="glyphicon glyphicon-arrow-left"></i>
 											</a>

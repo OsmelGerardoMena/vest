@@ -25,10 +25,10 @@ class SalesController extends Controller
             ['only' => ['show', 'edit', 'update', 'destroy'] ]);
     }
 
-    ///Para buscar el cliewnte y tenerlo en $this->customer
+    ///Para buscar la venta y tenerlo en $this->sale
     public function findSale(Route $route)
     {
-        $this->customer = Sale::findOrFail($route->getParameter('sales'));
+        $this->sale = Sale::findOrFail($route->getParameter('sales'));
     }
     /**
      * Display a listing of the resource.
@@ -90,7 +90,7 @@ class SalesController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('dashboard.sales.show')->with('sale',$this->sale);
     }
 
     /**
@@ -101,7 +101,7 @@ class SalesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('dashboard.sales.edit')->with('sale', $this->sale);
     }
 
     /**
@@ -111,9 +111,24 @@ class SalesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(EditSaleRequest $request, $id)
     {
-        //
+        // se verifica si ya existe una venta con los 3 ids recibidos
+        if($this->sale->idsExists($request)){
+            Session::flash('error', trans('messages.not_unique'));
+            return redirect()->back()->withInput();
+        }
+
+        $this->sale->fill($request->all());
+
+        $product = Product::where('id', $request->get('product_id'))->first();
+        $this->sale->amount = $product->price;
+
+        $this->sale->save();
+
+        Session::flash('edit', trans('messages.edit_sale'));
+
+        return redirect()->back();
     }
 
     /**
@@ -124,6 +139,10 @@ class SalesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->sale->delete();
+
+        Session::flash('delete', trans('messages.delete_sale'));
+
+        return redirect()->route('dashboard.sales.index');
     }
 }

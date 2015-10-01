@@ -19,7 +19,7 @@
 		<div class="content">
 			<div class="page-heading">
         		<h1><i class='icon-info-circled-alt'></i> 
-        			@lang('dashboard.title_info_product')
+        			@lang('dashboard.title_product_info')
         		</h1>
             </div>
 			<div class="row">

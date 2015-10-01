@@ -17,7 +17,7 @@
 		<div class="content">
 			<div class="page-heading">
         		<h1><i class='icon-smiley-circled'></i> 
-        			@lang('dashboard.title_info_customer')
+        			@lang('dashboard.title_customer_info')
         		</h1>
             </div><br>
 			<div class="row">
@@ -120,20 +120,17 @@
 							<!-- End Tab about -->
 							<!-- Tab timeline -->
 							<div class="tab-pane animated fadeInRight" id="sales">
-								<!--<div class="user-profile-content">
-									@if(!empty($products))
-										<h5><strong>
-											{{strtoupper(trans('dashboard.title_products'))}}:
-										</strong></h5>
-										@include('dashboard.account.partials.info_products')
+								<div class="user-profile-content">
+									@if($customer->sales()->exists())
+										@include('dashboard.customers.partials.sales')
 									@else
 										<center>
 											<h5><strong>
-												@lang('messages.no_products')
+												@lang('messages.no_sales')
 											</strong></h5>
 	 									</center>
 									@endif
-								</div>--><!-- End div .user-profile-content -->
+								</div><!-- End div .user-profile-content -->
 							</div><!-- End div .tab-pane -->
 							<!-- End Tab timeline -->
 						</div><!-- End div .tab-content -->

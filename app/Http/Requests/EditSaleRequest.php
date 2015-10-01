@@ -13,7 +13,7 @@ class EditSaleRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class EditSaleRequest extends Request
     public function rules()
     {
         return [
-            //
+            'seller_id' => 'required|exists:users,id',
+            'product_id' => 'required|exists:products,id',
+            'customer_id' => 'required|exists:customers,id',
         ];
     }
 }

@@ -29,4 +29,7 @@ return [
 	'content_required' => 'You have not entered any content. The content is required.',
 	'new_sale' => 'Sale was created successfully',
 	'not_unique' => 'All data is repeated. The sale must be different!',
+	'edit_sale' => 'Sale was edited successfully',
+	'delete_sale' => 'Sale was deleted',
+	'no_sales' => 'This customer does not have related sales!',
 ];

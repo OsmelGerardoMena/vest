@@ -16,6 +16,12 @@ class Customer extends Model
             'state',
     ];
 
+    ///** Relacion de uno a muchos **///
+    public function sales()
+    {
+        return $this->hasMany('Vest\Tables\Sale');
+    }
+    
     ///** Retorna el status del cliente **///
     public function getStatus()
     {
