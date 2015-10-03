@@ -50,13 +50,17 @@
                     <ul>
                         <li>
                             <!-- dentro de la etiqueta a: class='active' -->
-                            <a href='{{asset('/dashboard')}}' class="active">
+                            <a href="{{asset('/dashboard')}}" class="active">
                                 <span>@lang('dashboard.sidebar.start')</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                @include('partials/modules')
+                @if(Auth::user()->isAdmin())
+                    @include('partials.options_menu_admin')
+                @else
+                    @include('partials.options_menu_user')
+                @endif
             </ul>
             <div class="clearfix"></div>
         </div>

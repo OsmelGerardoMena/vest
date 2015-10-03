@@ -28,7 +28,7 @@
 						<h4>
 							<strong>{{ $user->name }}</strong>
 						</h4>
-						<h5>{{$user->type->name}}</h5>
+						<h5>@lang('dashboard.profile.'.$user->type->name)</h5>
 
 						<!-- User button -->
 						<div class="user-button">

@@ -28,9 +28,6 @@ class MyProductsController extends Controller
             // el vendedor tiene acceso a todo este apartado, el admin no
             $this->middleware('is_seller');
         }
-
-        // si el usuario se encuentra desactivado no podra ver su información
-        $this->middleware('is_active'); 
     }
 
     //metodo que devuelve los productos del vendedor o empresa

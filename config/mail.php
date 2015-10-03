@@ -28,7 +28,8 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    //'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +55,8 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    //'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'adolfz10@gmail.com', 'name' => 'Administrador'],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +82,8 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    //'username' => env('MAIL_USERNAME'),
+    'username' => env('adolfz10'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +96,8 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+    //'password' => env('MAIL_PASSWORD'),
+    'password' => env('squall-04-07'),
 
     /*
     |--------------------------------------------------------------------------

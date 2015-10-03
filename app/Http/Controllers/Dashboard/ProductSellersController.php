@@ -19,7 +19,7 @@ class ProductSellersController extends Controller
     public function __construct()
     {
         $this->beforeFilter('@findProduct', 
-            ['only' => ['show', 'edit', 'update', 'destroy']]);
+            ['only' => ['show', 'destroy']]);
     }
 
     public function findProduct(Route $route)

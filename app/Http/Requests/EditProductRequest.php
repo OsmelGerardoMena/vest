@@ -39,7 +39,7 @@ class EditProductRequest extends Request
                     .$this->route->getParameter('products'),
             'price' => 'required|numeric',
             'url' => 'required|url',
-            'company_id' => 'required',
+            'company_id' => 'required|exists:users,id',
         ];
     }
 }

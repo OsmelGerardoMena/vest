@@ -6,11 +6,11 @@ class OptionsSelect
 {
 	public function get()
 	{
-		$types = \DB::table('user_types')->where('status_id', '=', '1')->get();
+		$types = \DB::table('user_types')->get();
 
 		$array[""] = "";
 		foreach ($types as $value) {
-			$array[$value->id] = $value->name;
+			$array[$value->id] = trans('dashboard.profile.'.$value->name);
 		}
 		return $array;
 	}

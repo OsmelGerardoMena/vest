@@ -28,4 +28,4 @@
 	</div>
 </div>
 
-{!! Form::hidden('creator_id', Auth::user()->id, ['class' => 'form-control']) !!}
+{!! Form::hidden('creator', Auth::user()->name, ['class' => 'form-control']) !!}

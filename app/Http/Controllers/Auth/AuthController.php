@@ -6,8 +6,7 @@ use Vest\User;
 use Validator;
 use Vest\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-//use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Vest\Http\Controllers\Auth\Traits\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
@@ -22,13 +21,14 @@ class AuthController extends Controller
     |
     */
 
-    //AuthenticatesAndRegistersUsers
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    //Ruta de Redireccion si se loguea correctamente
-    //protected $redirectPath = '/dashboard';
-    //Ruta de redireccion si no se loguea correctamente
-    //protected $loginPath = '/login';
+    // Ruta de Redireccion si se loguea correctamente
+    protected $redirectPath = 'dashboard';
+    // Ruta de redireccion si no se loguea correctamente
+    protected $loginPath = 'login';
+    // Ruta de redireccion despues de cerrar sesion
+    protected $redirectAfterLogout = 'login';
 
     /**
      * Create a new authentication controller instance.

@@ -64,7 +64,7 @@
 											<td>{{ $user->id }}</td>
 											<td>{{ $user->name }}</td>
 											<td>{{ $user->email }}</td>
-											<td>{{ $user->type->name }}</td>
+											<td>{{ trans('dashboard.profile.'.$user->type->name) }}</td>
 											<td><span class="{{ ($user->isActive()) ? 'label label-success' : 'label label-danger'}}">
 												{{ trans('dashboard.status.'.$user->getStatusId()) }}
 											</span></td>

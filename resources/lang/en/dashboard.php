@@ -199,4 +199,9 @@ return [
 		'1' => 'Active',
 	],
 
+	'profile' => [
+		'admin' => 'Administrator',
+		'seller' => 'Seller',
+		'company' => 'Company',
+	],
 ];

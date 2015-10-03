@@ -12,7 +12,7 @@ class ModulesTableSeeder extends Seeder
     public function run()
     {
         /// Modulo y submodulos roles (perfiles) id-1
-        $id = \DB::table('modules')->insertGetId([
+        /*$id = \DB::table('modules')->insertGetId([
             'description' => 'roles',
             'icon' => 'icon-address-book',
         ]);
@@ -149,6 +149,6 @@ class ModulesTableSeeder extends Seeder
             'description' => 'my_sales',
             'url' => '/dashboard/algo',
             'module_id' => $id,
-        ]);
+        ]);*/
     }
 }

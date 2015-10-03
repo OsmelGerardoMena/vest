@@ -20,6 +20,9 @@ class PasswordController extends Controller
 
     use ResetsPasswords;
 
+    // ruta para redireccion despues de reseteo de contraseña
+    protected $redirectPath = 'dashboard'; //route('dashboard')
+
     /**
      * Create a new password controller instance.
      *
@@ -28,5 +31,16 @@ class PasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Get the e-mail subject line to be used for the reset link email.
+     *
+     * @return string
+     */
+    protected function getEmailSubject()
+    {
+        return isset($this->subject) ? $this->subject : 
+            trans('email.pass_reset_link');
     }
 }

@@ -20,7 +20,7 @@ class CompaniesController extends Controller
     public function __construct()
     {
         $this->beforeFilter('@findCompany', 
-            ['only' => ['show', 'edit', 'update', 'destroy']]);
+            ['only' => ['show', 'destroy']]);
     }
 
     public function findCompany(Route $route)

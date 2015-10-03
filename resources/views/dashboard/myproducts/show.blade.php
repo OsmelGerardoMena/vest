@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_info_product')
+	@lang('dashboard.title_product_info')
 @stop
 
 @section('content')
@@ -19,7 +19,7 @@
 		<div class="content">
 			<div class="page-heading">
         		<h1><i class='icon-info-circled-alt'></i> 
-        			@lang('dashboard.title_info_product')
+        			@lang('dashboard.title_product_info')
         		</h1>
             </div>
 			<div class="row">
@@ -61,7 +61,7 @@
 											<td>{{ $product->price }}</td>
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
-											<td>{{ $product->creator->name }}</td>
+											<td>{{ $product->creator }}</td>
 											@if(Auth::user()->isCompany() || $position !== false)
 												<td><span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">
                                                 	@lang('dashboard.status.'.$product->getStatusId())

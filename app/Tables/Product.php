@@ -14,16 +14,16 @@ class Product extends Model
         'name',
         'price',
         'url',
+        'creator',
         'company_id',
-        'creator_id',
     ];
 
 	///** relacion de muchos a uno (relacion inversa) **///
-    public function creator()
+    /*public function creator()
     {
         //retorna un solo objeto creator, ya que el producto solo tiene un creador
         return $this->belongsTo('Vest\User');
-    }
+    }*/
 
      public function company()
     {

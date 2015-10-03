@@ -28,7 +28,7 @@ class EditIncentiveRequest extends Request
             'award' => 'required',
             'url' => 'required|url',
             'date' => 'required|date',
-            'product_id' => 'required',
+            'product_id' => 'required|exists:products,id',
         ];
     }
 }

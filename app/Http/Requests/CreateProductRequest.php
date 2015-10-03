@@ -27,7 +27,7 @@ class CreateProductRequest extends Request
             'name' => 'required|max:100|unique:products,name',
             'price' => 'required|numeric',
             'url' => 'required|url',
-            'company_id' => 'required',
+            'company_id' => 'required|exists:users,id',
         ];
     }
 }

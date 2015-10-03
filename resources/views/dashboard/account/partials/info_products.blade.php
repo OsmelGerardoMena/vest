@@ -19,7 +19,7 @@
 				<td>{{ $product->name }}</td>
 				<td>{{ $product->price }}</td>
 				<td>{{ $product->company->name }}</td>
-				<td>{{ $product->creator->name }}</td>
+				<td>{{ $product->creator }}</td>
 				@if($user->isSeller())
 					<td>
 						<span class="{{ ($product->getLinkStatus()) ? 'label label-success' : 'label label-danger'}}">

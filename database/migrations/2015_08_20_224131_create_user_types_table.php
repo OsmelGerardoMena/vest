@@ -15,13 +15,9 @@ class CreateUserTypesTable extends Migration
         Schema::create('user_types', function(Blueprint $table){
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('activated_modules')->nullable;
-            $table->string('activated_submodules')->nullable;
+            //$table->string('activated_modules')->nullable;
+            //$table->string('activated_submodules')->nullable;
             
-            //Relationships
-            $table->integer('status_id')->unsigned()->default(1);
-            $table->foreign('status_id')->references('id')->on('status');
-
             $table->timestamps();
         });
     }

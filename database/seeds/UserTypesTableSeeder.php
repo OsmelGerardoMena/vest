@@ -11,25 +11,26 @@ class UserTypesTableSeeder extends Seeder
      */
     public function run()
     {
+        /// Perfiles fijos para los usuarios ///
         \DB::table('user_types')->insert([
-        	'name' => 'Admin',
-        	'activated_modules' => '1,2,3,4,5',
-            'activated_submodules' => '1,2,3,4,5,6,7,8,9,10,11,12,13,14',
-        	'status_id' => '1',
+        	'name' => 'admin',
         ]);
 
         DB::table('user_types')->insert([
-        	'name' => 'Vendedor',
-            'activated_modules' => '6,7',
-            'activated_submodules' => '15,16',
-        	'status_id' => '1',
+        	'name' => 'seller',
         ]);
 
         DB::table('user_types')->insert([
-            'name' => 'Empresa',
-            'activated_modules' => '6',
-            'activated_submodules' => '15',
-            'status_id' => '1',
+            'name' => 'company',
         ]);
     }
+
+    //'activated_modules' => '1,2,3,4,5',
+    //'activated_submodules' => '1,2,3,4,5,6,7,8,9,10,11,12,13,14',
+
+    //'activated_modules' => '6,7',
+    //'activated_submodules' => '15,16',
+
+    //'activated_modules' => '6',
+    //'activated_submodules' => '15',
 }

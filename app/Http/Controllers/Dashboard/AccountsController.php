@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Session;
 
 class AccountsController extends Controller
 {
-    public function __construct(){
-        // si el usuario se encuentra desactivado no podra ver su información
-        $this->middleware('is_active'); 
-    }
     /**
      * Display a listing of the resource.
      *

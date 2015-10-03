@@ -1,0 +1,1 @@
+@lang('passwords.click_to_reset'): {{ url('password/reset/'.$token) }}

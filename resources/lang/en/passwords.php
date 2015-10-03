@@ -18,4 +18,8 @@ return [
     'token' => 'This password reset token is invalid.',
     'sent' => 'We have e-mailed your password reset link!',
     'reset' => 'Your password has been reset!',
+    'send_link' => 'Send Password Reset Link',
+    'title_reset' => 'Password Reset',
+    'click_to_reset' => 'Click here to reset your password',
+    'reset_password' => 'Reset Password',
 ];

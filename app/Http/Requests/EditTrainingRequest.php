@@ -25,7 +25,7 @@ class EditTrainingRequest extends Request
     {
         return [
             'date' => 'required|date',
-            'product_id' => 'required',
+            'product_id' => 'required|exists:products,id',
             'content' => 'required',
         ];
     }
