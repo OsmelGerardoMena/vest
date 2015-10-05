@@ -15,6 +15,7 @@
 			<div class="login-wrap animated flipInX">
 				<div class="login-block">
 					@include('partials/errors')
+					@include('partials.messages')
 					{!! Form::open(['url' => '/password/email', 'method' => 'post', 'role' => 'form']) !!}
 
 						<div class="form-group login-input">

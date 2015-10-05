@@ -143,12 +143,11 @@ return [
         Vest\Providers\AppServiceProvider::class,
         Vest\Providers\EventServiceProvider::class,
         Vest\Providers\RouteServiceProvider::class,
-
+        Vest\Providers\AuthServiceProvider::class,
         /*
         *   Provider FORM & HTML
         */
         Collective\Html\HtmlServiceProvider::class,
-
     ],
 
     /*
@@ -196,6 +195,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Gate'      => Illuminate\Support\Facades\Gate::class,
         /* Aliases FORM & HTML */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
