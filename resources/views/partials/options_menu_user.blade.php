@@ -15,7 +15,7 @@
     </ul>
 </li>
 
-@if(Auth::user()->isSeller())
+@can('sell')
     <li class='has_sub'>
         <a href=''>
             <i class='fa fa-money'></i>
@@ -32,4 +32,4 @@
             </li>
         </ul>
     </li>
-@endif
+@endcan

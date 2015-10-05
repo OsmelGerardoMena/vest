@@ -56,11 +56,11 @@
                         </li>
                     </ul>
                 </li>
-                @if(Auth::user()->isAdmin())
+                @can('administer')
                     @include('partials.options_menu_admin')
                 @else
                     @include('partials.options_menu_user')
-                @endif
+                @endcan
             </ul>
             <div class="clearfix"></div>
         </div>
