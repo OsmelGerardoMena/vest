@@ -49,9 +49,9 @@
 											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
 											<th>@lang('dashboard.table.creator')</th>
-											@if(Auth::user()->isCompany() || $position !== false)
+											@if(Auth::user()->can('company') || $position !== false)
                                             	<th>@lang('dashboard.table.status')</th>
-                                        	@elseif(Auth::user()->isSeller())
+                                        	@elseif(Auth::user()->can('seller'))
                                         		<th>@lang('dashboard.table.link_status')</th>
                                         	@endif
 										</tr>
@@ -62,11 +62,11 @@
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
 											<td>{{ $product->creator }}</td>
-											@if(Auth::user()->isCompany() || $position !== false)
+											@if(Auth::user()->can('company') || $position !== false)
 												<td><span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">
                                                 	@lang('dashboard.status.'.$product->getStatusId())
                                                 </span></td>
-											@elseif(Auth::user()->isSeller())
+											@elseif(Auth::user()->can('seller'))
 	                                    		<td><span class="{{ ($product->getLinkStatus()) ? 'label label-success' : 'label label-danger'}}">
 	                                        		@lang('dashboard.link_status.'.$product->getLinkStatus())
 	                                        	</span></td>

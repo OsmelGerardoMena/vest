@@ -56,7 +56,7 @@
                         </li>
                     </ul>
                 </li>
-                @can('administer')
+                @can('admin')
                     @include('partials.options_menu_admin')
                 @else
                     @include('partials.options_menu_user')

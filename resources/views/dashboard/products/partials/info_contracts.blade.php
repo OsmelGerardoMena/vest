@@ -16,32 +16,32 @@
 							<tr>
 								<th>@lang('dashboard.table.name')</th>
 								<th>@lang('dashboard.table.file')</th>
-								@if(Auth::user()->isAdmin())
+								@can('admin')
 									<th>@lang('dashboard.table.actions')</th>
-								@endif
+								@endcan
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($product->contracts as $contract)
 							<tr>
 								<td>{{$contract->name}}</td>
-								@if(Storage::disk('local_pdf')->exists($contract->contract_file))
+								@if($contract->fileExists())
 									<td><a href="{{ asset('files/contracts') }}/{{ $contract->contract_file }}" target="_blank">
 										@lang('dashboard.download_contract')
 									</a></td>
 								@else
 									<td>@lang('dashboard.not_found')</td>
 								@endif
-								@if(Auth::user()->isAdmin())
+								@can('admin')
 									<td>
 										<div class="btn-group btn-group-xs">
-											<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit_delete')" class="btn btn-info" 
+											<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit_delete')" class="btn btn-warning" 
 												href="{{route('dashboard.contracts.edit', $contract->id)}}">
-												<i class="glyphicon glyphicon-arrow-left"></i>
+												<i class="fa fa-edit"></i>
 											</a>
 										</div>
 									</td>
-								@endif
+								@endcan
 							</tr>
 							@endforeach
 						</tbody>

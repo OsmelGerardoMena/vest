@@ -55,14 +55,14 @@
 									@lang('dashboard.buttons.info')
 								</a>
 							</li>
-							@if(!$user->isAdmin())
+							@cannot('admin')
 								<li class="">
 									<a href="#products" data-toggle="tab" aria-expanded="false">
 										<i class="icon-layers"></i>
 										@lang('dashboard.buttons.products')
 									</a>
 								</li>
-							@endif
+							@endcan
 						</ul><!-- End nav tab -->
 
 						<!-- Tab panes -->
@@ -146,11 +146,11 @@
 								</div><!-- End div .user-profile-content -->
 							</div><!-- End div .tab-pane -->
 							<!-- End Tab about -->
-							@if(!$user->isAdmin())
+							@cannot('admin')
 								<!-- Tab timeline -->
 								<div class="tab-pane animated fadeInRight" id="products">
 									<div class="user-profile-content">
-										@if(!empty($products))
+										@if($products->count() != 0))
 											<h5>
 												<strong>
 													{{strtoupper(trans('dashboard.my'))}}
@@ -167,7 +167,7 @@
 										@endif
 									</div><!-- End div .user-profile-content -->
 								</div><!-- End div .tab-pane -->
-							@endif
+							@endcan
 							<!-- End Tab timeline -->
 						</div><!-- End div .tab-content -->
 					</div><!-- End div .widget widget-tabbed -->

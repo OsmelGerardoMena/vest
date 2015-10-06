@@ -3,10 +3,10 @@
 namespace Vest\Providers;
 
 //Modelos
-use Vest\User;
+//use Vest\User;
 
 //Politicas (directivas)
-use Vest\Policies\UserPolicy;
+//use Vest\Policies\UserPolicy;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -18,9 +18,10 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
+    
     protected $policies = [
-        //La politica del modelo User es la clase UserTypePolicy
-        User::class => UserPolicy::class,
+        //La politica del modelo User es la clase UserPolicy
+        //\Vest\User::class => \Vest\Policies\UserPolicy::class
     ];
 
     /**
@@ -31,17 +32,18 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(GateContract $gate)
     {
-        parent::registerPolicies($gate);
-
-        //$gate->define('is-admin', 'UserPolicy@administer');
-        //$gate->define('is-seller', 'UserPolicy@sell');
+        $this->registerPolicies($gate);
         
-        /*$gate->define('is-admin', function($user){
+        $gate->define('admin', function($user){
             return $user->isAdmin();
         });
 
-        $gate->define('is-seller', function($user){
+        $gate->define('seller', function($user){
             return $user->isSeller();
-        });*/
+        });
+
+        $gate->define('company', function($user){
+            return $user->isCompany();
+        });
     }
 }

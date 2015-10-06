@@ -18,9 +18,9 @@
 								<th>@lang('dashboard.table.award')</th>
 								<th>@lang('dashboard.table.url')</th>
 								<th>@lang('dashboard.table.date')</th>
-								@if(Auth::user()->isAdmin())
+								@can('admin')
 									<th>@lang('dashboard.table.actions')</th>
-								@endif
+								@endcan
 							</tr>
 						</thead>
 						<tbody>
@@ -30,16 +30,16 @@
 								<td>{{$incentive->award}}</td>
 								<td><a href="{{ $incentive->url }}" target="_blank">{{ $incentive->url }}</a></td>
 								<td>{{$incentive->date}}</td>
-								@if(Auth::user()->isAdmin())
+								@can('admin')
 									<td>
 										<div class="btn-group btn-group-xs">
-											<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit_delete')" class="btn btn-info" 
+											<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit_delete')" class="btn btn-warning" 
 												href="{{route('dashboard.incentives.edit', $incentive->id)}}">
-												<i class="glyphicon glyphicon-arrow-left"></i>
+												<i class="fa fa-edit"></i>
 											</a>
 										</div>
 									</td>
-								@endif
+								@endcan
 							</tr>
 							@endforeach
 						</tbody>

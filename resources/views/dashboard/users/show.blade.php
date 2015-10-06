@@ -62,7 +62,7 @@
 									@lang('dashboard.buttons.info')
 								</a>
 							</li>
-							@if(!$user->isAdmin())
+							@if(!$user->can('admin'))
 								<li class="">
 									<a href="#products" data-toggle="tab" aria-expanded="false">
 										<i class="icon-layers"></i>
@@ -135,11 +135,11 @@
 								</div><!-- End div .user-profile-content -->
 							</div><!-- End div .tab-pane -->
 							<!-- End Tab about -->
-							@if(!$user->isAdmin())
+							@if(!$user->can('admin'))
 								<!-- Tab timeline -->
 								<div class="tab-pane animated fadeInRight" id="products">
 									<div class="user-profile-content">
-										@if(!empty($products))
+										@if($products->count() != 0)
 											<h5><strong>
 												{{strtoupper(trans('dashboard.title_products'))}}:
 											</strong></h5>

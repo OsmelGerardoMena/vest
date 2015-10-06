@@ -15,7 +15,7 @@
     </ul>
 </li>
 
-@can('sell')
+@can('seller')
     <li class='has_sub'>
         <a href=''>
             <i class='fa fa-money'></i>

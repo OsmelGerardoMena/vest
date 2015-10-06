@@ -16,9 +16,9 @@
 							<tr>
 								<th>@lang('dashboard.table.name')</th>
 								<th>@lang('dashboard.table.benefit_type')</th>
-								@if(Auth::user()->isAdmin())
+								@can('admin')
 									<th>@lang('dashboard.table.actions')</th>
-								@endif
+								@endcan
 							</tr>
 						</thead>
 						<tbody>
@@ -26,16 +26,16 @@
 							<tr>
 								<td>{{$benefit->name}}</td>
 								<td>{{$benefit->type->name}}</td>
-								@if(Auth::user()->isAdmin())
+								@can('admin')
 									<td>
 										<div class="btn-group btn-group-xs">
-											<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit_delete')" class="btn btn-info" 
+											<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit_delete')" class="btn btn-warning" 
 												href="{{route('dashboard.benefits.edit', $benefit->id)}}">
-												<i class="glyphicon glyphicon-arrow-left"></i>
+												<i class="fa fa-edit"></i>
 											</a>
 										</div>
 									</td>
-								@endif
+								@endcan
 							</tr>
 							@endforeach
 						</tbody>

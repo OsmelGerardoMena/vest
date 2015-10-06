@@ -24,12 +24,12 @@
 								<td>{{$training->date}}</td>
 								<td>
 									<div class="btn-group btn-group-xs">
-										@if(Auth::user()->isAdmin())
+										@can('admin')
 											<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit_delete')" class="btn btn-warning" 
 												href="{{route('dashboard.trainings.edit', $training->id)}}">
 												<i class="fa fa-edit"></i>
 											</a>
-										@endif
+										@endcan
 										<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
 											href="{{route('dashboard.trainings.show', $training->id)}}">
 											<i class="fa fa-info-circle"></i>

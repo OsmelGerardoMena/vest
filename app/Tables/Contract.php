@@ -54,4 +54,9 @@ class Contract extends Model
             $query->where("product_id", $product_id);
         }
     }
+
+    public function fileExists()
+    {
+        return \Storage::disk('local_pdf')->exists($this->contract_file);
+    }
 }

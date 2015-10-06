@@ -23,7 +23,7 @@
             </div>
             <div class="widget">
 				<div class="widget-content padding">
-					@if(Auth::user()->isAdmin())
+					@can('admin')
 						<a href="{{route('dashboard.trainings.index')}}" class="btn btn-primary">
 							<i class="icon-back"></i>
 							@lang('dashboard.buttons.back')
@@ -33,7 +33,7 @@
 							<i class="icon-back"></i>
 							@lang('dashboard.buttons.back')
 						</a>
-					@endif
+					@endcan
 					<br><br>
 					{!! html_entity_decode($training->content) !!}
 				</div>

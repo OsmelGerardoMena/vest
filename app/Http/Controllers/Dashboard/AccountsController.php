@@ -13,8 +13,14 @@ use Vest\Http\Requests\EditAccountRequest;
 
 use Illuminate\Support\Facades\Session;
 
+use Gate;
+
 class AccountsController extends Controller
 {
+    public function __construct()
+    {
+        $this->user = Auth::user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,17 +28,18 @@ class AccountsController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
         $products = [];
 
-        if(Auth::user()->type_id == 2){ //vendedor
-            $products = $user->addedproducts;
+        // tambien se puede usar $this->user->can('seller')
+        if(Gate::allows('seller')){ //si es vendedor
+            $products = $this->user->addedproducts;
         }
-        else if(Auth::user()->type_id == 3){ //empresa
-            $products = $user->products;
+        else if(Gate::allows('company')){ // si es empresa
+            $products = $this->user->products;
         }
-
-        return view('dashboard.account.account', compact('user', 'products'));
+        
+        return view('dashboard.account.account', compact('products'))
+                        ->with('user', $this->user);
     }
 
     /**
@@ -76,12 +83,11 @@ class AccountsController extends Controller
     public function edit($id)
     {
         //si intentan ingresar otro id en la barra de direccion
-        if($id != Auth::user()->id){ //se verifican los id
-            return redirect()->route('dashboard.account.edit', Auth::user()->id);
+        if($id != $this->user->id){ //se verifican los id
+            return redirect()->route('dashboard.account.edit', $this->user->id);
         }
         
-        $user = Auth::user();
-        return view('dashboard.account.edit', compact('user'));
+        return view('dashboard.account.edit')->with('user', $this->user);
     }
 
     /**
@@ -93,11 +99,9 @@ class AccountsController extends Controller
      */
     public function update(EditAccountRequest $request, $id)
     {
-        $user = Auth::user();
-        
-        $user->fill($request->all());
+        $this->user->fill($request->all());
 
-        $user->save();
+        $this->user->save();
 
         Session::flash('edit', trans('messages.edit_account'));
 
