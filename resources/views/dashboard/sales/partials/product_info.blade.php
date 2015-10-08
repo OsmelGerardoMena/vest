@@ -30,7 +30,7 @@
 									{{ $sale->product->url }}
 								</a></td>
 								<td>{{ $sale->product->company->name }}</td>
-								<td>{{ $sale->product->creator->name }}</td>
+								<td>{{ $sale->product->creator }}</td>
 								<td><span class="{{ ($sale->product->isActive()) ? 'label label-success' : 'label label-danger'}}">
 									{{ trans('dashboard.status.'.$sale->product->getStatusId()) }}
 									</span>

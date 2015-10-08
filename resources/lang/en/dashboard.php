@@ -44,6 +44,7 @@ return [
 	'title_create_sale' => 'Create sale',
 	'title_edit_sale' => 'Edit sale',
 	'title_info_sale' => 'Sale info',
+	'title_company_sales' => 'Company Sales',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'change_password' => 'Change password',
@@ -74,6 +75,9 @@ return [
 	'download_contract' => 'Download contract',
 	'not_found' => 'File not Found',
 	'content' => 'Content',
+	'per_product' => 'Per Product',
+	'per_seller' => 'Per Seller',
+	'total_sales' => 'Total Sales',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',
@@ -103,6 +107,7 @@ return [
 		'sales' => 'Sales',
 		'list_customers' => 'Customers list',
 		'list_sales' => 'Sales list',
+		'counting_sales' => 'Counting sales',
 	],
 
 	'buttons' => [

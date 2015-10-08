@@ -14,7 +14,8 @@
 <script src="{{asset('assets/js/apps/calculator.js')}}"></script>
 <script src="{{asset('assets/js/apps/todo.js')}}"></script>
 <script src="{{asset('assets/js/apps/notes.js')}}"></script>
-<!--<script src="{{asset('assets/js/pages/index.js')}}"></script>-->
+<script src="{{asset('assets/js/pages/sparkline-charts.js')}}"></script>
+<!--<script src="{{asset('assets/js/pages/index2.js')}}"></script>-->
 
 <!-- para funcionalidad de textarea en el apartado de crear capacitaciones -->
 <script src="{{asset('assets/libs/bootstrap-inputmask/inputmask.js')}}"></script>

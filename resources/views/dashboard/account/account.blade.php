@@ -150,7 +150,7 @@
 								<!-- Tab timeline -->
 								<div class="tab-pane animated fadeInRight" id="products">
 									<div class="user-profile-content">
-										@if($products->count() != 0))
+										@if($products->count() != 0)
 											<h5>
 												<strong>
 													{{strtoupper(trans('dashboard.my'))}}

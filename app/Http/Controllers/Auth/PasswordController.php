@@ -43,4 +43,21 @@ class PasswordController extends Controller
         return isset($this->subject) ? $this->subject : 
             trans('email.pass_reset_link');
     }
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
+     */
+    protected function resetPassword($user, $password)
+    {
+        // la contraseña no se encripta aqui xq ya existe un mutador en User.php
+        $user->password = $password;
+
+        $user->save();
+
+        \Auth::login($user);
+    }
 }

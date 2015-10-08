@@ -33,3 +33,22 @@
         </ul>
     </li>
 @endcan
+
+@can('company')
+    <li class='has_sub'>
+        <a href=''>
+            <i class='glyphicon glyphicon-stats'></i>
+            <span>@lang('dashboard.sidebar.sales')</span> 
+            <span class="pull-right">
+                <i class="fa fa-angle-down"></i>
+            </span>
+        </a>
+        <ul>
+            <li>
+                <a href="{{route('dashboard.companysales.index')}}">
+                    <span>@lang('dashboard.sidebar.counting_sales')</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+@endcan

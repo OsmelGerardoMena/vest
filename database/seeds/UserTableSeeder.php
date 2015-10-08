@@ -11,18 +11,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Vest\User::class)->create([
-            'name' => 'Super Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('secret'),
-            'identifier' => '11111111',
-            'mobile' => '0500500',
-            'phone' => '08000800',
-            'address' => 'Jardin de Balamb',
-            'type_id' => 1,
-        ]);
-        
-        /*\DB::table('users')->insert([
+        /*factory(Vest\User::class)->create([
             'name' => 'Super Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('secret'),
@@ -32,6 +21,17 @@ class UserTableSeeder extends Seeder
             'address' => 'Jardin de Balamb',
             'type_id' => 1,
         ]);*/
+        
+        \DB::table('users')->insert([
+            'name' => 'Super Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('secret'),
+            'identifier' => '11111111',
+            'mobile' => '0500500',
+            'phone' => '08000800',
+            'address' => 'Jardin de Balamb',
+            'type_id' => 1,
+        ]);
 
     	//se crean 10 datos de prueba
         factory(Vest\User::class, 9)->create();

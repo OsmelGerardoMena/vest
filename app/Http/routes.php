@@ -129,4 +129,10 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 	]);
 
 	Route::resource('dashboard/trainings', 'TrainingsController', ['only' => 'show']);
+
+	Route::controller('dashboard/company-sales', 'CompanySalesController', [
+		'getIndex' => 'dashboard.companysales.index',
+		//'getProductsSales' => 'dashboard.companysales.productssales',
+		//'getSellersSales' => 'dashboard.companysales.show',
+	]);
 });
