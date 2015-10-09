@@ -21,7 +21,7 @@
 
 						<div class="form-group login-input">
 							<i class="fa fa-envelope-o overlay"></i>
-							{!! Form::email('email', old('email'), ['class' => 'form-control text-input', 'placeholder' => trans('validation.attributes.email')])!!}
+							{!! Form::email('email', null, ['class' => 'form-control text-input', 'placeholder' => trans('validation.attributes.email')])!!}
 						</div>
 
 						<div class="form-group login-input">

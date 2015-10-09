@@ -109,6 +109,7 @@
 	<!-- Scripts adicionales -->
 	<script src="{{asset('assets/js/reloadsearch.js')}}"></script>
 	<script src="{{asset('assets/js/reloadselectorssales.js')}}"></script>
+	<script src="{{asset('assets/js/test.js')}}"></script>
 	<!-- <script src="{{asset('assets/js/activemenu.js')}}"></script>-->
 </body>
 </html>
