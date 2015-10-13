@@ -145,4 +145,11 @@ class SalesController extends Controller
 
         return redirect()->route('dashboard.sales.index');
     }
+
+    public function relatedProducts(Request $request)
+    {
+        return 'hey!';
+        //return dd($request->get('seller_id'));
+        //return response()->view('dashboard.sales.create')->header('Content-Type', 'caca');
+    }
 }

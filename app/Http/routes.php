@@ -107,6 +107,10 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 	]);
 	Route::resource('dashboard/customers', 'CustomersController');
 
+	Route::post('dashboard/sales/seller', [
+			'uses' => 'SalesController@relatedProducts',
+			'as' => 'dashboard.sales.seller'
+	]);
 	Route::resource('dashboard/sales', 'SalesController');
 
 	/*Route::get('dashboard/profiles/status/{id}', [

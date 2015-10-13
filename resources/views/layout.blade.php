@@ -58,7 +58,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{{asset('assets/img/apple-touch-icon-144x144.png')}}" />
     <link rel="apple-touch-icon" sizes="152x152" href="{{asset('assets/img/apple-touch-icon-152x152.png')}}" />
     <!-- End Images -->
-
+    
 </head>
 @if(Auth::guest())
 	<body class="fixed-left login-page">
@@ -75,6 +75,7 @@
 		var resizefunc = [];
 	</script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!--<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>-->
 	<script src="{{asset('assets/libs/jquery/jquery-1.11.1.min.js')}}"></script>
 	<script src="{{asset('assets/libs/bootstrap/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('assets/libs/jqueryui/jquery-ui-1.10.4.custom.min.js')}}"></script>
