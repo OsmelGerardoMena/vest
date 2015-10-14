@@ -55,8 +55,9 @@ class Contract extends Model
         }
     }
 
+    // verifica si existe un archivo para el contrato
     public function fileExists()
     {
-        return \Storage::disk('local_pdf')->exists($this->contract_file);
+        return \Storage::disk('local_contract_file')->exists($this->contract_file);
     }
 }

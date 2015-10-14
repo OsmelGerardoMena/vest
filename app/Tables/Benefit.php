@@ -8,7 +8,7 @@ class Benefit extends Model
 {
     protected $table = 'benefits';
 
-    protected $fillable = [ 'name', 'type_id', 'product_id'];
+    protected $fillable = [ 'amount', 'type_id', 'product_id'];
 
     ///** relacion de muchos a uno (relacion inversa) **///
     public function product()
@@ -25,21 +25,13 @@ class Benefit extends Model
     }
 
     ///** Filtro para usuarios y Scope **///
-    public static function filterBenefits($name, $product_id)
+    public static function filterBenefits($product_id)
     {
-    	return Benefit::name($name)
-                ->productid($product_id)
+    	return Benefit::productid($product_id)
                 ->simplePaginate(5);
     }
 
     ///** Scope **///
-    public function scopeName($query, $name)
-    {
-        if(trim($name) != ""){
-            $query->where("name", "LIKE", "%$name%");
-        }    
-    }
-
     public function scopeProductid($query, $product_id)
     {
         $products = Product::select('id')->get();

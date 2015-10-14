@@ -37,10 +37,7 @@ class BenefitsController extends Controller
      */
     public function index(Request $request)
     {
-        $benefits = Benefit::filterBenefits(
-            $request->get('name'), 
-            $request->get('product')
-        );
+        $benefits = Benefit::filterBenefits($request->get('product'));
 
         $benefits->setPath('benefits');
         return view('dashboard.benefits.benefits', compact('benefits'));
@@ -66,10 +63,8 @@ class BenefitsController extends Controller
     {
         $benefit = Benefit::create($request->all());
 
-        $message = $benefit->name.trans('messages.new');
-      
-        Session::flash('new', $message);
-    
+        Session::flash('new', trans('messages.new_benefit'));
+
         return redirect()->route('dashboard.benefits.index');
     }
 
@@ -109,9 +104,7 @@ class BenefitsController extends Controller
 
         $this->benefit->save();
 
-        $message = $this->benefit->name.trans('messages.edit');
-
-        Session::flash('edit', $message);
+        Session::flash('edit', trans('messages.edit_benefit'));
 
         return redirect()->back();
     }
@@ -126,9 +119,7 @@ class BenefitsController extends Controller
     {
         $this->benefit->delete();
 
-        $message = $this->benefit->name.trans('messages.delete');
-
-        Session::flash('delete', $message);
+        Session::flash('delete', trans('messages.delete_benefit'));
 
         return redirect()->route('dashboard.benefits.index');
     }

@@ -11,6 +11,7 @@ class Training extends Model
 	protected $fillable = [
             'date',
             'product_id',
+            'training_file',
             'content'
     ];
 
@@ -48,5 +49,11 @@ class Training extends Model
             
             $query->where("product_id", $product_id);
         }
+    }
+
+    // verifica si existe un archivo para el contrato
+    public function fileExists()
+    {
+        return \Storage::disk('local_training_file')->exists($this->training_file);
     }
 }

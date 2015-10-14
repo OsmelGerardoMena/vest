@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-	@lang('dashboard.title_info_product')
+	@lang('dashboard.title_product_info')
 @stop
 
 @section('content')

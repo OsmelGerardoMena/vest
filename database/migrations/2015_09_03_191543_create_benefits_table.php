@@ -14,7 +14,7 @@ class CreateBenefitsTable extends Migration
     {
         Schema::create('benefits', function(Blueprint $table){
             $table->increments('id');
-            $table->string('name');
+            $table->double('amount', 10, 2);
             
             //Relationships
             $table->integer('type_id')->unsigned();

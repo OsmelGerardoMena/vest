@@ -21,6 +21,25 @@
 	    			@lang('dashboard.title_training_info') - {{$training->product->name}}
 	    		</h1>
             </div>
+          
+			<div class="widget">
+				<div class="widget-header ">
+					<h2><strong>@lang('dashboard.training_file')</strong></h2>
+					<div class="additional-btn">
+						<a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
+					</div>
+				</div>
+				<div class="widget-content padding">
+					@if($training->fileExists())
+						<a href="{{ asset('files/trainings') }}/{{ $training->training_file }}" target="_blank">
+							@lang('dashboard.download_training')
+						</a>
+					@else
+						<h4>@lang('dashboard.not_found')</h4>
+					@endif
+				</div>
+			</div>
+
             <div class="widget">
 				<div class="widget-content padding">
 					@can('admin')

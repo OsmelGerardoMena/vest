@@ -9,6 +9,7 @@ use Vest\Http\Controllers\Controller;
 
 use Vest\Tables\Sale;
 use Vest\Tables\Product;
+use Vest\User;
 
 use Illuminate\Routing\Route;
 
@@ -146,10 +147,24 @@ class SalesController extends Controller
         return redirect()->route('dashboard.sales.index');
     }
 
-    public function relatedProducts(Request $request)
+    public function sellerProducts(Request $request)
     {
         return 'hey!';
         //return dd($request->get('seller_id'));
-        //return response()->view('dashboard.sales.create')->header('Content-Type', 'caca');
+        //return response()->json(['mensaje' => 'Hola Como Tasss']);
+
+        if($request->ajax()){
+            $seller = User::find($request->get('seller_id'));
+            $seller_products = $seller->addedproducts;
+            $products = [];
+
+            foreach ($seller_products as $product) {
+                if($product->isActive()){
+                    $products [$product->id] = $product->name;
+                }
+            }
+
+            return 1;
+        }
     }
 }

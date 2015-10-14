@@ -18,7 +18,7 @@ Route::get('/', [
 ]);
 
 // Authentication routes...
-Route::get('login',[
+Route::get('login', [
 	'uses' => 'Auth\AuthController@getLogin',
 	'as'   => 'login'
 ]);
@@ -107,10 +107,7 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 	]);
 	Route::resource('dashboard/customers', 'CustomersController');
 
-	Route::post('dashboard/sales/seller', [
-			'uses' => 'SalesController@relatedProducts',
-			'as' => 'dashboard.sales.seller'
-	]);
+	Route::post('dashboard/sales/seller', 'SalesController@sellerProducts');
 	Route::resource('dashboard/sales', 'SalesController');
 
 	/*Route::get('dashboard/profiles/status/{id}', [

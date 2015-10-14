@@ -12,11 +12,11 @@ class BenefitTypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('benefit_types')->insert([
-        	'name' => 'Procentaje',
+        	'name' => 'percentage',
         ]);
 
         DB::table('benefit_types')->insert([
-        	'name' => 'Bolivares',
+        	'name' => 'bolivares',
         ]);
     }
 }

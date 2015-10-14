@@ -2,9 +2,9 @@
 @inject('types', 'Vest\Services\OptionsSelectBenefitTypes')
 
 <div class="form-group">
-	{!! Form::label('name', trans('validation.attributes.name'), ['class' => 'col-sm-2 control-label']) !!}
+	{!! Form::label('amount', trans('validation.attributes.amount'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.name_here')]) !!}
+		{!! Form::text('amount', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.amount_here')]) !!}
 	</div>
 </div>
 

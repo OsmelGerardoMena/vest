@@ -8,9 +8,9 @@ class OptionsSelectBenefitTypes
 	{
 		$types = \DB::table('benefit_types')->get();
 
-		$array[""] = "";
+		$array[''] = '';
 		foreach ($types as $value) {
-			$array[$value->id] = $value->name;
+			$array[$value->id] = trans('dashboard.'.$value->name);
 		}
 		return $array;
 	}

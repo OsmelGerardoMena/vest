@@ -4,18 +4,8 @@ namespace Vest\Http\Requests;
 
 use Vest\Http\Requests\Request;
 
-use Illuminate\Routing\Route;
-
 class EditBenefitRequest extends Request
 {
-    private $route;
-
-    public function __construct(Route $route)
-    {
-        //para obtener el id del usuario por medio de getParameter()
-        $this->route = $route;
-    }
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -34,8 +24,7 @@ class EditBenefitRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:60|unique:benefits,name,'
-                        .$this->route->getParameter('benefits'),
+            'amount' => 'required|numeric',
             'type_id' => 'required',
             'product_id' => 'required|exists:products,id',
         ];

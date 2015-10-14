@@ -78,6 +78,10 @@ return [
 	'per_product' => 'Per Product',
 	'per_seller' => 'Per Seller',
 	'total_sales' => 'Total Sales',
+	'percentage' => 'Percentage',
+	'bolivares' => 'Bolivares',
+	'training_file' => 'Training file',
+	'download_training' => 'Download training file',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',
@@ -159,6 +163,7 @@ return [
 		'city_here' => 'City here',
 		'state_here' => 'State here',
 		'tradename_here' => 'Trade name here',
+		'amount_here' => 'Amount here, example: 756.56, 500, 8, 12',
 	],
 
 	'table' => [

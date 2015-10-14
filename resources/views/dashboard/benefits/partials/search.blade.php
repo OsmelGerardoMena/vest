@@ -15,10 +15,6 @@
 	</div>
 
 	<div class="form-group">
-		{!! Form::text('name', null, ['class' => 'form-control', 'id' => 'my-text', 'placeholder' => trans('dashboard.ph.search_benefit')]) !!}
-	</div>
-
-	<div class="form-group">
 		{!! Form::select('product', $products->get(), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
 	</div>
 	

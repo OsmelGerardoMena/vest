@@ -20,11 +20,21 @@ use Illuminate\Support\Facades\Auth;
 
 class TrainingsController extends Controller
 {
-    public function __construct(){
+    // Atributo para guardar nuevo nombre del archivo a subir
+    private $file_name;
+    // Atributo para guardar las extensiones permitidas
+    private $allowed = ['pdf', 'doc', 'docx'];
+    // Atributo para almacenar mensaje de error al subir archivo
+    private $error_message;
+
+    // Construtor
+    public function __construct()
+    {
         $this->beforeFilter('@findTraining', ['only' => ['show','edit', 'update', 'destroy']]);
     }
 
-    public function findTraining(Route $route){
+    public function findTraining(Route $route)
+    {
         $this->training = Training::findOrFail($route->getParameter('trainings'));
     }
 
@@ -58,7 +68,6 @@ class TrainingsController extends Controller
      */
     public function store(CreateTrainingRequest $request)
     {
-        //return dd($request->get('content'));
         // se verifica si el campo content esta vacio
         // por defecto en el html tiene el string de abajo
         if(trim($request->get('content')) === "<p><br></p>"){
@@ -66,10 +75,28 @@ class TrainingsController extends Controller
             return redirect()->back()->withInput($request->all());
         }
 
-        $training = Training::create($request->all());
+        // Se crea un nuevo objeto Training
+        $training = new Training();
+
+        // se verifica si se ha recibido un archivo
+        // No uso hasFile xq devuelve false si el archivo se excede de 2Mb
+        if($request->file('training_file')){
+            // se intenta subir, pero si uploadFile retorna false
+            if (!$this->uploadFile($request->file('training_file'))) {
+                Session::flash('file_error', $this->error_message);
+                return redirect()->back()->withInput($request->all());
+            }
+            // el nuevo nombre del archivo se guarda en el atributo training_file
+            $training->training_file = $this->file_name;
+        }
+        
+        // se almacena los datos recibidos
+        $training->date = $request->get('date');
+        $training->product_id = $request->get('product_id');
+        $training->content = $request->get('content');
+        $training->save();
       
         Session::flash('new', trans('messages.new_training'));
-    
         return redirect()->route('dashboard.trainings.index');
     }
 
@@ -133,5 +160,39 @@ class TrainingsController extends Controller
         Session::flash('delete', trans('messages.delete_training'));
 
         return redirect()->route('dashboard.trainings.index');
+    }
+
+    // metodo privado para subir un archivo
+    private function uploadFile($file)
+    {
+        if(!$file->getError()){
+            // se alamacena la extensiond el archivo en minusculas
+            $file_extension = strtolower($file->getClientOriginalExtension());
+            // se verifica si la extensión coincide con alguna de las permitidas
+            if(in_array($file_extension, $this->allowed)){
+                // se almacena nuevo nombre para el archivo
+                $this->file_name = uniqid('', true).'.'.$file_extension;
+                // se mueve el archivo al directoio donde se va a guardar
+                $upload = $file->move(public_path('files/trainings'), $this->file_name);
+                // se verifica la carga
+                if($upload){
+                    return true;
+                }
+                else{
+                    // Mensaje de error al subir
+                    $this->error_message = trans('messages.uploading_error');
+                }
+            }
+            else{
+                // Mensaje de error de extension
+                $this->error_message = trans('messages.extension_error');
+            }
+        }
+        else{
+            // Mensaje de error en el archivo
+            $this->error_message = trans('messages.file_error');
+        }
+
+        return false;
     }
 }

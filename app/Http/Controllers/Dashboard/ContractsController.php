@@ -77,7 +77,7 @@ class ContractsController extends Controller
             // se alamacena la extensiond el archivo en minusculas 
             $file_extension = strtolower($file->getClientOriginalExtension());
             // se almacena la extención permitida
-            $allowed = ['pdf'];
+            $allowed = ['pdf', 'doc', 'docx'];
 
             // se verifica si la extensión coincide con la permitida
             if(!in_array($file_extension, $allowed)){
@@ -86,7 +86,7 @@ class ContractsController extends Controller
             }
 
             // nuevo nombre para el archivo
-            $name = uniqid('', true).$file_extension;
+            $name = uniqid('', true).'.'.$file_extension;
             // se mueve el archivo al directoio donde se va a guardar
             $upload = $file->move(public_path('files/contracts'), $name);
            
@@ -152,7 +152,7 @@ class ContractsController extends Controller
             // se alamacena la extensiond el archivo en minusculas 
             $file_extension = strtolower($file->getClientOriginalExtension());
             // se almacena la extención permitida
-            $allowed = ['pdf'];
+            $allowed = ['pdf', 'doc', 'docx'];
 
             // se verifica si la extensión coincide con la permitida
             if(!in_array($file_extension, $allowed)){
@@ -161,7 +161,7 @@ class ContractsController extends Controller
             }
 
             // nuevo nombre para el archivo
-            $name = uniqid('', true).$file->getClientOriginalName();
+            $name = uniqid('', true).'.'.$file_extension;
             // se mueve el archivo al directoio donde se va a guardar
             $upload = $file->move(public_path('files/contracts'), $name);
            
@@ -172,7 +172,7 @@ class ContractsController extends Controller
             }
             //se elimina el archivo viejo
             if($this->contract->fileExists())
-                \Storage::disk('local_pdf')->delete($this->contract->contract_file);
+                \Storage::disk('local_contract_file')->delete($this->contract->contract_file);
             
             // el nuevo nombre del archivo se guarda en el atributo contract_file
             $this->contract->contract_file = $name;
@@ -199,7 +199,7 @@ class ContractsController extends Controller
     {
         //elimino primero el archivo de contrato
         if($this->contract->fileExists())
-            \Storage::disk('local_pdf')->delete($this->contract->contract_file);
+            \Storage::disk('local_contract_file')->delete($this->contract->contract_file);
 
         // luego elimino el registro de la base de datos
         $this->contract->delete();

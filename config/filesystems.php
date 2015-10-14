@@ -48,9 +48,14 @@ return [
             'root'   => storage_path('app'),
         ],
 
-        'local_pdf' => [
+        'local_contract_file' => [
             'driver' => 'local',
             'root'   => public_path('files/contracts'),
+        ],
+
+        'local_training_file' => [
+            'driver' => 'local',
+            'root'   => public_path('files/trainings'),
         ],
 
         'ftp' => [

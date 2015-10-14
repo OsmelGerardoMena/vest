@@ -24,7 +24,7 @@ class CreateBenefitRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:60|unique:benefits,name',
+            'amount' => 'required|numeric',
             'type_id' => 'required',
             'product_id' => 'required|exists:products,id',
         ];

@@ -51,7 +51,7 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>@lang('dashboard.table.name')</th>
+											<th>@lang('dashboard.table.amount')</th>
 											<th>@lang('dashboard.table.benefit_type')</th>
 											<th>@lang('dashboard.table.product')</th>
 											<th>@lang('dashboard.table.company')</th>
@@ -62,8 +62,8 @@
 										@foreach($benefits as $benefit)
 										<tr>
 											<td>{{ $benefit->id }}</td>
-											<td>{{ $benefit->name }}</td>
-											<td>{{ $benefit->type->name}}</td>
+											<td>{{ $benefit->amount }}</td>
+											<td>{{ trans('dashboard.'.$benefit->type->name) }}</td>
 											<td>{{ $benefit->product->name }}</td>
 											<td>{{ $benefit->product->company->name }}</td>
 											<td>
@@ -82,7 +82,7 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $benefits->appends(Request::only(['name', 'product']))->render() !!}
+								{!! $benefits->appends(Request::only('product'))->render() !!}
 							</div>
 						</div>
 					</div>

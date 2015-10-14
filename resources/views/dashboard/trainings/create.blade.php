@@ -32,7 +32,8 @@
 							'route' => 'dashboard.trainings.store', 
 							'method' => 'POST', 
 							'class' => 'form-horizontal',
-							'role' => 'form'
+							'role' => 'form',
+							'files' => 'true'
 						]) 
 					!!}
 				  		@include('dashboard.trainings.partials.fields')

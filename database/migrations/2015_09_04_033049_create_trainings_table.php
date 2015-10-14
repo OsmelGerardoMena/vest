@@ -16,6 +16,7 @@ class CreateTrainingsTable extends Migration
             $table->increments('id');
             $table->date('date')->nullable();
             $table->text('content');
+            $table->string('training_file')->nullable();
             
             //Relationships
             $table->integer('product_id')->unsigned();

@@ -140,6 +140,8 @@ return [
         'state' => 'State',
         'seller_id' => 'Seller',
         'customer_id' => 'Customer',
+        'amount' => 'Amount',
+        'training_file' => 'Training file',
     ],
 
 ];
