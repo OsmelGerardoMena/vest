@@ -62,7 +62,7 @@
 										<tr>
 											<td>{{ $contract->id }}</td>
 											<td>{{ $contract->name }}</td>
-											@if($contract->fileExists())
+											@if($contract->hasFile())
 												<td><a href="{{ asset('files/contracts') }}/{{ $contract->contract_file }}" target="_blank">
 													@lang('dashboard.download_contract')
 												</a></td>

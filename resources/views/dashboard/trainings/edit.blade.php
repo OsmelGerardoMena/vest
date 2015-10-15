@@ -24,6 +24,16 @@
         			@lang('dashboard.title_edit_training')
         		</h1>
             </div>
+
+        	<a href="{{route('dashboard.trainings.index')}}" class="btn btn-primary">
+				<i class="icon-back"></i>
+				@lang('dashboard.buttons.back')
+			</a>
+			<button data-modal="delete-modal-{{$training->id}}" class="btn btn-danger md-trigger">
+				<i class="fa fa-trash-o"></i>
+			  	@lang('dashboard.buttons.delete')
+			</button><br><br>
+
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
@@ -46,24 +56,13 @@
 									<i class="icon-edit"></i>
 									@lang('dashboard.buttons.edit')
 								</button>
-
-								<a href="{{route('dashboard.trainings.index')}}" class="btn btn-primary">
-									<i class="icon-back"></i>
-									@lang('dashboard.buttons.back')
-								</a>
 							</div>
 						</div>
 					{!! Form::close() !!}
-					<button data-modal="delete-modal-{{$training->id}}" class="btn btn-danger btn-sm md-trigger">
-						<i class="fa fa-trash-o"></i>
-					  	@lang('dashboard.buttons.delete')
-					</button>
 				</div>
 			</div>
-			
 		</div>
 		<!-- End content here -->
-	
 	</div>
 	<!-- End right content -->
 </div>

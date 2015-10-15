@@ -25,13 +25,15 @@
 							@foreach($product->contracts as $contract)
 							<tr>
 								<td>{{$contract->name}}</td>
-								@if($contract->fileExists())
+
+								@if($contract->hasFile())
 									<td><a href="{{ asset('files/contracts') }}/{{ $contract->contract_file }}" target="_blank">
 										@lang('dashboard.download_contract')
 									</a></td>
 								@else
 									<td>@lang('dashboard.not_found')</td>
 								@endif
+
 								@can('admin')
 									<td>
 										<div class="btn-group btn-group-xs">

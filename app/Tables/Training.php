@@ -51,9 +51,10 @@ class Training extends Model
         }
     }
 
-    // verifica si existe un archivo para el contrato
-    public function fileExists()
+    // verifica si existe un archivo para la capacitacion
+    public function hasFile()
     {
-        return \Storage::disk('local_training_file')->exists($this->training_file);
+        return \Storage::disk('local_training_file')
+                ->exists($this->training_file);
     }
 }

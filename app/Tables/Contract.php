@@ -56,7 +56,7 @@ class Contract extends Model
     }
 
     // verifica si existe un archivo para el contrato
-    public function fileExists()
+    public function hasFile()
     {
         return \Storage::disk('local_contract_file')->exists($this->contract_file);
     }

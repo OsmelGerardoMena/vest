@@ -21,7 +21,20 @@
 	    			@lang('dashboard.title_training_info') - {{$training->product->name}}
 	    		</h1>
             </div>
-          
+
+          	@can('admin')
+				<a href="{{route('dashboard.trainings.index')}}" class="btn btn-primary">
+					<i class="icon-back"></i>
+					@lang('dashboard.buttons.back')
+				</a>
+			@else
+				<a href="{{route('dashboard.myproducts.show', $training->product->id)}}" class="btn btn-primary">
+					<i class="icon-back"></i>
+					@lang('dashboard.buttons.back')
+				</a>
+			@endcan
+			<br><br>
+			
 			<div class="widget">
 				<div class="widget-header ">
 					<h2><strong>@lang('dashboard.training_file')</strong></h2>
@@ -30,7 +43,7 @@
 					</div>
 				</div>
 				<div class="widget-content padding">
-					@if($training->fileExists())
+					@if($training->hasFile())
 						<a href="{{ asset('files/trainings') }}/{{ $training->training_file }}" target="_blank">
 							@lang('dashboard.download_training')
 						</a>
@@ -42,18 +55,6 @@
 
             <div class="widget">
 				<div class="widget-content padding">
-					@can('admin')
-						<a href="{{route('dashboard.trainings.index')}}" class="btn btn-primary">
-							<i class="icon-back"></i>
-							@lang('dashboard.buttons.back')
-						</a>
-					@else
-						<a href="{{route('dashboard.myproducts.show', $training->product->id)}}" class="btn btn-primary">
-							<i class="icon-back"></i>
-							@lang('dashboard.buttons.back')
-						</a>
-					@endcan
-					<br><br>
 					{!! html_entity_decode($training->content) !!}
 				</div>
 			</div>

@@ -19,11 +19,20 @@ use Illuminate\Support\Facades\Session;
 
 class ContractsController extends Controller
 {
-    public function __construct(){
+    // Atributo para guardar nuevo nombre del archivo a subir
+    private $file_name;
+    // Atributo para guardar las extensiones permitidas
+    private $allowed = ['pdf', 'doc', 'docx'];
+    // Atributo para almacenar mensaje de error al subir archivo
+    private $error_message;
+
+    public function __construct()
+    {
         $this->beforeFilter('@findContract', ['only' => ['edit', 'update', 'destroy']]);
     }
 
-    public function findContract(Route $route){
+    public function findContract(Route $route)
+    {
         $this->contract = Contract::findOrFail($route->getParameter('contracts'));
     }
 
@@ -62,51 +71,31 @@ class ContractsController extends Controller
     public function store(CreateContractRequest $request)
     {
         $contract = new Contract();
-        $file = $request->file('contract_file');
 
-        if(!$file){
-            Session::flash('file_error', trans('messages.required_file'));
-            return redirect()->back()->withInput($request->all());
+        // se verifica si se ha recibido un archivo
+        // No uso $request->hasFile xq devuelve false si se excede de 2Mb
+        if($request->file('contract_file')){
+            // se intenta subir el archivo
+            if ($this->uploadFile($request->file('contract_file'))) {
+                // si se subio correctamente el archivo se almacena el nuevo nombre
+                $contract->contract_file = $this->file_name;
+                // se almacena los otros datos recibidos
+                $contract->name = $request->get('name');
+                $contract->product_id = $request->get('product_id');
+                $contract->save();
+
+                $message = $contract->name.trans('messages.new');
+                Session::flash('new', $message);
+                return redirect()->route('dashboard.contracts.index');
+            }
+            // de lo contrario se alamace error generado
+            Session::flash('file_error', $this->error_message);
         }
         else{
-            if($file->getError() !== 0){
-                Session::flash('file_error', trans('messages.file_error'));
-                return redirect()->back()->withInput($request->all());
-            }
-
-            // se alamacena la extensiond el archivo en minusculas 
-            $file_extension = strtolower($file->getClientOriginalExtension());
-            // se almacena la extención permitida
-            $allowed = ['pdf', 'doc', 'docx'];
-
-            // se verifica si la extensión coincide con la permitida
-            if(!in_array($file_extension, $allowed)){
-                Session::flash('file_error', trans('messages.pdf_extension'));
-                return redirect()->back()->withInput($request->all());
-            }
-
-            // nuevo nombre para el archivo
-            $name = uniqid('', true).'.'.$file_extension;
-            // se mueve el archivo al directoio donde se va a guardar
-            $upload = $file->move(public_path('files/contracts'), $name);
-           
-            // se verifica la carga
-            if(!$upload){
-                Session::flash('file_error', trans('messages.uploading_error'));
-                return redirect()->back()->withInput($request->all());
-            }
-        
-            // se almacena los datos recibidos
-            $contract->fill($request->all());
-            // el nuevo nombre del archivo se guarda en el atributo contract_file
-            $contract->contract_file = $name;
-            // se guarda en la base de datos
-            $contract->save();
-
-            $message = $contract->name.trans('messages.new');
-            Session::flash('new', $message);
-            return redirect()->route('dashboard.contracts.index');
+            // si no hay archivo se devuelve error, ya que es obligatorio
+            Session::flash('file_error', trans('messages.required_file'));
         }
+        return redirect()->back()->withInput($request->all());
     }
 
     /**
@@ -141,43 +130,17 @@ class ContractsController extends Controller
      */
     public function update(EditContractRequest $request, $id)
     {
-        $file = $request->file('contract_file');
-
-        if($file){
-            if($file->getError() !== 0){
-                Session::flash('file_error', trans('messages.file_error'));
+        if($request->file('contract_file')){
+            if (!$this->uploadFile($request->file('contract_file'))) {
+                Session::flash('file_error', $this->error_message);
                 return redirect()->back()->withInput($request->all());
             }
-
-            // se alamacena la extensiond el archivo en minusculas 
-            $file_extension = strtolower($file->getClientOriginalExtension());
-            // se almacena la extención permitida
-            $allowed = ['pdf', 'doc', 'docx'];
-
-            // se verifica si la extensión coincide con la permitida
-            if(!in_array($file_extension, $allowed)){
-                Session::flash('file_error', trans('messages.pdf_extension'));
-                return redirect()->back()->withInput($request->all());
-            }
-
-            // nuevo nombre para el archivo
-            $name = uniqid('', true).'.'.$file_extension;
-            // se mueve el archivo al directoio donde se va a guardar
-            $upload = $file->move(public_path('files/contracts'), $name);
-           
-            // se verifica la carga
-            if(!$upload){
-                Session::flash('file_error', trans('messages.uploading_error'));
-                return redirect()->back()->withInput($request->all());
-            }
-            //se elimina el archivo viejo
-            if($this->contract->fileExists())
-                \Storage::disk('local_contract_file')->delete($this->contract->contract_file);
-            
-            // el nuevo nombre del archivo se guarda en el atributo contract_file
-            $this->contract->contract_file = $name;
+            // si se pudo subir el nuevo archivo, se elimina el archivo viejo
+            $this->deleteFile();
+            // se alamacena el nombre del nuevo archivo
+            $this->contract->contract_file = $this->file_name;
         }
-        
+
         $this->contract->name = $request->get('name');
         $this->contract->product_id= $request->get('product_id');
         $this->contract->save();
@@ -198,8 +161,7 @@ class ContractsController extends Controller
     public function destroy($id)
     {
         //elimino primero el archivo de contrato
-        if($this->contract->fileExists())
-            \Storage::disk('local_contract_file')->delete($this->contract->contract_file);
+        $this->deleteFile();
 
         // luego elimino el registro de la base de datos
         $this->contract->delete();
@@ -209,5 +171,48 @@ class ContractsController extends Controller
         Session::flash('delete', $message);
 
         return redirect()->route('dashboard.contracts.index');
+    }
+
+    // metodo privado para subir un archivo
+    private function uploadFile($file)
+    {   
+        if(!$file->getError()){
+            // se alamacena la extensiond el archivo en minusculas
+            $file_extension = strtolower($file->getClientOriginalExtension());
+            // se verifica si la extensión coincide con alguna de las permitidas
+            if(in_array($file_extension, $this->allowed)){
+                // se almacena nuevo nombre para el archivo
+                $this->file_name = uniqid('', true).'.'.$file_extension;
+                // se mueve el archivo al directoio donde se va a guardar
+                $upload = $file->move(public_path('files/contracts'), $this->file_name);
+                // se verifica la carga
+                if($upload){
+                    return true;
+                }
+                else{
+                    // Mensaje de error al subir
+                    $this->error_message = trans('messages.uploading_error');
+                }
+            }
+            else{
+                // Mensaje de error de extension
+                $this->error_message = trans('messages.extension_error');
+            }
+        }
+        else{
+            // Mensaje de error en el archivo
+            $this->error_message = trans('messages.file_error');
+        }
+
+        return false;
+    }
+
+    // elimina un archivo si existe
+    private function deleteFile()
+    {
+        if($this->contract->hasFile()){
+            \Storage::disk('local_contract_file')
+                ->delete($this->contract->contract_file);
+        }
     }
 }
