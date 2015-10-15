@@ -12,6 +12,28 @@
                 <span>@lang('dashboard.sidebar.my_products_list')</span>
             </a>
         </li>
+        @can('company')
+            <li>
+                <a href="{{asset('/dashboard/contracts')}}">
+                    <span>@lang('dashboard.sidebar.contracts')</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{asset('/dashboard/benefits')}}">
+                    <span>@lang('dashboard.sidebar.benefits')</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{asset('/dashboard/incentives')}}">
+                    <span>@lang('dashboard.sidebar.incentives')</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{asset('/dashboard/trainings')}}">
+                    <span>@lang('dashboard.sidebar.trainings')</span>
+                </a>
+            </li>
+        @endcan
     </ul>
 </li>
 

@@ -8,6 +8,10 @@
 
 @include('partials/modal')
 
+@foreach($products as $product)
+    @include('dashboard.myproducts.partials.modal')
+@endforeach
+
 <!-- Begin page -->
 <div id="wrapper">
     @include('partials/topbar')
@@ -31,12 +35,22 @@
                                     <div class="col-md-12">
                                         @can('seller')
                                             <div class="toolbar-btn-action">
-                                                <a class="btn btn-primary" href="{{route('dashboard.myproducts.unallocated')}}">
+                                                <a class="btn btn-primary" href="{{route('dashboard.my-products.unallocated')}}">
                                                     <i class="fa fa-unlink"></i>
                                                     @lang('dashboard.buttons.unallocated')
                                                 </a>
                                             </div>
                                         @endcan
+
+                                        @can('company')
+                                            <div class="toolbar-btn-action">
+                                                <a class="btn btn-success" href="{{route('dashboard.my-products.create')}}">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                    @lang('dashboard.buttons.new')
+                                                </a>
+                                            </div>
+                                        @endcan
+
                                         @include('dashboard.myproducts.partials.search')
                                     </div>
                                 </div>
@@ -79,9 +93,19 @@
                                             <td>
                                                 <div class="btn-group btn-group-xs">
                                                     <a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info"
-                                                       href="{{route('dashboard.myproducts.show', $product->id)}}">
+                                                       href="{{route('dashboard.my-products.show', $product->id)}}">
                                                         <i class="fa fa-info-circle"></i>
                                                     </a>
+                                                    @can('company')
+                                                        <a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
+                                                            href="{{route('dashboard.my-products.edit', $product->id)}}">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+
+                                                        <a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>

@@ -29,7 +29,7 @@
 							<div class="data-table-toolbar">
 								<div class="row">
 									<div class="col-md-12">
-										<a href="{{route('dashboard.myproducts.index')}}" class="btn btn-primary">
+										<a href="{{route('dashboard.my-products.index')}}" class="btn btn-primary">
 											<i class="icon-back"></i>
 											@lang('dashboard.buttons.go_my_products')
 										</a>

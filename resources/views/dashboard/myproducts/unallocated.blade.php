@@ -30,7 +30,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="toolbar-btn-action">
-                                            <a class="btn btn-primary" href="{{route('dashboard.myproducts.index')}}">
+                                            <a class="btn btn-primary" href="{{route('dashboard.my-products.index')}}">
                                                 <i class="icon-back"></i>
                                                 @lang('dashboard.buttons.back')
                                             </a>
@@ -65,7 +65,7 @@
                                             <td>
                                                 <div class="btn-group btn-group-xs">
                                                     <a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info"
-                                                       href="{{route('dashboard.myproducts.show', $product->id)}}">
+                                                       href="{{route('dashboard.my-products.show', $product->id)}}">
                                                         <i class="fa fa-info-circle"></i>
                                                     </a>
                                                 </div>

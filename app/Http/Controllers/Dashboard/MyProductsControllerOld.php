@@ -14,12 +14,6 @@ use Vest\Tables\Product;
 
 use Illuminate\Support\Facades\Session;
 
-//Form Request para validar
-use Vest\Http\Requests\CreateMyProductRequest;
-use Vest\Http\Requests\EditMyProductRequest;
-
-use Illuminate\Routing\Route;
-
 class MyProductsController extends Controller
 {
     public function __construct()
@@ -35,23 +29,12 @@ class MyProductsController extends Controller
             // el vendedor tiene acceso a todo este apartado, el admin no
             $this->middleware('is_seller');
         }
-
-        $this->beforeFilter('@findProduct', ['only' => ['edit', 'update', 'destroy']]);
     }
 
-    public function findProduct(Route $route)
+    // metodo que devuelve los productos del vendedor o empresa
+    public function getIndex(Request $request)
     {
-        $this->product = Product::findOrFail($route->getParameter('my_products'));
-    }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        // metodo que devuelve los productos del vendedor o empresa
         if($this->user->can('seller')){ //si es un vendedor
             $products = User::filterSellerProducts($this->user->id, $request->get('nameproduct'));
         }
@@ -64,46 +47,8 @@ class MyProductsController extends Controller
         return view('dashboard.myproducts.index', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('dashboard.myproducts.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CreateMyProductRequest $request)
-    {
-        $product = new Product();
-
-        $product->fill($request->all());
-
-        $product->status_id = 2; // tiene que estar desactivado
-
-        $product->save();
-
-        $message = $product->name.trans('messages.new');
-      
-        Session::flash('new', $message);
-    
-        return redirect()->route('dashboard.my-products.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    // ver algun producto de un vendedor o empresa
+    public function getShow($id)
     {
         // este metodo puede usarse para mostrar productos asigandos al
         // vendedor, puede usarse para mostrar productos de la empresa
@@ -136,56 +81,8 @@ class MyProductsController extends Controller
                     ->with('position', $position);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return view('dashboard.myproducts.edit')->with('product', $this->product);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(EditMyProductRequest $request, $id)
-    {
-        $this->product->fill($request->all());
-
-        $this->product->save();
-
-        $message = $this->product->name.trans('messages.edit');
-
-        Session::flash('edit', $message);
-
-        return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $this->product->delete();
-
-        $message = $this->product->name.trans('messages.delete');
-
-        Session::flash('delete', $message);
-
-        return redirect()->route('dashboard.my-products.index');
-    }
-
-    // los productos no asignados se muestran solo para los vendedores
-    public function unallocated(Request $request)
+    // los productos no asignados solo para los vendedores
+    public function getUnallocated(Request $request)
     {
         $products = Product::filterProductsUnallocated($this->user->id,
                     $request->get('nameproduct'), 

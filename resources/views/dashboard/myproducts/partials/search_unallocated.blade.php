@@ -1,13 +1,13 @@
 @inject('options', 'Vest\Services\OptionsSelectCompany')
 {!! Form::model(Request::all(),
-		[	'route' => ['dashboard.myproducts.unallocated'],
+		[	'route' => ['dashboard.my-products.unallocated'],
 			'method' => 'GET',
 			'class' => 'form-inline',
 			'rol' => 'search'
 		])
 !!}
     <div class="form-group">
-        <a class="btn btn-info" href="{{route('dashboard.myproducts.unallocated')}}">
+        <a class="btn btn-info" href="{{route('dashboard.my-products.unallocated')}}">
             <i class="icon-eye-1"></i>
             @lang('dashboard.buttons.seeall')
         </a>
