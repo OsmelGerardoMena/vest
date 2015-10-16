@@ -21,7 +21,7 @@ class BenefitsController extends Controller
 {
     public function __construct()
     {
-        $this->user = \Auth::user();
+        $this->user = \Auth::user(); //ok
         $this->beforeFilter('@findBenefit', 
             ['only' => ['edit', 'update', 'destroy']]);
     }
