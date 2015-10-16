@@ -4,6 +4,7 @@ namespace Vest\Services;
 
 use Vest\Tables\Module;
 
+// Para la vista fields y fields_edit de views/dashboard/profiles/partials
 class AllModules
 {
 	public function get()

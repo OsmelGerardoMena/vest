@@ -5,6 +5,7 @@ namespace Vest\Services;
 use Vest\Tables\Module;
 use Vest\Tables\Submodule;
 
+// Para la vista modules de views/partials
 class OptionsMenu
 {
 	public function options()

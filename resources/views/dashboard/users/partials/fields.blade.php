@@ -1,4 +1,4 @@
-@inject('options', 'Vest\Services\OptionsSelect')
+@inject('options', 'Vest\Services\OptionsSelectProfile')
 
 <div class="form-group">
 	{!! Form::label('name', trans('validation.attributes.name'), ['class' => 'col-sm-2 control-label']) !!}

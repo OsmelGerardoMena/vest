@@ -4,12 +4,14 @@ namespace Vest\Services;
 
 use Vest\Tables\Customer;
 
+// Para las vistas fields y search en views/dashboard/sales/partials
 class OptionsSelectCustomer
 {
-	public function get()
+	// $bool sera true si se necesita verificar el status del cliente
+	public function get($bool = false)
 	{
-		//obtengo todos los clientes activos
-		$customers = Customer::where('status', true)->get();
+		//si $bool es true obtengo solo los clientes activos, si no todos
+		$customers = ($bool) ? Customer::where('status', true)->get() : Customer::all();
 
 		$array[''] = '';
 

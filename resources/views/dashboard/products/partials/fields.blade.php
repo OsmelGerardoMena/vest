@@ -24,7 +24,7 @@
 <div class="form-group">
 	{!! Form::label('company_id', trans('validation.attributes.company'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::select('company_id', $options->get(), old('company_id'), ['class' => 'form-control']) !!}
+		{!! Form::select('company_id', $options->get('true'), null, ['class' => 'form-control']) !!}
 	</div>
 </div>
 

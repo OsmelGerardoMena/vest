@@ -1,6 +1,6 @@
-@inject('sellers', 'Vest\Services\OptionsSearchSelectSeller')
-@inject('products', 'Vest\Services\OptionsSearchSelectProduct')
-@inject('customers', 'Vest\Services\OptionsSearchSelectCustomer')
+@inject('sellers', 'Vest\Services\OptionsSelectSeller')
+@inject('products', 'Vest\Services\OptionsSelectProduct')
+@inject('customers', 'Vest\Services\OptionsSelectCustomer')
 
 {!! Form::model(Request::all(), 
 		[	'route' => 'dashboard.sales.index', 

@@ -1,4 +1,4 @@
-@inject('options', 'Vest\Services\OptionsSelect')
+@inject('options', 'Vest\Services\OptionsSelectProfile')
 
 {!! Form::model(Request::all(), 
 		[	'route' => 'dashboard.users.index', 

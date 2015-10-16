@@ -8,10 +8,6 @@
 
 @include('partials/modal')
 
-@foreach($products as $product)
-    @include('dashboard.myproducts.partials.modal')
-@endforeach
-
 <!-- Begin page -->
 <div id="wrapper">
     @include('partials/topbar')
@@ -101,10 +97,9 @@
                                                             href="{{route('dashboard.my-products.edit', $product->id)}}">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
-
-                                                        <a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
+                                                        <!--<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
                                                             <i class="fa fa-trash-o"></i>
-                                                        </a>
+                                                        </a>-->
                                                     @endcan
                                                 </div>
                                             </td>

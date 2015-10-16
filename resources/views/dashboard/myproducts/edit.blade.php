@@ -7,7 +7,6 @@
 @section('content')
 
 @include('partials/modal')
-@include('dashboard.myproducts.partials.modal')
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -55,10 +54,6 @@
 							</div>
 						</div>
 					{!! Form::close() !!}
-					<button data-modal="delete-modal-{{$product->id}}" class="btn btn-danger btn-sm md-trigger">
-						<i class="fa fa-trash-o"></i>
-					  	@lang('dashboard.buttons.delete')
-					</button>
 				</div>
 			</div>
 		</div>

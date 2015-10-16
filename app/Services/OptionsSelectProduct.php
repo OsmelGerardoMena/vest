@@ -4,19 +4,21 @@ namespace Vest\Services;
 
 use Vest\Tables\Product;
 
+// Para las vistas fields y search en views/dashboard/sales/partials
+// Para las vistas fields y search en views/dashboard/contracts/partials
+// benefits/partials, incentives/partials, trainings/partials
 class OptionsSelectProduct
 {
-	public function get()
+	// $bool sera true si se necesita verificar el status del producto
+	public function get($bool = false)
 	{
-		//obtengo todos las productos
-		$products = Product::all();
+		// si $bool es true obtengo solo los productos activos
+		$products = ($bool) ? Product::where('status_id', 1)->get() : Product::all();
 
 		$array[''] = '';
 
 		foreach($products as $product){
-			if($product->isActive()){ //solo los activos
-				$array [$product->id] = $product->name;
-			}
+			$array [$product->id] = $product->name;
 		}
 
 		return $array;

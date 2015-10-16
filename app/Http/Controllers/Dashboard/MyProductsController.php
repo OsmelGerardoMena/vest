@@ -28,20 +28,19 @@ class MyProductsController extends Controller
 
         // middleware especifico para este controlador
         if($this->user->can('company')){
-            // si es empresa, se restringe solo getUnallocated
+            // si no es vendedor, se restringe solo getUnallocated
             $this->middleware('is_seller', ['only' => ['getUnallocated'] ]);
         }
+        else if($this->user->can('seller')){
+            // si no es empresa, se restringe todo excepto
+            $this->middleware('is_company', ['except' => ['index', 'show', 'unallocated']]);
+        }
         else{
-            // el vendedor tiene acceso a todo este apartado, el admin no
-            $this->middleware('is_seller');
+            // si es admin, se le restringe todo ya que no es ni vendedor ni empresa
+            $this->middleware('is_company');
         }
 
-        $this->beforeFilter('@findProduct', ['only' => ['edit', 'update', 'destroy']]);
-    }
-
-    public function findProduct(Route $route)
-    {
-        $this->product = Product::findOrFail($route->getParameter('my_products'));
+        // no se uso beforeFilter ya que se ejecutaba antes que los middleware
     }
 
     /**
@@ -144,7 +143,8 @@ class MyProductsController extends Controller
      */
     public function edit($id)
     {
-        return view('dashboard.myproducts.edit')->with('product', $this->product);
+        $product = Product::findOrFail($id);
+        return view('dashboard.myproducts.edit')->with('product', $product);
     }
 
     /**
@@ -156,11 +156,13 @@ class MyProductsController extends Controller
      */
     public function update(EditMyProductRequest $request, $id)
     {
-        $this->product->fill($request->all());
+        $product = Product::findOrFail($id);
 
-        $this->product->save();
+        $product->fill($request->all());
 
-        $message = $this->product->name.trans('messages.edit');
+        $product->save();
+
+        $message = $product->name.trans('messages.edit');
 
         Session::flash('edit', $message);
 
@@ -175,13 +177,15 @@ class MyProductsController extends Controller
      */
     public function destroy($id)
     {
-        $this->product->delete();
+        /*$product = Product::findOrFail($id);
 
-        $message = $this->product->name.trans('messages.delete');
+        $product->delete();
+
+        $message = $product->name.trans('messages.delete');
 
         Session::flash('delete', $message);
 
-        return redirect()->route('dashboard.my-products.index');
+        return redirect()->route('dashboard.my-products.index');*/
     }
 
     // los productos no asignados se muestran solo para los vendedores

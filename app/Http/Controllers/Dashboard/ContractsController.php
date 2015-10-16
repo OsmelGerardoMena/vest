@@ -3,7 +3,6 @@
 namespace Vest\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
-
 use Vest\Http\Requests;
 use Vest\Http\Controllers\Controller;
 
@@ -28,6 +27,7 @@ class ContractsController extends Controller
 
     public function __construct()
     {
+        $this->user = \Auth::user();
         $this->beforeFilter('@findContract', ['only' => ['edit', 'update', 'destroy']]);
     }
 
@@ -43,10 +43,23 @@ class ContractsController extends Controller
      */
     public function index(Request $request)
     {
-        $contracts = Contract::filterContracts(
-            $request->get('name'), 
-            $request->get('product')
-        );
+        if ($this->user->can('admin')) {
+            // si es admin, se usa el filtro filterContracts
+            $contracts = Contract::filterContracts(
+                $request->get('name'), 
+                $request->get('product')
+            );
+        }
+        else if($this->user->can('company')){
+            // si es empresa, se busca los id de productos de dicha empresa
+            // y se usa el filtro filterCompanyContracts
+            $idArray = Product::where('company_id', $this->user->id)->lists('id');
+            $contracts = Contract::filterCompanyContracts(
+                $idArray,
+                $request->get('name'), 
+                $request->get('product')
+            );
+        }
 
         $contracts->setPath('contracts');
         return view('dashboard.contracts.contracts', compact('contracts'));

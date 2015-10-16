@@ -123,18 +123,15 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 	Route::resource('dashboard/account', 'AccountsController', 
 			['only' => ['index', 'edit', 'update'] ]);
 
-	/*Route::controller('dashboard/my-products', 'MyProductsController', [
-		'getIndex' => 'dashboard.myproducts.index',
-		'getShow' => 'dashboard.myproducts.show',
-		'getUnallocated' => 'dashboard.myproducts.unallocated',
-	]);*/
-
 	Route::get('dashboard/my-products/unallocated', [
 			'uses' => 'MyProductsController@unallocated',
 			'as' => 'dashboard.my-products.unallocated'
 	]);
-	Route::resource('dashboard/my-products', 'MyProductsController');
+	Route::resource('dashboard/my-products', 'MyProductsController', 
+			['except' => 'destroy']);
 
+	Route::resource('dashboard/contracts', 'ContractsController');
+	Route::resource('dashboard/benefits', 'BenefitsController');
 	Route::resource('dashboard/trainings', 'TrainingsController', ['only' => 'show']);
 
 	Route::controller('dashboard/company-sales', 'CompanySalesController', [
@@ -142,4 +139,6 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 		//'getProductsSales' => 'dashboard.companysales.productssales',
 		//'getSellersSales' => 'dashboard.companysales.show',
 	]);
+
+	
 });

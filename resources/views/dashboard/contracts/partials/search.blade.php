@@ -1,4 +1,8 @@
-@inject('products', 'Vest\Services\OptionsSearchSelectProduct')
+@can('admin')
+	@inject('products', 'Vest\Services\OptionsSelectProduct')
+@else
+	@inject('products', 'Vest\Services\OptionsSelectCompanyProducts')
+@endcan
 
 {!! Form::model(Request::all(), 
 		[	'route' => 'dashboard.contracts.index', 
@@ -19,7 +23,11 @@
 	</div>
 
 	<div class="form-group">
-		{!! Form::select('product', $products->get(), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
+		@can('admin')
+			{!! Form::select('product', $products->get(), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
+		@else
+			{!! Form::select('product', $products->get(Auth::user()->id), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
+		@endcan
 	</div>
 	
 	<button type="submit" class="btn btn-info"> 

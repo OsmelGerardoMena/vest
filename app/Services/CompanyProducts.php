@@ -4,6 +4,7 @@ namespace Vest\Services;
 
 use Vest\User;
 
+// Para la vista fields de views/dashboard/sellers/partials
 class CompanyProducts
 {
 	public function get()
@@ -12,6 +13,7 @@ class CompanyProducts
 		$companies = User::where('type_id', 3)->get();
 
 		$all = []; //almacenara cada empresa con sus productos
+		$array = []; // para almacenar la info de cada producto
 
 		foreach ($companies as $company) {
 			

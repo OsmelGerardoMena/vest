@@ -8,9 +8,11 @@
 
 @include('partials/modal')
 
-@foreach($contracts as $contract)
-	@include('dashboard.contracts.partials.modal')
-@endforeach
+@can('admin')
+	@foreach($contracts as $contract)
+		@include('dashboard.contracts.partials.modal')
+	@endforeach
+@endcan
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -53,7 +55,9 @@
 											<th>@lang('dashboard.table.name')</th>
 											<th>@lang('dashboard.table.file')</th>
 											<th>@lang('dashboard.table.product')</th>
-											<th>@lang('dashboard.table.company')</th>
+											@can('admin')
+												<th>@lang('dashboard.table.company')</th>
+											@endcan
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
@@ -70,17 +74,20 @@
 												<td>@lang('dashboard.not_found')</td>
 											@endif
 											<td>{{ $contract->product->name }}</td>
-											<td>{{ $contract->product->company->name }}</td>
+											@can('admin')
+												<td>{{ $contract->product->company->name }}</td>
+											@endcan
 											<td>
 												<div class="btn-group btn-group-xs">
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
 														href="{{route('dashboard.contracts.edit', $contract->id)}}">
 														<i class="fa fa-edit"></i>
 													</a>
-
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$contract->id}}" class="btn btn-danger md-trigger ">
-														<i class="fa fa-trash-o"></i>
-													</a>
+													@can('admin')
+														<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$contract->id}}" class="btn btn-danger md-trigger ">
+															<i class="fa fa-trash-o"></i>
+														</a>
+													@endcan
 												</div>
 											</td>
 										</tr>

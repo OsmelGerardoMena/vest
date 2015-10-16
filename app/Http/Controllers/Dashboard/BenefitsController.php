@@ -21,6 +21,7 @@ class BenefitsController extends Controller
 {
     public function __construct()
     {
+        $this->user = \Auth::user();
         $this->beforeFilter('@findBenefit', 
             ['only' => ['edit', 'update', 'destroy']]);
     }
@@ -37,7 +38,15 @@ class BenefitsController extends Controller
      */
     public function index(Request $request)
     {
-        $benefits = Benefit::filterBenefits($request->get('product'));
+        if ($this->user->can('admin')) {
+            // no se envia el parametro idArray al filtro
+            $benefits = Benefit::filterBenefits($request->get('product'));
+        }
+        else if($this->user->can('company')){
+            // si es empresa, se busca los id de productos de dicha empresa
+            $idArray = Product::where('company_id', $this->user->id)->lists('id');
+            $benefits = Benefit::filterCompanyBenefits($idArray, $request->get('product'));
+        }
 
         $benefits->setPath('benefits');
         return view('dashboard.benefits.benefits', compact('benefits'));

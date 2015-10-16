@@ -2,6 +2,7 @@
 
 namespace Vest\Services;
 
+// para la vista fields de views/dashboard/benefits/partials
 class OptionsSelectBenefitTypes
 {
 	public function get()

@@ -24,10 +24,17 @@ class Benefit extends Model
         return $this->belongsTo('Vest\Tables\benefitTypes');
     }
 
-    ///** Filtro para usuarios y Scope **///
-    public static function filterBenefits($product_id)
+    ///** Filtro para beneficios **///
+    public static function filterBenefits($product_id, $idCompanyProducts = [])
     {
-    	return Benefit::productid($product_id)
+    	return Benefit::productid($product_id)->simplePaginate(5);
+    }
+
+    ///** Filtro para beneficios de los productos de una empresa **///
+    public static function filterCompanyBenefits($idCompanyProducts, $product_id)
+    {
+        return Benefit::whereIn('product_id', $idCompanyProducts)
+                ->productid($product_id)
                 ->simplePaginate(5);
     }
 

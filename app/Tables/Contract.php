@@ -23,10 +23,19 @@ class Contract extends Model
         return $this->belongsTo('Vest\Tables\Product');
     }
 
-    ///** Filtro para usuarios y Scope **///
+    ///** Filtro para contratos **///
     public static function filterContracts($name, $product_id)
     {
     	return Contract::name($name)
+                ->productid($product_id)
+                ->simplePaginate(5);
+    }
+
+    ///** Filtro para contratos de los productos de una empresa **///
+    public static function filterCompanyContracts($idCompanyProducts, $name, $product_id)
+    {
+        // idCompanyProducts contiene los id de los productos de la empresa logueada
+        return Contract::whereIn('product_id', $idCompanyProducts)->name($name)
                 ->productid($product_id)
                 ->simplePaginate(5);
     }
