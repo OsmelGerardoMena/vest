@@ -8,9 +8,11 @@
 
 @include('partials/modal')
 
-@foreach($sales as $sale)
-	@include('dashboard.sales.partials.modal')
-@endforeach
+@can('admin')
+	@foreach($sales as $sale)
+		@include('dashboard.sales.partials.modal')
+	@endforeach
+@endcan
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -34,10 +36,12 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="toolbar-btn-action">
-											<a class="btn btn-success" href="{{route('dashboard.sales.create')}}">
-												<i class="fa fa-plus-circle"></i>
-												@lang('dashboard.buttons.new')
-											</a>
+											@can('admin')
+												<a class="btn btn-success" href="{{route('dashboard.sales.create')}}">
+													<i class="fa fa-plus-circle"></i>
+													@lang('dashboard.buttons.new')
+												</a>
+											@endcan
 										</div>
 										@include('dashboard.sales.partials.search')
 									</div>
@@ -50,7 +54,9 @@
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.amount')</th>
-											<th>@lang('dashboard.table.seller')</th>
+											@cannot('seller')
+												<th>@lang('dashboard.table.seller')</th>
+											@endcan
 											<th>@lang('dashboard.table.product')</th>
 											<th>@lang('dashboard.table.customer')</th>
 											<th>@lang('dashboard.table.actions')</th>
@@ -61,7 +67,9 @@
 										<tr>
 											<td>{{ $sale->id }}</td>
 											<td>{{ $sale->amount }}</td>
-											<td>{{ $sale->seller->name }}</td>
+											@cannot('seller')
+												<td>{{ $sale->seller->name }}</td>
+											@endcan
 											<td>{{ $sale->product->name }}</td>
 											<td>{{ $sale->customer->name }}</td>
 											<td>
@@ -70,13 +78,15 @@
 														href="{{route('dashboard.sales.show', $sale->id)}}">
 														<i class="fa fa-info-circle"></i>
 													</a>
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
-														href="{{route('dashboard.sales.edit', $sale->id)}}">
-														<i class="fa fa-edit"></i>
-													</a>
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$sale->id}}" class="btn btn-danger md-trigger ">
-														<i class="fa fa-trash-o"></i>
-													</a>
+													@can('admin')
+														<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
+															href="{{route('dashboard.sales.edit', $sale->id)}}">
+															<i class="fa fa-edit"></i>
+														</a>
+														<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$sale->id}}" class="btn btn-danger md-trigger ">
+															<i class="fa fa-trash-o"></i>
+														</a>
+													@endcan
 												</div>
 											</td>
 										</tr>

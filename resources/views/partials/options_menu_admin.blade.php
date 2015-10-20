@@ -99,7 +99,7 @@
     </a>
     <ul>
         <li>
-            <a href="{{asset('/dashboard/sales')}}">
+            <a href="{{route('dashboard.sales.index')}}">
                 <span>@lang('dashboard.sidebar.list_sales')</span>
             </a>
         </li>

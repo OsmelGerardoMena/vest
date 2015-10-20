@@ -14,7 +14,7 @@ $factory->define(Vest\User::class, function ($faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->email,
-        'password' => bcrypt(str_random(10)),
+        'password' => bcrypt('123456'),
         'identifier' => $faker->unique()->randomNumber,
         'mobile' => $faker->phoneNumber,
         'phone' => $faker->phoneNumber,

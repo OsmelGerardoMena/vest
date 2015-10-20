@@ -65,7 +65,7 @@
         </a>
         <ul>
             <li>
-                <a href="">
+                <a href="{{route('dashboard.sales.index')}}">
                     <span>@lang('dashboard.sidebar.my_sales')</span>
                 </a>
             </li>
@@ -86,6 +86,11 @@
             <li>
                 <a href="{{route('dashboard.companysales.index')}}">
                     <span>@lang('dashboard.sidebar.counting_sales')</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('dashboard.sales.index')}}">
+                    <span>@lang('dashboard.sidebar.list_sales')</span>
                 </a>
             </li>
         </ul>

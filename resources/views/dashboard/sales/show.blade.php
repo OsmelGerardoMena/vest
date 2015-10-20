@@ -27,7 +27,9 @@
 				@lang('dashboard.buttons.back')
 			</a><br><br>
 
-            @include('dashboard.sales.partials.seller_info')
+			@cannot('seller')
+            	@include('dashboard.sales.partials.seller_info')
+            @endcan
             @include('dashboard.sales.partials.product_info')
             @include('dashboard.sales.partials.customer_info')
 		</div>

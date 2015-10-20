@@ -87,9 +87,6 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 	]);
 	Route::resource('dashboard/customers', 'CustomersController');
 
-	Route::post('dashboard/sales/seller', 'SalesController@sellerProducts');
-	Route::resource('dashboard/sales', 'SalesController');
-
 	/*Route::get('dashboard/profiles/status/{id}', [
 			'uses' => 'ProfilesController@profileStatus',
 			'as' => 'dashboard.profiles.status'
@@ -132,4 +129,7 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 			'as' => 'dashboard.products.status'
 	]);
 	Route::resource('dashboard/products', 'ProductsController');
+
+	Route::post('dashboard/sales/seller', 'SalesController@sellerProducts');
+	Route::resource('dashboard/sales', 'SalesController');
 });

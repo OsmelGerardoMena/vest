@@ -41,6 +41,26 @@ class Sale extends Model
                 ->simplePaginate(5);
     }
 
+    ///** Filtro para ventas de un vendedor **///
+    public static function filterSellerSales($current_seller, $seller, $product, $customer)
+    {
+        return Sale::where('seller_id', $current_seller)
+                ->sellerid($seller)
+                ->productid($product)
+                ->customerid($customer)
+                ->simplePaginate(5);
+    }
+
+    ///** Filtro para ventas de una empresa **///
+    public static function filterCompanySales($idCompanyProducts, $seller, $product, $customer)
+    {
+        return Sale::whereIn('product_id', $idCompanyProducts)
+                ->sellerid($seller)
+                ->productid($product)
+                ->customerid($customer)
+                ->simplePaginate(5);
+    }
+
     ///** Scope **///
     public function scopeSellerid($query, $seller_id)
     {

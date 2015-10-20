@@ -22,15 +22,21 @@ class SalesController extends Controller
 {
     public function __construct()
     {
-        $this->beforeFilter('@findSale', 
-            ['only' => ['show', 'edit', 'update', 'destroy'] ]);
+        $this->user = \Auth::user();
+
+        if ($this->user->can('seller') || $this->user->can('company')) {
+            $this->middleware('is_admin', ['except' => ['index', 'show'] ]);
+        }
+
+        //$this->beforeFilter('@findSale', ['only' => ['show', 'edit', 'update', 'destroy'] ]);
     }
 
     ///Para buscar la venta y tenerlo en $this->sale
-    public function findSale(Route $route)
+    /*public function findSale(Route $route)
     {
         $this->sale = Sale::findOrFail($route->getParameter('sales'));
-    }
+    }*/
+
     /**
      * Display a listing of the resource.
      *
@@ -38,8 +44,20 @@ class SalesController extends Controller
      */
     public function index(Request $request)
     {
-        $sales = Sale::filterSales($request->get('seller'), 
+        if ($this->user->can('seller')) {
+            $sales = Sale::filterSellerSales($this->user->id, $request->get('seller'), 
                     $request->get('product'), $request->get('customer'));
+        }
+        else if($this->user->can('company')) {
+            $ids = Product::where('company_id', $this->user->id)->lists('id');
+
+            $sales = Sale::filterCompanySales($ids, $request->get('seller'), 
+                    $request->get('product'), $request->get('customer'));
+        }
+        else {
+            $sales = Sale::filterSales($request->get('seller'), 
+                    $request->get('product'), $request->get('customer'));
+        }
         
         $sales->setPath('sales');
         return view('dashboard.sales.sales', compact('sales'));
@@ -91,7 +109,8 @@ class SalesController extends Controller
      */
     public function show($id)
     {
-        return view('dashboard.sales.show')->with('sale',$this->sale);
+        $sale = Sale::findOrFail($id);
+        return view('dashboard.sales.show')->with('sale',$sale);
     }
 
     /**
@@ -102,7 +121,8 @@ class SalesController extends Controller
      */
     public function edit($id)
     {
-        return view('dashboard.sales.edit')->with('sale', $this->sale);
+        $sale = Sale::findOrFail($id);
+        return view('dashboard.sales.edit')->with('sale', $sale);
     }
 
     /**
@@ -114,18 +134,20 @@ class SalesController extends Controller
      */
     public function update(EditSaleRequest $request, $id)
     {
+        $sale = Sale::findOrFail($id);
+
         // se verifica si ya existe una venta con los 3 ids recibidos
-        if($this->sale->idsExists($request)){
+        if($sale->idsExists($request)){
             Session::flash('error', trans('messages.not_unique'));
             return redirect()->back()->withInput();
         }
 
-        $this->sale->fill($request->all());
+        $sale->fill($request->all());
 
         $product = Product::where('id', $request->get('product_id'))->first();
-        $this->sale->amount = $product->price;
+        $sale->amount = $product->price;
 
-        $this->sale->save();
+        $sale->save();
 
         Session::flash('edit', trans('messages.edit_sale'));
 
@@ -140,7 +162,9 @@ class SalesController extends Controller
      */
     public function destroy($id)
     {
-        $this->sale->delete();
+        $sale = Sale::findOrFail($id);
+
+        $sale->delete();
 
         Session::flash('delete', trans('messages.delete_sale'));
 
