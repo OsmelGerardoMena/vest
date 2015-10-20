@@ -8,6 +8,7 @@ use Vest\Http\Requests;
 use Vest\Http\Controllers\Controller;
 
 use Vest\Tables\Training;
+use Vest\Tables\Product;
 
 use Illuminate\Routing\Route;
 
@@ -30,13 +31,24 @@ class TrainingsController extends Controller
     // Construtor
     public function __construct()
     {
-        $this->beforeFilter('@findTraining', ['only' => ['show','edit', 'update', 'destroy']]);
+        $this->user = \Auth::user();
+        
+        if ($this->user->can('seller')) {
+            // si no es empresa, se restringe todo excepto
+            $this->middleware('is_company', ['except' => 'show']);
+        }
+        if ($this->user->can('company')) {
+            // si se loguea una empresa, se restringe solo
+            $this->middleware('is_admin', ['only' => 'destroy']);
+        }
+
+        //$this->beforeFilter('@findTraining', ['only' => ['show', 'edit', 'update', 'destroy']]);
     }
 
-    public function findTraining(Route $route)
+    /*public function findTraining(Route $route)
     {
         $this->training = Training::findOrFail($route->getParameter('trainings'));
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -45,7 +57,15 @@ class TrainingsController extends Controller
      */
     public function index(Request $request)
     {
-        $trainings = Training::filterTrainings($request->get('product'));
+        if ($this->user->can('admin')) {
+            $trainings = Training::filterTrainings($request->get('product'));
+        }
+        else if($this->user->can('company')) {
+            // si es empresa, se busca los id de productos de dicha empresa
+            $idArray = Product::where('company_id', $this->user->id)->lists('id');
+            $trainings = Training::filterCompanyTrainings($idArray, $request->get('product'));
+        }
+
         $trainings->setPath('trainings');
         return view('dashboard.trainings.trainings', compact('trainings'));
     }
@@ -111,8 +131,10 @@ class TrainingsController extends Controller
      */
     public function show($id)
     {
+        $training = Training::findOrFail($id);
+
         return view('dashboard.trainings.show')
-                ->with('training', $this->training);
+                ->with('training', $training);
     }
 
     /**
@@ -123,8 +145,10 @@ class TrainingsController extends Controller
      */
     public function edit($id)
     {
+        $training = Training::findOrFail($id);
+
         return view('dashboard.trainings.edit')
-                ->with('training', $this->training);
+                ->with('training', $training);
     }
 
     /**
@@ -136,6 +160,8 @@ class TrainingsController extends Controller
      */
     public function update(EditTrainingRequest $request, $id)
     {
+        $training = Training::findOrFail($id);
+
         if(trim($request->get('content')) === "<p><br></p>"){
             Session::flash('error', trans('messages.content_required'));
             return redirect()->back()->withInput($request->all());
@@ -147,15 +173,15 @@ class TrainingsController extends Controller
                 return redirect()->back()->withInput($request->all());
             }
             // si se pudo subir el nuevo archivo, se elimina el archivo viejo
-            $this->deleteFile();
+            $this->deleteFile($training);
             // se alamacena el nombre del nuevo archivo
-            $this->training->training_file = $this->file_name;
+            $training->training_file = $this->file_name;
         }
 
-        $this->training->date = $request->get('date');
-        $this->training->product_id = $request->get('product_id');
-        $this->training->content = $request->get('content');
-        $this->training->save();
+        $training->date = $request->get('date');
+        $training->product_id = $request->get('product_id');
+        $training->content = $request->get('content');
+        $training->save();
 
         Session::flash('edit', trans('messages.edit_training'));
 
@@ -170,8 +196,11 @@ class TrainingsController extends Controller
      */
     public function destroy($id)
     {
-        $this->deleteFile();
-        $this->training->delete();
+        $training = Training::findOrFail($id);
+
+        $this->deleteFile($training);
+
+        $training->delete();
 
         Session::flash('delete', trans('messages.delete_training'));
 
@@ -213,11 +242,11 @@ class TrainingsController extends Controller
     }
 
     // elimina un archivo si existe
-    private function deleteFile()
+    private function deleteFile($training)
     {
-        if($this->training->hasFile()){
+        if($training->hasFile()){
             \Storage::disk('local_training_file')
-                ->delete($this->training->training_file);
+                ->delete($training->training_file);
         }
     }
 }

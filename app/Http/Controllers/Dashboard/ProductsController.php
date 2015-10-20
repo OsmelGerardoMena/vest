@@ -26,15 +26,24 @@ class ProductsController extends Controller
     ///Para buscar el producto y tenerlo en $this->product
     public function __construct()
     {
-        $this->beforeFilter('@findProduct', [
-            'only' => ['show', 'edit', 'update', 'destroy']
-        ]);
+        $this->user = \Auth::user();
+
+        if ($this->user->can('seller')) {
+            // si se loguea un vendedor, se restringe todo excepto
+            $this->middleware('is_admin', ['except' => ['index', 'show'] ]);
+        }
+        else if ($this->user->can('company')) {
+            // si se loguea una empresa, se restringe todo
+            $this->middleware('is_admin');
+        }
+
+        //$this->beforeFilter('@findProduct', ['only' => ['show', 'edit', 'update', 'destroy']]);
     }
 
-    public function findProduct(Route $route)
+    /*public function findProduct(Route $route)
     {
         $this->product = Product::findOrFail($route->getParameter('products'));
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -43,11 +52,19 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::filterProducts(
-            $request->get('name'), 
-            $request->get('company')
-        );
-
+        if ($this->user->can('admin')) {
+            $products = Product::filterProducts(
+                $request->get('name'), 
+                $request->get('company')
+            );
+        }
+        else if ($this->user->can('seller')) {
+            $products = Product::filterActiveProducts(
+                $request->get('name'), 
+                $request->get('company')
+            );
+        }
+        
         $products->setPath('products');
         return view('dashboard.products.products', compact('products'));
     }
@@ -87,8 +104,10 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
+        $product = Product::findOrFail($id);
+
         return view('dashboard.products.show')
-                ->with('product', $this->product);
+                ->with('product', $product);
     }
 
     /**
@@ -99,7 +118,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        return view('dashboard.products.edit')->with('product', $this->product);
+        $product = Product::findOrFail($id);
+        return view('dashboard.products.edit')->with('product', $product);
     }
 
     /**
@@ -111,11 +131,13 @@ class ProductsController extends Controller
      */
     public function update(EditProductRequest $request, $id)
     {
-        $this->product->fill($request->all());
+        $product = Product::findOrFail($id);
 
-        $this->product->save();
+        $product->fill($request->all());
 
-        $message = $this->product->name.trans('messages.edit');
+        $product->save();
+
+        $message = $product->name.trans('messages.edit');
 
         Session::flash('edit', $message);
 
@@ -130,9 +152,11 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $this->product->delete();
+        $product = Product::findOrFail($id);
 
-        $message = $this->product->name.trans('messages.delete');
+        $product->delete();
+
+        $message = $product->name.trans('messages.delete');
 
         Session::flash('delete', $message);
 

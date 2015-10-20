@@ -28,10 +28,17 @@ class Training extends Model
         return $this->belongsTo('Vest\Tables\Product');
     }
 
-    ///** Filtro para capacitaciones y Scope **///
+    ///** Filtro para capacitaciones **///
     public static function filterTrainings($product_id)
     {
     	return Training::productid($product_id)->simplePaginate(5);
+    }
+
+    ///** Filtro para capacitaciones de los productos de una empresa **///
+    public static function filterCompanyTrainings($idCompanyProducts, $product_id)
+    {
+        return Training::whereIn('product_id', $idCompanyProducts)
+                ->productid($product_id)->simplePaginate(5);
     }
 
     ///** Scope **///

@@ -1,4 +1,8 @@
-@inject('products', 'Vest\Services\OptionsSelectProduct')
+@can('admin')
+	@inject('products', 'Vest\Services\OptionsSelectProduct')
+@else
+	@inject('products', 'Vest\Services\OptionsSelectCompanyProducts')
+@endcan
 
 <div class="form-group">
 	{!! Form::label('goal', trans('validation.attributes.goal'), ['class' => 'col-sm-2 control-label']) !!}
@@ -31,6 +35,10 @@
 <div class="form-group">
 	{!! Form::label('product_id', trans('validation.attributes.product'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::select('product_id', $products->get(), old('product_id'), ['class' => 'form-control']) !!}
+		@can('admin')
+			{!! Form::select('product_id', $products->get(), old('product_id'), ['class' => 'form-control']) !!}
+		@else
+			{!! Form::select('product_id', $products->get(Auth::user()->id), old('product_id'), ['class' => 'form-control']) !!}
+		@endcan
 	</div>
 </div>

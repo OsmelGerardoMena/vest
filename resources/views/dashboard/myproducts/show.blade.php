@@ -29,10 +29,17 @@
 							<div class="data-table-toolbar">
 								<div class="row">
 									<div class="col-md-12">
-										<a href="{{route('dashboard.my-products.index')}}" class="btn btn-primary">
-											<i class="icon-back"></i>
-											@lang('dashboard.buttons.go_my_products')
-										</a>
+										@if(strpos(URL::previous(), trans('route.unallocated')))
+											<a href="{{route('dashboard.my-products.unallocated')}}" class="btn btn-primary">
+												<i class="icon-back"></i>
+												@lang('dashboard.buttons.back')
+											</a>
+										@elseif(strpos(URL::previous(), trans('route.my-products')))
+											<a href="{{route('dashboard.my-products.index')}}" class="btn btn-primary">
+												<i class="icon-back"></i>
+												@lang('dashboard.buttons.go_my_products')
+											</a>
+										@endif
 										<h3>
 											<strong>
 												{{ $product->name }}
@@ -49,7 +56,7 @@
 											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
 											<th>@lang('dashboard.table.creator')</th>
-											@if(Auth::user()->can('company') || $position !== false)
+											@if(Auth::user()->can('company') || $unallocated !== false)
                                             	<th>@lang('dashboard.table.status')</th>
                                         	@elseif(Auth::user()->can('seller'))
                                         		<th>@lang('dashboard.table.link_status')</th>
@@ -62,7 +69,7 @@
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
 											<td>{{ $product->creator }}</td>
-											@if(Auth::user()->can('company') || $position !== false)
+											@if(Auth::user()->can('company') || $unallocated !== false)
 												<td><span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">
                                                 	@lang('dashboard.status.'.$product->getStatusId())
                                                 </span></td>

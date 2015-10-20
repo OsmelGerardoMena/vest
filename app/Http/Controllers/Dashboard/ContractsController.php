@@ -28,13 +28,23 @@ class ContractsController extends Controller
     public function __construct()
     {
         $this->user = \Auth::user();
-        $this->beforeFilter('@findContract', ['only' => ['edit', 'update', 'destroy']]);
+
+        if ($this->user->can('seller')) {
+            // si se loguea un vendedor, se restringe todo
+            $this->middleware('is_admin');
+        }
+        else if ($this->user->can('company')) {
+            // si se loguea una empresa, se restringe solo
+            $this->middleware('is_admin', ['only' => ['show', 'destroy'] ]);
+        }
+
+        //$this->beforeFilter('@findContract', ['only' => ['edit', 'update', 'destroy']]);
     }
 
-    public function findContract(Route $route)
+    /*public function findContract(Route $route)
     {
         $this->contract = Contract::findOrFail($route->getParameter('contracts'));
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -130,8 +140,10 @@ class ContractsController extends Controller
      */
     public function edit($id)
     {
+        $contract = Contract::findOrFail($id);
+
         return view('dashboard.contracts.edit')
-                ->with('contract', $this->contract);
+                ->with('contract', $contract);
     }
 
     /**
@@ -143,22 +155,24 @@ class ContractsController extends Controller
      */
     public function update(EditContractRequest $request, $id)
     {
+        $contract = Contract::findOrFail($id);
+
         if($request->file('contract_file')){
             if (!$this->uploadFile($request->file('contract_file'))) {
                 Session::flash('file_error', $this->error_message);
                 return redirect()->back()->withInput($request->all());
             }
             // si se pudo subir el nuevo archivo, se elimina el archivo viejo
-            $this->deleteFile();
+            $this->deleteFile($contract);
             // se alamacena el nombre del nuevo archivo
-            $this->contract->contract_file = $this->file_name;
+            $contract->contract_file = $this->file_name;
         }
 
-        $this->contract->name = $request->get('name');
-        $this->contract->product_id= $request->get('product_id');
-        $this->contract->save();
+        $contract->name = $request->get('name');
+        $contract->product_id= $request->get('product_id');
+        $contract->save();
 
-        $message = $this->contract->name.trans('messages.edit');
+        $message = $contract->name.trans('messages.edit');
 
         Session::flash('edit', $message);
 
@@ -173,13 +187,15 @@ class ContractsController extends Controller
      */
     public function destroy($id)
     {
+        $contract = Contract::findOrFail($id);
+
         //elimino primero el archivo de contrato
-        $this->deleteFile();
+        $this->deleteFile($contract);
 
         // luego elimino el registro de la base de datos
-        $this->contract->delete();
+        $contract->delete();
 
-        $message = $this->contract->name.trans('messages.delete');
+        $message = $contract->name.trans('messages.delete');
 
         Session::flash('delete', $message);
 
@@ -221,11 +237,11 @@ class ContractsController extends Controller
     }
 
     // elimina un archivo si existe
-    private function deleteFile()
+    private function deleteFile($contract)
     {
-        if($this->contract->hasFile()){
+        if($contract->hasFile()){
             \Storage::disk('local_contract_file')
-                ->delete($this->contract->contract_file);
+                ->delete($contract->contract_file);
         }
     }
 }

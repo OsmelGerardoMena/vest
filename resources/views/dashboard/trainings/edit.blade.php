@@ -7,7 +7,10 @@
 @section('content')
 
 @include('partials/modal')
-@include('dashboard.trainings.partials.modal')
+
+@can('admin')
+	@include('dashboard.trainings.partials.modal')
+@endcan
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -29,11 +32,13 @@
 				<i class="icon-back"></i>
 				@lang('dashboard.buttons.back')
 			</a>
-			<button data-modal="delete-modal-{{$training->id}}" class="btn btn-danger md-trigger">
-				<i class="fa fa-trash-o"></i>
-			  	@lang('dashboard.buttons.delete')
-			</button><br><br>
-
+			@can('admin')
+				<button data-modal="delete-modal-{{$training->id}}" class="btn btn-danger md-trigger">
+					<i class="fa fa-trash-o"></i>
+				  	@lang('dashboard.buttons.delete')
+				</button>
+			@endcan
+			<br><br>
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')

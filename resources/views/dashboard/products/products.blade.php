@@ -8,9 +8,11 @@
 
 @include('partials/modal')
 
-@foreach($products as $product)
-	@include('dashboard.products.partials.modal')
-@endforeach
+@can('admin')
+	@foreach($products as $product)
+		@include('dashboard.products.partials.modal')
+	@endforeach
+@endcan
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -36,10 +38,12 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="toolbar-btn-action">
-											<a class="btn btn-success" href="{{route('dashboard.products.create')}}">
-												<i class="fa fa-plus-circle"></i>
-												@lang('dashboard.buttons.new')
-											</a>
+											@can('admin')
+												<a class="btn btn-success" href="{{route('dashboard.products.create')}}">
+													<i class="fa fa-plus-circle"></i>
+													@lang('dashboard.buttons.new')
+												</a>
+											@endcan
 										</div>
 										@include('dashboard.products.partials.search')
 									</div>
@@ -72,24 +76,33 @@
 											</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.change_status')" class="btn btn-default" 
-														href="{{route('dashboard.products.status', $product->id)}}">
-														<i class="fa fa-power-off"></i>
-													</a>
+													@can('admin')
+														<a data-toggle="tooltip" title="@lang('dashboard.buttons.change_status')" class="btn btn-default" 
+															href="{{route('dashboard.products.status', $product->id)}}">
+															<i class="fa fa-power-off"></i>
+														</a>
 
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
-														href="{{route('dashboard.products.show', $product->id)}}">
-														<i class="fa fa-info-circle"></i>
-													</a>
-													
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
-														href="{{route('dashboard.products.edit', $product->id)}}">
-														<i class="fa fa-edit"></i>
-													</a>
+														<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
+															href="{{route('dashboard.products.show', $product->id)}}">
+															<i class="fa fa-info-circle"></i>
+														</a>
+														
+														<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
+															href="{{route('dashboard.products.edit', $product->id)}}">
+															<i class="fa fa-edit"></i>
+														</a>
 
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
-														<i class="fa fa-trash-o"></i>
-													</a>
+														<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
+															<i class="fa fa-trash-o"></i>
+														</a>
+													@endcan
+
+													@can('seller')
+														<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
+															href="{{route('dashboard.products.show', $product->id)}}">
+															<i class="fa fa-info-circle"></i>
+														</a>
+													@endcan
 												</div>
 											</td>
 										</tr>

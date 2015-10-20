@@ -8,6 +8,7 @@ use Vest\Http\Requests;
 use Vest\Http\Controllers\Controller;
 
 use Vest\Tables\Incentive;
+use Vest\Tables\Product;
 
 use Illuminate\Routing\Route;
 
@@ -19,12 +20,23 @@ use Illuminate\Support\Facades\Session;
 class IncentivesController extends Controller
 {
     public function __construct(){
-        $this->beforeFilter('@findIncentive', ['only' => ['edit', 'update', 'destroy']]);
+        $this->user = \Auth::user();
+
+        if ($this->user->can('seller')) {
+            // si se loguea un vendedor, se restringe todo
+            $this->middleware('is_admin');
+        }
+        else if ($this->user->can('company')) {
+            // si se loguea una empresa, se restringe solo
+            $this->middleware('is_admin', ['only' => ['show', 'destroy'] ]);
+        }
+
+        //$this->beforeFilter('@findIncentive', ['only' => ['edit', 'update', 'destroy']]);
     }
 
-    public function findIncentive(Route $route){
+    /*public function findIncentive(Route $route){
         $this->incentive = Incentive::findOrFail($route->getParameter('incentives'));
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -33,10 +45,21 @@ class IncentivesController extends Controller
      */
     public function index(Request $request)
     {
-        $incentives = Incentive::filterIncentives(
-            $request->get('award'), 
-            $request->get('product')
-        );
+        if ($this->user->can('admin')) {
+            $incentives = Incentive::filterIncentives(
+                $request->get('award'), 
+                $request->get('product')
+            );
+        }
+        else if($this->user->can('company')) {
+            // si es empresa, se busca los id de productos de dicha empresa
+            $idArray = Product::where('company_id', $this->user->id)->lists('id');
+            $incentives = Incentive::filterCompanyIncentives(
+                $idArray, 
+                $request->get('award'), 
+                $request->get('product')
+            );
+        }
 
         $incentives->setPath('incentives');
         return view('dashboard.incentives.incentives', compact('incentives'));
@@ -86,8 +109,10 @@ class IncentivesController extends Controller
      */
     public function edit($id)
     {
+        $incentive = Incentive::findOrFail($id);
+
         return view('dashboard.incentives.edit')
-                ->with('incentive', $this->incentive);
+                ->with('incentive', $incentive);
     }
 
     /**
@@ -99,9 +124,11 @@ class IncentivesController extends Controller
      */
     public function update(EditIncentiveRequest $request, $id)
     {
-        $this->incentive->fill($request->all());
+        $incentive = Incentive::findOrFail($id);
 
-        $this->incentive->save();
+        $incentive->fill($request->all());
+
+        $incentive->save();
 
         Session::flash('edit', trans('messages.edit_incentive'));
 
@@ -116,7 +143,9 @@ class IncentivesController extends Controller
      */
     public function destroy($id)
     {
-        $this->incentive->delete();
+        $incentive = Incentive::findOrFail($id);
+
+        $incentive->delete();
 
         Session::flash('delete', trans('messages.delete_incentive'));
 

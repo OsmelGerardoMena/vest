@@ -38,6 +38,23 @@
 </li>
 
 @can('seller')
+     <li class='has_sub'>
+        <a href=''>
+            <i class='icon-layers'></i>
+            <span>@lang('dashboard.sidebar.products')</span> 
+            <span class="pull-right">
+                <i class="fa fa-angle-down"></i>
+            </span>
+        </a>
+        <ul>
+            <li>
+                <a href="{{asset('/dashboard/products')}}">
+                    <span>@lang('dashboard.sidebar.list_products')</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
     <li class='has_sub'>
         <a href=''>
             <i class='fa fa-money'></i>
@@ -48,7 +65,7 @@
         </a>
         <ul>
             <li>
-                <a href="{{asset('/dashboard/algo')}}">
+                <a href="">
                     <span>@lang('dashboard.sidebar.my_sales')</span>
                 </a>
             </li>

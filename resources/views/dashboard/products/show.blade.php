@@ -33,10 +33,12 @@
 											<i class="icon-back"></i>
 											@lang('dashboard.buttons.back')
 										</a>
-										<a href="{{route('dashboard.product-sellers.show', $product->id)}}" class="btn btn-success">
-											<i class="icon-suitcase"></i>
-											@lang('dashboard.buttons.sellers')
-										</a>
+										@can('admin')
+											<a href="{{route('dashboard.product-sellers.show', $product->id)}}" class="btn btn-success">
+												<i class="icon-suitcase"></i>
+												@lang('dashboard.buttons.sellers')
+											</a>
+										@endcan
 										<h3>
 											<strong>
 												{{ $product->name }}

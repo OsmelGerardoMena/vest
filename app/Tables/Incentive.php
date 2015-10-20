@@ -23,10 +23,20 @@ class Incentive extends Model
         return $this->belongsTo('Vest\Tables\Product');
     }
 
-    ///** Filtro para incentivos y Scope **///
+    ///** Filtro para incentivos **///
     public static function filterIncentives($award, $product_id)
     {
     	return Incentive::name($award)
+                ->productid($product_id)
+                ->simplePaginate(5);
+    }
+
+    ///** Filtro para incentivos de los productos de una empresa **///
+    public static function filterCompanyIncentives(
+        $idCompanyProducts, $award, $product_id)
+    {
+        return Incentive::whereIn('product_id', $idCompanyProducts)
+                ->name($award)
                 ->productid($product_id)
                 ->simplePaginate(5);
     }

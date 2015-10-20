@@ -22,18 +22,12 @@
 	    		</h1>
             </div>
 
-          	@can('admin')
+          	@if(Auth::user()->can('admin') || Auth::user()->can('company'))
 				<a href="{{route('dashboard.trainings.index')}}" class="btn btn-primary">
 					<i class="icon-back"></i>
 					@lang('dashboard.buttons.back')
-				</a>
-			@else
-				<a href="{{route('dashboard.myproducts.show', $training->product->id)}}" class="btn btn-primary">
-					<i class="icon-back"></i>
-					@lang('dashboard.buttons.back')
-				</a>
-			@endcan
-			<br><br>
+				</a><br><br>
+			@endif
 			
 			<div class="widget">
 				<div class="widget-header ">

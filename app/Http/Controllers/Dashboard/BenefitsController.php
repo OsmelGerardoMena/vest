@@ -21,15 +21,24 @@ class BenefitsController extends Controller
 {
     public function __construct()
     {
-        $this->user = \Auth::user(); //ok
-        $this->beforeFilter('@findBenefit', 
-            ['only' => ['edit', 'update', 'destroy']]);
+        $this->user = \Auth::user();
+
+        if ($this->user->can('seller')) {
+            // si se loguea un vendedor, se restringe todo
+            $this->middleware('is_admin');
+        }
+        else if ($this->user->can('company')) {
+            // si se loguea una empresa, se restringe solo
+            $this->middleware('is_admin', ['only' => ['show', 'destroy'] ]);
+        }
+
+        //$this->beforeFilter('@findBenefit', ['only' => ['edit', 'update', 'destroy']]);
     }
 
-    public function findBenefit(Route $route)
+    /*public function findBenefit(Route $route)
     {
         $this->benefit = Benefit::findOrFail($route->getParameter('benefits'));
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -96,8 +105,10 @@ class BenefitsController extends Controller
      */
     public function edit($id)
     {
+        $benefit = Benefit::findOrFail($id);
+
         return view('dashboard.benefits.edit')
-                ->with('benefit', $this->benefit);
+                ->with('benefit', $benefit);
     }
 
     /**
@@ -109,9 +120,11 @@ class BenefitsController extends Controller
      */
     public function update(EditBenefitRequest $request, $id)
     {
-        $this->benefit->fill($request->all());
+        $benefit = Benefit::findOrFail($id);
 
-        $this->benefit->save();
+        $benefit->fill($request->all());
+
+        $benefit->save();
 
         Session::flash('edit', trans('messages.edit_benefit'));
 
@@ -126,7 +139,9 @@ class BenefitsController extends Controller
      */
     public function destroy($id)
     {
-        $this->benefit->delete();
+        $benefit = Benefit::findOrFail($id);
+
+        $benefit->delete();
 
         Session::flash('delete', trans('messages.delete_benefit'));
 

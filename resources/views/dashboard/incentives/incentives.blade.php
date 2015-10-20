@@ -8,9 +8,11 @@
 
 @include('partials/modal')
 
-@foreach($incentives as $incentive)
-	@include('dashboard.incentives.partials.modal')
-@endforeach
+@can('admin')
+	@foreach($incentives as $incentive)
+		@include('dashboard.incentives.partials.modal')
+	@endforeach
+@endcan
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -56,7 +58,9 @@
 											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.date')</th>
 											<th>@lang('dashboard.table.product')</th>
-											<th>@lang('dashboard.table.company')</th>
+											@can('admin')
+												<th>@lang('dashboard.table.company')</th>
+											@endcan
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
@@ -69,17 +73,20 @@
 											<td><a href="{{ $incentive->url }}" target="_blank">{{ $incentive->url }}</a></td>
 											<td>{{ $incentive->date }}</td>
 											<td>{{ $incentive->product->name }}</td>
-											<td>{{ $incentive->product->company->name }}</td>
+											@can('admin')
+												<td>{{ $incentive->product->company->name }}</td>
+											@endcan
 											<td>
 												<div class="btn-group btn-group-xs">
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
 														href="{{route('dashboard.incentives.edit', $incentive->id)}}">
 														<i class="fa fa-edit"></i>
 													</a>
-
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$incentive->id}}" class="btn btn-danger md-trigger ">
-														<i class="fa fa-trash-o"></i>
-													</a>
+													@can('admin')
+														<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$incentive->id}}" class="btn btn-danger md-trigger ">
+															<i class="fa fa-trash-o"></i>
+														</a>
+													@endcan
 												</div>
 											</td>
 										</tr>

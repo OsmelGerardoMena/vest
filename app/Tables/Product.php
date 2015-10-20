@@ -74,6 +74,13 @@ class Product extends Model
     	return Product::name($name)->company($company)->simplePaginate(5);
     }
 
+    ///** Filtro para mostrar solo productos activos a los vendedores **///
+    public static function filterActiveProducts($name, $company)
+    {
+        return Product::where('status_id', 1)->name($name)->company($company)
+                ->simplePaginate(5);
+    }
+
     ///** Filtro para vendedores del producto **///
     public static function filterProductSellers($id, $nameseller)
     {

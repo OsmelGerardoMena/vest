@@ -29,7 +29,7 @@ class MyProductsController extends Controller
         // middleware especifico para este controlador
         if($this->user->can('company')){
             // si no es vendedor, se restringe solo getUnallocated
-            $this->middleware('is_seller', ['only' => ['getUnallocated'] ]);
+            $this->middleware('is_seller', ['only' => ['getUnallocated', 'destroy'] ]);
         }
         else if($this->user->can('seller')){
             // si no es empresa, se restringe todo excepto
@@ -112,12 +112,12 @@ class MyProductsController extends Controller
         // de la url anterior (desde donde se viene -> URL::previous())
         // strpos Devuelve la posición donde el string existe, 
         // si no devuelve false
-        $position = strpos(URL::previous(), trans('dashboard.unallocated'));
+        $unallocated = strpos(URL::previous(), trans('route.unallocated'));
 
-        if($this->user->can('company') || $position !== false){
+        if($this->user->can('company') || $unallocated !== false){
             // si es una empresa la que está consultando algunos de sus 
             // productos, simplemente se se busca con Product::findOrFail
-            // Si no es empresa y $position no es false, quiere
+            // Si no es empresa y $unallocated no es false, quiere
             // decir que es un vendedor, pero viene de la url de 
             // los productos que NO tiene asignado, por lo tanto se 
             // usará Product::findOrFail en vez de addedproducts()
@@ -125,14 +125,14 @@ class MyProductsController extends Controller
         }
         else if($this->user->can('seller')){
             // si no entra en la condicion anterior, aparte que es un 
-            // vendedor, se sabe que viene de la url de los productos que 
-            // SI tiene asignado, por lo tanto se usa addedproducts
+            // vendedor, se sabe que la url anterior es 'my-products'
+            // es decir de los productos que si estan asignados al vendedor
             $product = $this->user->addedproducts()->findOrFail($id);
         }
 
         return view('dashboard.myproducts.show')
                     ->with('product', $product)
-                    ->with('position', $position);
+                    ->with('unallocated', $unallocated);
     }
 
     /**

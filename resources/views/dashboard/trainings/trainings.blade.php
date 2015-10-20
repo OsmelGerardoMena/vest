@@ -8,9 +8,11 @@
 
 @include('partials/modal')
 
-@foreach($trainings as $training)
-	@include('dashboard.trainings.partials.modal')
-@endforeach
+@can('admin')
+	@foreach($trainings as $training)
+		@include('dashboard.trainings.partials.modal')
+	@endforeach
+@endcan
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -53,7 +55,9 @@
 											<th>#</th>
 											<th>@lang('dashboard.table.date')</th>
 											<th>@lang('dashboard.table.product')</th>
-											<th>@lang('dashboard.table.company')</th>
+											@can('admin')
+												<th>@lang('dashboard.table.company')</th>
+											@endcan
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
@@ -63,7 +67,9 @@
 											<td>{{ $training->id }}</td>
 											<td>{{ $training->date }}</td>
 											<td>{{ $training->product->name }}</td>
-											<td>{{ $training->product->company->name }}</td>
+											@can('admin')
+												<td>{{ $training->product->company->name }}</td>
+											@endcan
 											<td>
 												<div class="btn-group btn-group-xs">
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
@@ -76,9 +82,11 @@
 														<i class="fa fa-info-circle"></i>
 													</a>
 
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$training->id}}" class="btn btn-danger md-trigger ">
-														<i class="fa fa-trash-o"></i>
-													</a>
+													@can('admin')
+														<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$training->id}}" class="btn btn-danger md-trigger ">
+															<i class="fa fa-trash-o"></i>
+														</a>
+													@endcan
 												</div>
 											</td>
 										</tr>

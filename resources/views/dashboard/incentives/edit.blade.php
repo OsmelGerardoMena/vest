@@ -7,7 +7,10 @@
 @section('content')
 
 @include('partials/modal')
-@include('dashboard.incentives.partials.modal')
+
+@can('admin')
+	@include('dashboard.incentives.partials.modal')
+@endcan
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -55,10 +58,12 @@
 							</div>
 						</div>
 					{!! Form::close() !!}
-					<button data-modal="delete-modal-{{$incentive->id}}" class="btn btn-danger btn-sm md-trigger">
-						<i class="fa fa-trash-o"></i>
-					  	@lang('dashboard.buttons.delete')
-					</button>
+					@can('admin')
+						<button data-modal="delete-modal-{{$incentive->id}}" class="btn btn-danger btn-sm md-trigger">
+							<i class="fa fa-trash-o"></i>
+						  	@lang('dashboard.buttons.delete')
+						</button>
+					@endcan
 				</div>
 			</div>
 		</div>

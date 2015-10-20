@@ -71,32 +71,12 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 	Route::resource('dashboard/sellers', 'SellersController', 
 		['except' => ['create', 'store']]);
 
-	Route::get('dashboard/products/status/{id}', [
-			'uses' => 'ProductsController@productStatus',
-			'as' => 'dashboard.products.status'
-	]);
-	Route::resource('dashboard/products', 'ProductsController');
-
-	Route::resource('dashboard/contracts', 'ContractsController', 
-		['except' => 'show']);
-
-	Route::resource('dashboard/incentives', 'IncentivesController', 
-		['except' => 'show']);
-
-	Route::resource('dashboard/trainings', 'TrainingsController');
-
-	Route::resource('dashboard/benefits', 'BenefitsController', 
-		['except' => 'show']);
-
 	Route::get('dashboard/product-sellers/link/{product_id}', [
 			'uses' => 'ProductSellersController@sellerLink',
 			'as' => 'dashboard.product-sellers.link'
 	]);
 	Route::resource('dashboard/product-sellers', 'ProductSellersController', 
 		['only' => ['show', 'destroy']]);
-
-	Route::resource('dashboard/account', 'AccountsController', 
-		['only' => ['index', 'edit', 'update']]);
 
 	Route::resource('dashboard/companies', 'CompaniesController', 
 		['only' => ['index', 'show', 'destroy']]);
@@ -117,7 +97,7 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 	Route::resource('dashboard/profiles', 'ProfilesController');*/
 });
 
-// Rutas para el vendedor y la empresa
+// Rutas para el vendedores, empresas y administradores (Autenticados y activos)
 Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard'], function(){
 
 	Route::resource('dashboard/account', 'AccountsController', 
@@ -130,9 +110,16 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 	Route::resource('dashboard/my-products', 'MyProductsController', 
 			['except' => 'destroy']);
 
-	Route::resource('dashboard/contracts', 'ContractsController');
-	Route::resource('dashboard/benefits', 'BenefitsController');
-	Route::resource('dashboard/trainings', 'TrainingsController', ['only' => 'show']);
+	Route::resource('dashboard/contracts', 'ContractsController', 
+		['except' => 'show']);
+
+	Route::resource('dashboard/benefits', 'BenefitsController', 
+		['except' => 'show']);
+
+	Route::resource('dashboard/incentives', 'IncentivesController', 
+		['except' => 'show']);
+
+	Route::resource('dashboard/trainings', 'TrainingsController');
 
 	Route::controller('dashboard/company-sales', 'CompanySalesController', [
 		'getIndex' => 'dashboard.companysales.index',
@@ -140,5 +127,9 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 		//'getSellersSales' => 'dashboard.companysales.show',
 	]);
 
-	
+	Route::get('dashboard/products/status/{id}', [
+			'uses' => 'ProductsController@productStatus',
+			'as' => 'dashboard.products.status'
+	]);
+	Route::resource('dashboard/products', 'ProductsController');
 });
