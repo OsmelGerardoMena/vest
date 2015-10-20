@@ -4,7 +4,7 @@ namespace Vest\Tables;
 
 use Illuminate\Database\Eloquent\Model;
 
-class benefitTypes extends Model
+class BenefitTypes extends Model
 {
     protected $table = 'benefit_types';
 }

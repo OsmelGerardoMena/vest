@@ -87,6 +87,8 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 	]);
 	Route::resource('dashboard/customers', 'CustomersController');
 
+	Route::resource('dashboard/company-categories', 'CompanyCategoriesController');
+
 	/*Route::get('dashboard/profiles/status/{id}', [
 			'uses' => 'ProfilesController@profileStatus',
 			'as' => 'dashboard.profiles.status'

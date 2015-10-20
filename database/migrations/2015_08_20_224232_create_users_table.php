@@ -26,8 +26,11 @@ class CreateUsersTable extends Migration
             //Relationships
             $table->integer('type_id')->unsigned();
             $table->integer('status_id')->unsigned()->default(1);
+            $table->integer('company_category_id')->unsigned()->nullable();
             $table->foreign('type_id')->references('id')->on('user_types');
             $table->foreign('status_id')->references('id')->on('status');
+            $table->foreign('company_category_id')->references('id')
+                        ->on('company_categories');
 
             $table->rememberToken();
             $table->timestamps();
