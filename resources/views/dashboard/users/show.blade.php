@@ -82,6 +82,16 @@
 									</center><hr>
 									<div class="row">
 										<div class="col-sm-6">
+											@if($user->can('company'))
+												<h5><strong>
+													{{strtoupper(trans('dashboard.table.company_category'))}}:
+												</strong></h5>
+												<p>
+													<i class="glyphicon glyphicon-tag"></i>
+													{{ $user->category->name }}
+												</p>
+											@endif
+
 											<h5><strong>
 												{{strtoupper(trans('dashboard.table.status'))}}:
 											</strong></h5>

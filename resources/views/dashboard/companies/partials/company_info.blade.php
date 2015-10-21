@@ -14,6 +14,7 @@
 					<table data-sortable class="table table-hover table-striped">
 						<thead>
 							<tr>
+								<th>@lang('dashboard.table.company_category')</th>
 								<th>@lang('dashboard.table.email')</th>
 								<th>@lang('dashboard.table.identifier')</th>
 								<th>@lang('dashboard.table.mobile')</th>
@@ -24,6 +25,7 @@
 						</thead>
 						<tbody>
 							<tr>
+								<td>{{ $company->category->name }}</td>
 								<td>{{ $company->email }}</td>
 								<td>{{ $company->identifier }}</td>
 								<td>{{ $company->mobile }}</td>

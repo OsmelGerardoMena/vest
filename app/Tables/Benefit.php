@@ -8,7 +8,7 @@ class Benefit extends Model
 {
     protected $table = 'benefits';
 
-    protected $fillable = [ 'amount', 'type_id', 'product_id'];
+    protected $fillable = [ 'amount', 'benefit_type_id', 'product_id'];
 
     ///** relacion de muchos a uno (relacion inversa) **///
     public function product()
@@ -21,7 +21,10 @@ class Benefit extends Model
     public function type()
     {
         //retorna un solo objeto type, el beneficio solo tiene un tipo
-        return $this->belongsTo('Vest\Tables\benefitTypes');
+        return $this->belongsTo('Vest\Tables\BenefitTypes', 'benefit_type_id');
+        // En relacion inversa, Eloquent asume que en Benefit existe un campo 
+        // llamado type_id, pero eso no es cierto por lo tanto se le pasa el
+        // segundo parametro que indica la verdadera llave foranea
     }
 
     ///** Filtro para beneficios **///

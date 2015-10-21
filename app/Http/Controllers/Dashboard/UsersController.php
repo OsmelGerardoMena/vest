@@ -64,8 +64,18 @@ class UsersController extends Controller
      */
     public function store(CreateUserRequest $request)
     { 
-        $user = User::create($request->all());
+        $user = new User();
 
+        $user->fill($request->all());
+
+        // si recibo company_category_id con algun valor
+        if ($request->has('company_category_id')) {
+            // se guarda almacena
+            $user->company_category_id = $request->get('company_category_id');
+        }
+
+        $user->save();
+        
         $message = $user->name.trans('messages.new');
       
         Session::flash('new', $message);
@@ -113,6 +123,12 @@ class UsersController extends Controller
     public function update(EditUserRequest $request, $id)
     {
         $this->user->fill($request->all());
+
+        // si recibo company_category_id con algun valor
+        if ($request->has('company_category_id')) {
+            // se guarda almacena
+            $this->user->company_category_id = $request->get('company_category_id');
+        }
 
         $this->user->save();
 

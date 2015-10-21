@@ -19,6 +19,6 @@ $factory->define(Vest\User::class, function ($faker) {
         'mobile' => $faker->phoneNumber,
         'phone' => $faker->phoneNumber,
         'address' => $faker->address,
-        'type_id' => $faker->randomElement([1, 2, 3]),
+        'type_id' => $faker->randomElement([1, 2]),
     ];
 });

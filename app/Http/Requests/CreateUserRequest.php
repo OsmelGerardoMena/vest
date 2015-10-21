@@ -31,7 +31,10 @@ class CreateUserRequest extends Request
             'phone' => 'required|max:20',
             'address' => 'required|max:100',
             'type_id' => 'required',
+            'company_category_id' => 'required_if:type_id,3|exists:company_categories,id',
             'password' => 'required|confirmed|min:6',
         ];
-    }
+    } 
+    // required_if:type_id,3 significa que el campo company_category_id va a ser
+    // obligatorio cuando el perfil seleccionado sea empresa
 }

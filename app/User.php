@@ -66,13 +66,23 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->belongsTo('Vest\Tables\Status');
     }
 
+    public function category()
+    {
+        // ésta relacion solo es para empresas
+        // retorna un solo objeto, ya que la empresa solo tiene una categoría 
+        return $this->belongsTo('Vest\Tables\CompanyCategories', 'company_category_id');
+        // En relacion inversa, Eloquent asume que en User existe un campo 
+        // llamado category_id, pero eso no es cierto por lo tanto se le pasa el
+        // segundo parametro que indica la verdadera llave foranea
+    }
+
     ///** relacion de uno a muchos **///
     public function products()
     {
         //retorna un array de objetos, el usuario (empresa) 
         //puede tener varios productos
         return $this->hasMany('Vest\Tables\Product', 'company_id');
-        //busca en product el campo company_id (llave foranea en Product)
+        //busca en Product el campo company_id (llave foranea en Product)
     }
 
     ///** relacion de muchos a muchos **///

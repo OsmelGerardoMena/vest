@@ -42,6 +42,7 @@ class EditUserRequest extends Request
             'phone' => 'required|max:20',
             'address' => 'required|max:100',
             'type_id' => 'required',
+            'company_category_id' => 'required_if:type_id,3|exists:company_categories,id',
             'password' => 'confirmed|min:6',
         ];
 

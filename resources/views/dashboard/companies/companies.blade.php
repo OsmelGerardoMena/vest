@@ -40,6 +40,7 @@
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.name')</th>
+											<th>@lang('dashboard.table.company_category')</th>
 											<th>@lang('dashboard.table.email')</th>
 											<th>@lang('dashboard.table.phone')</th>
 											<th>@lang('dashboard.table.status')</th>
@@ -51,6 +52,7 @@
 										<tr>
 											<td>{{ $company->id }}</td>
 											<td>{{ $company->name }}</td>
+											<td>{{ $company->category->name }}</td>
 											<td>{{ $company->email }}</td>
 											<td>{{ $company->phone }}</td>
 											<td><span class="{{ ($company->isActive()) ? 'label label-success' : 'label label-danger'}}">
@@ -62,6 +64,7 @@
 														href="{{route('dashboard.users.status', $company->id)}}">
 														<i class="fa fa-power-off"></i>
 													</a>
+
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info_and_product')" class="btn btn-info" 
 														href="{{route('dashboard.companies.show', $company->id)}}">
 														<i class="fa fa-eye"></i>

@@ -20,7 +20,7 @@ class CompaniesController extends Controller
     public function __construct()
     {
         $this->beforeFilter('@findCompany', 
-            ['only' => ['show', 'destroy']]);
+            ['only' => ['show', 'edit', 'update', 'destroy']]);
     }
 
     public function findCompany(Route $route)
@@ -88,7 +88,8 @@ class CompaniesController extends Controller
      */
     public function edit($id)
     {
-        //
+        /*return view('dashboard.companies.addcategory')
+                ->with('company', $this->company);*/
     }
 
     /**
@@ -100,7 +101,15 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*$this->company->fill($request->all());
+
+        $this->company->save();
+
+        $message = $this->company->name.trans('messages.addcategory');
+
+        Session::flash('edit', $message);
+
+        return redirect()->back();*/
     }
 
     /**

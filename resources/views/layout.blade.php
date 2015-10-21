@@ -39,6 +39,7 @@
     <!-- Extra CSS Libraries End -->
     
     <link href="{{asset('assets/css/style-responsive.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/css/my-style.css')}}" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -111,6 +112,7 @@
 	<script src="{{asset('assets/js/reloadsearch.js')}}"></script>
 	<script src="{{asset('assets/js/reloadselectorssales.js')}}"></script>
 	<script src="{{asset('assets/js/test.js')}}"></script>
+	<script src="{{asset('assets/js/selectcategory.js')}}"></script>
 	<!-- <script src="{{asset('assets/js/activemenu.js')}}"></script>-->
 </body>
 </html>

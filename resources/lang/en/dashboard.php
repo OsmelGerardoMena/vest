@@ -48,6 +48,7 @@ return [
 	'title_company_categories' => 'Company Categories',
 	'title_create_company_category' => 'Create company category',
 	'title_edit_company_category' => 'Edit Company category',
+	'title_add_category' => 'Add Category',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'change_password' => 'Change password',
@@ -141,6 +142,7 @@ return [
 		'go_my_products' => 'Go to my products',
 		'unallocated' => 'Products unallocated',
 		'related_sales' => 'Related sales',
+		'add_category' => 'Add category',
 	],
 
 	'ph' => [ //placeholder
@@ -203,6 +205,7 @@ return [
 		'sellers' => 'Sellers',
 		'products' => 'Products',
 		'customers' => 'Customers',
+		'company_category' => 'Category',
 	],
 
 	'status' => [

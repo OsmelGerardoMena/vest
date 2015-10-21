@@ -79,7 +79,7 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 		['only' => ['show', 'destroy']]);
 
 	Route::resource('dashboard/companies', 'CompaniesController', 
-		['only' => ['index', 'show', 'destroy']]);
+		['only' => ['index', 'show', 'destroy'] ]);
 
 	Route::get('dashboard/customers/status/{id}', [
 			'uses' => 'CustomersController@customerStatus',

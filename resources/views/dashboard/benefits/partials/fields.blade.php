@@ -14,9 +14,9 @@
 </div>
 
 <div class="form-group">
-	{!! Form::label('type_id', trans('validation.attributes.type_id'), ['class' => 'col-sm-2 control-label']) !!}
+	{!! Form::label('benefit_type_id', trans('validation.attributes.benefit_type_id'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::select('type_id', $types->get(), null, ['class' => 'form-control']) !!}
+		{!! Form::select('benefit_type_id', $types->get(), null, ['class' => 'form-control']) !!}
 	</div>
 </div>
 

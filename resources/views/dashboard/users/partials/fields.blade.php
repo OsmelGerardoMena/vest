@@ -1,4 +1,5 @@
 @inject('options', 'Vest\Services\OptionsSelectProfile')
+@inject('categories', 'Vest\Services\OptionsSelectCompanyCategory')
 
 <div class="form-group">
 	{!! Form::label('name', trans('validation.attributes.name'), ['class' => 'col-sm-2 control-label']) !!}
@@ -43,9 +44,18 @@
 </div>
 
 <div class="form-group">
-	{!! Form::label('type_id', trans('validation.attributes.profile'), ['class' => 'col-sm-2 control-label']) !!}
+	{!! Form::label('type_id', trans('validation.attributes.type_id'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::select('type_id', $options->get(), old('type_id'), ['class' => 'form-control']) !!}
+		{!! Form::select('type_id', $options->get(), null, ['class' => 'form-control', 'id' => 'select-profile']) !!}
+	</div>
+</div>
+
+<div class='select-category'>
+	<div class="form-group">
+		{!! Form::label('company_category_id', trans('validation.attributes.company_category_id'), ['class' => 'col-sm-2 control-label']) !!}
+		<div class="col-sm-10">
+			{!! Form::select('company_category_id', $categories->get(), null, ['class' => 'form-control', 'id' => 'select-profile']) !!}
+		</div>
 	</div>
 </div>
 

@@ -33,6 +33,18 @@ class UserTableSeeder extends Seeder
             'type_id' => 1,
         ]);
 
+        \DB::table('users')->insert([
+            'name' => 'Mercado las Pulgas',
+            'email' => 'pulga@gmail.com',
+            'password' => bcrypt('123456'),
+            'identifier' => 'J-5789963',
+            'mobile' => '777788899',
+            'phone' => '04167778899',
+            'address' => 'Merida',
+            'type_id' => 3,
+            'company_category_id' => 1,
+        ]);
+
     	//se crean 10 datos de prueba
         factory(Vest\User::class, 9)->create();
     }
