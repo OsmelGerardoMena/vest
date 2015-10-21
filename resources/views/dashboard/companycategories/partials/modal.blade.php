@@ -2,7 +2,7 @@
 <div class="md-modal md-slide-stick-top" id="delete-modal-{{$category->id}}">
 	<div class="md-content">
 		<h3><strong>@lang('dashboard.sure_delete_company_category')</strong></h3>
-		<div><h3><strong>{{$category->name}}</strong></h3></div>
+		<h3><strong>"{{$category->name}}"</strong></h3>
 		<div>
 			<center>
 				<p><button class="btn btn-primary md-close">

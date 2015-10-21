@@ -8,8 +8,26 @@ use Vest\Http\Controllers\Controller;
 
 use Vest\Tables\CompanyCategories;
 
+use Illuminate\Routing\Route;
+
+use Vest\Http\Requests\CreateCategoryRequest;
+use Vest\Http\Requests\EditCategoryRequest;
+
+use Illuminate\Support\Facades\Session;
+
 class CompanyCategoriesController extends Controller
 {
+    public function __construct()
+    {
+        $this->beforeFilter('@findCategory', ['only' => ['edit', 'update', 'destroy']]);
+    }
+
+    public function findCategory(Route $route)
+    {
+        $this->category = CompanyCategories::
+                findOrFail($route->getParameter('company_categories'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +47,7 @@ class CompanyCategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.companycategories.create');
     }
 
     /**
@@ -38,9 +56,15 @@ class CompanyCategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-        //
+        $category = CompanyCategories::create($request->all());
+
+        $message = $category->name.trans('messages.new');
+
+        Session::flash('new', $message);
+
+        return redirect()->route('dashboard.company-categories.index');
     }
 
     /**
@@ -62,7 +86,8 @@ class CompanyCategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('dashboard.companycategories.edit')
+                ->with('category', $this->category);
     }
 
     /**
@@ -72,9 +97,17 @@ class CompanyCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditCategoryRequest $request, $id)
     {
-        //
+        $this->category->fill($request->all());
+
+        $this->category->save();
+
+        $message = $this->category->name.trans('messages.edit');
+
+        Session::flash('edit', $message);
+
+        return redirect()->back();
     }
 
     /**
@@ -85,6 +118,12 @@ class CompanyCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $message = $this->category->name.trans('messages.delete');
+
+        $this->category->delete();
+
+        Session::flash('delete', $message);
+
+        return redirect()->route('dashboard.company-categories.index');
     }
 }

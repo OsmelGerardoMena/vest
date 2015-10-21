@@ -46,7 +46,7 @@ return [
 	'title_info_sale' => 'Sale info',
 	'title_company_sales' => 'Company Sales',
 	'title_company_categories' => 'Company Categories',
-	'create_company_category' => 'Create company category',
+	'title_create_company_category' => 'Create company category',
 	'title_edit_company_category' => 'Edit Company category',
 	'english' => 'English',
 	'spanish' => 'Spanish',
