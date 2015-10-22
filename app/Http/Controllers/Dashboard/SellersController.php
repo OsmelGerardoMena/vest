@@ -71,11 +71,14 @@ class SellersController extends Controller
      */
     public function show(Request $request, $id)
     {
-        //el metodo se usa para mostrar y filtrar los productos del vendedor
-        //$id contiene el id del vendedor
-        //get('nameproduct') contiene el nombre del producto a filtrar
-        $sellerProducts = User::filterSellerProducts($id, $request->get('nameproduct'));
+        // el metodo se usa para mostrar y filtrar los productos del vendedor
+        // $id contiene el id del vendedor
+        // get('nameproduct') contiene el nombre del producto a filtrar
+        $sellerProducts = User::filterSellerProducts($id, 
+                $request->get('nameproduct'), $request->get('company'));
+
         $sellerProducts->setPath($this->seller->id);
+
         return view('dashboard.sellers.seller_products', compact('sellerProducts'))
                 ->with('seller', $this->seller);
     }
@@ -109,12 +112,12 @@ class SellersController extends Controller
             }
         }
 
-        //sincronizo los productos del array con los de la tabla pivote
+        // sincronizo los productos del array con los de la tabla pivote
         $this->seller->addedproducts()->sync($arrayId);
 
-        if(!empty($arrayId)) //si no esta vacio, se añadieron corretamente
+        if(!empty($arrayId)) // si no esta vacio, se añadieron corretamente
             Session::flash('add_products', trans('messages.add_products'));
-        else //si esta vacio, se eliminaron todos los productos para el vendedor
+        else // si esta vacio, se eliminaron todos los productos para el vendedor
             Session::flash('remove_products', trans('messages.remove_products'));
 
         return redirect()->back();
@@ -126,22 +129,22 @@ class SellersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    //Elimina un producto de un vendedor en especifico
+    // Elimina un producto de un vendedor en especifico
     public function destroy(Request $request, $id)
     {
-        //metodo para desvincular un producto de un vendedor especifico
-        //recibe un campo oculto get('product_id')
-        //y el id del vendedor
+        // metodo para desvincular un producto de un vendedor especifico
+        // recibe un campo oculto get('product_id')
+        // y el id del vendedor
     
-        //almaceno el id de producto a eliminar
+        // almaceno el id de producto a eliminar
         $productId = $request->get('product_id');
 
-        //busco el producto para mostrar su nombre en mensaje
+        // busco el producto para mostrar su nombre en mensaje
         $product =  $this->seller->addedproducts()
                     ->where('product_id', $productId)
                     ->first();
 
-        //se elimina el producto al vendedor especifico
+        // se elimina el producto al vendedor especifico
         $this->seller->addedproducts()->detach($productId);
 
         $message = $product->name.trans('messages.delete_seller_product');

@@ -15,7 +15,7 @@ class OptionsSelectProduct
 		// si $bool es true obtengo solo los productos activos
 		$products = ($bool) ? Product::where('status_id', 1)->get() : Product::all();
 
-		$array[''] = '';
+		$array[''] = '-- '.trans('dashboard.selectors.products').' --';
 
 		foreach($products as $product){
 			$array [$product->id] = $product->name;

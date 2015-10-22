@@ -5,7 +5,7 @@
 <div class="form-group">
 	{!! Form::label('seller_id', trans('validation.attributes.seller_id'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::select('seller_id', $sellers->get('true'), null, ['class' => 'form-control', 'id' => 'selected-seller']) !!}
+		{!! Form::select('seller_id', $sellers->get('true'), null, ['class' => 'form-control']) !!}
 	</div>
 </div>
 

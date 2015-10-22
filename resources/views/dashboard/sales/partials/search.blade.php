@@ -24,45 +24,24 @@
 	
 	@cannot('seller')
 		<div class="form-group">
-			<table>
-				<tr><td>
-					<center><strong>@lang('dashboard.table.sellers')</strong></center>
-				</td></tr>
-				<tr><td>
-					{!! Form::select('seller', $sellers->get(), null, 
-					['class' => 'form-control', 'id' => 'select-seller']) !!}
-				</td></tr>
-			</table>
+			{!! Form::select('seller', $sellers->get(), null, 
+			['class' => 'form-control', 'id' => 'select-seller']) !!}
 		</div>
 	@endcan
 
 	<div class="form-group">
-		<table>
-			<tr><td>
-				<center><strong>@lang('dashboard.table.products')</strong></center>
-			</td></tr>
-			<tr><td>
-			@can('company')
-				{!! Form::select('product', $products->get(Auth::user()->id), null, 
-					['class' => 'form-control', 'id' => 'select-product']) !!}
-			@else
-				{!! Form::select('product', $products->get(), null, 
-					['class' => 'form-control', 'id' => 'select-product']) !!}
-			@endcan
-			</td></tr>
-		</table>
+		@can('company')
+			{!! Form::select('product', $products->get(Auth::user()->id), null, 
+				['class' => 'form-control', 'id' => 'select-product']) !!}
+		@else
+			{!! Form::select('product', $products->get(), null, 
+				['class' => 'form-control', 'id' => 'select-product']) !!}
+		@endcan
 	</div>
 
 	<div class="form-group">
-		<table>
-			<tr><td>
-				<center><strong>@lang('dashboard.table.customers')</strong></center>
-			</td></tr>
-			<tr><td>
-				{!! Form::select('customer', $customers->get(), null, 
-					['class' => 'form-control', 'id' => 'select-customer']) !!}
-			</td></tr>
-		</table>
+		{!! Form::select('customer', $customers->get(), null, 
+			['class' => 'form-control', 'id' => 'select-customer']) !!}
 	</div>
 
 	<button type="submit" class="btn btn-info"> 

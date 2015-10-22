@@ -54,7 +54,7 @@
 	<div class="form-group">
 		{!! Form::label('company_category_id', trans('validation.attributes.company_category_id'), ['class' => 'col-sm-2 control-label']) !!}
 		<div class="col-sm-10">
-			{!! Form::select('company_category_id', $categories->get(), null, ['class' => 'form-control', 'id' => 'select-profile']) !!}
+			{!! Form::select('company_category_id', $categories->get(), null, ['class' => 'form-control', 'id' => 'select-category']) !!}
 		</div>
 	</div>
 </div>

@@ -43,6 +43,7 @@
 													<i class="fa fa-plus-circle"></i>
 													@lang('dashboard.buttons.new')
 												</a>
+												<hr>
 											@endcan
 										</div>
 										@include('dashboard.products.partials.search')
@@ -59,6 +60,7 @@
 											<th>@lang('dashboard.table.price')</th>
 											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
+											<th>@lang('dashboard.table.company_category')</th>
 											<th>@lang('dashboard.table.status')</th>
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
@@ -71,6 +73,7 @@
 											<td>{{ $product->price }}</td>
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
+											<td>{{ $product->company->category->name }}</td>
 											<td><span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">
 												{{ trans('dashboard.status.'.$product->getStatusId()) }}
 											</span></td>
@@ -109,7 +112,7 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $products->appends(Request::only(['name', 'company']))->render() !!}
+								{!! $products->appends(Request::only(['name', 'company', 'category']))->render() !!}
 							</div>
 						</div>
 					</div>

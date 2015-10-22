@@ -14,7 +14,7 @@ class OptionsSelectSeller
 		$sellers = ($bool) ? User::where('type_id', 2)->where('status_id', 1)->get() 
 					: User::where('type_id', 2)->get();
 
-		$array[''] = '';
+		$array[''] = '-- '.trans('dashboard.selectors.sellers').' --';
 
 		foreach($sellers as $seller){
 			$array [$seller->id] = $seller->name;

@@ -13,7 +13,7 @@ class OptionsSelectCompany
 		$companies = ($bool) ? User::where('type_id', 3)->where('status_id', 1)->get() 
 						: User::where('type_id', 3)->get();
 
-		$array[''] = '';
+		$array[''] = '-- '.trans('dashboard.selectors.companies').' --';
 
 		foreach ($companies as $company) {
 			$array[$company->id] = $company->name;

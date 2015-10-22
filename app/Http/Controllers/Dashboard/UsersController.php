@@ -70,7 +70,7 @@ class UsersController extends Controller
 
         // si recibo company_category_id con algun valor
         if ($request->has('company_category_id')) {
-            // se guarda almacena
+            // se almacena en el atributo company_category_id
             $user->company_category_id = $request->get('company_category_id');
         }
 
@@ -124,10 +124,19 @@ class UsersController extends Controller
     {
         $this->user->fill($request->all());
 
-        // si recibo company_category_id con algun valor
-        if ($request->has('company_category_id')) {
-            // se guarda almacena
+        if ($request->get('type_id') == 3) {
+            // si se esta editando una empresa, se alamacena su categoria
             $this->user->company_category_id = $request->get('company_category_id');
+        }
+        else {
+            // si no se esta editando una empresa, se verifica si el campo 
+            // company_category_id no tiene un valor nulo
+            if (!is_null($this->user->company_category_id)) {
+                // si no tiene el valor NULL, quiere decir que tenia alamacenado
+                // algún Id de categoria. Se alamacena NULL nuevamente debido a que 
+                // el usuario no es una empresa
+                $this->user->company_category_id = null;
+            }
         }
 
         $this->user->save();

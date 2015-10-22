@@ -13,7 +13,7 @@ class OptionsSelectCustomer
 		//si $bool es true obtengo solo los clientes activos, si no todos
 		$customers = ($bool) ? Customer::where('status', true)->get() : Customer::all();
 
-		$array[''] = '';
+		$array[''] = '-- '.trans('dashboard.selectors.customers').' --';
 
 		foreach($customers as $customer){
 			$array [$customer->id] = $customer->name;

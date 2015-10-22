@@ -12,7 +12,7 @@ class CompanyCategoryTableSeeder extends Seeder
     public function run()
     {
         \DB::table('company_categories')->insert([
-            'name' => 'Default',
+            'name' => 'Uncategorised',
         ]);
     }
 }

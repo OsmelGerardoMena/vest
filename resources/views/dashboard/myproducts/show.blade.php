@@ -55,6 +55,7 @@
 											<th>@lang('dashboard.table.price')</th>
 											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
+											<th>@lang('dashboard.table.company_category')</th>
 											<th>@lang('dashboard.table.creator')</th>
 											@if(Auth::user()->can('company') || $unallocated !== false)
                                             	<th>@lang('dashboard.table.status')</th>
@@ -68,6 +69,7 @@
 											<td>{{ $product->price }}</td>
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
+											<td>{{ $product->company->category->name }}</td>
 											<td>{{ $product->creator }}</td>
 											@if(Auth::user()->can('company') || $unallocated !== false)
 												<td><span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger'}}">

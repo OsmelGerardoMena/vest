@@ -1,3 +1,5 @@
+@inject('options', 'Vest\Services\OptionsSelectCompany')
+
 {!! Form::model(Request::all(), 
 		[	'route' => ['dashboard.sellers.show', $seller->id], 
 			'method' => 'GET', 
@@ -13,7 +15,11 @@
 	</div>
 
 	<div class="form-group">
-		{!! Form::text('nameproduct', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.search_product')]) !!}
+		{!! Form::text('nameproduct', null, ['class' => 'form-control', 'id' => 'my-text', 'placeholder' => trans('dashboard.ph.search_product')]) !!}
+	</div>
+
+	<div class="form-group">
+		{!! Form::select('company', $options->get(), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
 	</div>
 
 	<button type="submit" class="btn btn-info"> 

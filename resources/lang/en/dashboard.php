@@ -223,4 +223,13 @@ return [
 		'seller' => 'Seller',
 		'company' => 'Company',
 	],
+
+	'selectors' => [
+		'profiles' => 'Profiles',
+		'companies' => 'Companies',
+		'company_category' => 'Company Category',
+		'sellers' => 'Sellers',
+		'products' => 'Products',
+		'customers' => 'Customers',
+	],
 ];

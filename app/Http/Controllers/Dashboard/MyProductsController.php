@@ -49,13 +49,21 @@ class MyProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        // metodo que devuelve los productos del vendedor o empresa
+    {   // metodo que devuelve los productos del vendedor o empresa
+        
         if($this->user->can('seller')){ //si es un vendedor
-            $products = User::filterSellerProducts($this->user->id, $request->get('nameproduct'));
+            $products = User::filterSellerProducts(
+                    $this->user->id, 
+                    $request->get('nameproduct'), 
+                    $request->get('company')
+            );
         }
         else if($this->user->can('company')){ //si es una empresa
-            $products = User::filterCompanyProducts($this->user->id, $request->get('nameproduct'));
+            $products = User::filterCompanyProducts(
+                    $this->user->id, 
+                    $request->get('nameproduct'), 
+                    $request->get('company')
+            );
         }
 
         $products->setPath('my-products');

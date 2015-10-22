@@ -75,7 +75,7 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $companies->appends(Request::only('company'))->render() !!}
+								{!! $companies->appends(Request::only(['company', 'category']))->render() !!}
 							</div>
 						</div>
 					</div>

@@ -46,7 +46,7 @@
                                                 </a>
                                             </div>
                                         @endcan
-
+                                        <hr>
                                         @include('dashboard.myproducts.partials.search')
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@
                                     @endforeach
                                     </tbody>
                                 </table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-                                {!! $products->appends(Request::only(['nameproduct']))->render() !!}
+                                {!! $products->appends(Request::only(['nameproduct', 'company']))->render() !!}
                             </div>
                         </div>
                     </div>

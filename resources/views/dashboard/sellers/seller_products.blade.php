@@ -102,7 +102,7 @@
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $sellerProducts->appends(Request::only('nameproduct'))->render() !!}
+								{!! $sellerProducts->appends(Request::only(['nameproduct', 'company']))->render() !!}
 							</div>
 						</div>
 					</div>

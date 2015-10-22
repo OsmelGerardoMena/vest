@@ -55,13 +55,15 @@ class ProductsController extends Controller
         if ($this->user->can('admin')) {
             $products = Product::filterProducts(
                 $request->get('name'), 
-                $request->get('company')
+                $request->get('company'),
+                $request->get('category')
             );
         }
         else if ($this->user->can('seller')) {
             $products = Product::filterActiveProducts(
                 $request->get('name'), 
-                $request->get('company')
+                $request->get('company'),
+                $request->get('category')
             );
         }
         

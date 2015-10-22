@@ -109,10 +109,9 @@
 	@endif
 
 	<!-- Scripts adicionales -->
-	<script src="{{asset('assets/js/reloadsearch.js')}}"></script>
-	<script src="{{asset('assets/js/reloadselectorssales.js')}}"></script>
+	<script src="{{asset('assets/js/reload_search.js')}}"></script>
+	<script src="{{asset('assets/js/select_category.js')}}"></script>
 	<script src="{{asset('assets/js/test.js')}}"></script>
-	<script src="{{asset('assets/js/selectcategory.js')}}"></script>
 	<!-- <script src="{{asset('assets/js/activemenu.js')}}"></script>-->
 </body>
 </html>

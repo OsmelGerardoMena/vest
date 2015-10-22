@@ -41,13 +41,14 @@
 													<i class="fa fa-plus-circle"></i>
 													@lang('dashboard.buttons.new')
 												</a>
+												<hr>
 											@endcan
 										</div>
-										@include('dashboard.sales.partials.search')
+										@include('dashboard.sales.partials.search')	
 									</div>
 								</div>
 							</div>
-									
+								
 							<div class="table-responsive">
 								<table data-sortable class="table table-hover table-striped">
 									<thead>

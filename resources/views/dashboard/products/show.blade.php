@@ -54,6 +54,7 @@
 											<th>@lang('dashboard.table.price')</th>
 											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.company')</th>
+											<th>@lang('dashboard.table.company_category')</th>
 											<th>@lang('dashboard.table.creator')</th>
 											<th>@lang('dashboard.table.status')</th>
 										</tr>
@@ -63,6 +64,7 @@
 											<td>{{ $product->price }}</td>
 											<td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
 											<td>{{ $product->company->name }}</td>
+											<td>{{ $product->company->category->name }}</td>
 											<td>{{ $product->creator }}</td>
 											<td><span class="{{ ($product->isActive()) ? 'label label-success' : 'label label-danger' }}">
 												@lang('dashboard.status.'.$product->getStatusId())

@@ -16,16 +16,15 @@ use Illuminate\Support\Facades\Session;
 
 class CompaniesController extends Controller
 {
-    ///Para buscar la empresa y tenerla en $this->company
+    // Para buscar la empresa y tenerla en $this->company
     public function __construct()
     {
-        $this->beforeFilter('@findCompany', 
-            ['only' => ['show', 'edit', 'update', 'destroy']]);
+        $this->beforeFilter('@findCompany', ['only' => ['show', 'destroy']]);
     }
 
     public function findCompany(Route $route)
     {
-        //el id #3 de user_types es el perfil empresa
+        // el id #3 de user_types es el perfil empresa
         $this->company = User::where('type_id', 3)
                 ->findOrFail($route->getParameter('companies'));
     }
@@ -37,7 +36,11 @@ class CompaniesController extends Controller
      */
     public function index(Request $request)
     {
-        $companies = User::filterCompanies($request->get('company'));
+        $companies = User::filterCompanies(
+            $request->get('company'), 
+            $request->get('category')
+        );
+        
         $companies->setPath('companies');
         return view('dashboard.companies.companies', compact('companies'));
     }
@@ -71,10 +74,11 @@ class CompaniesController extends Controller
      */
     public function show(Request $request, $id)
     {  
-        //el metodo se usa para mostrar la info y filtrar los productos de la empresa
-        //$id contiene el id de la empresa
-        //get('nameproduct') contiene el nombre del producto a filtrar
-        $companyProducts = User::filterCompanyProducts($id, $request->get('nameproduct'));
+        // el metodo se usa para mostrar la info y filtrar los productos de la empresa
+        // $id contiene el id de la empresa
+        // get('nameproduct') contiene el nombre del producto a filtrar
+        $companyProducts = User::filterCompanyProducts($id, 
+            $request->get('nameproduct'), '');
         
         return view('dashboard.companies.company_products', compact('companyProducts'))
                 ->with('company', $this->company);
@@ -88,8 +92,7 @@ class CompaniesController extends Controller
      */
     public function edit($id)
     {
-        /*return view('dashboard.companies.addcategory')
-                ->with('company', $this->company);*/
+        //
     }
 
     /**
@@ -101,15 +104,7 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$this->company->fill($request->all());
-
-        $this->company->save();
-
-        $message = $this->company->name.trans('messages.addcategory');
-
-        Session::flash('edit', $message);
-
-        return redirect()->back();*/
+        //
     }
 
     /**
@@ -120,19 +115,19 @@ class CompaniesController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        //metodo para eliminar un producto de una empresa especifica
-        //recibe un campo oculto get('product_id')
-        //y el id de la empresa
+        // metodo para eliminar un producto de una empresa especifica
+        // recibe un campo oculto get('product_id')
+        // y el id de la empresa
 
-        //busco el producto a eliminar
+        // busco el producto a eliminar
         $product =  $this->company->products()
                     ->where('id', $request->get('product_id'))
                     ->first();
 
-        //se coloca el nombre del producto en el mensaje antes de eliminar
+        // se coloca el nombre del producto en el mensaje antes de eliminar
         $message = $product->name.trans('messages.delete_company_product');
         
-        //se elimina el producto
+        // se elimina el producto
         $product->delete();
         
         Session::flash('delete', $message);

@@ -5,6 +5,7 @@ namespace Vest\Tables;
 use Illuminate\Database\Eloquent\Model;
 
 use Vest\User;
+use Vest\Tables\CompanyCategories;
 
 class Product extends Model
 {
@@ -69,15 +70,17 @@ class Product extends Model
     }
 
     ///** Filtro para productos **///
-    public static function filterProducts($name, $company)
+    public static function filterProducts($name, $company, $category)
     {
-    	return Product::name($name)->company($company)->simplePaginate(5);
+    	return Product::name($name)->company($company)->companycategory($category)
+                ->simplePaginate(5);
     }
 
     ///** Filtro para mostrar solo productos activos a los vendedores **///
-    public static function filterActiveProducts($name, $company)
+    public static function filterActiveProducts($name, $company, $category)
     {
         return Product::where('status_id', 1)->name($name)->company($company)
+                ->companycategory($category)
                 ->simplePaginate(5);
     }
 
@@ -111,23 +114,32 @@ class Product extends Model
     ///** Scope **///
     public function scopeName($query, $name)
     {
-		if(trim($name) != ""){
+		if(trim($name) != ''){
 	        $query->where("name", "LIKE", "%$name%");
 	    }    
     }
 
     public function scopeCompany($query, $company_id)
     {
-        // type_id = 3 es el id para las empresas 
-    	$users = User::select('id')->where('type_id', 3)->get();
-
-		foreach ($users as $value) {
-			$array[$value->id] = $value->id; 
-		}
-
-        if($company_id != "" && isset($array[$company_id])){
+        if(trim($company_id) != ''){
+            $exists_company = User::where('id', $company_id)->exists();
             
-            $query->where("company_id", $company_id);
+            if($exists_company){
+                $query->where("company_id", $company_id);
+            }
+        }
+    }
+
+    public function scopeCompanyCategory($query, $category_id)
+    {
+        if (trim($category_id) != '') {
+            $exists_category = CompanyCategories::where('id', $category_id)->exists();
+
+            if ($exists_category) {
+                // se alamacenan todos los id de las empresas que pertenecen a la categoría 
+                $companies = User::where('company_category_id', $category_id)->lists('id');
+                $query->whereIn('company_id', $companies);
+            }
         }
     }
 

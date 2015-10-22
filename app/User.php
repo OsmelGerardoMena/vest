@@ -114,16 +114,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     }
 
     ///** Filtro para companies **///
-    public static function filterCompanies($namemail)
+    public static function filterCompanies($namemail, $category_id)
     {
         //el id #3 de user_types es el perfil empresa
         return User::where('type_id', 3)
                     ->company($namemail)
+                    ->companycategory($category_id)
                     ->simplePaginate(5);
     }
 
     ///** Filtro para productos del vendedor **///
-    public static function filterSellerProducts($id, $nameproduct)
+    public static function filterSellerProducts($id, $nameproduct, $company_id)
     {
         //se busca el usuario con findOrFail para poder llamar a ->addedproducts()
         $seller = User::findOrFail($id);
@@ -131,26 +132,29 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
         return $seller->addedproducts()
                     ->name($nameproduct)
+                    ->company($company_id)
                     ->simplePaginate(5);
-        //se usa el scopeName que esta dentro de Product ya que se
-        //estan llamando a los productos del vendedor con ->addedproducts()
+        // se usa el scopeName y scopeCompany que estan dentro de Product ya que
+        // se estan llamando a los productos del vendedor con ->addedproducts()
     }
 
     ///** Filtro para productos de la empresa **///
-    public static function filterCompanyProducts($id, $nameproduct)
+    public static function filterCompanyProducts($id, $nameproduct, $company_id)
     {
         $company = User::findOrFail($id);
 
         return $company->products()
                     ->name($nameproduct)
+                    ->company($company_id)
                     ->simplePaginate(5);
-        //se usa el scopeName que esta dentro del modelo Product
+        // se usa el scopeName y scopeCompany que estan dentro del modelo Product
+        // ya se estan llamando a los productos de la empresa con ->products()
     }
 
     ///** Verifica si el producto está asignado al vendedor **///
     public function productExists($id)
     {
-        //productos del vendedor actual (usuario)
+        // productos del vendedor actual (usuario)
         $products = $this->addedproducts;
 
         $array = [];
@@ -215,6 +219,19 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             $query->where("name", "LIKE", "%$nameseller%");
         }    
     }//este scope se usa en el modelo Product
+
+    public function scopeCompanyCategory($query, $category_id)
+    {
+        if (trim($category_id) != '') {
+            $exists_category = Tables\CompanyCategories::where('id', $category_id)->exists();
+
+            if ($exists_category) {
+                // se alamacenan todos los id de las empresas que pertenecen a la categoría 
+                $companies = User::where('company_category_id', $category_id)->lists('id');
+                $query->whereIn('id', $companies);
+            }
+        }
+    }
 
     ///** Verifica si el usuario es admin **///
     public function isAdmin()

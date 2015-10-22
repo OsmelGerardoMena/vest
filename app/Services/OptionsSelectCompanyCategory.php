@@ -11,7 +11,7 @@ class OptionsSelectCompanyCategory
 	{
 		$categories = CompanyCategories::all();
 
-		$array[''] = '';
+		$array[''] = '-- '.trans('dashboard.selectors.company_category').' --';
 
 		foreach ($categories as $category) {
 			$array[$category->id] = $category->name;

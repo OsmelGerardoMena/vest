@@ -1,3 +1,5 @@
+@inject('categories', 'Vest\Services\OptionsSelectCompanyCategory')
+
 {!! Form::model(Request::all(), 
 		[	'route' => 'dashboard.companies.index', 
 			'method' => 'GET', 
@@ -13,7 +15,11 @@
 	</div>
 
 	<div class="form-group">
-		{!! Form::text('company', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.search')]) !!}
+		{!! Form::text('company', null, ['class' => 'form-control', 'id' => 'my-text', 'placeholder' => trans('dashboard.ph.search')]) !!}
+	</div>
+
+	<div class="form-group">
+		{!! Form::select('category', $categories->get(), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
 	</div>
 
 	<button type="submit" class="btn btn-info"> 
