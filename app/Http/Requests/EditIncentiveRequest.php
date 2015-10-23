@@ -24,10 +24,11 @@ class EditIncentiveRequest extends Request
     public function rules()
     {
         return [
+            'incentive_type_id' => 'required|exists:incentive_types,id',
             'goal' => 'required|numeric',
             'award' => 'required',
-            'url' => 'required|url',
-            'date' => 'required|date',
+            'date_from' => 'required|date',
+            'date_to' => 'required|date',
             'product_id' => 'required|exists:products,id',
         ];
     }

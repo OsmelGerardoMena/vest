@@ -53,6 +53,11 @@ return [
             'root'   => public_path('files/contracts'),
         ],
 
+        'local_incentive_img' => [
+            'driver' => 'local',
+            'root'   => public_path('files/incentives'),
+        ],
+
         'local_training_file' => [
             'driver' => 'local',
             'root'   => public_path('files/trainings'),

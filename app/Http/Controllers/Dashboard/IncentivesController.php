@@ -19,6 +19,13 @@ use Illuminate\Support\Facades\Session;
 
 class IncentivesController extends Controller
 {
+    // Atributo para guardar nuevo nombre de la imagen a subir
+    private $img_name;
+    // Atributo para guardar las extensiones permitidas
+    private $allowed = ['jpg', 'png', 'gif', 'jpeg']; //'bmp', 'svg'
+    // Atributo para almacenar mensaje de error al subir imagen
+    private $error_message;
+
     public function __construct(){
         $this->user = \Auth::user();
 
@@ -83,11 +90,22 @@ class IncentivesController extends Controller
      */
     public function store(CreateIncentiveRequest $request)
     {
-        $incentive = Incentive::create($request->all());
-      
-        Session::flash('new', trans('messages.new_incentive'));
-    
-        return redirect()->route('dashboard.incentives.index');
+        $incentive = new Incentive();
+
+        if ($request->file('img')) {
+            if ($this->uploadImage($request->file('img'))) {
+                $incentive->fill($request->all());
+                $incentive->img = $this->img_name;
+                $incentive->save();
+                Session::flash('new', trans('messages.new_incentive'));
+                return redirect()->route('dashboard.incentives.index');
+            }
+            Session::flash('file_error', $this->error_message);
+        }
+        else{
+            Session::flash('file_error', trans('messages.required_img'));
+        }
+        return redirect()->back()->withInput($request->all());
     }
 
     /**
@@ -126,12 +144,21 @@ class IncentivesController extends Controller
     {
         $incentive = Incentive::findOrFail($id);
 
-        $incentive->fill($request->all());
+        if ($request->file('img')) {
+            if (!$this->uploadImage($request->file('img'))) {
+                Session::flash('file_error', $this->error_message);
+                return redirect()->back()->withInput($request->all());
+            }
+            // si se pudo subir la nueva imagen, se elimina la vieja
+            $this->deleteImage($incentive);
+            // se alamacena el nombre de la nueva imagen
+            $incentive->img = $this->img_name;
+        }
 
+        $incentive->fill($request->all());
         $incentive->save();
 
         Session::flash('edit', trans('messages.edit_incentive'));
-
         return redirect()->back();
     }
 
@@ -145,10 +172,55 @@ class IncentivesController extends Controller
     {
         $incentive = Incentive::findOrFail($id);
 
+        $this->deleteImage($incentive);
+
         $incentive->delete();
 
         Session::flash('delete', trans('messages.delete_incentive'));
 
         return redirect()->route('dashboard.incentives.index');
+    }
+
+    // metodo privado para subir una imagen
+    private function uploadImage($file)
+    {   
+        if(!$file->getError()){
+            // se alamacena la extension del archivo en minusculas
+            $file_extension = strtolower($file->getClientOriginalExtension());
+            // se verifica si la extensión coincide con alguna de las permitidas
+            if(in_array($file_extension, $this->allowed)){
+                // se almacena nuevo nombre para el archivo
+                $this->img_name = uniqid('', true).'.'.$file_extension;
+                // se mueve el archivo al directoio donde se va a guardar
+                $upload = $file->move(public_path('files/incentives'), $this->img_name);
+                // se verifica la carga
+                if($upload){
+                    return true;
+                }
+                else{
+                    // Mensaje de error al subir
+                    $this->error_message = trans('messages.uploading_error');
+                }
+            }
+            else{
+                // Mensaje de error de extension
+                $this->error_message = trans('messages.extension_error_image');
+            }
+        }
+        else{
+            // Mensaje de error en el archivo
+            $this->error_message = trans('messages.file_error');
+        }
+
+        return false;
+    }
+
+    // elimina un archivo si existe
+    private function deleteImage($incentive)
+    {
+        // hasFile(), es un metodo del modelo Incentive
+        if($incentive->hasFile()){
+            \Storage::disk('local_incentive_img')->delete($incentive->img);
+        }
     }
 }

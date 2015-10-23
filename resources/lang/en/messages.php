@@ -35,4 +35,6 @@ return [
 	'edit_sale' => 'Sale was edited successfully',
 	'delete_sale' => 'Sale was deleted',
 	'no_sales' => 'This customer does not have related sales!',
+	'extension_error_image' => 'Incorrect extension, the file must be .jpg, .png or .gif',
+	'required_img' => 'You have not selected any image. The image is required.',
 ];

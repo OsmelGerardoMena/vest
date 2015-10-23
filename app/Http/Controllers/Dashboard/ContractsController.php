@@ -238,7 +238,8 @@ class ContractsController extends Controller
 
     // elimina un archivo si existe
     private function deleteFile($contract)
-    {
+    {   
+        // hasFile(), es un metodo del modelo Contract
         if($contract->hasFile()){
             \Storage::disk('local_contract_file')
                 ->delete($contract->contract_file);

@@ -134,6 +134,8 @@ return [
         'goal' => 'Goal',
         'award' => 'Award',
         'date' => 'Date',
+        'date_from' => 'Date from',
+        'date_to' => 'Date to',
         'price' => 'Price',
         'benefit_type_id' => 'Benefit Type',
         'contract_file' => 'Contract file',
@@ -143,5 +145,7 @@ return [
         'customer_id' => 'Customer',
         'amount' => 'Amount',
         'training_file' => 'Training file',
+        'incentive_type_id' => 'Incentive Type',
+        'img' => 'Image',
     ],
 ];

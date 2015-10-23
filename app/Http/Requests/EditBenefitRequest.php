@@ -24,8 +24,8 @@ class EditBenefitRequest extends Request
     public function rules()
     {
         return [
-            'amount' => 'required|numeric',
             'benefit_type_id' => 'required|exists:benefit_types,id',
+            'amount' => 'required|numeric',
             'product_id' => 'required|exists:products,id',
         ];
     }

@@ -4,6 +4,15 @@
 	@inject('products', 'Vest\Services\OptionsSelectCompanyProducts')
 @endcan
 
+@inject('itypes', 'Vest\Services\OptionsSelectIncentiveTypes')
+
+<div class="form-group">
+	{!! Form::label('incentive_type_id', trans('validation.attributes.incentive_type_id'), ['class' => 'col-sm-2 control-label']) !!}
+	<div class="col-sm-10">
+		{!! Form::select('incentive_type_id', $itypes->get(), null, ['class' => 'form-control']) !!}
+	</div>
+</div>
+
 <div class="form-group">
 	{!! Form::label('goal', trans('validation.attributes.goal'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
@@ -19,16 +28,23 @@
 </div>
 
 <div class="form-group">
-	{!! Form::label('url', trans('validation.attributes.url'), ['class' => 'col-sm-2 control-label']) !!}
+	{!! Form::label('file', trans('validation.attributes.img'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::text('url', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.url_here')]) !!}
+		{!! Form::file('img',  ['class' => 'form-control']) !!}
 	</div>
 </div>
 
 <div class="form-group">
-	{!! Form::label('date', trans('validation.attributes.date'), ['class' => 'col-sm-2 control-label']) !!}
+	{!! Form::label('date_from', trans('validation.attributes.date_from'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::date('date', null, ['class' => 'form-control']) !!}
+		{!! Form::date('date_from', null, ['class' => 'form-control']) !!}
+	</div>
+</div>
+
+<div class="form-group">
+	{!! Form::label('date_to', trans('validation.attributes.date_to'), ['class' => 'col-sm-2 control-label']) !!}
+	<div class="col-sm-10">
+		{!! Form::date('date_to', null, ['class' => 'form-control']) !!}
 	</div>
 </div>
 

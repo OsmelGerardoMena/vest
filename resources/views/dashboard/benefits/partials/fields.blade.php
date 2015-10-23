@@ -7,16 +7,16 @@
 @inject('types', 'Vest\Services\OptionsSelectBenefitTypes')
 
 <div class="form-group">
-	{!! Form::label('amount', trans('validation.attributes.amount'), ['class' => 'col-sm-2 control-label']) !!}
+	{!! Form::label('benefit_type_id', trans('validation.attributes.benefit_type_id'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::text('amount', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.amount_here')]) !!}
+		{!! Form::select('benefit_type_id', $types->get(), null, ['class' => 'form-control']) !!}
 	</div>
 </div>
 
 <div class="form-group">
-	{!! Form::label('benefit_type_id', trans('validation.attributes.benefit_type_id'), ['class' => 'col-sm-2 control-label']) !!}
+	{!! Form::label('amount', trans('validation.attributes.amount'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::select('benefit_type_id', $types->get(), null, ['class' => 'form-control']) !!}
+		{!! Form::text('amount', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.amount_here')]) !!}
 	</div>
 </div>
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class BenefitTypesTableSeeder extends Seeder
+class IncentiveTypesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,11 +11,11 @@ class BenefitTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('benefit_types')->insert([
-        	'name' => 'Porcentaje',
+        DB::table('incentive_types')->insert([
+        	'name' => 'Cantidad',
         ]);
 
-        DB::table('benefit_types')->insert([
+        DB::table('incentive_types')->insert([
         	'name' => 'Bolivares',
         ]);
     }

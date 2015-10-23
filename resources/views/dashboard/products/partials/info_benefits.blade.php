@@ -14,8 +14,8 @@
 					<table data-sortable class="table table-hover table-striped">
 						<thead>
 							<tr>
-								<th>@lang('dashboard.table.amount')</th>
 								<th>@lang('dashboard.table.benefit_type')</th>
+								<th>@lang('dashboard.table.amount')</th>
 								@can('admin')
 									<th>@lang('dashboard.table.actions')</th>
 								@endcan
@@ -24,8 +24,8 @@
 						<tbody>
 							@foreach($product->benefits as $benefit)
 							<tr>
-								<td>{{$benefit->amount}}</td>
-								<td>{{trans('dashboard.'.$benefit->type->name)}}</td>
+								<td>{{ $benefit->type->name }}</td>
+								<td>{{ $benefit->amount }}</td>
 								@can('admin')
 									<td>
 										<div class="btn-group btn-group-xs">

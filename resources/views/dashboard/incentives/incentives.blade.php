@@ -53,10 +53,12 @@
 									<thead>
 										<tr>
 											<th>#</th>
+											<th>@lang('dashboard.table.incentive_type')</th>
 											<th>@lang('dashboard.table.goal')</th>
 											<th>@lang('dashboard.table.award')</th>
-											<th>@lang('dashboard.table.url')</th>
-											<th>@lang('dashboard.table.date')</th>
+											<th>@lang('dashboard.table.img')</th>
+											<th>@lang('dashboard.table.date_from')</th>
+											<th>@lang('dashboard.table.date_to')</th>
 											<th>@lang('dashboard.table.product')</th>
 											@can('admin')
 												<th>@lang('dashboard.table.company')</th>
@@ -68,10 +70,18 @@
 										@foreach($incentives as $incentive)
 										<tr>
 											<td>{{ $incentive->id }}</td>
+											<td>{{ $incentive->type->name }}</td>
 											<td>{{ $incentive->goal }}</td>
 											<td>{{ $incentive->award }}</td>
-											<td><a href="{{ $incentive->url }}" target="_blank">{{ $incentive->url }}</a></td>
-											<td>{{ $incentive->date }}</td>
+											@if($incentive->hasFile())
+												<td><a href="{{ asset('files/incentives') }}/{{ $incentive->img }}" target="_blank">
+													@lang('dashboard.see_image')
+												</a></td>
+											@else
+												<td>@lang('dashboard.image_not_found')</td>
+											@endif
+											<td>{{ $incentive->date_from }}</td>
+											<td>{{ $incentive->date_to }}</td>
 											<td>{{ $incentive->product->name }}</td>
 											@can('admin')
 												<td>{{ $incentive->product->company->name }}</td>

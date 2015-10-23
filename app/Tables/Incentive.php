@@ -9,11 +9,12 @@ class Incentive extends Model
     protected $table = 'incentives';
 
     protected $fillable = [
-            'goal', 
-            'award',
-            'url',
-            'date',
-            'product_id',
+        'incentive_type_id',
+        'goal', 
+        'award',
+        'date_from',
+        'date_to',
+        'product_id',
     ];
 
     ///** relacion de muchos a uno (relacion inversa) **///
@@ -21,6 +22,15 @@ class Incentive extends Model
     {
         //retorna un solo objeto product, el incentivo solo tiene un producto
         return $this->belongsTo('Vest\Tables\Product');
+    }
+
+    public function type()
+    {
+        //retorna un solo objeto incentive_type, el incentivo solo tiene un tipo
+        return $this->belongsTo('Vest\Tables\IncentiveTypes', 'incentive_type_id');
+        // En relacion inversa, Eloquent asume que en Incentive existe un campo 
+        // llamado type_id, pero eso no es cierto por lo tanto se le pasa el
+        // segundo parametro que indica la verdadera llave foranea
     }
 
     ///** Filtro para incentivos **///
@@ -63,5 +73,11 @@ class Incentive extends Model
             
             $query->where("product_id", $product_id);
         }
+    }
+
+    // verifica si existe una imagen (file) para el incentivo
+    public function hasFile()
+    {
+        return \Storage::disk('local_incentive_img')->exists($this->img);
     }
 }

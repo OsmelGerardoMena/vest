@@ -27,18 +27,19 @@
         			@lang('dashboard.title_edit_incentive')
         		</h1>
             </div>
-
+            
             @include('dashboard.partials.messages')
 
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
-
+					
 					{!! Form::model($incentive, [
 							'route' => ['dashboard.incentives.update', $incentive->id],
 							'class' => 'form-horizontal',
 							'role' => 'form',
-							'method' => 'PUT'
+							'method' => 'PUT',
+							'files' => 'true'
 						]) 
 					!!}
 

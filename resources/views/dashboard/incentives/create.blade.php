@@ -28,11 +28,13 @@
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
+					@include('dashboard.partials.messages')
 					{!! Form::open([
 							'route' => 'dashboard.incentives.store', 
 							'method' => 'POST', 
 							'class' => 'form-horizontal',
-							'role' => 'form'
+							'role' => 'form',
+							'files' => 'true'
 						]) 
 					!!}
 				  		@include('dashboard.incentives.partials.fields')

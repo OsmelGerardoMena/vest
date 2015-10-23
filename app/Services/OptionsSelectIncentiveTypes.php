@@ -2,14 +2,14 @@
 
 namespace Vest\Services;
 
-use Vest\Tables\BenefitTypes;
+use Vest\Tables\IncentiveTypes;
 
-// para la vista fields de views/dashboard/benefits/partials
-class OptionsSelectBenefitTypes
+// para la vista fields de views/dashboard/incentives/partials
+class OptionsSelectIncentiveTypes
 {
 	public function get()
 	{
-		$types = BenefitTypes::all();
+		$types = IncentiveTypes::all();
 
 		$array[''] = '';
 		foreach ($types as $value) {

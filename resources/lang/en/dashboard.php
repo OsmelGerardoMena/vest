@@ -86,6 +86,8 @@ return [
 	'bolivares' => 'Bolivares',
 	'training_file' => 'Training file',
 	'download_training' => 'Download training file',
+	'see_image' => 'See image',
+	'image_not_found' => 'Image not found',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',
@@ -190,10 +192,13 @@ return [
 		'creator' => 'Creator',
 		'company' => 'Company',
 		'url' => 'URL',
+		'img' => 'Image',
 		'product' => 'Product',
 		'goal' => 'Goal',
 		'award' => 'Award',
 		'date' => 'Date',
+		'date_from' => 'Date from',
+		'date_to' => 'Date to',
 		'price' => 'Price',
 		'benefit_type' => 'Benefit Type',
 		'file' => 'File',
@@ -206,6 +211,7 @@ return [
 		'products' => 'Products',
 		'customers' => 'Customers',
 		'company_category' => 'Category',
+		'incentive_type' => 'Incentive type',
 	],
 
 	'status' => [
