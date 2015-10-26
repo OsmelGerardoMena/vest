@@ -21,6 +21,13 @@
 </div>
 
 <div class="form-group">
+	{!! Form::label('admin_amount', trans('validation.attributes.admin_amount'), ['class' => 'col-sm-2 control-label']) !!}
+	<div class="col-sm-10">
+		{!! Form::text('admin_amount', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.admin_amount_here')]) !!}
+	</div>
+</div>
+
+<div class="form-group">
 	{!! Form::label('product_id', trans('validation.attributes.product'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
 	@can('admin')

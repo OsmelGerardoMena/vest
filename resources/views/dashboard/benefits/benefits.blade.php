@@ -55,6 +55,7 @@
 											<th>#</th>
 											<th>@lang('dashboard.table.benefit_type')</th>
 											<th>@lang('dashboard.table.amount')</th>
+											<th>@lang('dashboard.table.admin_amount')</th>
 											<th>@lang('dashboard.table.product')</th>
 											@can('admin')
 												<th>@lang('dashboard.table.company')</th>
@@ -68,6 +69,7 @@
 											<td>{{ $benefit->id }}</td>
 											<td>{{ $benefit->type->name }}</td>
 											<td>{{ $benefit->amount }}</td>
+											<td>{{ $benefit->admin_amount }}</td>
 											<td>{{ $benefit->product->name }}</td>
 											@can('admin')
 												<td>{{ $benefit->product->company->name }}</td>

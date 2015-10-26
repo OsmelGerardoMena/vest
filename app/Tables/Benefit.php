@@ -8,7 +8,7 @@ class Benefit extends Model
 {
     protected $table = 'benefits';
 
-    protected $fillable = [ 'amount', 'benefit_type_id', 'product_id'];
+    protected $fillable = ['benefit_type_id', 'amount', 'admin_amount', 'product_id'];
 
     ///** relacion de muchos a uno (relacion inversa) **///
     public function product()

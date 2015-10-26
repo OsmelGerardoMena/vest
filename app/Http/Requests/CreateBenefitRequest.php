@@ -26,6 +26,7 @@ class CreateBenefitRequest extends Request
         return [
             'benefit_type_id' => 'required|exists:benefit_types,id',
             'amount' => 'required|numeric',
+            'admin_amount' => 'required|numeric',
             'product_id' => 'required|exists:products,id',
         ];
     }

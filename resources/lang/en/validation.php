@@ -147,5 +147,6 @@ return [
         'training_file' => 'Training file',
         'incentive_type_id' => 'Incentive Type',
         'img' => 'Image',
+        'admin_amount' => 'Admin amount',
     ],
 ];

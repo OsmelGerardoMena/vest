@@ -173,7 +173,8 @@ return [
 		'city_here' => 'City here',
 		'state_here' => 'State here',
 		'tradename_here' => 'Trade name here',
-		'amount_here' => 'Amount here, example: 756.56, 500, 8, 12',
+		'amount_here' => 'Amount here, example: 500.50',
+		'admin_amount_here' => 'Administration amount here, example: 85',
 	],
 
 	'table' => [
@@ -212,6 +213,7 @@ return [
 		'customers' => 'Customers',
 		'company_category' => 'Category',
 		'incentive_type' => 'Incentive type',
+		'admin_amount' => 'Admin amount',
 	],
 
 	'status' => [
