@@ -10,8 +10,10 @@ class OptionsSelectCompany
 {
 	public function get($bool = false)
 	{
-		$companies = ($bool) ? User::where('type_id', 3)->where('status_id', 1)->get() 
-						: User::where('type_id', 3)->get();
+		// whereNotIn se usa para que no aparezca la empresa general
+		$companies = ($bool) ? User::whereNotIn('id', [2])->where('type_id', 3)
+				->where('status_id', 1)->get() 
+				: User::whereNotIn('id', [2])->where('type_id', 3)->get();
 
 		$array[''] = '-- '.trans('dashboard.selectors.companies').' --';
 

@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
             'address' => 'Jardin de Balamb',
             'type_id' => 1,
         ]);*/
-        
+        // id = 1
         \DB::table('users')->insert([
             'name' => 'Super Admin',
             'email' => 'admin@gmail.com',
@@ -32,7 +32,19 @@ class UserTableSeeder extends Seeder
             'address' => 'Jardin de Balamb',
             'type_id' => 1,
         ]);
-
+        // id = 2
+        \DB::table('users')->insert([
+            'name' => 'General',
+            'email' => 'general@gmail.com',
+            'password' => bcrypt('123456'),
+            'identifier' => 'J-0000000',
+            'mobile' => '0000000000',
+            'phone' => '0000000000',
+            'address' => 'Any',
+            'type_id' => 3,
+            'company_category_id' => 1,
+        ]);
+        // id = 3
         \DB::table('users')->insert([
             'name' => 'Mercado las Pulgas',
             'email' => 'pulga@gmail.com',

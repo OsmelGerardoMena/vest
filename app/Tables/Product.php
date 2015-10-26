@@ -72,14 +72,19 @@ class Product extends Model
     ///** Filtro para productos **///
     public static function filterProducts($name, $company, $category)
     {
-    	return Product::name($name)->company($company)->companycategory($category)
+        // whereNotIn impide que se muestre el producto general
+    	return Product::whereNotIn('id', [1])->name($name)->company($company)
+                ->companycategory($category)
                 ->simplePaginate(5);
     }
 
     ///** Filtro para mostrar solo productos activos a los vendedores **///
     public static function filterActiveProducts($name, $company, $category)
     {
-        return Product::where('status_id', 1)->name($name)->company($company)
+        // whereNotIn impide que se muestre el producto general
+        return Product::whereNotIn('id', [1])->where('status_id', 1)
+                ->name($name)
+                ->company($company)
                 ->companycategory($category)
                 ->simplePaginate(5);
     }

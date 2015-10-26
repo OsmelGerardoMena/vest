@@ -32,7 +32,10 @@ class AccountsController extends Controller
 
         // tambien se puede usar $this->user->can('seller')
         if(Gate::allows('seller')){ //si es vendedor
-            $products = $this->user->addedproducts;
+            $products = $this->user->addedproducts()
+                    ->whereNotIn('product_id', [1])->get();
+            // se usa el whereNotIn para que no aparezca el producto general
+            // se usa user_id porque debe ser de la tabla pivote
         }
         else if(Gate::allows('company')){ // si es empresa
             $products = $this->user->products;

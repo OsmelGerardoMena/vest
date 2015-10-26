@@ -98,7 +98,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ///** Filtro para usuarios **///
     public static function filterUsers($namemail, $type)
     {
-        return User::whereNotIn('id', [1])
+        // con whereNotIn se evita que aparezca el super admin y la empresa general
+        return User::whereNotIn('id', [1, 2])
                 ->namemail($namemail)
                 ->type($type)
                 ->simplePaginate(5);
@@ -116,8 +117,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ///** Filtro para companies **///
     public static function filterCompanies($namemail, $category_id)
     {
-        //el id #3 de user_types es el perfil empresa
-        return User::where('type_id', 3)
+        // el id #3 de user_types es el perfil empresa
+        // whereNotIn impide que se muestre la empresa general
+        return User::whereNotIn('id', [2])->where('type_id', 3)
                     ->company($namemail)
                     ->companycategory($category_id)
                     ->simplePaginate(5);
@@ -130,7 +132,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         $seller = User::findOrFail($id);
         //ya que no es un metodo estatico y no se puede usar ::addedproducts()
 
-        return $seller->addedproducts()
+        // whereNotIn impide que se muestre el producto general
+        return $seller->addedproducts()->whereNotIn('product_id', [1])
                     ->name($nameproduct)
                     ->company($company_id)
                     ->simplePaginate(5);
@@ -174,7 +177,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         if(trim($namemail) != ""){
             $query->where("name", "LIKE", "%$namemail%")
                     ->orWhere("email", "LIKE", "%$namemail%")
-                    ->whereNotIn('id', [1]);
+                    ->whereNotIn('id', [1, 2]);
         }    
     }
 
@@ -209,7 +212,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         if(trim($namemail) != ""){
             $query->where("name", "LIKE", "%$namemail%")
                     ->orWhere("email", "LIKE", "%$namemail%")
-                    ->where('type_id', 3);
+                    ->where('type_id', 3)
+                    ->whereNotIn('id', [2]);
         }    
     }
 
