@@ -1,10 +1,17 @@
-@inject('sellers', 'Vest\Services\OptionsSelectSeller')
 @inject('customers', 'Vest\Services\OptionsSelectCustomer')
 
-@can('company')
-	@inject('products', 'Vest\Services\OptionsSelectCompanyProducts')
-@else
+@can('admin')
+	@inject('sellers', 'Vest\Services\OptionsSelectSeller')
 	@inject('products', 'Vest\Services\OptionsSelectProduct')
+@endcan
+
+@can('company')
+	@inject('sellers', 'Vest\Services\OptionsSelectSeller')
+	@inject('products', 'Vest\Services\OptionsSelectCompanyProducts')
+@endcan
+
+@can('seller')
+	@inject('products', 'Vest\Services\OptionsSelectSellerProducts')
 @endcan
 
 {!! Form::model(Request::all(), 
@@ -30,13 +37,8 @@
 	@endcan
 
 	<div class="form-group">
-		@can('company')
-			{!! Form::select('product', $products->get(Auth::user()->id), null, 
-				['class' => 'form-control', 'id' => 'select-product']) !!}
-		@else
-			{!! Form::select('product', $products->get(), null, 
-				['class' => 'form-control', 'id' => 'select-product']) !!}
-		@endcan
+		{!! Form::select('product', $products->get(), null, 
+			['class' => 'form-control', 'id' => 'select-product']) !!}
 	</div>
 
 	<div class="form-group">

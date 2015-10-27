@@ -32,6 +32,23 @@
 
 <li class='has_sub'>
     <a href=''>
+        <i class='glyphicon glyphicon-tags'></i>
+        <span>@lang('dashboard.sidebar.categories')</span> 
+        <span class="pull-right">
+            <i class="fa fa-angle-down"></i>
+        </span>
+    </a>
+    <ul>
+        <li>
+            <a href="{{route('dashboard.company-categories.index')}}">
+                <span>@lang('dashboard.sidebar.company_categories')</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class='has_sub'>
+    <a href=''>
         <i class='icon-layers'></i>
         <span>@lang('dashboard.sidebar.products')</span> 
         <span class="pull-right">
@@ -101,23 +118,6 @@
         <li>
             <a href="{{route('dashboard.sales.index')}}">
                 <span>@lang('dashboard.sidebar.list_sales')</span>
-            </a>
-        </li>
-    </ul>
-</li>
-
-<li class='has_sub'>
-    <a href=''>
-        <i class='glyphicon glyphicon-tags'></i>
-        <span>@lang('dashboard.sidebar.categories')</span> 
-        <span class="pull-right">
-            <i class="fa fa-angle-down"></i>
-        </span>
-    </a>
-    <ul>
-        <li>
-            <a href="{{route('dashboard.company-categories.index')}}">
-                <span>@lang('dashboard.sidebar.company_categories')</span>
             </a>
         </li>
     </ul>

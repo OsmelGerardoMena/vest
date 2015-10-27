@@ -19,11 +19,7 @@
 	</div>
 
 	<div class="form-group">
-		@can('admin')
-			{!! Form::select('product', $products->get(), null, ['class' => 'form-control']) !!}
-		@else
-			{!! Form::select('product', $products->get(Auth::user()->id), null, ['class' => 'form-control']) !!}
-		@endcan
+		{!! Form::select('product', $products->get(), null, ['class' => 'form-control']) !!}
 	</div>
 	
 	<button type="submit" class="btn btn-info"> 

@@ -1,18 +1,18 @@
 @inject('sellers', 'Vest\Services\OptionsSelectSeller')
-@inject('products', 'Vest\Services\OptionsSelectProduct')
+
 @inject('customers', 'Vest\Services\OptionsSelectCustomer')
 
 <div class="form-group">
 	{!! Form::label('seller_id', trans('validation.attributes.seller_id'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::select('seller_id', $sellers->get('true'), null, ['class' => 'form-control']) !!}
+		{!! Form::select('seller_id', $sellers->get('true'), null, ['class' => 'form-control', 'id' => 'selected-seller']) !!}
 	</div>
 </div>
 
 <div class="form-group">
 	{!! Form::label('product_id', trans('validation.attributes.product'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::select('product_id', $products->get('true'), null, ['class' => 'form-control']) !!}
+		{!! Form::select('product_id', ['' => '-- '.trans('dashboard.selectors.products').' --'], null, ['class' => 'form-control', 'id' => 'selected-product']) !!}
 	</div>
 </div>
 

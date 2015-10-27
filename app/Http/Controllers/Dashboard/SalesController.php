@@ -173,22 +173,22 @@ class SalesController extends Controller
 
     public function sellerProducts(Request $request)
     {
-        return 'hey!';
-        //return dd($request->get('seller_id'));
-        //return response()->json(['mensaje' => 'Hola Como Tasss']);
-
+        // se verifica si hay una peticion ajax
         if($request->ajax()){
-            $seller = User::find($request->get('seller_id'));
-            $seller_products = $seller->addedproducts;
-            $products = [];
-
+            // se busca el vendedor con el id recibido
+            $seller = User::find(trim($request->get('id')));
+            // se almacenan los productos del vendedor, excepto el general
+            $seller_products = $seller->addedproducts()
+                    ->whereNotIn('product_id', [1])->get();
+            
+            $products = []; // array productos vacio
+            // se rellena el array siempre y cuando tenga el vendedor productos
             foreach ($seller_products as $product) {
                 if($product->isActive()){
                     $products [$product->id] = $product->name;
                 }
             }
-
-            return 1;
+            return $products;
         }
     }
 }

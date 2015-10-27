@@ -52,9 +52,9 @@
 	{!! Form::label('product_id', trans('validation.attributes.product'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
 		@can('admin')
-			{!! Form::select('product_id', $products->get(), old('product_id'), ['class' => 'form-control']) !!}
+			{!! Form::select('product_id', $products->get(false, true), old('product_id'), ['class' => 'form-control']) !!}
 		@else
-			{!! Form::select('product_id', $products->get(Auth::user()->id), old('product_id'), ['class' => 'form-control']) !!}
+			{!! Form::select('product_id', $products->get(), old('product_id'), ['class' => 'form-control']) !!}
 		@endcan
 	</div>
 </div>

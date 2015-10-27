@@ -77,7 +77,8 @@
 	</script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<!--<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>-->
-	<script src="{{asset('assets/libs/jquery/jquery-1.11.1.min.js')}}"></script>
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<!--<script src="{{asset('assets/libs/jquery/jquery-1.11.1.min.js')}}"></script>-->
 	<script src="{{asset('assets/libs/bootstrap/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('assets/libs/jqueryui/jquery-ui-1.10.4.custom.min.js')}}"></script>
 	<script src="{{asset('assets/libs/jquery-ui-touch/jquery.ui.touch-punch.min.js')}}"></script>
@@ -109,9 +110,9 @@
 	@endif
 
 	<!-- Scripts adicionales -->
+	<!-- <script src="{{asset('assets/js/activemenu.js')}}"></script>-->
 	<script src="{{asset('assets/js/reload_search.js')}}"></script>
 	<script src="{{asset('assets/js/select_category.js')}}"></script>
-	<script src="{{asset('assets/js/test.js')}}"></script>
-	<!-- <script src="{{asset('assets/js/activemenu.js')}}"></script>-->
+	<script src="{{asset('assets/js/test1.js')}}"></script>
 </body>
 </html>

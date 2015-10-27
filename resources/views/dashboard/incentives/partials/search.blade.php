@@ -24,9 +24,9 @@
 
 	<div class="form-group">
 		@can('admin')
-			{!! Form::select('product', $products->get(), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
+			{!! Form::select('product', $products->get(false, true), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
 		@else
-			{!! Form::select('product', $products->get(Auth::user()->id), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
+			{!! Form::select('product', $products->get(), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
 		@endcan
 	</div>
 	

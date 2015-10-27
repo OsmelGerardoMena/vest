@@ -132,6 +132,6 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 	]);
 	Route::resource('dashboard/products', 'ProductsController');
 
-	Route::post('dashboard/sales/seller', 'SalesController@sellerProducts');
+	Route::get('dashboard/sales/seller', 'SalesController@sellerProducts');
 	Route::resource('dashboard/sales', 'SalesController');
 });
