@@ -24,8 +24,13 @@ class SalesController extends Controller
     {
         $this->user = \Auth::user();
 
-        if ($this->user->can('seller') || $this->user->can('company')) {
+        if ($this->user->can('company')) {
+            // si es company se restringe todo excepto
             $this->middleware('is_admin', ['except' => ['index', 'show'] ]);
+        }
+        else if ($this->user->can('seller')) {
+            // si es seller se restringe solo destroy
+            $this->middleware('is_admin', ['only' => ['destroy'] ]);
         }
 
         //$this->beforeFilter('@findSale', ['only' => ['show', 'edit', 'update', 'destroy'] ]);
@@ -70,7 +75,9 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return view('dashboard.sales.create');
+        // valor de la primera opción del selector productos
+        $firts_option = ['' => '-- '.trans('dashboard.selectors.products').' --'];
+        return view('dashboard.sales.create')->with('firts_option', $firts_option);
     }
 
     /**
@@ -122,7 +129,9 @@ class SalesController extends Controller
     public function edit($id)
     {
         $sale = Sale::findOrFail($id);
-        return view('dashboard.sales.edit')->with('sale', $sale);
+        // valor de la primera opción del selector productos
+        $firts_option = ['' => '-- '.trans('dashboard.selectors.products').' --'];
+        return view('dashboard.sales.edit')->with('sale', $sale)->with('firts_option', $firts_option);
     }
 
     /**
@@ -178,8 +187,9 @@ class SalesController extends Controller
             // se busca el vendedor con el id recibido
             $seller = User::find(trim($request->get('id')));
             // se almacenan los productos del vendedor, excepto el general
+            // tambien el vinculo entre el vendedor y el producto de estar activo
             $seller_products = $seller->addedproducts()
-                    ->whereNotIn('product_id', [1])->get();
+                    ->whereNotIn('product_id', [1])->where('status', true)->get();
             
             $products = []; // array productos vacio
             // se rellena el array siempre y cuando tenga el vendedor productos

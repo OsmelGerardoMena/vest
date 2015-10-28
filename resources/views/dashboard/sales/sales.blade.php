@@ -36,7 +36,8 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="toolbar-btn-action">
-											@can('admin')
+											<!-- si el usuario es admin o seller se muestra -->
+											@cannot('company')
 												<a class="btn btn-success" href="{{route('dashboard.sales.create')}}">
 													<i class="fa fa-plus-circle"></i>
 													@lang('dashboard.buttons.new')
@@ -79,11 +80,15 @@
 														href="{{route('dashboard.sales.show', $sale->id)}}">
 														<i class="fa fa-info-circle"></i>
 													</a>
-													@can('admin')
+													<!-- si el usuario es admin o seller se muestra -->
+													@cannot('company')
 														<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
 															href="{{route('dashboard.sales.edit', $sale->id)}}">
 															<i class="fa fa-edit"></i>
 														</a>
+													@endcan
+
+													@can('admin')
 														<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$sale->id}}" class="btn btn-danger md-trigger ">
 															<i class="fa fa-trash-o"></i>
 														</a>

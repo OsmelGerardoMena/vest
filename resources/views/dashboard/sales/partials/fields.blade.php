@@ -1,20 +1,26 @@
-@inject('sellers', 'Vest\Services\OptionsSelectSeller')
 
 @inject('customers', 'Vest\Services\OptionsSelectCustomer')
 
-<div class="form-group">
-	{!! Form::label('seller_id', trans('validation.attributes.seller_id'), ['class' => 'col-sm-2 control-label']) !!}
-	<div class="col-sm-10">
-		{!! Form::select('seller_id', $sellers->get('true'), null, ['class' => 'form-control', 'id' => 'selected-seller']) !!}
+@can('seller')
+	{!! Form::hidden('seller_id', Auth::user()->id, ['id' => 'selected-seller']) !!}
+@endcan
+
+@can('admin')
+	@inject('sellers', 'Vest\Services\OptionsSelectSeller')
+	<div class="form-group">
+		{!! Form::label('seller_id', trans('validation.attributes.seller_id'), ['class' => 'col-sm-2 control-label']) !!}
+		<div class="col-sm-10">
+			{!! Form::select('seller_id', $sellers->get('true'), null, ['class' => 'form-control', 'id' => 'selected-seller']) !!}
+		</div>
 	</div>
-</div>
+@endcan
 
 <div class="form-group">
 	{!! Form::label('product_id', trans('validation.attributes.product'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::select('product_id', ['' => '-- '.trans('dashboard.selectors.products').' --'], null, ['class' => 'form-control', 'id' => 'selected-product']) !!}
+		{!! Form::select('product_id', $firts_option, null, ['class' => 'form-control', 'id' => 'selected-product']) !!}
 	</div>
-</div>
+</div>{!! Form::hidden('firts_option', $firts_option[''], ['id' => 'firts_option']) !!}
 
 <div class="form-group">
 	{!! Form::label('customer_id', trans('validation.attributes.customer_id'), ['class' => 'col-sm-2 control-label']) !!}

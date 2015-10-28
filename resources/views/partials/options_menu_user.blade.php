@@ -57,7 +57,7 @@
 
     <li class='has_sub'>
         <a href=''>
-            <i class='fa fa-money'></i>
+            <i class='glyphicon glyphicon-stats'></i>
             <span>@lang('dashboard.sidebar.my_sales')</span> 
             <span class="pull-right">
                 <i class="fa fa-angle-down"></i>

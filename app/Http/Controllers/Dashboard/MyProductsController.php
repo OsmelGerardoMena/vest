@@ -28,7 +28,7 @@ class MyProductsController extends Controller
 
         // middleware especifico para este controlador
         if($this->user->can('company')){
-            // si no es vendedor, se restringe solo getUnallocated
+            // si no es vendedor, se restringe solo getUnallocated y destroy
             $this->middleware('is_seller', ['only' => ['getUnallocated', 'destroy'] ]);
         }
         else if($this->user->can('seller')){
