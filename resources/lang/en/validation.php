@@ -148,5 +148,6 @@ return [
         'incentive_type_id' => 'Incentive Type',
         'img' => 'Image',
         'admin_amount' => 'Admin amount',
+        'photo' => 'Your photo (optional)',
     ],
 ];

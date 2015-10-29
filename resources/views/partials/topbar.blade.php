@@ -151,8 +151,11 @@
                     <li class="dropdown topbar-profile">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="rounded-image topbar-profile-image">
-                                <img src="{{asset('assets/images/users/user-35.jpg')}}">
-                            </span><strong>{{Auth::user()->name}}</strong> 
+                                @if(Auth::user()->hasFile())
+                                    <img src="{{asset('assets/photos/'.Auth::user()->photo)}}">
+                                @endif
+                            </span>
+                            <strong>{{Auth::user()->name}}</strong> 
                             <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu">

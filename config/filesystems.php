@@ -58,6 +58,11 @@ return [
             'root'   => public_path('files/incentives'),
         ],
 
+        'local_user_photo' => [
+            'driver' => 'local',
+            'root'   => public_path('assets/photos'),
+        ],
+
         'local_training_file' => [
             'driver' => 'local',
             'root'   => public_path('files/trainings'),

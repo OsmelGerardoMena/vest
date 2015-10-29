@@ -21,7 +21,7 @@
 <div class="form-group">
 	{!! Form::label('file', trans('validation.attributes.training_file'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::file('training_file',  ['class' => 'form-control']) !!}
+		{!! Form::file('training_file',  ['class' => 'btn btn-default', 'title' => trans('dashboard.ph.select_file')]) !!}
 	</div>
 </div>
 

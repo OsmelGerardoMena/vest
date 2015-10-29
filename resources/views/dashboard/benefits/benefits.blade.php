@@ -38,10 +38,12 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="toolbar-btn-action">
-											<a class="btn btn-success" href="{{route('dashboard.benefits.create')}}">
-												<i class="fa fa-plus-circle"></i>
-												@lang('dashboard.buttons.new')
-											</a>
+											@can('admin')
+												<a class="btn btn-success" href="{{route('dashboard.benefits.create')}}">
+													<i class="fa fa-plus-circle"></i>
+													@lang('dashboard.buttons.new')
+												</a>
+											@endcan
 										</div>
 										@include('dashboard.benefits.partials.search')
 									</div>
@@ -53,40 +55,42 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>@lang('dashboard.table.benefit_type')</th>
-											<th>@lang('dashboard.table.amount')</th>
-											<th>@lang('dashboard.table.admin_amount')</th>
 											<th>@lang('dashboard.table.product')</th>
+											<th>@lang('dashboard.table.benefit_type')</th>
 											@can('admin')
+												<th>@lang('dashboard.table.amount')</th>
+												<th>@lang('dashboard.table.admin_amount')</th>
 												<th>@lang('dashboard.table.company')</th>
+												<th>@lang('dashboard.table.actions')</th>
+											@else
+												<th>@lang('dashboard.table.amount')</th>
 											@endcan
-											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
 									<tbody>
 										@foreach($benefits as $benefit)
 										<tr>
 											<td>{{ $benefit->id }}</td>
-											<td>{{ $benefit->type->name }}</td>
-											<td>{{ $benefit->amount }}</td>
-											<td>{{ $benefit->admin_amount }}</td>
 											<td>{{ $benefit->product->name }}</td>
+											<td>{{ $benefit->type->name }}</td>
 											@can('admin')
+												<td>{{ $benefit->amount }}</td>
+												<td>{{ $benefit->admin_amount }}</td>
 												<td>{{ $benefit->product->company->name }}</td>
-											@endcan
-											<td>
-												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
-														href="{{route('dashboard.benefits.edit', $benefit->id)}}">
-														<i class="fa fa-edit"></i>
-													</a>
-													@can('admin')
+												<td>
+													<div class="btn-group btn-group-xs">
+														<a data-toggle="tooltip" title="@lang('dashboard.buttons.edit')" class="btn btn-warning" 
+															href="{{route('dashboard.benefits.edit', $benefit->id)}}">
+															<i class="fa fa-edit"></i>
+														</a>
 														<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$benefit->id}}" class="btn btn-danger md-trigger ">
 															<i class="fa fa-trash-o"></i>
 														</a>
-													@endcan
-												</div>
-											</td>
+													</div>
+												</td>
+											@else
+												<td>{{ $benefit->amount + $benefit->admin_amount }}</td>
+											@endcan
 										</tr>
 										@endforeach
 									</tbody>

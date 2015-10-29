@@ -63,16 +63,24 @@
 									</a>
 								</li>
 							@endcan
-						</ul><!-- End nav tab -->
+						</ul><!-- End nav tab img-circle profile-image-->
 
 						<!-- Tab panes -->
 						<div class="tab-content">
 							<!-- Tab about -->
 							<div class="tab-pane animated fadeInRight active" id="about">
 								<div class="user-profile-content">
-									<center>
-										<img src="{{asset('assets/images/users/user-256.jpg')}}" class="img-circle profile-image">
-									</center><hr>
+									<div class="row">
+										<div class="col-xs-offset-3 col-xs-6">
+											@if($user->hasFile())
+												<a href="#" class="rounded-image profile-image">
+													<img src="{{asset('assets/photos/'.$user->photo)}}">
+												</a>
+											@else
+												<center><h3>@lang('dashboard.photo_not_found')</h3></center>
+											@endif
+										</div>
+									</div><hr>
 									<div class="row">
 										<div class="col-sm-6">
 											<h5>

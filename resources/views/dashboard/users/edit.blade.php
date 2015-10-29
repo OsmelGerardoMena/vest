@@ -35,7 +35,8 @@
 							'route' => ['dashboard.users.update', $user->id],
 							'class' => 'form-horizontal',
 							'role' => 'form',
-							'method' => 'PUT'
+							'method' => 'PUT',
+							'files' => 'true'
 						]) 
 					!!}
 

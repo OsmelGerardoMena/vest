@@ -16,7 +16,6 @@
 				<div class="login-block">
 					<img src="{{asset('assets/images/users/default-user.png')}}" class="img-circle not-logged-avatar">
 					@include('partials/errors')
-					<!-- <form role="form" method="POST" action="{{ asset('/login') }}"> -->
 					{!! Form::open(['url' => '/login', 'method' => 'post', 'role' => 'form']) !!}
 
 						<div class="form-group login-input">

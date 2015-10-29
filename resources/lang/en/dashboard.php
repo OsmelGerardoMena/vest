@@ -88,6 +88,7 @@ return [
 	'download_training' => 'Download training file',
 	'see_image' => 'See image',
 	'image_not_found' => 'Image not found',
+	'photo_not_found' => 'Photo not found',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',
@@ -175,6 +176,9 @@ return [
 		'tradename_here' => 'Trade name here',
 		'amount_here' => 'Amount here, example: 500.50',
 		'admin_amount_here' => 'Administration amount here, example: 85',
+		'select_photo' => 'Select Photo',
+		'select_img' => 'Select image',
+		'select_file' => 'Select File',
 	],
 
 	'table' => [

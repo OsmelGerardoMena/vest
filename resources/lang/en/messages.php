@@ -27,6 +27,7 @@ return [
 	'disabled' => 'Your account is deactivated! You can not see your information.',
 	'required_file' => 'You have not selected any file. The contract file is required.',
 	'file_error' => 'File error: corrupted file or exceeds the allowed size (Max 2Mb).',
+	'photo_error' => 'Photo error: corrupted photo or exceeds the allowed size (Max 2Mb).',
 	'extension_error' => 'Incorrect extension, the file must be .pdf, .doc or .docx',
 	'uploading_error' => 'Error uploading file.',
 	'content_required' => 'You have not entered any content. The content is required.',
@@ -35,6 +36,7 @@ return [
 	'edit_sale' => 'Sale was edited successfully',
 	'delete_sale' => 'Sale was deleted',
 	'no_sales' => 'This customer does not have related sales!',
-	'extension_error_image' => 'Incorrect extension, the file must be .jpg, .png or .gif',
+	'extension_error_image' => 'Incorrect extension, the file must be .jpg .png .jpeg or .gif',
 	'required_img' => 'You have not selected any image. The image is required.',
+	'extension_error_photo' => 'Incorrect extension, the photo must be .jpg .png .jpeg or .gif',
 ];

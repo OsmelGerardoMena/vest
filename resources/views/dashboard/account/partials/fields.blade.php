@@ -55,3 +55,11 @@
 	</div>
 </div>
 <hr>
+
+<div class="form-group">
+	{!! Form::label('file', trans('validation.attributes.photo'), ['class' => 'col-sm-2 control-label']) !!}
+	<div class="col-sm-10">
+		{!! Form::file('photo',  ['class' => 'btn btn-default', 'title' => trans('dashboard.ph.select_photo')]) !!}
+		<p>jpg, png, gif, jpeg</p>
+	</div>
+</div><hr>

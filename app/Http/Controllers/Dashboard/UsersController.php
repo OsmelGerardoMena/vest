@@ -24,6 +24,13 @@ use Illuminate\Routing\Route;
 
 class UsersController extends Controller
 {
+    // Atributo para guardar nuevo nombre de la foto a subir
+    private $img_name;
+    // Atributo para guardar las extensiones permitidas
+    private $allowed = ['jpg', 'png', 'gif', 'jpeg'];
+    // Atributo para almacenar mensaje de error al subir foto
+    private $error_message;
+
     ///Para buscar el usuario y tenerlo en $this->user
     public function __construct(){
         $this->beforeFilter('@findUser', ['only' => ['show', 'edit', 
@@ -66,14 +73,25 @@ class UsersController extends Controller
     { 
         $user = new User();
 
-        $user->fill($request->all());
-
         // si recibo company_category_id con algun valor
         if ($request->has('company_category_id')) {
             // se almacena en el atributo company_category_id
             $user->company_category_id = $request->get('company_category_id');
         }
 
+        // se verifica si se recibio la foto
+        if ($request->file('photo')) {
+            if (!$this->uploadImage($request->file('photo'))) {
+                Session::flash('file_error', $this->error_message);
+                return redirect()->back()->withInput($request->all());
+            }
+            // se guarda el nombre de la foto
+            $user->photo = $this->img_name;
+        }
+
+        // con foto o sin foto se rellenan todos los otros datos
+        $user->fill($request->all());
+        
         $user->save();
         
         $message = $user->name.trans('messages.new');
@@ -122,8 +140,6 @@ class UsersController extends Controller
      */
     public function update(EditUserRequest $request, $id)
     {
-        $this->user->fill($request->all());
-
         if ($request->get('type_id') == 3) {
             // si se esta editando una empresa, se alamacena su categoria
             $this->user->company_category_id = $request->get('company_category_id');
@@ -138,6 +154,20 @@ class UsersController extends Controller
                 $this->user->company_category_id = null;
             }
         }
+
+        // se verifica si se recibio una foto
+        if ($request->file('photo')) {
+            if (!$this->uploadImage($request->file('photo'))) {
+                Session::flash('file_error', $this->error_message);
+                return redirect()->back()->withInput($request->all());
+            }
+            // si se pudo subir la nueva foto, se elimina la vieja
+            $this->deletePhoto($this->user);
+            // se guarda el nombre de la nueva foto
+            $this->user->photo = $this->img_name;
+        }
+
+        $this->user->fill($request->all());
 
         $this->user->save();
 
@@ -156,6 +186,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        $this->deletePhoto($this->user);
+
         $this->user->delete();
 
         $message = $this->user->name.trans('messages.delete');
@@ -165,7 +197,7 @@ class UsersController extends Controller
         return redirect()->route('dashboard.users.index');
     }
 
-    /*** Metodo Extra  para activar/desactivar status del usuario ***/
+    /*** Metodo Extra para activar/desactivar status del usuario ***/
     public function userStatus($id)
     {
         $user = User::findOrFail($id);
@@ -177,5 +209,50 @@ class UsersController extends Controller
         $message = $user->name.trans('messages.status');
         Session::flash('status', $message);
         return redirect()->back();
+    }
+
+    /*** Metodo Extra para subir una imagen ***/
+    private function uploadImage($file)
+    {
+        if(!$file->getError()){
+            // se alamacena la extension del archivo en minusculas
+            $file_extension = strtolower($file->getClientOriginalExtension());
+            // se verifica si la extensión coincide con alguna de las permitidas
+            if(in_array($file_extension, $this->allowed)){
+                // se almacena nuevo nombre para el archivo
+                $this->img_name = uniqid('', true).'.'.$file_extension;
+                // se mueve el archivo al directoio donde se va a guardar
+                $upload = $file->move(public_path('assets/photos'), $this->img_name);
+                // se verifica la carga
+                if($upload){
+                    return true;
+                }
+                else{
+                    // Mensaje de error al subir
+                    $this->error_message = trans('messages.uploading_error');
+                }
+            }
+            else{
+                // Mensaje de error de extension
+                $this->error_message = trans('messages.extension_error_photo');
+            }
+        }
+        else{
+            // Mensaje de error en el archivo
+            $this->error_message = trans('messages.photo_error');
+        }
+
+        return false;
+    }
+
+     /*** Metodo Extra para eliminar una foto si existe ***/
+    private function deletePhoto($user)
+    {
+        // hasFile(), es un metodo del modelo user
+        if($user->hasFile()){
+            // se elimina siempre y cuando no sea default.jpg
+            if($user->photo != 'default.jpg')
+                \Storage::disk('local_user_photo')->delete($user->photo);
+        }
     }
 }

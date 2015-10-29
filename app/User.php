@@ -275,4 +275,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {   // true o false
         return $this->pivot->status;
     }
+
+    ///** verifica si existe una foto (file) para el usuario **///
+    public function hasFile()
+    {
+        return \Storage::disk('local_user_photo')->exists($this->photo);
+    }
 }

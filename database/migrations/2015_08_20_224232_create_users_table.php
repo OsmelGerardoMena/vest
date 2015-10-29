@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('url')->nullable();
+            $table->string('photo')->default('default.jpg');
             
             //Relationships
             $table->integer('type_id')->unsigned();

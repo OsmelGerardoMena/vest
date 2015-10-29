@@ -28,8 +28,8 @@ class BenefitsController extends Controller
             $this->middleware('is_admin');
         }
         else if ($this->user->can('company')) {
-            // si se loguea una empresa, se restringe solo
-            $this->middleware('is_admin', ['only' => ['show', 'destroy'] ]);
+            // si se loguea una empresa, se restringe todo excepto
+            $this->middleware('is_admin', ['except' => 'index']);
         }
 
         //$this->beforeFilter('@findBenefit', ['only' => ['edit', 'update', 'destroy']]);

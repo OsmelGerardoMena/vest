@@ -30,7 +30,7 @@
 <div class="form-group">
 	{!! Form::label('file', trans('validation.attributes.img'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::file('img',  ['class' => 'form-control']) !!}
+		{!! Form::file('img',  ['class' => 'btn btn-default', 'title' => trans('dashboard.ph.select_img')]) !!}
 	</div>
 </div>
 

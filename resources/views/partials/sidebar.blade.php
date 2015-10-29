@@ -13,7 +13,9 @@
         <div class="profile-info">
             <div class="col-xs-4">
                 <a href="{{route('dashboard.account.index')}}" class="rounded-image profile-image">
-                    <img src="{{asset('assets/images/users/user-100.jpg')}}">
+                    @if(Auth::user()->hasFile())
+                        <img src="{{asset('assets/photos/'.Auth::user()->photo)}}">
+                    @endif
                 </a>
             </div>
             <div class="col-xs-8">
