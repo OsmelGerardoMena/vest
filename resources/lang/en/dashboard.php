@@ -49,6 +49,7 @@ return [
 	'title_create_company_category' => 'Create company category',
 	'title_edit_company_category' => 'Edit Company category',
 	'title_add_category' => 'Add Category',
+	'title_save_edit_invoice' => 'Save/Edit Invoice',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'change_password' => 'Change password',
@@ -89,6 +90,8 @@ return [
 	'see_image' => 'See image',
 	'image_not_found' => 'Image not found',
 	'photo_not_found' => 'Photo not found',
+	'enter_invoice' => 'Enter invoice number',
+	'without_invoice' => 'Without invoice',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',
@@ -146,6 +149,7 @@ return [
 		'unallocated' => 'Products unallocated',
 		'related_sales' => 'Related sales',
 		'add_category' => 'Add category',
+		'save_edit_invoice' => 'Save/Edit Invoice',
 	],
 
 	'ph' => [ //placeholder
@@ -179,6 +183,8 @@ return [
 		'select_photo' => 'Select Photo',
 		'select_img' => 'Select image',
 		'select_file' => 'Select File',
+		'invoice_number' => 'Invoice number: HKN-27813123',
+		'quantity' => 'Quantity here',
 	],
 
 	'table' => [
@@ -218,6 +224,10 @@ return [
 		'company_category' => 'Category',
 		'incentive_type' => 'Incentive type',
 		'admin_amount' => 'Admin amount',
+		'invoice' => 'Invoice',
+		'quantity' => 'Quantity',
+		'total' => 'Total',
+		'creation_date' => 'Creation date',
 	],
 
 	'status' => [

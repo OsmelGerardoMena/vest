@@ -45,28 +45,32 @@ class CompanySalesController extends Controller
     			// si el id de producto ya existe como key en el array
     			if (array_key_exists($sale->product_id, $this->products)) {
     				// entonces simplemente se incrementa el contador de ventas
-    				$this->products[$sale->product_id]['count'] += 1;
+                    // con la cantidad que tenga alamacenada en quantity
+    				$this->products[$sale->product_id]['count'] += $sale->quantity;
     			}
     			else{
     				// de lo contrario se guarda en el array (products) por 
-    				// primera vez el producto vendido colocando el contador de ventas en 1
+    				// primera vez el producto vendido y la cantidad vendida se 
+                    // coloca en el contador de ventas
     				$this->products[$sale->product_id] = [
 	    				'product_name' => $sale->product->name,
-	    				'count' => 1,
+	    				'count' => $sale->quantity,
     				];
     			}
 
     			// si el id de vendedor ya existe como key en el array
     			if (array_key_exists($sale->seller_id, $this->sellers)) {
     				// entonces simplemente se incrementa el contador de ventas
-    				$this->sellers[$sale->seller_id]['count'] += 1;
+                    // con la cantidad que tenga alamacenada en quantity
+    				$this->sellers[$sale->seller_id]['count'] += $sale->quantity;
     			}
     			else{
     				// de lo contrario se guarda en el array (sellers) por 
-    				// primera vez el vendedor colocando el contador de ventas en 1
+    				// primera vez el vendedor y la cantidad vendida se 
+                    // coloca en el contador de ventas
     				$this->sellers[$sale->seller_id] = [
 	    				'seller_name' => $sale->seller->name,
-	    				'count' => 1,
+	    				'count' => $sale->quantity,
     				];
     			}
     		}

@@ -13,6 +13,7 @@ class Sale extends Model
     protected $table = 'sales';
 
     protected $fillable = [
+            'quantity',
             'seller_id', 
             'product_id',
             'customer_id',
@@ -91,10 +92,10 @@ class Sale extends Model
     }
 
     ///** Para verificar que seller_id, product_id y customer_id no se repitan **///
-    public function idsExists($data)
+    /*public function idsExists($data)
     {
         return Sale::where('seller_id', $data->get('seller_id'))
             ->where('product_id', $data->get('product_id'))
             ->where('customer_id', $data->get('customer_id'))->exists();
-    }
+    }*/
 }

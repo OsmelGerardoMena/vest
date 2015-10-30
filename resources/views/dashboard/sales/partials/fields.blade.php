@@ -28,3 +28,10 @@
 		{!! Form::select('customer_id', $customers->get('true'), null, ['class' => 'form-control']) !!}
 	</div>
 </div>
+
+<div class="form-group">
+	{!! Form::label('quantity', trans('validation.attributes.quantity'), ['class' => 'col-sm-2 control-label']) !!}
+	<div class="col-sm-10">
+		{!! Form::text('quantity', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.quantity')]) !!}
+	</div>
+</div>

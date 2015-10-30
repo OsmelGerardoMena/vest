@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Session;
 
 use Vest\Http\Requests\CreateSaleRequest;
 use Vest\Http\Requests\EditSaleRequest;
+use Vest\Http\Requests\EditInvoiceRequest;
 
 class SalesController extends Controller
 {
@@ -26,11 +27,15 @@ class SalesController extends Controller
 
         if ($this->user->can('company')) {
             // si es company se restringe todo excepto
-            $this->middleware('is_admin', ['except' => ['index', 'show'] ]);
+            $this->middleware('is_admin', ['except' => ['index', 'show', 'addInvoice', 'saveInvoice'] ]);
         }
         else if ($this->user->can('seller')) {
-            // si es seller se restringe solo destroy
-            $this->middleware('is_admin', ['only' => ['destroy'] ]);
+            // si es seller se restringe solo
+            $this->middleware('is_admin', ['only' => ['destroy', 'addInvoice', 'saveInvoice'] ]);
+        }
+        else {
+            // si es admin se restringe solo
+            $this->middleware('is_company', ['only' => ['addInvoice', 'saveInvoice'] ]);
         }
 
         //$this->beforeFilter('@findSale', ['only' => ['show', 'edit', 'update', 'destroy'] ]);
@@ -90,16 +95,11 @@ class SalesController extends Controller
     {
         $sale = new Sale();
 
-        // se verifica si ya existe una venta con los 3 ids recibidos
-        if($sale->idsExists($request)){
-            Session::flash('error', trans('messages.not_unique'));
-            return redirect()->back()->withInput();
-        }
-
-        $sale->fill($request->all());
-
+        // busco el producto para almacenar el monto
         $product = Product::where('id', $request->get('product_id'))->first();
         $sale->amount = $product->price;
+        // se rellenan los demas datos
+        $sale->fill($request->all());
 
         $sale->save();
 
@@ -129,9 +129,21 @@ class SalesController extends Controller
     public function edit($id)
     {
         $sale = Sale::findOrFail($id);
-        // valor de la primera opción del selector productos
-        $firts_option = ['' => '-- '.trans('dashboard.selectors.products').' --'];
-        return view('dashboard.sales.edit')->with('sale', $sale)->with('firts_option', $firts_option);
+
+        // se verifica primero si la venta ya tiene asiganada una factura
+        if (!is_null($sale->invoice)) {
+
+            // si no es nulo quiere decir que ya tiene factura
+            // y no va a poder editar la venta
+            Session::flash('error', trans('messages.no_edit_sale'));
+            return redirect()->route('dashboard.sales.index');
+        }
+        else {
+            // de lo contrario, si es nulo, si se va a poder editar
+            // firts_option contiene valor de la primera opción del selector productos
+            $firts_option = ['' => '-- '.trans('dashboard.selectors.products').' --'];
+            return view('dashboard.sales.edit')->with('sale', $sale)->with('firts_option', $firts_option);
+        }
     }
 
     /**
@@ -145,16 +157,10 @@ class SalesController extends Controller
     {
         $sale = Sale::findOrFail($id);
 
-        // se verifica si ya existe una venta con los 3 ids recibidos
-        if($sale->idsExists($request)){
-            Session::flash('error', trans('messages.not_unique'));
-            return redirect()->back()->withInput();
-        }
-
-        $sale->fill($request->all());
-
         $product = Product::where('id', $request->get('product_id'))->first();
         $sale->amount = $product->price;
+
+        $sale->fill($request->all());
 
         $sale->save();
 
@@ -180,6 +186,7 @@ class SalesController extends Controller
         return redirect()->route('dashboard.sales.index');
     }
 
+    /*** Metodo para mostrar solamente los productos asignados al vendedor al crear ***/
     public function sellerProducts(Request $request)
     {
         // se verifica si hay una peticion ajax
@@ -200,5 +207,26 @@ class SalesController extends Controller
             }
             return $products;
         }
+    }
+
+    /*** Metodo extra para mostrar formulario de agregar factura ***/
+    public function addInvoice($id)
+    {
+        $sale = Sale::findOrFail($id);
+        return view('dashboard.sales.save_edit_invoice')->with('sale', $sale);
+    }
+
+    /*** Metodo extra para guardar numero de factura ***/
+    public function saveInvoice(EditInvoiceRequest $request, $id)
+    {
+        $sale = Sale::findOrFail($id);
+        
+        $sale->invoice = trim($request->get('invoice'));
+
+        $sale->save();
+
+        Session::flash('edit', trans('messages.save_invoice'));
+
+        return redirect()->back();
     }
 }

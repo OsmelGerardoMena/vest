@@ -14,7 +14,6 @@
 			<p class="text-center"><a href="#"><img src="{{asset('assets/img/login-logo.png')}}" alt="Logo"></a></p>
 			<div class="login-wrap animated flipInX">
 				<div class="login-block">
-					<img src="{{asset('assets/images/users/default-user.png')}}" class="img-circle not-logged-avatar">
 					@include('partials/errors')
 					{!! Form::open(['url' => '/login', 'method' => 'post', 'role' => 'form']) !!}
 

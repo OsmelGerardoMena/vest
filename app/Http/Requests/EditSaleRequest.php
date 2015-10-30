@@ -27,6 +27,7 @@ class EditSaleRequest extends Request
             'seller_id' => 'required|exists:users,id',
             'product_id' => 'required|exists:products,id',
             'customer_id' => 'required|exists:customers,id',
+            'quantity' => 'required|integer|min:1',
         ];
     }
 }

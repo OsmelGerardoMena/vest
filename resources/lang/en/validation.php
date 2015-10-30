@@ -149,5 +149,7 @@ return [
         'img' => 'Image',
         'admin_amount' => 'Admin amount',
         'photo' => 'Your photo (optional)',
+        'invoice' => 'Invoice number',
+        'quantity' => 'Quantity',
     ],
 ];

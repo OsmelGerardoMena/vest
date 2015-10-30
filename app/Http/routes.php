@@ -132,9 +132,18 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 	]);
 	Route::resource('dashboard/products', 'ProductsController');
 
-	// ruta para el formulario de crear venta
+	// rutas para agregar factura a las ventas
+	Route::get('dashboard/sales/invoice/{id}', [
+			'uses' => 'SalesController@addInvoice',
+			'as' => 'dashboard.sales.invoice'
+	]);
+	Route::put('dashboard/sales/saveinvoice/{id}', [
+			'uses' => 'SalesController@saveInvoice',
+			'as' => 'dashboard.sales.saveinvoice'
+	]);
+	// ruta para la carga de productos del vendedor en el formulario de crear venta
 	Route::get('dashboard/sales/seller', 'SalesController@sellerProducts');
-	// ruta para el formulario de editar venta
+	// ruta para la carga de productos del vendedor en el formulario de editar venta
 	Route::get('dashboard/sales/{id}/seller', 'SalesController@sellerProducts');
 	Route::resource('dashboard/sales', 'SalesController');
 });

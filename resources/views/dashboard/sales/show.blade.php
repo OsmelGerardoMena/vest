@@ -27,11 +27,45 @@
 				@lang('dashboard.buttons.back')
 			</a><br><br>
 
-			@cannot('seller')
-            	@include('dashboard.sales.partials.seller_info')
-            @endcan
-            @include('dashboard.sales.partials.product_info')
-            @include('dashboard.sales.partials.customer_info')
+			<div class="widget">
+				<div class="widget-content padding">
+
+					<div class="table-responsive">
+						<table data-sortable class="table table-hover table-striped">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>@lang('dashboard.table.creation_date')</th>
+									<th>@lang('dashboard.table.amount')</th>
+									<th>@lang('dashboard.table.quantity')</th>
+									<th>@lang('dashboard.table.total')</th>
+									<th>@lang('dashboard.table.invoice')</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{{ $sale->id }}</td>
+									<td>{{ $sale->created_at }}</td>
+									<td>{{ $sale->amount }}</td>
+									<td>{{ $sale->quantity }}</td>
+									<td>{{ $sale->amount * $sale->quantity }}</td>
+									<td>
+										{{ (!is_null($sale->invoice)) ? '# '.$sale->invoice 
+										: trans('dashboard.without_invoice') }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<hr>
+
+					@cannot('seller')
+		            	@include('dashboard.sales.partials.seller_info')
+		            @endcan
+		            @include('dashboard.sales.partials.product_info')
+		            @include('dashboard.sales.partials.customer_info')
+		        </div>
+		    </div>
 		</div>
 		<!-- End content here -->
 	</div>

@@ -56,11 +56,14 @@
 										<tr>
 											<th>#</th>
 											<th>@lang('dashboard.table.amount')</th>
+											<th>@lang('dashboard.table.quantity')</th>
+											<th>@lang('dashboard.table.total')</th>
 											@cannot('seller')
 												<th>@lang('dashboard.table.seller')</th>
 											@endcan
 											<th>@lang('dashboard.table.product')</th>
 											<th>@lang('dashboard.table.customer')</th>
+											<th>@lang('dashboard.table.invoice')</th>
 											<th>@lang('dashboard.table.actions')</th>
 										</tr>
 									</thead>
@@ -69,11 +72,17 @@
 										<tr>
 											<td>{{ $sale->id }}</td>
 											<td>{{ $sale->amount }}</td>
+											<td>{{ $sale->quantity }}</td>
+											<td>{{ $sale->amount * $sale->quantity }}</td>
 											@cannot('seller')
 												<td>{{ $sale->seller->name }}</td>
 											@endcan
 											<td>{{ $sale->product->name }}</td>
 											<td>{{ $sale->customer->name }}</td>
+											<td>
+												{{ (!is_null($sale->invoice)) ? '# '.$sale->invoice 
+												: trans('dashboard.without_invoice') }}
+											</td>
 											<td>
 												<div class="btn-group btn-group-xs">
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info')" class="btn btn-info" 
@@ -91,6 +100,13 @@
 													@can('admin')
 														<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$sale->id}}" class="btn btn-danger md-trigger ">
 															<i class="fa fa-trash-o"></i>
+														</a>
+													@endcan
+
+													@can('company')
+														<a data-toggle="tooltip" title="@lang('dashboard.buttons.save_edit_invoice')" class="btn btn-warning" 
+															href="{{ route('dashboard.sales.invoice', $sale->id) }}">
+															<i class="fa fa-edit"></i>
 														</a>
 													@endcan
 												</div>

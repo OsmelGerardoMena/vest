@@ -4,7 +4,7 @@ namespace Vest\Http\Requests;
 
 use Vest\Http\Requests\Request;
 
-class CreateSaleRequest extends Request
+class EditInvoiceRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class CreateSaleRequest extends Request
     public function rules()
     {
         return [
-            'seller_id' => 'required|exists:users,id',
-            'product_id' => 'required|exists:products,id',
-            'customer_id' => 'required|exists:customers,id',
-            'quantity' => 'required|integer|min:1',
+            'invoice' => 'required|unique:sales,invoice',
         ];
     }
 }
