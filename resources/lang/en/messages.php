@@ -24,7 +24,6 @@ return [
 	'edit_account' => 'Data was updated successfully',
 	'save_invoice' => 'Invoice was saved successfully',
 	'no_products' => 'You do not have products!',
-	'restricted_access' => 'Warning: You tried to access a restricted area without permission',
 	'disabled' => 'Your account is deactivated! You can not see your information.',
 	'required_file' => 'You have not selected any file. The contract file is required.',
 	'file_error' => 'File error: corrupted file or exceeds the allowed size (Max 2Mb).',
@@ -42,4 +41,7 @@ return [
 	'no_edit_sale' => 'This sale has invoice, you can not edit',
 	'error_sale' => 'You cannot create sales. They must exist: sellers, products and customers',
 	'has_no_products' => 'This seller has no assigned products',
+	'restricted_access' => 'Warning: You tried to access a restricted area without permission',
+	'404' => 'The page you are looking for is definitely not this!',
+	'401' => 'Permission denied!',
 ];

@@ -1,5 +1,5 @@
 <li class='has_sub'>
-    <a href=''>
+    <a href='' id='user-link'>
         <i class='icon-users'></i>
         <span>@lang('dashboard.sidebar.users')</span> 
         <span class="pull-right">

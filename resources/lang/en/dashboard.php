@@ -1,6 +1,8 @@
 <?php
 
 return [
+	'title_404' => 'Page not found',
+	'title_401' => 'Restricted access',
 	'title_home' => 'Welcome to dashboard',
 	'title_users' => 'Users',
 	'title_create' => 'Create user',
@@ -150,6 +152,7 @@ return [
 		'related_sales' => 'Related sales',
 		'add_category' => 'Add category',
 		'save_edit_invoice' => 'Save/Edit Invoice',
+		'back_to_dashboard' => 'Back to Dashboard',
 	],
 
 	'ph' => [ //placeholder

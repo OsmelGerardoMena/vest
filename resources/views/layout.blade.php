@@ -64,7 +64,7 @@
 @if(Auth::guest())
 	<body class="fixed-left login-page">
 @else
-	<body class="fixed-left">
+	<body class="fixed-left"> {{-- fixed-left full-content: para 404 --}}
 @endif
 
 @yield('content')
@@ -110,7 +110,7 @@
 	@endif
 
 	<!-- Scripts adicionales -->
-	<!-- <script src="{{asset('assets/js/activemenu.js')}}"></script>-->
+	<script src="{{asset('assets/js/activemenu.js')}}"></script>
 	<script src="{{asset('assets/js/reload_search.js')}}"></script>
 	<script src="{{asset('assets/js/select_category.js')}}"></script>
 	<script src="{{asset('assets/js/select_seller_products.js')}}"></script>

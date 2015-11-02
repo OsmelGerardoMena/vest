@@ -42,7 +42,7 @@
         <div id="sidebar-menu">
             <ul>
                 <li class='has_sub'>
-                    <a href=''>
+                    <a href='' id='start-link'>
                         <i class='icon-home-3'></i>
                         <span>@lang('dashboard.sidebar.dash')</span> 
                         <span class="pull-right">
@@ -51,8 +51,8 @@
                     </a>
                     <ul>
                         <li>
-                            <!-- dentro de la etiqueta a: class='active' -->
-                            <a href="{{asset('/dashboard')}}" class="active">
+                            <!-- con class='active' aparece desglosado el menu -->
+                            <a href="{{route('dashboard')}}" >
                                 <span>@lang('dashboard.sidebar.start')</span>
                             </a>
                         </li>
