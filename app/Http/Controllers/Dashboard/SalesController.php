@@ -9,6 +9,7 @@ use Vest\Http\Controllers\Controller;
 
 use Vest\Tables\Sale;
 use Vest\Tables\Product;
+use Vest\Tables\Customer;
 use Vest\User;
 
 use Illuminate\Routing\Route;
@@ -80,6 +81,14 @@ class SalesController extends Controller
      */
     public function create()
     {
+        // se verifican si existen vendedores y clientes para crear ventas
+        $sellers = User::where('type_id', 2)->where('status_id', 1)->exists();
+        $customers = Customer::where('status', true)->exists();
+        if (!$sellers || !$customers) {
+            // si no existen se manda mensaje
+            Session::flash('error', trans('messages.error_sale'));
+        }
+
         // valor de la primera opción del selector productos
         $firts_option = ['' => '-- '.trans('dashboard.selectors.products').' --'];
         return view('dashboard.sales.create')->with('firts_option', $firts_option);
@@ -132,7 +141,6 @@ class SalesController extends Controller
 
         // se verifica primero si la venta ya tiene asiganada una factura
         if (!is_null($sale->invoice)) {
-
             // si no es nulo quiere decir que ya tiene factura
             // y no va a poder editar la venta
             Session::flash('error', trans('messages.no_edit_sale'));
@@ -199,12 +207,20 @@ class SalesController extends Controller
                     ->whereNotIn('product_id', [1])->where('status', true)->get();
             
             $products = []; // array productos vacio
+            
             // se rellena el array siempre y cuando tenga el vendedor productos
             foreach ($seller_products as $product) {
                 if($product->isActive()){
                     $products [$product->id] = $product->name;
                 }
             }
+
+            // si no hay ningún prodyucto asignado al vendedor igual se envia
+            // un mensaje dentro de el array products para que aparezca en el select
+            if ($seller_products->count() == 0) {
+                $products [''] = trans('messages.has_no_products');
+            }
+
             return $products;
         }
     }

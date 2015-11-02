@@ -40,4 +40,6 @@ return [
 	'required_img' => 'You have not selected any image. The image is required.',
 	'extension_error_photo' => 'Incorrect extension, the photo must be .jpg .png .jpeg or .gif',
 	'no_edit_sale' => 'This sale has invoice, you can not edit',
+	'error_sale' => 'You cannot create sales. They must exist: sellers, products and customers',
+	'has_no_products' => 'This seller has no assigned products',
 ];

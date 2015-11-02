@@ -9,7 +9,6 @@
 		])
 !!}
 
-
 	<div class="form-group">
 		<a class="btn btn-info" href="{{route('dashboard.products.index')}}">
 			<i class="icon-eye-1"></i>

@@ -60,6 +60,7 @@
 
 @if(Session::has('error'))
  	<div class="alert alert-danger" role="alert">
- 		<strong>{{ Session::get('error') }}</strong>
+ 		<strong>{{ Session::get('error')}}</strong>
+ 		{{Session::forget('error')}}
  	</div>
 @endif
