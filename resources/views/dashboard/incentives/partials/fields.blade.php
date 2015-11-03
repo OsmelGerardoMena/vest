@@ -7,16 +7,16 @@
 @inject('itypes', 'Vest\Services\OptionsSelectIncentiveTypes')
 
 <div class="form-group">
-	{!! Form::label('incentive_type_id', trans('validation.attributes.incentive_type_id'), ['class' => 'col-sm-2 control-label']) !!}
+	{!! Form::label('goal', trans('validation.attributes.goal'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::select('incentive_type_id', $itypes->get(), null, ['class' => 'form-control']) !!}
+		{!! Form::text('goal', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.goal_here')]) !!}
 	</div>
 </div>
 
 <div class="form-group">
-	{!! Form::label('goal', trans('validation.attributes.goal'), ['class' => 'col-sm-2 control-label']) !!}
+	{!! Form::label('incentive_type_id', trans('validation.attributes.incentive_type_id'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::text('goal', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.goal_here')]) !!}
+		{!! Form::select('incentive_type_id', $itypes->get(), null, ['class' => 'form-control']) !!}
 	</div>
 </div>
 

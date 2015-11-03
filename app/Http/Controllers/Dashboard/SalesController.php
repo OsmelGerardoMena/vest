@@ -20,6 +20,8 @@ use Vest\Http\Requests\CreateSaleRequest;
 use Vest\Http\Requests\EditSaleRequest;
 use Vest\Http\Requests\EditInvoiceRequest;
 
+use Carbon\Carbon;
+
 class SalesController extends Controller
 {
     public function __construct()
@@ -241,8 +243,50 @@ class SalesController extends Controller
 
         $sale->save();
 
+        $this->createNotification($sale);
+
         Session::flash('edit', trans('messages.save_invoice'));
 
         return redirect()->back();
+    }
+
+    private function createNotification($sale)
+    {
+        // $sale contiene la venta recien facturada
+        // verifico si el producto de la venta tiene incentivo
+        if ($sale->product->incentives()->exists()) {
+            // se almacenan los incentivos del producto vendido
+            $incentives = $sale->product->incentives;
+            // alamaceno fecha actual usando carbon
+            $today = Carbon::now();
+            // se recorren todos los incentivos
+            foreach ($incentives as $incentive) {
+                // se compara la fecha actual con la fecha (hasta) de cada incentivo
+                if ($today->toDateString() <= $incentive->date_to) {
+                    // si la fecha actual es menor o igual que la fecha_hasta
+                    // almaceno las otras ventas facturadas que sean del mismo
+                    // vendedor, del mismo producto, sin tomar en cuenta la venta
+                    // que se acaba de facturar y que el campo factura no sea nulo
+                    $invoiced_sales = Sale::where('seller_id', $sale->seller_id)
+                            ->where('product_id', $sale->product_id)
+                            ->where('id', '!=', $sale->id)
+                            ->whereNotNull('invoice');
+
+                    // total_sum es para guardar la suma total de las ventas 
+                    // facturadas, en principio va a contener el total de 
+                    // la venta recien facturada
+                    $total_sum = $sale->amount * $sale->quantity;
+                    // recorro las otras ventas facturadas
+                    foreach ($invoiced_sales as $invoiced_sale) {
+                        // sumo los totales de las otras ventas facturadas
+                        $total_sum += $invoiced_sale->amount * $invoiced_sale->quantity;
+                    }
+                    // se verifica si la suma total es igual o mayor que la meta del incentivo
+                    if ($total_sum >= $incentive->goal) {
+                        // si es mayor o igual se crea la notificacion
+                    }
+                } 
+            }
+        }
     }
 }
