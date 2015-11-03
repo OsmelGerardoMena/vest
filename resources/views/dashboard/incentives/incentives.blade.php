@@ -53,8 +53,8 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>@lang('dashboard.table.incentive_type')</th>
 											<th>@lang('dashboard.table.goal')</th>
+											<th>@lang('dashboard.table.incentive_type')</th>
 											<th>@lang('dashboard.table.award')</th>
 											<th>@lang('dashboard.table.img')</th>
 											<th>@lang('dashboard.table.date_from')</th>
@@ -70,8 +70,8 @@
 										@foreach($incentives as $incentive)
 										<tr>
 											<td>{{ $incentive->id }}</td>
-											<td>{{ $incentive->type->name }}</td>
 											<td>{{ $incentive->goal }}</td>
+											<td>{{ $incentive->type->name }}</td>
 											<td>{{ $incentive->award }}</td>
 											@if($incentive->hasFile())
 												<td><a href="{{ asset('files/incentives') }}/{{ $incentive->img }}" target="_blank">

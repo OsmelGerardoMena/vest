@@ -52,6 +52,7 @@ return [
 	'title_edit_company_category' => 'Edit Company category',
 	'title_add_category' => 'Add Category',
 	'title_save_edit_invoice' => 'Save/Edit Invoice',
+	'title_notifications' => 'Notifications',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'change_password' => 'Change password',

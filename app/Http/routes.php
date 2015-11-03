@@ -146,4 +146,10 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 	// ruta para la carga de productos del vendedor en el formulario de editar venta
 	Route::get('dashboard/sales/{id}/seller', 'SalesController@sellerProducts');
 	Route::resource('dashboard/sales', 'SalesController');
+
+	Route::controller('dashboard/notifications', 'NotificationsController', [
+		'getIndex' => 'dashboard.notifications.index',
+		//'getProductsSales' => 'dashboard.companysales.productssales',
+		//'getSellersSales' => 'dashboard.companysales.show',
+	]);
 });

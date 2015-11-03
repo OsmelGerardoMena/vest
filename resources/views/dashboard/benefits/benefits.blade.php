@@ -57,13 +57,11 @@
 											<th>#</th>
 											<th>@lang('dashboard.table.product')</th>
 											<th>@lang('dashboard.table.benefit_type')</th>
+											<th>@lang('dashboard.table.amount')</th>
 											@can('admin')
-												<th>@lang('dashboard.table.amount')</th>
 												<th>@lang('dashboard.table.admin_amount')</th>
 												<th>@lang('dashboard.table.company')</th>
 												<th>@lang('dashboard.table.actions')</th>
-											@else
-												<th>@lang('dashboard.table.amount')</th>
 											@endcan
 										</tr>
 									</thead>

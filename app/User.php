@@ -85,6 +85,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         //busca en Product el campo company_id (llave foranea en Product)
     }
 
+    public function notifications()
+    {
+        // 1 usario (vendedor) puede tener varias notificaciones
+        return $this->hasMany('Vest\Tables\Notification');
+    }
+
     ///** relacion de muchos a muchos **///
     public function addedproducts()
     {
