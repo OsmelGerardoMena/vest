@@ -258,4 +258,10 @@ return [
 		'products' => 'Products',
 		'customers' => 'Customers',
 	],
+
+	'notification' => [
+		'title' => 'You have achieved an incentive!',
+		'content_1' => 'Congratulations! By the sales of the product: ',
+		'content_2' => ', you have won the prize: ',
+	],
 ];

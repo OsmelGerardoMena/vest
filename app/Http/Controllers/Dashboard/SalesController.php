@@ -10,6 +10,7 @@ use Vest\Http\Controllers\Controller;
 use Vest\Tables\Sale;
 use Vest\Tables\Product;
 use Vest\Tables\Customer;
+use Vest\Tables\Notification;
 use Vest\User;
 
 use Illuminate\Routing\Route;
@@ -284,6 +285,15 @@ class SalesController extends Controller
                     // se verifica si la suma total es igual o mayor que la meta del incentivo
                     if ($total_sum >= $incentive->goal) {
                         // si es mayor o igual se crea la notificacion
+                        $notification = new Notification();
+                        $notification->title = trans('dashboard.notification.title');
+                        $notification->content = 
+                                trans('dashboard.notification.content_1')
+                                .$incentive->product->name
+                                .trans('dashboard.notification.content_2')
+                                .$incentive->award;
+                        $notification->user_id = $sale->seller_id;
+                        $notification->save();
                     }
                 } 
             }

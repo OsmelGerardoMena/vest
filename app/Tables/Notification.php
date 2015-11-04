@@ -12,6 +12,7 @@ class Notification extends Model
     public function user()
     {
         // retorna un solo objeto user, ya que la notificacion pertenece a un usuario
+        // a un solo vendedor
         return $this->belongsTo('Vest\User');
     }
 }
