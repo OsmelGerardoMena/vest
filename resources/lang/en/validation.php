@@ -35,8 +35,8 @@ return [
     'digits'               => 'The :attribute must be :digits digits.',
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
     'email'                => 'The :attribute must be a valid email address.',
-    'filled'               => 'The :attribute field is required.',
     'exists'               => 'The selected :attribute is invalid.',
+    'filled'               => 'The :attribute field is required.',
     'image'                => 'The :attribute must be an image.',
     'in'                   => 'The selected :attribute is invalid.',
     'integer'              => 'The :attribute must be an integer.',
@@ -58,7 +58,7 @@ return [
     'numeric'              => 'The :attribute must be a number.',
     'regex'                => 'The :attribute format is invalid.',
     'required'             => 'The :attribute field is required.',
-    'required_if'          => 'The :attribute field is required.',
+    'required_if'          => 'The :attribute field is required.', // se el quito -> where :other is :value
     'required_with'        => 'The :attribute field is required when :values is present.',
     'required_with_all'    => 'The :attribute field is required when :values is present.',
     'required_without'     => 'The :attribute field is required when :values is not present.',
@@ -74,8 +74,7 @@ return [
     'timezone'             => 'The :attribute must be a valid zone.',
     'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid. Remember to put
-                                 the link with http://',
-    //en español verificar filled y string
+                                 the link with http:// Example: http://page.com',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

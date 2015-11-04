@@ -60,7 +60,9 @@
                                         <th>@lang('dashboard.table.name')</th>
                                         <th>@lang('dashboard.table.price')</th>
                                         <th>@lang('dashboard.table.url')</th>
-                                        <th>@lang('dashboard.table.company')</th>
+                                        @cannot('company')
+                                            <th>@lang('dashboard.table.company')</th>
+                                        @endcan
                                         @can('seller')
                                             <th>@lang('dashboard.table.link_status')</th>
                                         @else
@@ -76,7 +78,9 @@
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price }}</td>
                                             <td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
-                                            <td>{{ $product->company->name }}</td>
+                                            @cannot('company')
+                                                <td>{{ $product->company->name }}</td>
+                                            @endcan
                                             @can('seller')
                                                 <td><span class="{{ ($product->getLinkStatus()) ? 'label label-success' : 'label label-danger'}}">
                                                 @lang('dashboard.link_status.'.$product->getLinkStatus())

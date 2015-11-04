@@ -3,7 +3,7 @@
 	<div class="md-content">
 		<h3>
 			<strong>@lang('dashboard.sure_unlink_product')<br>
-			{{$product->name}}</strong>
+			"{{$product->name}}"</strong>
 		</h3>
 		<div>
 			<center>

@@ -18,9 +18,11 @@
         {!! Form::text('nameproduct', null, ['class' => 'form-control', 'id' => 'my-text', 'placeholder' => trans('dashboard.ph.search_product')]) !!}
     </div>
 
-    <div class="form-group">
-        {!! Form::select('company', $options->get(), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
-    </div>
+    @cannot('company')
+        <div class="form-group">
+            {!! Form::select('company', $options->get(), null, ['class' => 'form-control', 'id' => 'my-select']) !!}
+        </div>
+    @endcan
 
     <button type="submit" class="btn btn-info">
         <i class="icon-search-1"></i>

@@ -243,7 +243,7 @@ class SalesController extends Controller
 
         $sale->save();
 
-        $this->createNotification($sale);
+        //$this->createNotification($sale);
 
         Session::flash('edit', trans('messages.save_invoice'));
 
@@ -274,7 +274,7 @@ class SalesController extends Controller
 
                     // total_sum es para guardar la suma total de las ventas 
                     // facturadas, en principio va a contener el total de 
-                    // la venta recien facturada
+                    // la venta recien facturada ($sale)
                     $total_sum = $sale->amount * $sale->quantity;
                     // recorro las otras ventas facturadas
                     foreach ($invoiced_sales as $invoiced_sale) {

@@ -29,7 +29,7 @@ return [
 	'file_error' => 'File error: corrupted file or exceeds the allowed size (Max 2Mb).',
 	'photo_error' => 'Photo error: corrupted photo or exceeds the allowed size (Max 2Mb).',
 	'extension_error' => 'Incorrect extension, the file must be .pdf, .doc or .docx',
-	'uploading_error' => 'Error uploading file.',
+	'uploading_error' => 'Error uploading file, verify.',
 	'content_required' => 'You have not entered any content. The content is required.',
 	'new_sale' => 'Sale was created successfully',
 	'edit_sale' => 'Sale was edited successfully',

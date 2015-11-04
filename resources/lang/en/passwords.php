@@ -21,5 +21,5 @@ return [
     'send_link' => 'Send Password Reset Link',
     'title_reset' => 'Password Reset',
     'click_to_reset' => 'Click here to reset your password',
-    'reset_password' => 'Reset Password',
+    'reset_password' => 'Password Reset',
 ];

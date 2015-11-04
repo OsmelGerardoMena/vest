@@ -19,7 +19,7 @@
         		<h1><i class='icon-user'></i> 
         			@lang('dashboard.title_info')
         		</h1>
-            </div>
+            </div><br>
 			
 			<div class="row">
 				<div class="col-sm-3">
