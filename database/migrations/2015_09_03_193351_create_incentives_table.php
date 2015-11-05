@@ -17,8 +17,8 @@ class CreateIncentivesTable extends Migration
             $table->double('goal', 10, 2);
             $table->string('award');
             $table->string('img');
-            $table->date('date_from');
-            $table->date('date_to');
+            $table->dateTime('date_from');
+            $table->dateTime('date_to');
             
             //Relationships
             $table->integer('incentive_type_id')->unsigned();

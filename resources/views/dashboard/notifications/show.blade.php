@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-	{{trans_choice('dashboard.title_notifications', 2)}}
+	{{trans_choice('dashboard.title_notifications', 1)}}
 @stop
 
 @section('content')
@@ -18,7 +18,7 @@
 		<div class="content">
 			<div class="page-heading">
         		<h1><i class='icon-bell-1'></i>
-        			{{trans_choice('dashboard.title_notifications', 2)}}
+        			{{trans_choice('dashboard.title_notifications', 1)}}
         		</h1>
             </div>
 
@@ -27,27 +27,25 @@
 			    	<div class="panel-heading">
 			      		<h4 class="panel-title">
 				        	<a data-toggle="collapse" data-parent="#accordion" href="#rnotifications">
-				          		<i class="icon-bell-2"></i> @lang('dashboard.incentives_notifications')
-				          		<span class="label bg-darkblue-1 pull-right">{{$notifications->count()}}</span>
+				          		<i class="fa fa-thumbs-up"></i> {{$notification->title}}
+				          		<span class="label bg-darkblue-1 pull-right">
+				          			{{ $notification->created_at->format('d/m/Y') }}
+				          		</span>
 				        	</a>
 			      		</h4>
 			    	</div>
 			   		<div id="rnotifications" class="panel-collapse collapse in">
 			      		<div class="panel-body">
-					      	<ul class="list-unstyled" id="notification-list">
-					      		@foreach($notifications as $notification)
-						      		<li><a href="{{route('dashboard.notifications.show', $notification->id)}}"><span class="icon-wrapper">
-						      			<i class="icon-star-3"></i></span> {{$notification->title}}
-						      			<span class="muted">{{ $notification->created_at->format('d/m/Y') }}</span></a>
-						      		</li>
-					      		@endforeach
-					      	</ul>
-			      			<!--<a class="btn btn-block btn-sm btn-warning">See all notifications</a>-->
+					      	<h4>{{$notification->content}}</h4>
 			      		</div>
 			    	</div>
+
 			  	</div>
 			</div>
-
+			<a href="{{route('dashboard.notifications.index')}}" class="btn btn-primary">
+				<i class="icon-back"></i>
+				@lang('dashboard.buttons.back')
+			</a>
 		</div>
 		<!-- End content here -->
 	</div>

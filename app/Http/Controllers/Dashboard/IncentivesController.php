@@ -17,6 +17,8 @@ use Vest\Http\Requests\EditIncentiveRequest;
 
 use Illuminate\Support\Facades\Session;
 
+use Carbon\Carbon;
+
 class IncentivesController extends Controller
 {
     // Atributo para guardar nuevo nombre de la imagen a subir
@@ -79,7 +81,7 @@ class IncentivesController extends Controller
      */
     public function create()
     {
-        return view('dashboard.incentives.create');
+        return view('dashboard.incentives.create')->with('today', Carbon::now()->toDateString());
     }
 
     /**
@@ -130,7 +132,8 @@ class IncentivesController extends Controller
         $incentive = Incentive::findOrFail($id);
 
         return view('dashboard.incentives.edit')
-                ->with('incentive', $incentive);
+                ->with('incentive', $incentive)
+                ->with('today', Carbon::now()->toDateString());
     }
 
     /**

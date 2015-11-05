@@ -18,8 +18,11 @@ class CreateNotificationsTable extends Migration
             $table->text('content');
             $table->boolean('read')->default(false);
             $table->integer('user_id')->unsigned();
+            $table->integer('incentive_id')->unsigned();
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('cascade');
+            $table->foreign('incentive_id')->references('id')
+                ->on('incentives')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -163,7 +163,12 @@
                             <li><a href="{{route('dashboard.account.edit', Auth::user()->id)}}">@lang('dashboard.change_password')</a></li>
                             <li class="divider"></li>
                             <!--<li><a href="#"><i class="icon-help-2"></i> Help</a></li>-->
-                            <!--<li><a href="lockscreen.html"><i class="icon-lock-1"></i> Lock me</a></li>-->
+                            <li>
+                                <a href="{{route('dashboard.notifications.index')}}">
+                                    <i class="icon-bell-1"></i> 
+                                    {{trans_choice('dashboard.title_notifications', 2)}}
+                                </a>
+                            </li>
                             <li><a class="md-trigger" data-modal="logout-modal">
                                 <i class="icon-logout-1"></i> @lang('dashboard.logout')</a>
                             </li>

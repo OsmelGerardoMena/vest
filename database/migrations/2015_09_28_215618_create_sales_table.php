@@ -17,6 +17,7 @@ class CreateSalesTable extends Migration
             $table->double('amount', 10, 2);
             $table->integer('quantity');
             $table->string('invoice')->unique()->nullable();
+            $table->dateTime('invoice_created_at')->nullable();
                         
             //Relationships
             $table->integer('seller_id')->unsigned();

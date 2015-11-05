@@ -33,6 +33,7 @@ class IsSeller
                         trans('messages.restricted_access'));
             
             return redirect()->route('dashboard');
+            //return abort('401');
         }
         return $next($request);
     }

@@ -37,14 +37,14 @@
 <div class="form-group">
 	{!! Form::label('date_from', trans('validation.attributes.date_from'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::date('date_from', null, ['class' => 'form-control']) !!}
+		{!! Form::date('date_from', null, ['class' => 'form-control', 'min' => $today]) !!}
 	</div>
 </div>
 
 <div class="form-group">
 	{!! Form::label('date_to', trans('validation.attributes.date_to'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::date('date_to', null, ['class' => 'form-control']) !!}
+		{!! Form::date('date_to', null, ['class' => 'form-control', 'min' => $today]) !!}
 	</div>
 </div>
 

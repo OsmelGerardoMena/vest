@@ -242,9 +242,11 @@ class SalesController extends Controller
         
         $sale->invoice = trim($request->get('invoice'));
 
+        $sale->invoice_created_at = Carbon::now()->toDateTimeString();
+
         $sale->save();
 
-        //$this->createNotification($sale);
+        $this->createNotification($sale);
 
         Session::flash('edit', trans('messages.save_invoice'));
 
@@ -258,21 +260,26 @@ class SalesController extends Controller
         if ($sale->product->incentives()->exists()) {
             // se almacenan los incentivos del producto vendido
             $incentives = $sale->product->incentives;
-            // alamaceno fecha actual usando carbon
-            $today = Carbon::now();
+            // alamaceno fecha y hora actual usando carbon
+            $today = Carbon::now()->toDateTimeString();
             // se recorren todos los incentivos
             foreach ($incentives as $incentive) {
-                // se compara la fecha actual con la fecha (hasta) de cada incentivo
-                if ($today->toDateString() <= $incentive->date_to) {
-                    // si la fecha actual es menor o igual que la fecha_hasta
+                // se compara la fecha actual con la fecha (desde-hasta) de cada incentivo
+                if ($today >= $incentive->date_from && $today <= $incentive->date_to) {
+                    // si la fecha-hora actual es mayor o igual que la fecha_desde
+                    // y la fecha actual es menor o igual que la fecha_hasta
                     // almaceno las otras ventas facturadas que sean del mismo
                     // vendedor, del mismo producto, sin tomar en cuenta la venta
-                    // que se acaba de facturar y que el campo factura no sea nulo
+                    // que se acaba de facturar, que el campo factura no sea nulo
+                    // y que la fecha-hora de creacion de la factura sea mayor o igual 
+                    // a la fecha_desde y menor o igual a la fecha_hasta
                     $invoiced_sales = Sale::where('seller_id', $sale->seller_id)
-                            ->where('product_id', $sale->product_id)
-                            ->where('id', '!=', $sale->id)
-                            ->whereNotNull('invoice');
-
+                        ->where('product_id', $sale->product_id)
+                        ->where('id', '!=', $sale->id)
+                        ->whereNotNull('invoice')
+                        ->where('invoice_created_at', '>=', $incentive->date_from)
+                        ->where('invoice_created_at', '<=', $incentive->date_to)
+                        ->get();
                     // total_sum es para guardar la suma total de las ventas 
                     // facturadas, en principio va a contener el total de 
                     // la venta recien facturada ($sale)
@@ -284,18 +291,27 @@ class SalesController extends Controller
                     }
                     // se verifica si la suma total es igual o mayor que la meta del incentivo
                     if ($total_sum >= $incentive->goal) {
-                        // si es mayor o igual se crea la notificacion
-                        $notification = new Notification();
-                        $notification->title = trans('dashboard.notification.title');
-                        $notification->content = 
-                                trans('dashboard.notification.content_1')
-                                .$incentive->product->name
-                                .trans('dashboard.notification.content_2')
-                                .$incentive->award;
-                        $notification->user_id = $sale->seller_id;
-                        $notification->save();
+                        // se verifica que no exista una notificacion con el
+                        // user_id e incentive_id que se quieren guardar
+                        // para no repetir la notificación
+                        $exists = Notification::where('user_id', $sale->seller_id)
+                                ->where('incentive_id', $incentive->id)->exists();
+                        // si no existe se crea la notificacion
+                        if (!$exists) {
+                            $notification = new Notification();
+                            $notification->title = $sale->seller->name
+                                .' '.trans('dashboard.notification.title');
+                            $notification->content = 
+                                    trans('dashboard.notification.content_1')
+                                    .$incentive->product->name
+                                    .trans('dashboard.notification.content_2')
+                                    .$incentive->award;
+                            $notification->user_id = $sale->seller_id;
+                            $notification->incentive_id = $incentive->id;
+                            $notification->save();
+                        }
                     }
-                } 
+                }
             }
         }
     }

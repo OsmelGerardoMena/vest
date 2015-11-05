@@ -4,6 +4,8 @@ namespace Vest\Tables;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
+
 class Incentive extends Model
 {
     protected $table = 'incentives';
@@ -16,6 +18,37 @@ class Incentive extends Model
         'date_to',
         'product_id',
     ];
+
+    ///** Mutators **///
+    public function setDateFromAttribute($date){
+        // El metodo guarda la fecha colocada en el formulario con la hora actual
+        if(!empty($date)){
+            // se crea la fecha actual con la hora actual
+            $today = Carbon::now();
+            // se verifica si la fehca en today es igual a la que viene desde el 
+            // formulario, si es así, se hace el procedimiento para guardar la hora actual
+            if ($today->toDateString() == $date) {
+                // la fecha que viene del formulario se divide en un string
+                // para poder usarlo en el metodo setDate de Carbon
+                $date = explode('-', $date);
+                // a fecha de hoy se le ingresa con setDate la fecha del formulario
+                // para que pueda tener una hora distinta de 00:00:00
+                $this->attributes['date_from'] = $today->setDate($date[0], $date[1], $date[2]);
+            }
+            else {
+                // de lo contrario, si date posee otra fecha que no sea la de 
+                // today, entonces simplemente guarda date concatenando 00:00:00
+                $this->attributes['date_from'] = $date.' 00:00:00';
+            } 
+        }
+    }
+
+    public function setDateToAttribute($date){
+        // El metodo guarda la fecha colocada en el formulario con la hora = 23:59:59
+        if(!empty($date)){
+            $this->attributes['date_to'] = $date.' 23:59:59';
+        }
+    }
 
     ///** relacion de muchos a uno (relacion inversa) **///
     public function product()

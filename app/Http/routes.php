@@ -149,7 +149,7 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 
 	Route::controller('dashboard/notifications', 'NotificationsController', [
 		'getIndex' => 'dashboard.notifications.index',
-		//'getProductsSales' => 'dashboard.companysales.productssales',
+		'getShow' => 'dashboard.notifications.show',
 		//'getSellersSales' => 'dashboard.companysales.show',
 	]);
 });
