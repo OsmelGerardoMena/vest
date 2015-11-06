@@ -58,6 +58,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>@lang('dashboard.table.name')</th>
+                                        <th>@lang('dashboard.table.presentation')</th>
                                         <th>@lang('dashboard.table.price')</th>
                                         <th>@lang('dashboard.table.url')</th>
                                         @cannot('company')
@@ -76,8 +77,13 @@
                                         <tr>
                                             <td>{{ $product->id }}</td>
                                             <td>{{ $product->name }}</td>
+                                            <td>{{ $product->presentation }}</td>
                                             <td>{{ $product->price }}</td>
-                                            <td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
+                                            @if(empty($product->url))
+                                                <td>@lang('dashboard.without_url')</td>
+                                            @else
+                                                <td><a href="{{ $product->url }}" target="_blank">{{ $product->url }}</a></td>
+                                            @endif
                                             @cannot('company')
                                                 <td>{{ $product->company->name }}</td>
                                             @endcan

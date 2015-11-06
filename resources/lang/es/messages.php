@@ -44,4 +44,6 @@ return [
 	'restricted_access' => 'Advertencia: Has intentado acceder a un área restringida sin permisos',
 	'404' => '¡La página que estás buscando definitivamente no es ésta!',
 	'401' => '¡Acceso denegado!',
+	'dates_error' => 'Hubo un error en las fechas, verifique.',
+	'no_edit_incentive' => 'Éste incentivo ya comenzó, no puedes editarlo',
 ];

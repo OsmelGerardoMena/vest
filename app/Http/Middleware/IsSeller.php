@@ -28,12 +28,8 @@ class IsSeller
     {
         // si no es vendedor
         if (!$this->auth->user()->isSeller()) {
-            
-            Session::flash('restricted_access', 
-                        trans('messages.restricted_access'));
-            
-            return redirect()->route('dashboard');
-            //return abort('401');
+            // error de acceso restringido
+            return abort('401');
         }
         return $next($request);
     }

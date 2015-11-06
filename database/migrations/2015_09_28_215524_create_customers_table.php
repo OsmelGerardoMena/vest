@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->string('address');
             $table->string('identifier')->unique();
             $table->string('city');
-            $table->string('state');
+            $table->string('province');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

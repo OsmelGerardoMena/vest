@@ -141,7 +141,7 @@ return [
         'benefit_type_id' => 'Tipo de beneficio',
         'contract_file' => 'Archivo de contrato',
         'city' => 'Ciudad',
-        'state' => 'Estado',
+        'province' => 'Provincia',
         'seller_id' => 'Vendedor',
         'customer_id' => 'Cliente',
         'amount' => 'Monto',
@@ -152,6 +152,7 @@ return [
         'photo' => 'Tu foto (opcional)',
         'invoice' => 'Número de factura',
         'quantity' => 'Cantidad',
+        'presentation' => 'Presentación',
     ],
 
 ];

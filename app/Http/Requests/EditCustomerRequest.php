@@ -38,7 +38,7 @@ class EditCustomerRequest extends Request
             'address' => 'required|max:100',
             'identifier' => 'required|max:60|unique:customers,identifier,'.$this->route->getParameter('customers'),
             'city' => 'required|max:60',
-            'state' => 'required|max:60',
+            'province' => 'required|max:60',
         ];
     }
 }

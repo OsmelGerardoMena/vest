@@ -107,11 +107,11 @@
 											</p>
 
 											<h5><strong>
-												{{strtoupper(trans('dashboard.table.state'))}}:
+												{{strtoupper(trans('dashboard.table.province'))}}:
 											</strong></h5>
 											<p>
 												<i class="icon-location-1"></i>
-												{{ $customer->state }}
+												{{ $customer->province }}
 											</p>
 										</div>
 									</div><!-- End div .row -->

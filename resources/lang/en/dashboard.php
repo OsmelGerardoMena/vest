@@ -96,6 +96,7 @@ return [
 	'photo_not_found' => 'Photo not found',
 	'enter_invoice' => 'Enter invoice number',
 	'without_invoice' => 'Without invoice',
+	'without_url' => 'Without URL',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',
@@ -181,15 +182,18 @@ return [
 		'presentation_link' => 'Presentation link, example: http://web.com',
 		'price_here' => 'Price here, example: 75.99',
 		'city_here' => 'City here',
-		'state_here' => 'State here',
+		'province_here' => 'Province here',
 		'tradename_here' => 'Trade name here',
-		'amount_here' => 'Amount here, example: 500.50',
-		'admin_amount_here' => 'Administration amount here, example: 85',
+		'amount_here' => 'Amount here, example: 500 or 500.52',
+		'admin_amount_here' => 'Administration amount here, example: 85 or 85.61',
 		'select_photo' => 'Select Photo',
 		'select_img' => 'Select image',
 		'select_file' => 'Select File',
 		'invoice_number' => 'Invoice number: HKN-27813123',
 		'quantity' => 'Quantity here',
+		'benefit_type' => 'Select the type of benefit to create',
+		'incentive_type' => 'Select the type of incentive to create',
+		'presentation' => 'Examples: 2 liters, pack of 10, dozen',
 	],
 
 	'table' => [
@@ -219,7 +223,7 @@ return [
 		'benefit_type' => 'Benefit Type',
 		'file' => 'File',
 		'city' => 'City',
-		'state' => 'State',
+		'province' => 'Province',
 		'amount' => 'Amount',
 		'seller' => 'Seller',
 		'customer' => 'Customer',
@@ -232,7 +236,7 @@ return [
 		'invoice' => 'Invoice',
 		'quantity' => 'Quantity',
 		'total' => 'Total',
-		'creation_date' => 'Creation date',
+		'presentation' => 'Presentation',
 	],
 
 	'status' => [

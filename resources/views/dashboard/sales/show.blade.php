@@ -35,7 +35,6 @@
 							<thead>
 								<tr>
 									<th>#</th>
-									<th>@lang('dashboard.table.creation_date')</th>
 									<th>@lang('dashboard.table.amount')</th>
 									<th>@lang('dashboard.table.quantity')</th>
 									<th>@lang('dashboard.table.total')</th>
@@ -45,7 +44,6 @@
 							<tbody>
 								<tr>
 									<td>{{ $sale->id }}</td>
-									<td>{{ $sale->created_at }}</td>
 									<td>{{ $sale->amount }}</td>
 									<td>{{ $sale->quantity }}</td>
 									<td>{{ $sale->amount * $sale->quantity }}</td>

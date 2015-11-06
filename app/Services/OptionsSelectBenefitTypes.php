@@ -11,7 +11,7 @@ class OptionsSelectBenefitTypes
 	{
 		$types = BenefitTypes::all();
 
-		$array[''] = '';
+		$array[''] = '-- '.trans('dashboard.ph.benefit_type').' --';
 		foreach ($types as $value) {
 			$array[$value->id] = $value->name;
 		}

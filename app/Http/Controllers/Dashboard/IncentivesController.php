@@ -94,18 +94,23 @@ class IncentivesController extends Controller
     {
         $incentive = new Incentive();
 
-        if ($request->file('img')) {
-            if ($this->uploadImage($request->file('img'))) {
-                $incentive->fill($request->all());
-                $incentive->img = $this->img_name;
-                $incentive->save();
-                Session::flash('new', trans('messages.new_incentive'));
-                return redirect()->route('dashboard.incentives.index');
-            }
-            Session::flash('file_error', $this->error_message);
+        if ($request->get('date_from') > $request->get('date_to')) {
+            Session::flash('error', trans('messages.dates_error'));
         }
-        else{
-            Session::flash('file_error', trans('messages.required_img'));
+        else {
+            if ($request->file('img')) {
+                if ($this->uploadImage($request->file('img'))) {
+                    $incentive->fill($request->all());
+                    $incentive->img = $this->img_name;
+                    $incentive->save();
+                    Session::flash('new', trans('messages.new_incentive'));
+                    return redirect()->route('dashboard.incentives.index');
+                }
+                Session::flash('file_error', $this->error_message);
+            }
+            else {
+                Session::flash('file_error', trans('messages.required_img'));
+            }
         }
         return redirect()->back()->withInput($request->all());
     }
@@ -131,6 +136,13 @@ class IncentivesController extends Controller
     {
         $incentive = Incentive::findOrFail($id);
 
+        // se verifica si la fecha de hoy es igual a la fecha de inicio del incentivo
+        if (Carbon::now()->toDateString() == $incentive->date_from->toDateString()) {
+            // si son iguales no se van a poder editar
+            Session::flash('error', trans('messages.no_edit_incentive'));
+            return redirect()->route('dashboard.incentives.index');
+        }
+
         return view('dashboard.incentives.edit')
                 ->with('incentive', $incentive)
                 ->with('today', Carbon::now()->toDateString());
@@ -147,6 +159,11 @@ class IncentivesController extends Controller
     {
         $incentive = Incentive::findOrFail($id);
 
+        if ($request->get('date_from') > $request->get('date_to')) {
+            Session::flash('error', trans('messages.dates_error'));
+            return redirect()->back()->withInput($request->all());
+        }
+
         if ($request->file('img')) {
             if (!$this->uploadImage($request->file('img'))) {
                 Session::flash('file_error', $this->error_message);
@@ -162,7 +179,7 @@ class IncentivesController extends Controller
         $incentive->save();
 
         Session::flash('edit', trans('messages.edit_incentive'));
-        return redirect()->back();
+        return redirect()->route('dashboard.incentives.index');
     }
 
     /**

@@ -13,7 +13,7 @@ class Customer extends Model
             'address',
             'identifier',
             'city',
-            'state',
+            'province',
     ];
 
     ///** Relacion de uno a muchos **///

@@ -28,11 +28,8 @@ class IsCompany
     {
         // si no es una empresa
         if (!$this->auth->user()->isCompany()) {
-            
-            Session::flash('restricted_access', 
-                        trans('messages.restricted_access'));
-            
-            return redirect()->route('dashboard');
+            // error de acceso restringido
+            return abort('401');
         }
 
         return $next($request);

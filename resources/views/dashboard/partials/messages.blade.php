@@ -18,6 +18,7 @@
 
 @if(Session::has('no_submodule'))
  	<div class="alert alert-danger" role="alert">
+ 		<i class='fa fa-warning'></i> 
  		<strong>{{ Session::get('no_submodule') }}</strong>
  	</div>
 @endif
@@ -36,6 +37,7 @@
 
 @if(Session::has('restricted_access'))
  	<div class="alert alert-danger" role="alert">
+ 		<i class='fa fa-warning'></i> 
  		<strong>{{ Session::get('restricted_access') }}</strong>
  	</div>
 @endif
@@ -48,19 +50,21 @@
 
 @if(Session::has('disabled'))
  	<div class="alert alert-danger" role="alert">
+ 		<i class='fa fa-warning'></i> 
  		<strong>{{ Session::get('disabled') }}</strong>
  	</div>
 @endif
 
 @if(Session::has('file_error'))
  	<div class="alert alert-danger" role="alert">
+ 		<i class='fa fa-warning'></i> 
  		<strong>{{ Session::get('file_error') }}</strong>
  	</div>
 @endif
 
 @if(Session::has('error'))
  	<div class="alert alert-danger" role="alert">
+ 		<i class='fa fa-warning'></i> 
  		<strong>{{ Session::get('error')}}</strong>
- 		{{Session::forget('error')}}
  	</div>
 @endif

@@ -13,6 +13,7 @@ class ProductTableSeeder extends Seeder
     {
         \DB::table('products')->insert([
             'name' => 'General',
+            'presentation' => 'Unidad',
             'price' => 0.00,
             'url' => 'http://google.com',
             'creator' => 'Administrator',

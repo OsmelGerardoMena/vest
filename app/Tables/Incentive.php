@@ -19,8 +19,13 @@ class Incentive extends Model
         'product_id',
     ];
 
+    // para especificar que fechas se van a transformar en objetos de Carbon
+    // cuando se consulten a a la base de datos
+    protected $dates = ['created_at', 'updated_at', 'date_from', 'date_to'];
+
     ///** Mutators **///
-    public function setDateFromAttribute($date){
+    public function setDateFromAttribute($date)
+    {
         // El metodo guarda la fecha colocada en el formulario con la hora actual
         if(!empty($date)){
             // se crea la fecha actual con la hora actual
@@ -43,7 +48,8 @@ class Incentive extends Model
         }
     }
 
-    public function setDateToAttribute($date){
+    public function setDateToAttribute($date)
+    {
         // El metodo guarda la fecha colocada en el formulario con la hora = 23:59:59
         if(!empty($date)){
             $this->attributes['date_to'] = $date.' 23:59:59';

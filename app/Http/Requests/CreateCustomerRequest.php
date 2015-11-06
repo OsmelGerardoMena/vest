@@ -28,7 +28,7 @@ class CreateCustomerRequest extends Request
             'address' => 'required|max:100',
             'identifier' => 'required|unique:customers|max:60',
             'city' => 'required|max:60',
-            'state' => 'required|max:60',
+            'province' => 'required|max:60',
         ];
     }
 }

@@ -18,7 +18,7 @@
 								<th>@lang('dashboard.table.address')</th>
 								<th>@lang('dashboard.table.identifier')</th>
 								<th>@lang('dashboard.table.city')</th>
-								<th>@lang('dashboard.table.state')</th>
+								<th>@lang('dashboard.table.province')</th>
 								<th>@lang('dashboard.table.status')</th>
 							</tr>
 						</thead>
@@ -28,7 +28,7 @@
 								<td>{{ $sale->customer->address }}</td>
 								<td>{{ $sale->customer->identifier }}</td>
 								<td>{{ $sale->customer->city }}</td>
-								<td>{{ $sale->customer->state }}</td>
+								<td>{{ $sale->customer->province }}</td>
 								<td><span class="{{ ($sale->customer->getStatus()) ? 'label label-success' : 'label label-danger'}}">
 									{{ trans('dashboard.link_status.'.$sale->customer->getStatus()) }}
 									</span>

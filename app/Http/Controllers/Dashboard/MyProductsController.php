@@ -29,7 +29,7 @@ class MyProductsController extends Controller
         // middleware especifico para este controlador
         if($this->user->can('company')){
             // si no es vendedor, se restringe solo getUnallocated y destroy
-            $this->middleware('is_seller', ['only' => ['getUnallocated', 'destroy'] ]);
+            $this->middleware('is_seller', ['only' => ['unallocated', 'destroy'] ]);
         }
         else if($this->user->can('seller')){
             // si no es empresa, se restringe todo excepto
@@ -39,7 +39,6 @@ class MyProductsController extends Controller
             // si es admin, se le restringe todo ya que no es ni vendedor ni empresa
             $this->middleware('is_company');
         }
-
         // no se uso beforeFilter ya que se ejecutaba antes que los middleware
     }
 

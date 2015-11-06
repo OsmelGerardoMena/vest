@@ -44,4 +44,6 @@ return [
 	'restricted_access' => 'Warning: You tried to access a restricted area without permission',
 	'404' => 'The page you are looking for is definitely not this!',
 	'401' => 'Permission denied!',
+	'dates_error' => 'Error in dates, check.',
+	'no_edit_incentive' => 'This incentive has begun, you can not edit',
 ];

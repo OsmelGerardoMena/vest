@@ -96,6 +96,7 @@ return [
 	'photo_not_found' => 'Foto no encontrada',
 	'enter_invoice' => 'Ingresa número de factura',
 	'without_invoice' => 'Sin factura',
+	'without_url' => 'Sin URL',
 
 	'sidebar' => [
 		'dash' => 'Sistema',
@@ -181,15 +182,18 @@ return [
 		'presentation_link' => 'Enlace de presentación, ejemplo: http://web.com',
 		'price_here' => 'Precio aquí, ejemplo: 75.99',
 		'city_here' => 'Ciudad aquí',
-		'state_here' => 'Estado aquí',
+		'province_here' => 'Provincia aquí',
 		'tradename_here' => 'Nombre comercial aquí',
-		'amount_here' => 'Monto aquí, ejemplo: 500.50',
-		'admin_amount_here' => 'Monto para administración aquí, ejemplo: 85',
+		'amount_here' => 'Monto aquí, ejemplo: 500 o 500.52',
+		'admin_amount_here' => 'Monto para administración aquí, ejemplo: 85 o 85.61',
 		'select_photo' => 'Selecciona Foto',
 		'select_img' => 'Selecciona Imagen',
 		'select_file' => 'Selecciona Archivo',
 		'invoice_number' => 'Número de factura: HKN-27813123',
 		'quantity' => 'Cantidad aquí',
+		'benefit_type' => 'Seleccione el tipo de beneficio a crear',
+		'incentive_type' => 'Seleccione el tipo de incentivo a crear',
+		'presentation' => 'Ejemplos: 2 litros, paquete 10 unidades, docena',
 	],
 
 	'table' => [
@@ -219,7 +223,7 @@ return [
 		'benefit_type' => 'Tipo de beneficio',
 		'file' => 'Archivo',
 		'city' => 'Ciudad',
-		'state' => 'Estado',
+		'province' => 'Provincia',
 		'amount' => 'Monto',
 		'seller' => 'Vendedor',
 		'customer' => 'Cliente',
@@ -232,7 +236,7 @@ return [
 		'invoice' => 'Factura',
 		'quantity' => 'Cantidad',
 		'total' => 'Total',
-		'creation_date' => 'Fecha de creación',
+		'presentation' => 'Presentación'
 	],
 
 	'status' => [

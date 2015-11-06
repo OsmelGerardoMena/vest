@@ -11,7 +11,7 @@ class OptionsSelectIncentiveTypes
 	{
 		$types = IncentiveTypes::all();
 
-		$array[''] = '';
+		$array[''] = '-- '.trans('dashboard.ph.incentive_type').' --';
 		foreach ($types as $value) {
 			$array[$value->id] = $value->name;
 		}

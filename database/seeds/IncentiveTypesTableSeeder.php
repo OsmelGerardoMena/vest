@@ -16,7 +16,7 @@ class IncentiveTypesTableSeeder extends Seeder
         ]);
 
         DB::table('incentive_types')->insert([
-        	'name' => 'Bolivares',
+        	'name' => 'Dólares',
         ]);
     }
 }

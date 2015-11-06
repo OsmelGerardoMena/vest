@@ -177,7 +177,7 @@ class SalesController extends Controller
 
         Session::flash('edit', trans('messages.edit_sale'));
 
-        return redirect()->back();
+        return redirect()->route('dashboard.sales.index');
     }
 
     /**

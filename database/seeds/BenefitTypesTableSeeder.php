@@ -16,7 +16,7 @@ class BenefitTypesTableSeeder extends Seeder
         ]);
 
         DB::table('benefit_types')->insert([
-        	'name' => 'Bolivares',
+        	'name' => 'Dólares',
         ]);
     }
 }

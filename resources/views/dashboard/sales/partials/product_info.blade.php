@@ -15,6 +15,7 @@
 						<thead>
 							<tr>
 								<th>@lang('dashboard.table.name')</th>
+								<th>@lang('dashboard.table.presentation')</th>
 								<th>@lang('dashboard.table.price')</th>
 								<th>@lang('dashboard.table.url')</th>
 								<th>@lang('dashboard.table.company')</th>
@@ -25,6 +26,7 @@
 						<tbody>
 							<tr>
 								<td>{{ $sale->product->name }}</td>
+								<td>{{ $sale->product->presentation }}</td>
 								<td>{{ $sale->product->price }}</td>
 								<td><a href="{{ $sale->product->url }}" target="_blank">
 									{{ $sale->product->url }}

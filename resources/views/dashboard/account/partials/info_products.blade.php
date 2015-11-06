@@ -3,6 +3,7 @@
 		<thead>
 			<tr>
 				<th>@lang('dashboard.table.name')</th>
+				<th>@lang('dashboard.table.presentation')</th>
 				<th>@lang('dashboard.table.price')</th>
 				<th>@lang('dashboard.table.company')</th>
 				<th>@lang('dashboard.table.creator')</th>
@@ -17,6 +18,7 @@
 			@foreach($products as $product)
 			<tr>
 				<td>{{ $product->name }}</td>
+				<td>{{ $product->presentation }}</td>
 				<td>{{ $product->price }}</td>
 				<td>{{ $product->company->name }}</td>
 				<td>{{ $product->creator }}</td>

@@ -139,7 +139,7 @@ return [
         'benefit_type_id' => 'Benefit Type',
         'contract_file' => 'Contract file',
         'city' => 'City',
-        'state' => 'State',
+        'province' => 'Province',
         'seller_id' => 'Seller',
         'customer_id' => 'Customer',
         'amount' => 'Amount',
@@ -150,5 +150,6 @@ return [
         'photo' => 'Your photo (optional)',
         'invoice' => 'Invoice number',
         'quantity' => 'Quantity',
+        'presentation' => 'Presentation',
     ],
 ];

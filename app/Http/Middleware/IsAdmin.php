@@ -28,9 +28,10 @@ class IsAdmin
     {
         //si no es admin
         if (!$this->auth->user()->isAdmin()) {
-            
-            Session::flash('restricted_access', trans('messages.restricted_access'));
-            return redirect()->route('dashboard');
+            // error de acceso restringido
+            return abort('401');
+            /*Session::flash('restricted_access', trans('messages.restricted_access'));
+            return redirect()->route('dashboard');*/
         }
 
         return $next($request);

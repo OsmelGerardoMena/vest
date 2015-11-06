@@ -80,8 +80,8 @@
 											@else
 												<td>@lang('dashboard.image_not_found')</td>
 											@endif
-											<td>{{ $incentive->date_from }}</td>
-											<td>{{ $incentive->date_to }}</td>
+											<td>{{ $incentive->date_from->format('d/m/Y') }}</td>
+											<td>{{ $incentive->date_to->format('d/m/Y') }}</td>
 											<td>{{ $incentive->product->name }}</td>
 											@can('admin')
 												<td>{{ $incentive->product->company->name }}</td>

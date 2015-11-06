@@ -24,8 +24,8 @@ class CreateIncentiveRequest extends Request
     public function rules()
     {
         return [
-            'incentive_type_id' => 'required|exists:incentive_types,id',
             'goal' => 'required|numeric',
+            'incentive_type_id' => 'required|exists:incentive_types,id',
             'award' => 'required',
             'date_from' => 'required|date',
             'date_to' => 'required|date',

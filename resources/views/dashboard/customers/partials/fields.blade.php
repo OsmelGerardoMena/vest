@@ -27,8 +27,8 @@
 </div>
 
 <div class="form-group">
-	{!! Form::label('state', trans('validation.attributes.state'), ['class' => 'col-sm-2 control-label']) !!}
+	{!! Form::label('province', trans('validation.attributes.province'), ['class' => 'col-sm-2 control-label']) !!}
 	<div class="col-sm-10">
-		{!! Form::text('state', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.state_here')]) !!}
+		{!! Form::text('province', null, ['class' => 'form-control', 'placeholder' => trans('dashboard.ph.province_here')]) !!}
 	</div>
 </div>
