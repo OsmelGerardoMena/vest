@@ -58,7 +58,7 @@
 											<th>@lang('dashboard.table.amount')</th>
 											<th>@lang('dashboard.table.quantity')</th>
 											<th>@lang('dashboard.table.total')</th>
-											@cannot('seller')
+											@can('admin')
 												<th>@lang('dashboard.table.seller')</th>
 											@endcan
 											<th>@lang('dashboard.table.product')</th>
@@ -74,7 +74,7 @@
 											<td>{{ $sale->amount }}</td>
 											<td>{{ $sale->quantity }}</td>
 											<td>{{ $sale->amount * $sale->quantity }}</td>
-											@cannot('seller')
+											@can('admin')
 												<td>{{ $sale->seller->name }}</td>
 											@endcan
 											<td>{{ $sale->product->name }}</td>

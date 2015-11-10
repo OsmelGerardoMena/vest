@@ -57,7 +57,7 @@
 					</div>
 					<hr>
 
-					@cannot('seller')
+					@can('admin')
 		            	@include('dashboard.sales.partials.seller_info')
 		            @endcan
 		            @include('dashboard.sales.partials.product_info')

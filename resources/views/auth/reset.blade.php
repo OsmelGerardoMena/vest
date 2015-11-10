@@ -15,7 +15,7 @@
 			<div class="login-wrap animated flipInX">
 				<div class="login-block">
 					@include('partials/errors')
-					{!! Form::open(['url' => '/password/reset', 'method' => 'post', 'role' => 'form']) !!}
+					{!! Form::open(['route' => 'password.reset', 'method' => 'post', 'role' => 'form']) !!}
 
 						{!! Form::hidden('token', $token) !!}
 

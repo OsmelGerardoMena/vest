@@ -39,13 +39,16 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');*/
 // Password reset link request routes...
 Route::get('password/email', [
 	'uses' => 'Auth\PasswordController@getEmail',
-	'as' => 'password/email',
+	'as' => 'password.email',
 ]);
 Route::post('password/email', 'Auth\PasswordController@postEmail');
 
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('password/reset', 'Auth\PasswordController@postReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset', [
+	'uses' => 'Auth\PasswordController@postReset',
+	'as' => 'password.reset',
+]);
 
 // Ruta para el dashboard
 Route::get('dashboard', [
@@ -80,12 +83,6 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 
 	Route::resource('dashboard/companies', 'CompaniesController', 
 		['only' => ['index', 'show', 'destroy'] ]);
-
-	Route::get('dashboard/customers/status/{id}', [
-			'uses' => 'CustomersController@customerStatus',
-			'as' => 'dashboard.customers.status'
-	]);
-	Route::resource('dashboard/customers', 'CustomersController');
 
 	Route::resource('dashboard/company-categories', 'CompanyCategoriesController');
 
@@ -152,4 +149,10 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 		'getShow' => 'dashboard.notifications.show',
 		//'getSellersSales' => 'dashboard.companysales.show',
 	]);
+
+	Route::get('dashboard/customers/status/{id}', [
+			'uses' => 'CustomersController@customerStatus',
+			'as' => 'dashboard.customers.status'
+	]);
+	Route::resource('dashboard/customers', 'CustomersController');
 });

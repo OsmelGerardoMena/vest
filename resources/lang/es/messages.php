@@ -41,9 +41,8 @@ return [
 	'no_edit_sale' => 'Ésta venta tiene factura, no puedes editarla',
 	'error_sale' => 'No puedes crear ventas. Deben existir: vendedores, productos y clientes',
 	'has_no_products' => 'A éste vendedor no se le ha asignado productos',
-	'restricted_access' => 'Advertencia: Has intentado acceder a un área restringida sin permisos',
 	'404' => '¡La página que estás buscando definitivamente no es ésta!',
-	'401' => '¡Acceso denegado!',
+	'401' => '¡Advertencia! Has intentado acceder a un área restringida sin permisos',
 	'dates_error' => 'Hubo un error en las fechas, verifique.',
 	'no_edit_incentive' => 'Éste incentivo ya comenzó, no puedes editarlo',
 ];

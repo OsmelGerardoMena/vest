@@ -89,7 +89,7 @@
     </ul>
 </li>
 
-<!--<li class='has_sub'>
+<li class='has_sub'>
     <a href=''>
         <i class='icon-smiley'></i>
         <span>@lang('dashboard.sidebar.customers')</span> 
@@ -104,7 +104,7 @@
             </a>
         </li>
     </ul>
-</li>-->
+</li>
 
 <li class='has_sub'>
     <a href=''>

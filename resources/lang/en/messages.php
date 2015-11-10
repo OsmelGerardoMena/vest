@@ -41,9 +41,8 @@ return [
 	'no_edit_sale' => 'This sale has invoice, you can not edit',
 	'error_sale' => 'You cannot create sales. They must exist: sellers, products and customers',
 	'has_no_products' => 'This seller has no assigned products',
-	'restricted_access' => 'Warning: You tried to access a restricted area without permission',
 	'404' => 'The page you are looking for is definitely not this!',
-	'401' => 'Permission denied!',
+	'401' => 'Warning! You tried to access a restricted area without permission',
 	'dates_error' => 'Error in dates, check.',
 	'no_edit_incentive' => 'This incentive has begun, you can not edit',
 ];

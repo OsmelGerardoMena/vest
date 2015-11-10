@@ -36,7 +36,7 @@
 								{!! Form::submit(trans('auth.login_button'), ['class' => 'btn btn-success btn-block']) !!}
 							</div>
 						</div>
-						<a href="/password/email">@lang('auth.forgot_passwd')</a>
+						<a href="{{route('password.email')}}">@lang('auth.forgot_passwd')</a>
 					{!! Form::close() !!}
 				</div>
 			</div>

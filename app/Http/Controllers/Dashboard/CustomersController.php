@@ -20,8 +20,15 @@ class CustomersController extends Controller
 {
     public function __construct()
     {
-        $this->beforeFilter('@findCustomer', 
-            ['only' => ['show', 'edit', 'update', 'destroy'] ]);
+        if (\Auth::user()->can('company')) {
+            // si es empresa, se le restringe todo
+            $this->middleware('is_admin');
+            // tambien se puede aplicar $this->middleware('is_seller');
+        }
+        else {
+            $this->beforeFilter('@findCustomer', 
+                ['only' => ['show', 'edit', 'update', 'destroy'] ]);
+        }
     }
 
     ///Para buscar el cliewnte y tenerlo en $this->customer

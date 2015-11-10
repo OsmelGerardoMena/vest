@@ -57,6 +57,23 @@
 
     <li class='has_sub'>
         <a href=''>
+            <i class='icon-smiley'></i>
+            <span>@lang('dashboard.sidebar.customers')</span> 
+            <span class="pull-right">
+                <i class="fa fa-angle-down"></i>
+            </span>
+        </a>
+        <ul>
+            <li>
+                <a href="{{asset('/dashboard/customers')}}">
+                    <span>@lang('dashboard.sidebar.list_customers')</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class='has_sub'>
+        <a href=''>
             <i class='glyphicon glyphicon-stats'></i>
             <span>@lang('dashboard.sidebar.my_sales')</span> 
             <span class="pull-right">

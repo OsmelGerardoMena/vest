@@ -6,7 +6,6 @@
 @endcan
 
 @can('company')
-	@inject('sellers', 'Vest\Services\OptionsSelectSeller')
 	@inject('products', 'Vest\Services\OptionsSelectCompanyProducts')
 @endcan
 
@@ -29,7 +28,7 @@
 		</a>
 	</div>
 	
-	@cannot('seller')
+	@can('admin')
 		<div class="form-group">
 			{!! Form::select('seller', $sellers->get(), null, 
 			['class' => 'form-control', 'id' => 'select-seller']) !!}
