@@ -3,13 +3,13 @@
 namespace Vest\Services;
 
 use Vest\User;
-
+// Esta clase no se esta usando, ahora se esta usando Companies
 // Para la vista fields de views/dashboard/sellers/partials
 class CompanyProducts
 {
 	public function get()
 	{
-		//obtengo todos las empresas. Deben tener el id = 3
+		//obtengo todas las empresas. Deben tener el id = 3
 		$companies = User::where('type_id', 3)->get();
 
 		$all = []; //almacenara cada empresa con sus productos
@@ -38,7 +38,6 @@ class CompanyProducts
 				$array = [];
 			}
 		}
-
 		return $all;
 	}
 }

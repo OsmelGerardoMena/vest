@@ -1,29 +1,30 @@
-@inject('companies', 'Vest\Services\CompanyProducts')
+@inject('companies', 'Vest\Services\Companies')
 
 <h4>@lang('dashboard.title_select_product'):</h4>
 
 <div class="panel-group accordion-toggle" id="accordiondemo">
-	@foreach($companies->get() as $company)
-		<div class="panel panel-darkblue-2">
-			<div class="panel-heading">
-		  		<h4 class="panel-title">
-		    		<a data-toggle="collapse" data-parent="#accordiondemo" href="#accordion{{ $company['id'] }}">
-		      			{{ $company['name'] }}
-		    		</a>
-		  		</h4>
-			</div>
-	    	<div id="accordion{{ $company['id'] }}" class="panel-collapse collapse">
-	      		<div class="panel-body">
-		      		@foreach($company['products'] as $product)
-		        		@if($seller->productExists($product['id']))
-							{!! Form::checkbox($product['name'], $product['id'], true) !!}
-						@else
-							{!! Form::checkbox($product['name'], $product['id']) !!}
-						@endif
-						{{ $product['name'] }}<br>
-					@endforeach
-	      		</div>
-	    	</div>
+	<div class="panel panel-darkblue-2">
+		<div class="panel-heading">
+	  		<h4 class="panel-title">
+	    		<a data-toggle="collapse" data-parent="#accordiondemo" href="#accordion">
+	      			@lang('dashboard.title_companies')
+	    		</a>
+	  		</h4>
 		</div>
-	@endforeach
+    	<div id="accordion" class="panel-collapse collapse-in">
+      		<div class="panel-body">
+      			<div class="alert alert-warning" role="alert">
+ 					<strong>@lang('messages.company_products')</strong>
+ 				</div>
+	      		@foreach($companies->get() as $company)
+	        		@if($seller->companyExists($company->id))
+						{!! Form::checkbox($company->name, $company->id, true) !!}
+					@else
+						{!! Form::checkbox($company->name, $company->id) !!}
+					@endif
+					{{ $company->name }}<br>
+				@endforeach
+      		</div>
+    	</div>
+	</div>
 </div>

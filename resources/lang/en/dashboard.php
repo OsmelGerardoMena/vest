@@ -17,7 +17,7 @@ return [
 	'title_sellers' => 'Sellers',
 	'title_seller_info' => 'Seller info',
 	'title_add_product' => 'Add products',
-	'title_select_product' => 'Select products or services of the following companies',
+	'title_select_product' => 'Select to add products or services from the following companies',
 	'title_product_info' => 'Product info',
 	'title_contracts' => 'Contracts',
 	'title_create_contract' => 'Create contract',

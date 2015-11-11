@@ -23,13 +23,12 @@
         			@lang('dashboard.title_add_product') 
         		</h1>
             </div>
-            <h4>{{$seller->name}}</h4>
-
-            @include('dashboard.partials.messages')
+            <h4><strong>{{$seller->name}}</strong></h4>
 
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
+					@include('dashboard.partials.messages')
 
 					{!! Form::model($seller, [
 							'route' => ['dashboard.sellers.update', $seller->id],

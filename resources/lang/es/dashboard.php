@@ -17,7 +17,7 @@ return [
 	'title_sellers' => 'Vendedores',
 	'title_seller_info' => 'Información de vendedor',
 	'title_add_product' => 'Agregar productos',
-	'title_select_product' => 'Selecciona productos o servicios de las siguientes empresas',
+	'title_select_product' => 'Seleccione para agregar productos o servicios de las siguientes empresas',
 	'title_product_info' => 'Información del producto',
 	'title_contracts' => 'Contratos',
 	'title_create_contract' => 'Crear contrato',

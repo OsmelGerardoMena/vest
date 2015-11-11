@@ -34,7 +34,7 @@
 											@lang('dashboard.buttons.back')
 										</a>
 										@can('admin')
-											<a href="{{route('dashboard.product-sellers.show', $product->id)}}" class="btn btn-success">
+											<a href="{{route('dashboard.linkedsellers.product', $product->id)}}" class="btn btn-success">
 												<i class="icon-suitcase"></i>
 												@lang('dashboard.buttons.sellers')
 											</a>

@@ -8,10 +8,6 @@
 
 @include('partials/modal')
 
-@foreach($sellerProducts as $product)
-	@include('dashboard.sellers.partials.modal')
-@endforeach
-
 <!-- Begin page -->
 <div id="wrapper">
 	@include('partials/topbar')
@@ -94,10 +90,6 @@
 														</button>
 														{!! Form::hidden('product_id', $product->id) !!}
 													{!!Form::close()!!}
-									
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
-														<i class="fa fa-trash-o"></i>
-													</a>
 												</div>
 											</td>
 										</tr>

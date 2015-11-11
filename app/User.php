@@ -163,18 +163,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ///** Verifica si el producto está asignado al vendedor **///
     public function productExists($id)
     {
-        // productos del vendedor actual (usuario)
-        $products = $this->addedproducts;
+        // retorna true si el usuario tiene algún producto con ese id
+        return $this->addedproducts()->where('product_id', $id)->exists();
+    }
 
-        $array = [];
-        //se colocan solo los id de los productos dentro de un array
-        foreach ($products as $product) {
-            $array [] = $product->id;
-        }
-
-        //si $array no esta vacio se retorna lo que devuelva in_array()
-        return (!empty($array)) ? in_array($id, $array): false;
-        //si $array esta vacio se retorna un false
+    ///** Verifica si algún producto de una empresa está asignada al vendedor **///
+    public function companyExists($id)
+    {
+        // retorna true si algún producto pertenece a la empresa con ese id
+        return $this->addedproducts()->where('company_id', $id)->exists();
     }
 
     ///** Scope **///

@@ -28,6 +28,19 @@
         		</h1>
 			</div>
 
+			<div class="row">
+				<div class="col-md-12">
+					<a href="{{route('dashboard.companies.index')}}" class="btn btn-primary">
+						<i class="icon-back"></i>
+						@lang('dashboard.buttons.back')
+					</a>
+					<a href="{{route('dashboard.linkedsellers.company', $company->id)}}" class="btn btn-success">
+						<i class="icon-suitcase"></i>
+						@lang('dashboard.buttons.sellers')
+					</a>
+				</div>
+			</div><br>
+
             @include('dashboard.companies.partials.company_info')
 
 			@include('dashboard.partials.messages')
@@ -100,10 +113,6 @@
 							</div>
 						</div>
 					</div>
-					<a href="{{route('dashboard.companies.index')}}" class="btn btn-primary">
-						<i class="icon-back"></i>
-						@lang('dashboard.buttons.back')
-					</a>
 				</div>
 			</div>
 		</div>

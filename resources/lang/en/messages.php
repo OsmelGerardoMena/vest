@@ -45,4 +45,5 @@ return [
 	'401' => 'Warning! You tried to access a restricted area without permission',
 	'dates_error' => 'Error in dates, check.',
 	'no_edit_incentive' => 'This incentive has begun, you can not edit',
+	'company_products' => 'Note: Remember that if the selected company does not have active products, the box will not be marked.',
 ];

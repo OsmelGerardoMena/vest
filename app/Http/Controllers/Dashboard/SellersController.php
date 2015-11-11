@@ -20,7 +20,7 @@ class SellersController extends Controller
     public function __construct()
     {
         $this->beforeFilter('@findSeller', 
-            ['only' => ['show', 'edit', 'update', 'destroy']]);
+            ['only' => ['show', 'edit', 'update']]);
     }
 
     public function findSeller(Route $route)
@@ -105,10 +105,17 @@ class SellersController extends Controller
     public function update(Request $request, $id)
     {
         $arrayId = []; //para almacenar los id de los productos
-        
-        foreach ($request->all() as $value) {
-            if(is_numeric($value)){
-                $arrayId [] =  $value;
+        // se recore el array con los id de las empresas recibidos
+        foreach ($request->all() as $company_id) {
+            if(is_numeric($company_id)){
+                $company = User::findOrFail($company_id);
+                // se almacena los productos activos de la empresa
+                $products_id =  $company->products()->where('status_id', 1)->lists('id');
+                // se recorre el array de los productos activos de la empresa para
+                // alamacenar en arrayId los id de dichos productos
+                foreach ($products_id as $id) {
+                    $arrayId [] = $id; 
+                }
             }
         }
 
@@ -129,7 +136,7 @@ class SellersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    // Elimina un producto de un vendedor en especifico
+    // Este metodo no se esta utilizando
     public function destroy(Request $request, $id)
     {
         // metodo para desvincular un producto de un vendedor especifico
@@ -137,7 +144,7 @@ class SellersController extends Controller
         // y el id del vendedor
     
         // almaceno el id de producto a eliminar
-        $productId = $request->get('product_id');
+        /*$productId = $request->get('product_id');
 
         // busco el producto para mostrar su nombre en mensaje
         $product =  $this->seller->addedproducts()
@@ -151,12 +158,12 @@ class SellersController extends Controller
 
         Session::flash('delete', $message);
 
-        return redirect()->route('dashboard.sellers.show', $this->seller->id);
+        return redirect()->route('dashboard.sellers.show', $this->seller->id);*/
     }
 
     /*** Metodo Extra para activar/desactivar vinculo vendedor-producto ***/
     public function productLink(Request $request, $id)
-    {   
+    {
         // se busca el vendedor
         $seller = User::where('type_id', 2)->findOrFail($id);
 

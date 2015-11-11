@@ -1,16 +1,12 @@
 @extends('layout')
 
 @section('title')
-	{{$product->name}} @lang('dashboard.title_sellers')
+	{{$object->name}} @lang('dashboard.title_sellers')
 @stop
 
 @section('content')
 
 @include('partials/modal')
-
-@foreach($productSellers as $seller)
-	@include('dashboard.products.partials.modal_seller')
-@endforeach
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -24,7 +20,7 @@
 		<div class="content">
 			<div class="page-heading">
         		<h1><i class='icon-suitcase'></i> 
-        			{{$product->name}}: @lang('dashboard.title_sellers')
+        			{{$object->name}}: @lang('dashboard.title_sellers')
         		</h1>
             </div>
 			@include('dashboard.partials.messages')
@@ -36,12 +32,12 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="toolbar-btn-action">
-											<a href="{{route('dashboard.products.show', $product->id)}}" class="btn btn-primary">
+											<a href="{{route('dashboard.products.show', $object->id)}}" class="btn btn-primary">
 												<i class="icon-back"></i>
 												@lang('dashboard.buttons.back')
 											</a>
 										</div>
-										@include('dashboard.products.partials.search_seller')
+										@include('dashboard.linkedsellers.partials.search')
 									</div>
 								</div>
 							</div>
@@ -70,20 +66,12 @@
 											</td>
 											<td>
 												<div class="btn-group btn-group-xs">
-													{!! Form::open([
-														'route' => ['dashboard.product-sellers.link', $product->id], 
-														'method' => 'GET',
-														'class' => 'btn-group btn-group-xs'
-													])!!}
+													{!! Form::open($header) !!}
 														<button type="submit" title="@lang('dashboard.buttons.change_status')" class="btn btn-default">
 															<i class="fa fa-power-off"></i>
 														</button>
 														{!! Form::hidden('seller_id', $seller->id) !!}
-													{!!Form::close()!!}
-
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$seller->id}}" class="btn btn-danger md-trigger ">
-														<i class="fa fa-trash-o"></i>
-													</a>
+													{!! Form::close() !!}
 												</div>
 											</td>
 										</tr>

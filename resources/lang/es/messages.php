@@ -45,4 +45,5 @@ return [
 	'401' => '¡Advertencia! Has intentado acceder a un área restringida sin permisos',
 	'dates_error' => 'Hubo un error en las fechas, verifique.',
 	'no_edit_incentive' => 'Éste incentivo ya comenzó, no puedes editarlo',
+	'company_products' => 'Nota: Recuerda que si la empresa seleccionada no tiene productos activos, la casilla no quedará marcada.',
 ];

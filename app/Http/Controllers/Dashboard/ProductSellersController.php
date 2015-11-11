@@ -68,12 +68,12 @@ class ProductSellersController extends Controller
      */
     public function show(Request $request, $id)
     {
-        //el metodo se usa para mostrar y filtrar los vendedores del producto
-        //$id contiene el id del producto
-        //get('namemail') contiene el nombre o email del vendedor a filtrar
+        // el metodo se usa para mostrar y filtrar los vendedores del producto
+        // $id contiene el id del producto
+        // get('nameseller') contiene el nombre o email del vendedor a filtrar
         $productSellers = Product::filterProductSellers(
-                    $id,
-                    $request->get('nameseller')
+                $id,
+                $request->get('nameseller')
         );
 
         $productSellers->setPath($this->product->id);
