@@ -29,14 +29,14 @@ class Product extends Model
 
      public function company()
     {
-        //retorna un solo objeto company, ya que el producto solo 
-        //pertenece a una empresa
+        // retorna un solo objeto company, ya que el producto solo 
+        // pertenece a una empresa
         return $this->belongsTo('Vest\User');
     }
 
     public function status()
     {
-        //retorna un solo objeto status, ya que el producto solo tiene un status
+        // retorna un solo objeto status, ya que el producto solo tiene un status
         return $this->belongsTo('Vest\Tables\Status');
     }
 
@@ -91,26 +91,27 @@ class Product extends Model
     }
 
     ///** Filtro para vendedores del producto **///
-    public static function filterProductSellers($id, $nameseller)
+    public static function filterProductSellers($product, $nameseller)
     {
-        //se busca el producto con findOrFail para poder llamar a ->sellers()
-        $product = Product::findOrFail($id);
-        //ya que no es un metodo estatico y no se puede usar ::sellers()
+        // se usa el metodo de sellers() del modelo Product
+        // no se puede usar Product::where('id', $product->id)->sellers() porque
+        // el método sellers() no es estático
         return $product->sellers()
                     ->nameSeller($nameseller)
                     ->simplePaginate(5);
+        // nameseller es un scope del modelo User
     }
 
     ///** Filtro para productos no asignados a un vendedor **///
     public static function filterProductsUnallocated($seller_id, $name, $company)
     {
-        //busco el vendedor
+        // busco el vendedor
         $seller = User::findOrFail($seller_id);
 
-        //se buscan lso productos del vendedor, almacenando solo los id
+        // se buscan lso productos del vendedor, almacenando solo los id
         $sellerProducts = $seller->addedproducts()->lists('product_id');
 
-        //devuelvo todos los productos excepto los del vendedor anterior
+        // devuelvo todos los productos excepto los del vendedor anterior
         return Product::name($name)
                     ->company($company)
                     ->whereNotIn('id', $sellerProducts)

@@ -79,10 +79,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ///** relacion de uno a muchos **///
     public function products()
     {
-        //retorna un array de objetos, el usuario (empresa) 
-        //puede tener varios productos
+        // retorna un array de objetos, el usuario (empresa) 
+        // puede tener varios productos
         return $this->hasMany('Vest\Tables\Product', 'company_id');
-        //busca en Product el campo company_id (llave foranea en Product)
+        // busca en Product el campo company_id (llave foranea en Product)
     }
 
     public function notifications()

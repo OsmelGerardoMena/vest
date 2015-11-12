@@ -23,6 +23,15 @@
         			{{$seller->name}}
         		</h1>
             </div>
+            
+            <div class="row">
+				<div class="col-md-12">
+					<a href="{{route('dashboard.sellers.index')}}" class="btn btn-primary">
+						<i class="icon-back"></i>
+						@lang('dashboard.buttons.back')
+					</a>
+				</div>
+			</div><br>
 
             @include('dashboard.sellers.partials.seller_info')
 
@@ -100,16 +109,10 @@
 							</div>
 						</div>
 					</div>
-					<a href="{{route('dashboard.sellers.index')}}" class="btn btn-primary">
-						<i class="icon-back"></i>
-						@lang('dashboard.buttons.back')
-					</a>
 				</div>
 			</div>
-
 		</div>
 		<!-- End content here -->
-	
 	</div>
 	<!-- End right content -->
 </div>

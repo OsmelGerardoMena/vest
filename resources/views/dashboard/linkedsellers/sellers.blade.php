@@ -32,7 +32,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="toolbar-btn-action">
-											<a href="{{route('dashboard.products.show', $object->id)}}" class="btn btn-primary">
+											<a href="{{route($route_back, $object->id)}}" class="btn btn-primary">
 												<i class="icon-back"></i>
 												@lang('dashboard.buttons.back')
 											</a>
@@ -50,11 +50,13 @@
 											<th>@lang('dashboard.table.name')</th>
 											<th>@lang('dashboard.table.email')</th>
 											<th>@lang('dashboard.table.link_status')</th>
-											<th>@lang('dashboard.table.actions')</th>
+											@if($path)
+												<th>@lang('dashboard.table.actions')</th>
+											@endif
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($productSellers as $seller)
+										@foreach($sellers as $seller)
 										<tr>
 											<td>{{ $seller->id }}</td>
 											<td>{{ $seller->name }}</td>
@@ -64,9 +66,14 @@
 													@lang('dashboard.link_status.'.$seller->getLinkStatus())
 												</span>
 											</td>
+											@if($path)
 											<td>
 												<div class="btn-group btn-group-xs">
-													{!! Form::open($header) !!}
+													{!! Form::open([
+														'route' => ['dashboard.linkedsellers.link', $object->id], 
+														'method' => 'GET',
+														'class' => 'btn-group btn-group-xs'
+													]) !!}
 														<button type="submit" title="@lang('dashboard.buttons.change_status')" class="btn btn-default">
 															<i class="fa fa-power-off"></i>
 														</button>
@@ -74,11 +81,12 @@
 													{!! Form::close() !!}
 												</div>
 											</td>
+											@endif
 										</tr>
 										@endforeach
 									</tbody>
 								</table> <!-- appends para que se mantenga la busqueda en las demas paginas -->
-								{!! $productSellers->appends(Request::only('nameseller'))->render() !!}
+								{!! $sellers->appends(Request::only('nameseller'))->render() !!}
 							</div>
 						</div>
 					</div>

@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 	Route::controller('dashboard/linked-sellers', 'LinkedSellersController', [
 		'getProduct' => 'dashboard.linkedsellers.product',
 		'getCompany' => 'dashboard.linkedsellers.company',
+		'getLink' => 'dashboard.linkedsellers.link',
 	]);
 
 	Route::resource('dashboard/companies', 'CompaniesController', 
