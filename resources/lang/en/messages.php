@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'error' => 'An error has occurred.',
 	'new' => ', was created successfully',
 	'edit' => ', was edited successfully',
 	'delete' => ', was eliminated',
@@ -46,4 +47,5 @@ return [
 	'dates_error' => 'Error in dates, check.',
 	'no_edit_incentive' => 'This incentive has begun, you can not edit',
 	'company_products' => 'Note: Remember that if the selected company does not have active products, the box will not be marked.',
+	'editing_product' => 'Note: If you change the company of this product, all linked sellers are also changed.'
 ];

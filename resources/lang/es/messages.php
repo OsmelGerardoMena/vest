@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'error' => 'Ha ocurrido un error.',
 	'new' => ', fue creado correctamente',
 	'edit' => ', fue editado correctamente',
 	'delete' => ', fue eliminado',
@@ -46,4 +47,5 @@ return [
 	'dates_error' => 'Hubo un error en las fechas, verifique.',
 	'no_edit_incentive' => 'Éste incentivo ya comenzó, no puedes editarlo',
 	'company_products' => 'Nota: Recuerda que si la empresa seleccionada no tiene productos activos, la casilla no quedará marcada.',
+	'editing_product' => 'Nota: Si cambias la empresa de éste producto, se cambiaran también todos los vendedores vinculados.',
 ];

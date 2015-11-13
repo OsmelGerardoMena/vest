@@ -74,13 +74,6 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 	Route::resource('dashboard/sellers', 'SellersController', 
 		['except' => ['create', 'store', 'destroy']]);
 
-	/*Route::get('dashboard/product-sellers/link/{product_id}', [
-			'uses' => 'ProductSellersController@sellerLink',
-			'as' => 'dashboard.product-sellers.link'
-	]);
-	Route::resource('dashboard/product-sellers', 'ProductSellersController', 
-		['only' => ['show', 'destroy']]);*/
-
 	Route::controller('dashboard/linked-sellers', 'LinkedSellersController', [
 		'getProduct' => 'dashboard.linkedsellers.product',
 		'getCompany' => 'dashboard.linkedsellers.company',

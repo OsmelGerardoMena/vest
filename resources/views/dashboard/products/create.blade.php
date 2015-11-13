@@ -27,6 +27,7 @@
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
+					@include('dashboard.partials.messages')
 					{!! Form::open([
 							'route' => 'dashboard.products.store', 
 							'method' => 'POST', 

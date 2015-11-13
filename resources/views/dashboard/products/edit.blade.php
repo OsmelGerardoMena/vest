@@ -27,6 +27,10 @@
 
             @include('dashboard.partials.messages')
 
+            <div class="alert alert-warning" role="alert">
+ 				<strong>@lang('messages.editing_product')</strong>
+ 			</div>
+
             <div class="widget">
 				<div class="widget-content padding">
 					@include('partials.errors')
