@@ -129,6 +129,7 @@ return [
 		'counting_sales' => 'Counting sales',
 		'categories' => 'Categories',
 		'company_categories' => 'Company categories',
+		'crm' => 'CRM',
 	],
 
 	'buttons' => [

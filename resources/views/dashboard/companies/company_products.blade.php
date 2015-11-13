@@ -40,10 +40,8 @@
 					</a>
 				</div>
 			</div><br>
-
-            @include('dashboard.companies.partials.company_info')
-
 			@include('dashboard.partials.messages')
+            @include('dashboard.companies.partials.company_info')
 			<div class="row">
 				<div class="col-md-12">
 					<div class="widget">

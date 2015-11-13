@@ -204,7 +204,7 @@ class ProductsController extends Controller
             Session::flash('edit', $message);
             return redirect()->back();
         }
-        Session::flash('error', trans('messages.error'));
+        Session::flash('status', trans('messages.error'));
         return redirect()->back();
     }
 

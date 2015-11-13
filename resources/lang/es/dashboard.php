@@ -129,6 +129,7 @@ return [
 		'counting_sales' => 'Conteo de ventas',
 		'categories' => 'Categorías',
 		'company_categories' => 'Categorías de empresa',
+		'crm' => 'CRM',
 	],
 
 	'buttons' => [
