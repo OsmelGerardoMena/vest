@@ -19,7 +19,19 @@ class CompaniesController extends Controller
     // Para buscar la empresa y tenerla en $this->company
     public function __construct()
     {
-        $this->beforeFilter('@findCompany', ['only' => ['show', 'destroy']]);
+        if (\Auth::user()->can('company')) {
+            // si es empresa, se le restringe todo
+            $this->middleware('is_admin');
+            // tambien se puede aplicar $this->middleware('is_seller');
+        }
+        else if(\Auth::user()->can('seller')) {
+            // si es vendedor se restringe todo excepto
+            $this->middleware('is_admin',  ['except' => ['index', 'show']]);
+            $this->beforeFilter('@findCompany', ['only' => 'show']);
+        }
+        else {
+            $this->beforeFilter('@findCompany', ['only' => ['show', 'destroy']]);
+        }
     }
 
     public function findCompany(Route $route)

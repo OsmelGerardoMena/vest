@@ -60,11 +60,12 @@
 											</span></td>
 											<td>
 												<div class="btn-group btn-group-xs">
+												@can('admin')
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.change_status')" class="btn btn-default" 
 														href="{{route('dashboard.users.status', $company->id)}}">
 														<i class="fa fa-power-off"></i>
 													</a>
-
+												@endcan
 													<a data-toggle="tooltip" title="@lang('dashboard.buttons.info_and_product')" class="btn btn-info" 
 														href="{{route('dashboard.companies.show', $company->id)}}">
 														<i class="fa fa-eye"></i>

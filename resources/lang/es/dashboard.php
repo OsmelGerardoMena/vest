@@ -54,6 +54,8 @@ return [
 	'title_save_edit_invoice' => 'Guardar/Editar Factura',
 	'title_notifications' => 'Notificación|Notificaciones',
 	'incentives_notifications' => 'Notificaciones de incentivos',
+	'title_categories_companies' => 'Categorías y Empresas',
+	'title_help' => 'Contacto - Ayuda',
 	'english' => 'Inglés',
 	'spanish' => 'Español',
 	'change_password' => 'Cambiar contraseña',
@@ -97,6 +99,7 @@ return [
 	'enter_invoice' => 'Ingresa número de factura',
 	'without_invoice' => 'Sin factura',
 	'without_url' => 'Sin URL',
+	'help' => 'Ayuda',
 
 	'sidebar' => [
 		'dash' => 'Sistema',
@@ -130,6 +133,7 @@ return [
 		'categories' => 'Categorías',
 		'company_categories' => 'Categorías de empresa',
 		'crm' => 'CRM',
+		'list_categories' => 'Lista de categorías',
 	],
 
 	'buttons' => [

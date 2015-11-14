@@ -162,7 +162,6 @@
                             <li><a href="{{route('dashboard.account.index')}}">@lang('dashboard.title_account')</a></li>
                             <li><a href="{{route('dashboard.account.edit', Auth::user()->id)}}">@lang('dashboard.change_password')</a></li>
                             <li class="divider"></li>
-                            <!--<li><a href="#"><i class="icon-help-2"></i> Help</a></li>-->
                             @can('seller')
                                 <li>
                                     <a href="{{route('dashboard.notifications.index')}}">
@@ -171,6 +170,9 @@
                                     </a>
                                 </li>
                             @endcan
+                            <li><a href="{{route('dashboard.help.index')}}">
+                                <i class="icon-help-2"></i> @lang('dashboard.help')</a>
+                            </li>
                             <li><a class="md-trigger" data-modal="logout-modal">
                                 <i class="icon-logout-1"></i> @lang('dashboard.logout')</a>
                             </li>

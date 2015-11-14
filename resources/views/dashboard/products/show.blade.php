@@ -63,7 +63,7 @@
 									<tbody>
 										<tr>
 											<td>{{ $product->presentation }}</td>
-											<td>{{ $product->price }}</td>
+											<td><strong class="text-primary">{{ $product->price }}</strong></td>
 											@if(empty($product->url))
 												<td>@lang('dashboard.without_url')</td>
 											@else

@@ -54,6 +54,8 @@ return [
 	'title_save_edit_invoice' => 'Save/Edit Invoice',
 	'title_notifications' => 'Notification|Notifications',
 	'incentives_notifications' => 'Incentives notifications',
+	'title_categories_companies' => 'Categories And Companies',
+	'title_help' => 'Contact - Help',
 	'english' => 'English',
 	'spanish' => 'Spanish',
 	'change_password' => 'Change password',
@@ -97,6 +99,7 @@ return [
 	'enter_invoice' => 'Enter invoice number',
 	'without_invoice' => 'Without invoice',
 	'without_url' => 'Without URL',
+	'help' => 'Help',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',
@@ -130,6 +133,7 @@ return [
 		'categories' => 'Categories',
 		'company_categories' => 'Company categories',
 		'crm' => 'CRM',
+		'list_categories' => 'Categories list',
 	],
 
 	'buttons' => [

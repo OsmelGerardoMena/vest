@@ -8,9 +8,11 @@
 
 @include('partials/modal')
 
-@foreach($companyProducts as $product)
-	@include('dashboard.companies.partials.modal')
-@endforeach
+@can('admin')
+	@foreach($companyProducts as $product)
+		@include('dashboard.companies.partials.modal')
+	@endforeach
+@endcan
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -34,10 +36,12 @@
 						<i class="icon-back"></i>
 						@lang('dashboard.buttons.back')
 					</a>
-					<a href="{{route('dashboard.linkedsellers.company', $company->id)}}" class="btn btn-success">
-						<i class="icon-suitcase"></i>
-						@lang('dashboard.buttons.sellers')
-					</a>
+					@can('admin')
+						<a href="{{route('dashboard.linkedsellers.company', $company->id)}}" class="btn btn-success">
+							<i class="icon-suitcase"></i>
+							@lang('dashboard.buttons.sellers')
+						</a>
+					@endcan
 				</div>
 			</div><br>
 			@include('dashboard.partials.messages')
@@ -75,7 +79,9 @@
 											<th>@lang('dashboard.table.price')</th>
 											<th>@lang('dashboard.table.url')</th>
 											<th>@lang('dashboard.table.status')</th>
-											<th>@lang('dashboard.table.actions')</th>
+											@can('admin')
+												<th>@lang('dashboard.table.actions')</th>
+											@endcan
 										</tr>
 									</thead>
 									<tbody>
@@ -91,18 +97,20 @@
 													{{ trans('dashboard.status.'.$product->getStatusId()) }}
 												</span>
 											</td>
-											<td>
-												<div class="btn-group btn-group-xs">
-													<a data-toggle="tooltip" title="@lang('dashboard.buttons.change_status')" class="btn btn-default"
-														href="{{route('dashboard.products.status', $product->id)}}">
-														<i class="fa fa-power-off"></i>
-													</a>
-									
-													<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
-														<i class="fa fa-trash-o"></i>
-													</a>
-												</div>
-											</td>
+											@can('admin')
+												<td>
+													<div class="btn-group btn-group-xs">
+														<a data-toggle="tooltip" title="@lang('dashboard.buttons.change_status')" class="btn btn-default"
+															href="{{route('dashboard.products.status', $product->id)}}">
+															<i class="fa fa-power-off"></i>
+														</a>
+										
+														<a title="@lang('dashboard.buttons.delete')" data-modal="delete-modal-{{$product->id}}" class="btn btn-danger md-trigger ">
+															<i class="fa fa-trash-o"></i>
+														</a>
+													</div>
+												</td>
+											@endcan
 										</tr>
 										@endforeach
 									</tbody>

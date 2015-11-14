@@ -80,9 +80,6 @@ Route::group(['middleware' => ['auth', 'is_admin', 'is_active'],
 		'getLink' => 'dashboard.linkedsellers.link',
 	]);
 
-	Route::resource('dashboard/companies', 'CompaniesController', 
-		['only' => ['index', 'show', 'destroy'] ]);
-
 	Route::resource('dashboard/company-categories', 'CompanyCategoriesController');
 
 	/*Route::get('dashboard/profiles/status/{id}', [
@@ -154,4 +151,16 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 			'as' => 'dashboard.customers.status'
 	]);
 	Route::resource('dashboard/customers', 'CustomersController');
+
+	Route::resource('dashboard/companies', 'CompaniesController', 
+		['only' => ['index', 'show', 'destroy'] ]);
+
+	Route::controller('dashboard/categories-and-companies', 'CategoriesAndCompaniesController', [
+		'getIndex' => 'dashboard.categories.index',
+	]);
+
+	Route::get('dashboard/help', [
+		'uses' => function(){ return view('dashboard.help.index');},
+		'as'   => 'dashboard.help.index'
+	]);
 });

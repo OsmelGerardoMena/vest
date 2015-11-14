@@ -52,6 +52,16 @@
                     <span>@lang('dashboard.sidebar.list_products')</span>
                 </a>
             </li>
+            <li>
+                <a href="{{asset('/dashboard/categories-and-companies')}}">
+                    <span>@lang('dashboard.sidebar.list_categories')</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{asset('/dashboard/companies')}}">
+                    <span>@lang('dashboard.sidebar.list_companies')</span>
+                </a>
+            </li>
         </ul>
     </li>
 
