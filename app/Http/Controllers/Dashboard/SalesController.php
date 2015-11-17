@@ -305,7 +305,7 @@ class SalesController extends Controller
                                     trans('dashboard.notification.content_1')
                                     .$incentive->product->name
                                     .trans('dashboard.notification.content_2')
-                                    .$incentive->award;
+                                    .$incentive->award.' ('.$incentive->type->name.')';
                             $notification->user_id = $sale->seller_id;
                             $notification->incentive_id = $incentive->id;
                             $notification->save();

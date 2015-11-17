@@ -28,7 +28,7 @@
 			      		<h4 class="panel-title">
 				        	<a data-toggle="collapse" data-parent="#accordion" href="#rnotifications">
 				          		<i class="icon-bell-2"></i> @lang('dashboard.incentives_notifications')
-				          		<span class="label bg-darkblue-1 pull-right">{{$notifications->count()}}</span>
+				          		<span class="label bg-darkblue-1 pull-right">{{$count}}</span>
 				        	</a>
 			      		</h4>
 			    	</div>
@@ -36,9 +36,13 @@
 			      		<div class="panel-body">
 					      	<ul class="list-unstyled" id="notification-list">
 					      		@foreach($notifications as $notification)
-						      		<li><a href="{{route('dashboard.notifications.show', $notification->id)}}"><span class="icon-wrapper">
-						      			<i class="icon-star-3"></i></span> {{$notification->title}}
-						      			<span class="muted">{{ $notification->created_at->format('d/m/Y') }}</span></a>
+						      		<li><a href="{{route('dashboard.notifications.show', $notification->id)}}">
+						      			<span class="icon-wrapper"><i class="icon-star-3"></i></span> {{$notification->title}}
+						      			<span class="{{ ($notification->read) ? 'label label-success  pull-right' : 'label label-warning  pull-right'}}">
+						      				{{ ($notification->read) ? trans('messages.read') : trans('messages.unread')}}
+										</span>
+						      			<span class="muted">{{ $notification->created_at->format('d/m/Y') }}</span>
+						      			</a>
 						      		</li>
 					      		@endforeach
 					      	</ul>

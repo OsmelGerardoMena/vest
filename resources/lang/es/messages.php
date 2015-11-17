@@ -49,4 +49,6 @@ return [
 	'company_products' => 'Nota: Recuerda que si la empresa seleccionada no tiene productos activos, la casilla no quedará marcada.',
 	'editing_product' => 'Nota: Si cambias la empresa de éste producto, se cambiaran también todos los vendedores vinculados.',
 	'without_sellers' => 'Aviso: Ésta empresa no tiene vendedores.',
+	'read' => 'Leída',
+	'unread' => 'No leída',
 ];

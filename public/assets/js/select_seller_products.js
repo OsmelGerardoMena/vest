@@ -9,11 +9,11 @@ $(document).ready(function(){
 			$.get('seller', {id: seller_id}, function(products){
 				// se recibe los productos del vendedor desde el controlador
 				// se limpia primero el select
-				$('select#selected-product').empty();
-				$('select#selected-product').append("<option value=''>" + $('#firts_option').val() + "</option>");
+				$('#selected-product').empty();
+				$('#selected-product').append("<option value=''>" + $('#firts_option').val() + "</option>");
 				// se recorre el array y se agregan al select producto
 				$.each(products, function(index, value){
-					$('select#selected-product').append("<option value='" + index + "'>" + value + "</option>");
+					$('#selected-product').append("<option value='" + index + "'>" + value + "</option>");
 				});
 			});
 		}

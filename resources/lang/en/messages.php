@@ -49,4 +49,6 @@ return [
 	'company_products' => 'Note: Remember that if the selected company does not have active products, the box will not be marked.',
 	'editing_product' => 'Note: If you change the company of this product, all linked sellers are also changed.'
 	'without_sellers' => 'Notice: This company has no sellers.',
+	'read' => 'Read',
+	'unread' => 'Unread',
 ];

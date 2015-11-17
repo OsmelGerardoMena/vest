@@ -56,11 +56,13 @@
                                 <span>@lang('dashboard.sidebar.start')</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="http://cloud.8ssi.com/~softwar3/crm/app/index.php/zurmo/api/login?username={{Auth::user()->email}}&password=1234567" >
-                                <span>@lang('dashboard.sidebar.crm')</span>
-                            </a>
-                        </li>
+                        @can('seller')
+                            <li>
+                                <a href="http://cloud.8ssi.com/~softwar3/crm/app/index.php/zurmo/api/login?username={{Auth::user()->email}}&password=1234567" >
+                                    <span>@lang('dashboard.sidebar.crm')</span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
                 @can('admin')

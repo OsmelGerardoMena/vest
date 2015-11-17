@@ -25,7 +25,8 @@ class CompanySalesController extends Controller
 
     public function getIndex()
     {
-    	$sales = Sale::all(); // obtengo todas las ventas
+        // obtengo todas las ventas facturadas
+    	$sales = Sale::whereNotNull('invoice')->get();
 
     	// conteo de ventas por producto y por vendedor
     	$this->getSalesPerProductAndSeller($sales);
