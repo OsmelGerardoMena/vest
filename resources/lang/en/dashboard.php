@@ -161,6 +161,7 @@ return [
 		'add_category' => 'Add category',
 		'save_edit_invoice' => 'Save/Edit Invoice',
 		'back_to_dashboard' => 'Back to Dashboard',
+		'notifications' => 'Notifications',
 	],
 
 	'ph' => [ //placeholder

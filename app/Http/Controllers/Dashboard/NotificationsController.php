@@ -18,11 +18,14 @@ class NotificationsController extends Controller
 
     public function getIndex()
     {
-    	$notifications = Notification::where('user_id', $this->user->id)->get();
+    	$notifications = Notification::where('user_id', $this->user->id)
+                ->orderBy('id', 'desc')->get();
+
         // conteo de notificaciones leidas
         $count = Notification::where('user_id', $this->user->id)
                 ->where('read', false)->get()->count();
-    	return view('Dashboard.notifications.index', compact('notifications', 'count'));
+
+    	return view('dashboard.notifications.index', compact('notifications', 'count'));
     }
 
     public function getShow($id)
@@ -32,6 +35,11 @@ class NotificationsController extends Controller
             $notification->read = true; // leída
             $notification->save();
         }
-    	return view('Dashboard.notifications.show')->with('notification', $notification);
+    	return view('dashboard.notifications.show')->with('notification', $notification);
+    }
+
+    public function getClean()
+    {
+        Notification::where('read', true)->delete();
     }
 }

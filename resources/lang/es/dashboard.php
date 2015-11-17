@@ -161,6 +161,7 @@ return [
 		'add_category' => 'Agregar categoría',
 		'save_edit_invoice' => 'Guardar/Editar factura',
 		'back_to_dashboard' => 'Volver al inicio',
+		'notifications' => 'Notificaciones',
 	],
 
 	'ph' => [ //placeholder

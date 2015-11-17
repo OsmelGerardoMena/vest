@@ -143,7 +143,7 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 	Route::controller('dashboard/notifications', 'NotificationsController', [
 		'getIndex' => 'dashboard.notifications.index',
 		'getShow' => 'dashboard.notifications.show',
-		//'getSellersSales' => 'dashboard.companysales.show',
+		'getClean' => 'dashboard.notifications.clean',
 	]);
 
 	Route::get('dashboard/customers/status/{id}', [

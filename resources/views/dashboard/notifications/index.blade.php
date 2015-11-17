@@ -38,7 +38,7 @@
 					      		@foreach($notifications as $notification)
 						      		<li><a href="{{route('dashboard.notifications.show', $notification->id)}}">
 						      			<span class="icon-wrapper"><i class="icon-star-3"></i></span> {{$notification->title}}
-						      			<span class="{{ ($notification->read) ? 'label label-success  pull-right' : 'label label-warning  pull-right'}}">
+						      			<span class="{{ ($notification->read) ? 'label label-default pull-right' : 'label label-primary pull-right'}}">
 						      				{{ ($notification->read) ? trans('messages.read') : trans('messages.unread')}}
 										</span>
 						      			<span class="muted">{{ $notification->created_at->format('d/m/Y') }}</span>

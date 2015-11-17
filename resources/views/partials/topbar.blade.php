@@ -60,9 +60,12 @@
                     </li>-->
                 </ul>
                 <ul class="nav navbar-nav navbar-right top-navbar">
-                    <!--<li class="dropdown iconify hide-phone">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i><span class="label label-danger absolute">4</span></a>
-                        <ul class="dropdown-menu dropdown-message">
+                    <li class="dropdown iconify hide-phone">
+                        <a href="{{route('dashboard.notifications.index')}}" title="@lang('dashboard.buttons.notifications')">
+                            <i class="icon-bell-1"></i><!--fa fa-globe-->
+                            <span class="label label-danger absolute" id='prueba'>4</span>
+                        </a>
+                        <!--<ul class="dropdown-menu dropdown-message">
                             <li class="dropdown-header notif-header"><i class="icon-bell-2"></i> New Notifications<a class="pull-right" href="#"><i class="fa fa-cog"></i></a></li>
                             <li class="unread">
                                 <a href="#">
@@ -112,8 +115,8 @@
                                     </div>
                                 </div>
                             </li>
-                        </ul>
-                    </li>-->
+                        </ul>-->
+                    </li>
                     <!--<li class="dropdown iconify hide-phone">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope"></i><span class="label label-danger absolute">3</span></a>

@@ -114,5 +114,6 @@
 	<script src="{{asset('assets/js/reload_search.js')}}"></script>
 	<script src="{{asset('assets/js/select_category.js')}}"></script>
 	<script src="{{asset('assets/js/select_seller_products.js')}}"></script>
+	<script src="{{asset('assets/js/notification.js')}}"></script>
 </body>
 </html>
