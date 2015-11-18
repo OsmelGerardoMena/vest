@@ -51,4 +51,5 @@ return [
 	'without_sellers' => 'Aviso: Ésta empresa no tiene vendedores.',
 	'read' => 'Leída',
 	'unread' => 'No leída',
+	'no_new_noti' => '¡No existen notificaciones nuevas!',
 ];

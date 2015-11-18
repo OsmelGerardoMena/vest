@@ -21,7 +21,7 @@ class NotificationsController extends Controller
     	$notifications = Notification::where('user_id', $this->user->id)
                 ->orderBy('id', 'desc')->get();
 
-        // conteo de notificaciones leidas
+        // conteo de notificaciones no leidas
         $count = Notification::where('user_id', $this->user->id)
                 ->where('read', false)->get()->count();
 
@@ -38,8 +38,19 @@ class NotificationsController extends Controller
     	return view('dashboard.notifications.show')->with('notification', $notification);
     }
 
-    public function getClean()
+    // metodo para mostrar notificaciones mediante ajax, en el icono de la barra superior
+    public function getAjax(Request $request)
+    {
+        if ($request->ajax()) {
+            $notifications = Notification::where('user_id', $this->user->id)
+                    ->where('read', false)->orderBy('id', 'desc')->get();
+
+            return response()->json($notifications);
+        } 
+    }
+
+    /*public function getClean()
     {
         Notification::where('read', true)->delete();
-    }
+    }*/
 }

@@ -114,6 +114,8 @@
 	<script src="{{asset('assets/js/reload_search.js')}}"></script>
 	<script src="{{asset('assets/js/select_category.js')}}"></script>
 	<script src="{{asset('assets/js/select_seller_products.js')}}"></script>
-	<script src="{{asset('assets/js/notification.js')}}"></script>
+	@can('seller')
+		{!! Html::script('assets/js/notifications.js') !!}
+	@endcan
 </body>
 </html>

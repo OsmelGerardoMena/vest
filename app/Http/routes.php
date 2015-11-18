@@ -144,6 +144,7 @@ Route::group(['middleware' => ['auth', 'is_active'], 'namespace' => 'Dashboard']
 		'getIndex' => 'dashboard.notifications.index',
 		'getShow' => 'dashboard.notifications.show',
 		'getClean' => 'dashboard.notifications.clean',
+		'getAjax' => 'dashboard.notifications.ajax',
 	]);
 
 	Route::get('dashboard/customers/status/{id}', [

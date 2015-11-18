@@ -21,7 +21,6 @@
         			{{trans_choice('dashboard.title_notifications', 2)}}
         		</h1>
             </div>
-
             <div class="panel-group" id="collapse">
 			 	<div class="panel panel-red-1">
 			    	<div class="panel-heading">

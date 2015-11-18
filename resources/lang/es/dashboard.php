@@ -162,6 +162,8 @@ return [
 		'save_edit_invoice' => 'Guardar/Editar factura',
 		'back_to_dashboard' => 'Volver al inicio',
 		'notifications' => 'Notificaciones',
+		'seeall_notifications' => 'Ver Todas',
+		'new_notifications' => 'Nuevas Notificaciones',
 	],
 
 	'ph' => [ //placeholder
