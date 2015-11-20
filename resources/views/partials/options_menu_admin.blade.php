@@ -1,5 +1,5 @@
 <li class='has_sub'>
-    <a href='' id='user-link'>
+    <a href='' id='user'>
         <i class='icon-users'></i>
         <span>@lang('dashboard.sidebar.users')</span> 
         <span class="pull-right">
@@ -31,7 +31,7 @@
 </li>
 
 <li class='has_sub'>
-    <a href=''>
+    <a href='' id='category'>
         <i class='glyphicon glyphicon-tags'></i>
         <span>@lang('dashboard.sidebar.categories')</span> 
         <span class="pull-right">
@@ -48,7 +48,7 @@
 </li>
 
 <li class='has_sub'>
-    <a href=''>
+    <a href='' id='product'>
         <i class='icon-layers'></i>
         <span>@lang('dashboard.sidebar.products')</span> 
         <span class="pull-right">
@@ -90,7 +90,7 @@
 </li>
 
 <li class='has_sub'>
-    <a href=''>
+    <a href='' id='customer'>
         <i class='icon-smiley'></i>
         <span>@lang('dashboard.sidebar.customers')</span> 
         <span class="pull-right">
@@ -107,7 +107,7 @@
 </li>
 
 <li class='has_sub'>
-    <a href=''>
+    <a href='' id='sale'>
         <i class='glyphicon glyphicon-stats'></i>
         <span>@lang('dashboard.sidebar.sales')</span> 
         <span class="pull-right">

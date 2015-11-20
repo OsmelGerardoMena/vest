@@ -1,5 +1,5 @@
 <li class='has_sub'>
-    <a href=''>
+    <a href='' id='my-product'>
         <i class='glyphicon glyphicon-th-list'></i>
         <span>@lang('dashboard.sidebar.my_products')</span> 
         <span class="pull-right">
@@ -39,7 +39,7 @@
 
 @can('seller')
      <li class='has_sub'>
-        <a href=''>
+        <a href='' id='product'>
             <i class='icon-layers'></i>
             <span>@lang('dashboard.sidebar.products')</span> 
             <span class="pull-right">
@@ -66,7 +66,7 @@
     </li>
 
     <li class='has_sub'>
-        <a href=''>
+        <a href='' id='customer'>
             <i class='icon-smiley'></i>
             <span>@lang('dashboard.sidebar.customers')</span> 
             <span class="pull-right">
@@ -83,7 +83,7 @@
     </li>
 
     <li class='has_sub'>
-        <a href=''>
+        <a href='' id='sale'>
             <i class='glyphicon glyphicon-stats'></i>
             <span>@lang('dashboard.sidebar.my_sales')</span> 
             <span class="pull-right">
@@ -102,7 +102,7 @@
 
 @can('company')
     <li class='has_sub'>
-        <a href=''>
+        <a href='' id='sale'>
             <i class='glyphicon glyphicon-stats'></i>
             <span>@lang('dashboard.sidebar.sales')</span> 
             <span class="pull-right">

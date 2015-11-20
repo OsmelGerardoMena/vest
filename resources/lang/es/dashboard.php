@@ -72,6 +72,7 @@ return [
 	'sure_unlink_product' => '¿Seguro quieres desvincular este producto?',
 	'sure_delete_contract' => '¿Seguro quieres eliminar este contrato?',
 	'sure_delete_incentive' => '¿Seguro quieres eliminar este incentivo?',
+	'delete_notifications' => 'Se eliminaran todas las notificaciones relacionadas con este incentivo',
 	'sure_delete_training' => '¿Seguro quieres eliminar esta capacitación?',
 	'sure_delete_benefit' => '¿Seguro quieres eliminar este beneficio?',
 	'sure_unlink_seller' => '¿Seguro quieres desvincular este vendedor?',

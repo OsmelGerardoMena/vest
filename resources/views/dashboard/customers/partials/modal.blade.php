@@ -1,12 +1,10 @@
 <!-- Modal Delete customer -->
 <div class="md-modal md-slide-stick-top" id="delete-modal-{{$customer->id}}">
 	<div class="md-content">
-		<h3><strong>@lang('dashboard.sure_delete_customer')</strong></h3>
-
-		<div><center>
-			<h4>@lang('dashboard.delete_sales')</h4>
-		</center></div>
-		
+		<h3><strong>
+			@lang('dashboard.sure_delete_customer')<br>
+			@lang('dashboard.delete_sales')
+		</strong></h3>
 		<div>
 			<center>
 				<p><button class="btn btn-primary md-close">

@@ -136,8 +136,8 @@ class IncentivesController extends Controller
     {
         $incentive = Incentive::findOrFail($id);
 
-        // se verifica si la fecha de hoy es igual a la fecha de inicio del incentivo
-        if (Carbon::now()->toDateString() == $incentive->date_from->toDateString()) {
+        // se verifica si la fecha de hoy es igual o mayor a la fecha de inicio del incentivo
+        if (Carbon::now()->toDateString() >= $incentive->date_from->toDateString()) {
             // si son iguales no se van a poder editar
             Session::flash('error', trans('messages.no_edit_incentive'));
             return redirect()->route('dashboard.incentives.index');

@@ -17,9 +17,11 @@
                     <b>{{ Auth::user()->name }}</b>
                 </div>
                 <div class="profile-buttons">
+                    @can('seller')
                     <a href="{{route('dashboard.notifications.index')}}" title="@lang('dashboard.buttons.notifications')">
                         <i class="fa fa-bell-o"></i>
                     </a>
+                    @endcan
                     <a class="md-trigger" data-modal="logout-modal" title="@lang('dashboard.logout')">
                         <i class="fa fa-power-off text-red-1"></i>
                     </a>
@@ -32,9 +34,9 @@
         <div class="clearfix"></div>
         <!--- Divider -->
         <div id="sidebar-menu">
-            <ul>
+            <ul class='my-menu'>
                 <li class='has_sub'>
-                    <a href='' id='start-link'>
+                    <a href='' id='start'>
                         <i class='icon-home-3'></i>
                         <span>@lang('dashboard.sidebar.dash')</span> 
                         <span class="pull-right">
@@ -43,8 +45,8 @@
                     </a>
                     <ul>
                         <li>
-                            <!-- con class='active' aparece desglosado el menu -->
-                            <a href="{{route('dashboard')}}" >
+                            <!-- javascript:void(0); con class='active' aparece desglosado el menu -->
+                            <a href="{{route('dashboard')}}">
                                 <span>@lang('dashboard.sidebar.start')</span>
                             </a>
                         </li>

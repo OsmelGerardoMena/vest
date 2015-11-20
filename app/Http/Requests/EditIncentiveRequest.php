@@ -27,8 +27,8 @@ class EditIncentiveRequest extends Request
             'goal' => 'required|numeric',
             'incentive_type_id' => 'required|exists:incentive_types,id',
             'award' => 'required',
-            'date_from' => 'required|date',
-            'date_to' => 'required|date',
+            'date_from' => 'date',
+            'date_to' => 'date',
             'product_id' => 'required|exists:products,id',
         ];
     }
