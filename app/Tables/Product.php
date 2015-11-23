@@ -115,6 +115,7 @@ class Product extends Model
         return Product::name($name)
                     ->company($company)
                     ->whereNotIn('id', $sellerProducts)
+                    ->whereNotIn('id', [1])
                     ->simplePaginate(5);
     }
  
