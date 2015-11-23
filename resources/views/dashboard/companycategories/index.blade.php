@@ -23,7 +23,7 @@
         <!-- Start Content here -->
         <div class="content">
             <div class="page-heading">
-                <h1><i class='glyphicon glyphicon-tags'></i> 
+                <h1><i class='glyphicon glyphicon-tags'></i>  
                     @lang('dashboard.title_company_categories')
                 </h1>
             </div>

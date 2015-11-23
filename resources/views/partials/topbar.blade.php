@@ -7,6 +7,7 @@
         <button class="button-menu-mobile open-left">
         <i class="fa fa-bars"></i>
         </button>
+        <input type="hidden" id="user-is-admin" value="{{Auth::user()->isAdmin()}}">
     </div>
     <!-- Button mobile view to collapse sidebar menu -->
     <div class="navbar navbar-default" role="navigation">

@@ -55,6 +55,7 @@ return [
 	'title_notifications' => 'Notificación|Notificaciones',
 	'incentives_notifications' => 'Notificaciones de incentivos',
 	'title_categories_companies' => 'Categorías y Empresas',
+	'categories_companies' => 'Para ver las empresas pulse sobre una categoría',
 	'title_help' => 'Contacto - Ayuda',
 	'english' => 'Inglés',
 	'spanish' => 'Español',

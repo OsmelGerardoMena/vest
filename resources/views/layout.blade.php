@@ -68,7 +68,6 @@
 @endif
 
 @yield('content')
-
 	<!-- the overlay modal element -->
 	<div class="md-overlay"></div>
 	<!-- End of eoverlay modal -->
@@ -110,7 +109,7 @@
 	@endif
 
 	<!-- Scripts adicionales -->
-	<script src="{{asset('assets/js/menu.js')}}"></script>
+	<script src="{{asset('assets/js/sidebar_menu.js')}}"></script>
 	<script src="{{asset('assets/js/reload_search.js')}}"></script>
 	<script src="{{asset('assets/js/select_category.js')}}"></script>
 	<script src="{{asset('assets/js/select_seller_products.js')}}"></script>

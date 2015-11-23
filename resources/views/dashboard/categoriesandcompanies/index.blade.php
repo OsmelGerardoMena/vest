@@ -15,9 +15,14 @@
 	<div class="content-page">
 		<!-- Start Content here -->
 		<div class="content">
+			<div class="page-heading">
+        		<h1><i class='icon-tags'></i>
+        			@lang('dashboard.title_categories_companies')
+        		</h1>
+            </div>
 			<div class="widget">
 				<div class="widget-header">
-					<h2>@lang('dashboard.title_categories_companies')</h2>
+					<h2>@lang('dashboard.categories_companies')</h2>
 					<div class="additional-btn">
 						<a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
 					</div>
