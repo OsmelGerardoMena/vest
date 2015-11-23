@@ -102,6 +102,7 @@ return [
 	'without_invoice' => 'Sin factura',
 	'without_url' => 'Sin URL',
 	'help' => 'Ayuda',
+	'telephone' => 'Teléfono',
 
 	'sidebar' => [
 		'dash' => 'Sistema',

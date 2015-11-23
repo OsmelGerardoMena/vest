@@ -52,4 +52,5 @@ return [
 	'read' => 'Leída',
 	'unread' => 'No leída',
 	'no_new_noti' => '¡No existen notificaciones nuevas!',
+	'support' => 'Para alguna duda o problema contáctanos',
 ];

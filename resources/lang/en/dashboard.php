@@ -102,6 +102,7 @@ return [
 	'without_invoice' => 'Without invoice',
 	'without_url' => 'Without URL',
 	'help' => 'Help',
+	'telephone' => 'Telephone',
 
 	'sidebar' => [
 		'dash' => 'Dashboard',

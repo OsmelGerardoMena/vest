@@ -52,4 +52,5 @@ return [
 	'read' => 'Read',
 	'unread' => 'Unread',
 	'no_new_noti' => 'No new notifications!',
+	'support' => 'For any questions or problems contact us',
 ];
