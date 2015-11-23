@@ -7,6 +7,7 @@ use Validator;
 use Vest\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Lang;
 
 class AuthController extends Controller
 {
@@ -24,11 +25,11 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     // Ruta de Redireccion si se loguea correctamente
-    protected $redirectPath = 'dashboard';
+    protected $redirectPath;
     // Ruta de redireccion si no se loguea correctamente
-    protected $loginPath = 'login';
+    protected $loginPath;
     // Ruta de redireccion despues de cerrar sesion
-    protected $redirectAfterLogout = 'login';
+    protected $redirectAfterLogout;
 
     /**
      * Create a new authentication controller instance.
@@ -38,6 +39,9 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
+        $this->redirectPath = Lang::get('route.dashboard');
+        $this->loginPath = Lang::get('route.login');
+        $this->redirectAfterLogout = Lang::get('route.login');
     }
 
     /**
